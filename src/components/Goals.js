@@ -1,11 +1,19 @@
 // import './css/Goals.css';
+import { Link } from 'react-router-dom';
+import SingleGoalCard from './SingleGoalCard';
+import Insights from './Insights';
+
+// links to add goal form
 
 function Goals() {
   return (
-    <div className='Goals'>
-      <header className='Goals-header'>
-        <p>Goals</p>
-      </header>
+    <div className='goals'>
+      <p>goals</p>
+      <Link to='/goals/add'>
+        <button>Add Goal</button>
+      </Link>
+      <SingleGoalCard />
+      <Insights />
     </div>
   );
 }

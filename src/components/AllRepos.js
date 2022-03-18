@@ -1,11 +1,11 @@
 // import './css/AllRepos.css';
+import SingleRepoCard from './SingleRepoCard';
 
 function AllRepos() {
   return (
-    <div className='AllRepos'>
-      <header className='AllRepos-header'>
-        <p>All Repos</p>
-      </header>
+    <div className='all-repos'>
+      <p>All Repos</p>
+      <SingleRepoCard />
     </div>
   );
 }

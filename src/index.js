@@ -11,12 +11,14 @@ import SingleRepo from './components/SingleRepo';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />} />
         <Route path='home' element={<Home />} />
+      
 
         <Route path='goals' element={<Goals />} />
         <Route path='goals/add' element={<AddGoal />} />

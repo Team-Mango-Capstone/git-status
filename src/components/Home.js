@@ -1,11 +1,11 @@
 // import './css/Home.css';
+import Navbar from './Navbar';
 
 function Home() {
   return (
-    <div className='Home'>
-      <header className='Home-header'>
-        <p>Homepage</p>
-      </header>
+    <div className='home'>
+      <Navbar />
+      <p>Homepage</p>
     </div>
   );
 }

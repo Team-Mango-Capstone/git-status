@@ -2,10 +2,8 @@
 
 function SingleRepo() {
   return (
-    <div className='SingleRepo'>
-      <header className='SingleRepo-header'>
-        <p>Single Repo</p>
-      </header>
+    <div className='single-repo'>
+      <p>Single Repo</p>
     </div>
   );
 }

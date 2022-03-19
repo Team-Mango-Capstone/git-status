@@ -1,6 +1,6 @@
 //import firebase from 'firebase'
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GithubAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GithubAuthProvider, signOut } from "firebase/auth";
 import {
   getFirestore,
   collection,
@@ -34,24 +34,27 @@ export const signInWithGitHub = () => {
       console.log(result);
       const name = result.user.displayName;
       const profilePic = result.user.photoURL;
+      const userId = result.user.providerData[0].uid;
+      console.log(userId);
 
-      localStorage.setItem("name", name);
-      localStorage.setItem("profilePic", profilePic);
+      window.localStorage.setItem("name", name);
+      window.localStorage.setItem("profilePic", profilePic);
+      window.localStorage.setItem("userId", userId);
     })
     .catch((error) => {
       console.log(error);
     });
 };
 
-export const signOut = (e) => {
+export const signOutGithub = (e) => {
   e.preventDefault();
   auth.signOut();
-  localStorage.clear();
+  window.localStorage.clear();
   console.log("logged out");
 };
 
 // Initialize cloud Firestore
-const db = getFirestore();
+export const db = getFirestore();
 
 // Create a user
 export async function createAda() {

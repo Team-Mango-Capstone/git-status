@@ -1,5 +1,5 @@
 // import './css/Home.css';
-import {signOut } from '../db/Firebase';
+import {signOutGithub } from '../db/Firebase';
 import Navbar from './Navbar';
 import { createAda, getUsers, getSingleUser, makeDiana, deleteUser, getGoals } from '../db/Firebase';
 
@@ -8,7 +8,7 @@ function Home() {
     <div className='Home'>
         <Navbar />
         <p>Homepage</p>
-        <button onClick={signOut}>Sign Out</button>
+        <button onClick={signOutGithub}>Sign Out</button>
         <h1>Welcome {localStorage.getItem('name')}</h1>
         <img src={localStorage.getItem('profilePic')} alt='profile pic' />
         <button onClick={createAda}>Create Ada!!</button>

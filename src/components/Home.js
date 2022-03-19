@@ -10,14 +10,20 @@ const githubUsername = 'dviglucci';
 
 function Home() {
   const [userData, setUserData] = useState({});
+  const [userRepos, setUserRepos] = useState({});
+  const [userLanguages, setUserLanguages] = useState({});
 
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        const response = await axios.get(
+        const userData = await axios.get(
           `https://api.github.com/users/${githubUsername}`
         );
-        setUserData(response.data);
+        setUserData(userData.data);
+        const userRepos = await axios.get(
+          `https://api.github.com/users/${githubUsername}/repos`
+        );
+        setUserRepos(userRepos.data);
       } catch (error) {
         console.log(error);
       }
@@ -34,6 +40,45 @@ function Home() {
       `${totalYears} years and ${remainderDays} days`
     )
   }
+
+  const calculateLanguages = async () => {
+    console.log('USER LANGUAGES BEFORE >>>>>', userLanguages)
+    // for each repo in all the user's repos...
+    for (const repo in userRepos) {
+      try {
+        // get the languages in that repo
+        const repoLanguages = await axios.get(
+          `https://api.github.com/repos/${githubUsername}/${repo}/languages`
+        );
+        for (const language in repoLanguages) {
+          // if that language is already in our userLanguages piece of state, increment it
+          if (Object.keys(userLanguages).includes(language)) {
+            setUserLanguages({ ...userLanguages, [language]:  userLanguages[language] + repoLanguages[language]});
+          } 
+          // otherwise, add that language to userLanguages
+          else {
+            setUserLanguages({...userLanguages, [language]: repoLanguages[language]})
+          };
+        };
+      } catch (error) {
+        console.log(error);
+      };
+    };
+    console.log('USER LANGUAGES AFTER >>>>>', userLanguages)
+  }
+
+  console.log('calculateLanguages >>>', calculateLanguages());
+
+  const checkRateLimit = async () => {
+    try {
+      const { data } = await axios.get('https://api.github.com/rate_limit');
+      console.log('rate limit >>>>>', data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  console.log("check rate limit: ", checkRateLimit())
 
   return (
     <div className='Home'>
@@ -56,3 +101,4 @@ function Home() {
 }
 
 export default Home;
+

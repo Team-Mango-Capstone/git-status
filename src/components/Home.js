@@ -2,15 +2,49 @@
 import {signOut } from '../db/Firebase';
 import Navbar from './Navbar';
 import { createAda, getUsers, getSingleUser, makeDiana, deleteUser, getGoals } from '../db/Firebase';
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
+
+
+const githubUsername = 'dviglucci';
 
 function Home() {
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.github.com/users/${githubUsername}`
+        );
+        setUserData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    makeRequest();
+  }, []);
+
+  const makeDate = () => {
+    const totalDays = (new Date() - new Date(userData.created_at))/86400000;
+    const totalYears = Math.floor(totalDays/365);
+    const remainderDays = Math.floor(totalDays % 365);
+
+    return (
+      `${totalYears} years and ${remainderDays} days`
+    )
+  }
+
   return (
     <div className='Home'>
         <Navbar />
         <p>Homepage</p>
         <button onClick={signOut}>Sign Out</button>
-        <h1>Welcome {localStorage.getItem('name')}</h1>
+        <h1>Welcome {localStorage.getItem('name') !== 'null' ? localStorage.getItem('name') : userData.login}</h1>
         <img src={localStorage.getItem('profilePic')} alt='profile pic' />
+        <div>
+          You have been a GitHub user for {makeDate()}.
+        </div>
         <button onClick={createAda}>Create Ada!!</button>
         <button onClick={getUsers}>Get User</button>
         <button onClick={getSingleUser}>Get Single User</button>

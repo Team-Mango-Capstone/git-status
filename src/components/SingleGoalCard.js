@@ -24,7 +24,6 @@ const SingleGoalCard = ({ goal, toggleComplete, handleDelete, handleEditDesc, ha
     if (goal.completed === true) {
       setNewDeadline(goal.deadline);
     } else {
-      goal.deadline = '';
       setNewDeadline(e.target.value);
     }
   };
@@ -36,13 +35,18 @@ const SingleGoalCard = ({ goal, toggleComplete, handleDelete, handleEditDesc, ha
         type='text'
         value={goal.description === '' ? newDescription : goal.description}
         className='list'
-        onChange={handleChangeDesc}
+        onChange={(e) => {
+          handleChangeDesc(e)
+        }}
       />
         <input
         type='date'
-        value={goal.deadline === '' ? newDeadline : goal.deadline}
+        value={goal.deadline}
         className='list'
-        onChange={handleChangeDeadline}
+        onChange={(e)=> {
+          handleChangeDeadline(e)
+          handleEditDeadline(goal, newDeadline)
+        }}
       />
 
       <button className='button-complete' onClick={() => toggleComplete(goal)}>
@@ -53,7 +57,6 @@ const SingleGoalCard = ({ goal, toggleComplete, handleDelete, handleEditDesc, ha
         className='button-edit'
         onClick={() => {
           handleEditDesc(goal, newDescription)
-          handleEditDeadline(goal, newDeadline)
         }}
       >
        <FontAwesomeIcon icon={faPenToSquare}/>

@@ -1,7 +1,7 @@
 // import './css/Home.css';
 import {signOutGithub } from '../db/Firebase';
 import Navbar from './Navbar';
-import { createAda, getUsers, getSingleUser, makeDiana, deleteUser, getGoals } from '../db/Firebase';
+import { createAda, getUsers, getSingleUser, makeDiana, deleteUser, getGoals } from '../db/test';
 
 function Home() {
   return (

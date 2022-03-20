@@ -1,26 +1,23 @@
-// import './css/Goals.css';
-import { Link } from 'react-router-dom';
+import '../css/Goals.css';
 import SingleGoalCard from './SingleGoalCard';
 import Insights from './Insights';
-import { db } from "../db/Firebase";
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react';
 import {
-  collection,
-  query,
   onSnapshot,
-  doc,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
-// links to add goal form
+} from 'firebase/firestore';
 import AddGoal from './AddGoal';
+import {
+  toggleComplete,
+  handleEditDesc,
+  handleDelete,
+  handleEditDeadline,
+  q,
+} from '../db/Firestore';
 
 function Goals() {
   const [goals, setGoals] = useState([]);
- 
+
   useEffect(() => {
-    const q = query(collection(db,"allUsers", window.localStorage.getItem('uid'), 'userGoals')
-    );
     const fetchData = onSnapshot(q, (querySnapshot) => {
       let goalsArray = [];
       querySnapshot.forEach((doc) => {
@@ -31,24 +28,10 @@ function Goals() {
     return () => fetchData();
   }, []);
 
-  const handleEditDesc = async (todo, description) => {
-    await updateDoc(doc(db, "allUsers", window.localStorage.getItem('uid'),'userGoals', todo.id), { description: description });
-  };
-  const handleEditDeadline = async (todo, deadline) => {
-    await updateDoc(doc(db, "allUsers", window.localStorage.getItem('uid'),'userGoals', todo.id), { deadline: deadline });
-  };
-  const toggleComplete = async (todo) => {
-    await updateDoc(doc(db, "allUsers", window.localStorage.getItem('uid'),'userGoals', todo.id), { completed: !todo.completed });
-  };
-  const handleDelete = async (id) => {
-    await deleteDoc(doc(db,"allUsers",  window.localStorage.getItem('uid'),'userGoals', id));
-  };
-
-  return ( 
+  return (
     <div className='goals'>
-      <p>goals</p>
-      <AddGoal/>
-      <div className="goal_container">
+      <AddGoal />
+      <div className='goal_container'>
         {goals.map((goal) => (
           <SingleGoalCard
             key={goal.id}

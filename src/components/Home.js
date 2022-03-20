@@ -6,22 +6,22 @@ import axios from 'axios'
 
 // Getting the logged in user's access token from local storage. 
 const token = localStorage.getItem('accessToken');//
-// const token = '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'
-
-
 
 function Home() {
 
   // Created a button to test the API routes, and to see if data was being returned. click handler which runs the http request. 
   const clickHandler = () => {
-    // getSingleRepo();
     // getRepos();
+    // getSingleRepo();
     getRepoCollaborators();
+    // getOrgsforUser();
+    // getCommitsforRepo();
   }
 
   //Axios calls to github API endpoints 
 
   // getting user's repos
+  // NOTE: This function does not get the repos that are part of
   async function getRepos() {
     try {
       const { data } = await axios.get(`https://api.github.com/user/repos`, { headers: { Authorization: `Bearer ${token}` } })
@@ -31,10 +31,10 @@ function Home() {
       console.log("error")
     }
   }
-
   // getting user's single repo
   // /repos/{owner}/{repo}
   // teampluto2201/grace-shopper
+  // Team-Mango-Capstone/git-status
   // choi2010/goodiebag
 
   async function getSingleRepo() {
@@ -49,24 +49,48 @@ function Home() {
       console.log("error")
     }
   }
-
   // getting list of repository collaborators
   // /repos/{owner}/{repo}/collaborators
-
   async function getRepoCollaborators() {
     try {
-      const { data } = await axios.get(`https://api.github.com/repos/teampluto2201/grace-shopper/collaborators`, { headers: { Authorization: `Bearer ${token}` } })
+      const { data } = await axios.get(`https://api.github.com/repos/Team-Mango-Capstone/git-status/collaborators`, { headers: { Authorization: `Bearer ${token}` } })
       console.log("this is the data", data)
-
     }
     catch (err) {
       console.log("error")
     }
   }
 
+  // List orgs for the authenticated user
+  async function getOrgsforUser() {
+    try {
+      const { data } = await axios.get(`https://api.github.com/user/orgs`, { headers: { Authorization: `Bearer ${token}` } })
+      console.log("this is the data", data)
+    }
+    catch (err) {
+      console.log("error")
+    }
+  }
 
+  // /repos/{owner}/{repo}/commits
+  // Team-Mango-Capstone/git-status
 
+  async function getCommitsforRepo() {
+    try {
+      const { data } = await axios.get(`https://api.github.com/repos/Team-Mango-Capstone/git-status/commits`, { headers: { Authorization: `Bearer ${token}` } })
+      // data returns an array with list of commits. 
+      console.log("this is the author", data[0].commit.author.name)
+      console.log("this is the date", data[0].commit.author.date)
+      console.log("this is the message", data[0].commit.message)
 
+      console.log("this is the author", data[1].commit.author.name)
+      console.log("this is the date", data[1].commit.author.date)
+      console.log("this is the message", data[1].commit.message)
+    }
+    catch (err) {
+      console.log("error")
+    }
+  }
   /////////////////////////////////////////////////////////////////////////////
 
 

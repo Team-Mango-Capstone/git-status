@@ -48,7 +48,6 @@ export const signInWithGitHub = () => {
       localStorage.setItem("name", name);
       localStorage.setItem("profilePic", profilePic);
 
-
       // Added the UID, token and screenName to the localStorage
       localStorage.setItem("uid", uid);
       localStorage.setItem("accessToken", token);

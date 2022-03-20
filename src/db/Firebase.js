@@ -36,9 +36,13 @@ export const signInWithGitHub = () => {
       console.log(result);
       const name = result.user.displayName;
       const profilePic = result.user.photoURL;
+      const oAuthAccessToken = result._tokenResponse.oauthAccessToken;
+      const screenName = result._tokenResponse.screenName;
 
       localStorage.setItem("name", name);
       localStorage.setItem("profilePic", profilePic);
+      localStorage.setItem("accessToken", oAuthAccessToken);
+      localStorage.setItem("screenName", screenName);
     })
     .catch((error) => {
       console.log(error);

@@ -1,22 +1,11 @@
 // import './css/Home.css';
-import {signOut } from '../db/Firebase';
 import Navbar from './Navbar';
-import { createAda, getUsers, getSingleUser, makeDiana, deleteUser, getGoals } from '../db/Firebase';
 
 function Home() {
   return (
     <div className='Home'>
-        <Navbar />
-        <p>Homepage</p>
-        <button onClick={signOut}>Sign Out</button>
-        <h1>Welcome {localStorage.getItem('name')}</h1>
-        <img src={localStorage.getItem('profilePic')} alt='profile pic' />
-        <button onClick={createAda}>Create Ada!!</button>
-        <button onClick={getUsers}>Get User</button>
-        <button onClick={getSingleUser}>Get Single User</button>
-        <button onClick={makeDiana}>Make Diana</button>
-        <button onClick={deleteUser}>Delete User</button>
-        <button onClick={getGoals}>Get goals</button>
+      <h1>Welcome {localStorage.getItem('name')}</h1>
+      <img src={localStorage.getItem('profilePic')} alt='profile pic' />
     </div>
   );
 }

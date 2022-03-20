@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 // delete and edit buttons inside single goal card
 
-const SingleGoalCard = () => {
+function SingleGoalCard() {
   return (
     <div className='single-goal-card'>
       single goal card
@@ -14,6 +14,6 @@ const SingleGoalCard = () => {
       </Link>
     </div>
   );
-};
+}
 
 export default SingleGoalCard;

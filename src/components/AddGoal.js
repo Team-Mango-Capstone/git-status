@@ -4,17 +4,18 @@ import { db } from "../db/Firebase";
 import { collection, addDoc } from "firebase/firestore";
 
 function AddGoal() {
-  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [deadline, setDeadline] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (title !== "") {
-      await addDoc(collection(db, "todos"), {
-        userId: window.localStorage.getItem('userId'),
-        title,
+    if (description !== "") {
+      await addDoc(collection(db, "allUsers", window.localStorage.getItem('uid'), 'userGoals' ), {
+        description,
+        deadline,
         completed: false,
       });
-      setTitle("");
+      setDescription("");
     }
   };
   return (
@@ -22,10 +23,18 @@ function AddGoal() {
       <div className="input_container">
         <input
           type="text"
-          placeholder="Enter todo..."
-          value={title}
+          placeholder="Enter goal..."
+          value={description}
           onChange={(e) => {
-            setTitle(e.target.value)
+            setDescription(e.target.value)
+          }}
+        />
+          <input
+          type="date"
+          placeholder="Enter deadline..."
+          value={deadline}
+          onChange={(e) => {
+            setDeadline(e.target.value)
           }}
         />
       </div>

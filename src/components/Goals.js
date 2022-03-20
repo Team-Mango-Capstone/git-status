@@ -16,45 +16,47 @@ import {
 import AddGoal from './AddGoal';
 
 function Goals() {
-  const [todos, setTodos] = useState([]);
+  const [goals, setGoals] = useState([]);
  
   useEffect(() => {
-    const q = query(collection(db, "todos"));
-    const unsub = onSnapshot(q, (querySnapshot) => {
-      let todosArray = [];
+    const q = query(collection(db,"allUsers", window.localStorage.getItem('uid'), 'userGoals')
+    );
+    const fetchData = onSnapshot(q, (querySnapshot) => {
+      let goalsArray = [];
       querySnapshot.forEach((doc) => {
-        todosArray.push({ ...doc.data(), id: doc.id });
+        goalsArray.push({ ...doc.data(), id: doc.id });
       });
-      setTodos(todosArray);
+      setGoals(goalsArray);
     });
-    return () => unsub();
+    return () => fetchData();
   }, []);
 
-  const handleEdit = async (todo, title) => {
-    await updateDoc(doc(db, "todos", todo.id), { title: title });
+  const handleEditDesc = async (todo, description) => {
+    await updateDoc(doc(db, "allUsers", window.localStorage.getItem('uid'),'userGoals', todo.id), { description: description });
+  };
+  const handleEditDeadline = async (todo, deadline) => {
+    await updateDoc(doc(db, "allUsers", window.localStorage.getItem('uid'),'userGoals', todo.id), { deadline: deadline });
   };
   const toggleComplete = async (todo) => {
-    await updateDoc(doc(db, "todos", todo.id), { completed: !todo.completed });
+    await updateDoc(doc(db, "allUsers", window.localStorage.getItem('uid'),'userGoals', todo.id), { completed: !todo.completed });
   };
   const handleDelete = async (id) => {
-    await deleteDoc(doc(db, "todos", id));
+    await deleteDoc(doc(db,"allUsers",  window.localStorage.getItem('uid'),'userGoals', id));
   };
 
   return ( 
     <div className='goals'>
       <p>goals</p>
-      {/* <Link to='/goals/add'>
-        <button>Add Goal</button>
-      </Link> */}
       <AddGoal/>
       <div className="goal_container">
-        {todos.map((todo) => (
+        {goals.map((goal) => (
           <SingleGoalCard
-            key={todo.id}
-            todo={todo}
+            key={goal.id}
+            goal={goal}
             toggleComplete={toggleComplete}
             handleDelete={handleDelete}
-            handleEdit={handleEdit}
+            handleEditDesc={handleEditDesc}
+            handleEditDeadline={handleEditDeadline}
           />
         ))}
       </div>

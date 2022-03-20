@@ -1,47 +1,66 @@
 // import './css/SingleGoalCard.css';
-import React from 'react';
+import {useState} from 'react';
 import { Link } from 'react-router-dom';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleCheck, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 // delete and edit buttons inside single goal card
 
-const SingleGoalCard = ({ todo, toggleComplete, handleDelete, handleEdit }) => {
-  const [newTitle, setNewTitle] = React.useState(todo.title);
+const SingleGoalCard = ({ goal, toggleComplete, handleDelete, handleEditDesc, handleEditDeadline }) => {
+  const [newDescription, setNewDescription] = useState(goal.description);
+  const [newDeadline, setNewDeadline] = useState(goal.deadline);
 
-  const handleChange = (e) => {
+  const handleChangeDesc = (e) => {
     e.preventDefault();
-    if (todo.complete === true) {
-      setNewTitle(todo.title);
+    if (goal.completed === true) {
+      setNewDescription(goal.description);
     } else {
-      todo.title = '';
-      setNewTitle(e.target.value);
+      goal.description = '';
+      setNewDescription(e.target.value);
+    }
+  };
+
+  const handleChangeDeadline = (e) => {
+    e.preventDefault();
+    if (goal.completed === true) {
+      setNewDeadline(goal.deadline);
+    } else {
+      goal.deadline = '';
+      setNewDeadline(e.target.value);
     }
   };
 
   return (
     <div className='single-goal-card'>
-      {/* single goal card
-      <button>Delete</button>
-      <Link to='/goals/edit/:id'>
-        <button>Edit Goal</button>
-      </Link> */}
       <input
-        style={{ textDecoration: todo.completed && 'line-through' }}
+        style={{ textDecoration: goal.completed && 'line-through' }}
         type='text'
-        value={todo.title === '' ? newTitle : todo.title}
+        value={goal.description === '' ? newDescription : goal.description}
         className='list'
-        onChange={handleChange}
+        onChange={handleChangeDesc}
       />
-      <button className='button-complete' onClick={() => toggleComplete(todo)}>
-        Completed?
+        <input
+        type='date'
+        value={goal.deadline === '' ? newDeadline : goal.deadline}
+        className='list'
+        onChange={handleChangeDeadline}
+      />
+
+      <button className='button-complete' onClick={() => toggleComplete(goal)}>
+      <FontAwesomeIcon icon={faCircleCheck} />
       </button>
+
       <button
         className='button-edit'
-        onClick={() => handleEdit(todo, newTitle)}
+        onClick={() => {
+          handleEditDesc(goal, newDescription)
+          handleEditDeadline(goal, newDeadline)
+        }}
       >
-        Edit
+       <FontAwesomeIcon icon={faPenToSquare}/>
       </button>
-      <button className='button-delete' onClick={() => handleDelete(todo.id)}>
-        Delete
+
+      <button className='button-delete' onClick={() =>handleDelete(goal.id)}>
+      <FontAwesomeIcon icon={faTrashCan} />
       </button>
     </div>
   );

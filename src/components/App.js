@@ -1,4 +1,3 @@
-import '../css/App.css';
 import RouteList from '../RouteList';
 import Navbar from './Navbar';
 import Login from './Login';

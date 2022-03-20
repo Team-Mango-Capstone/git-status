@@ -1,6 +1,6 @@
-import { signInWithGitHub } from '../db/Firebase';
-
 import React from 'react';
+import '../css/Login.css';
+import { signInWithGitHub } from '../db/Firebase';
 
 const Login = () => {
   return (

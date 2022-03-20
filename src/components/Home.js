@@ -41,33 +41,33 @@ function Home() {
     )
   }
 
-  const calculateLanguages = async () => {
-    console.log('USER LANGUAGES BEFORE >>>>>', userLanguages)
-    // for each repo in all the user's repos...
-    for (const repo in userRepos) {
-      try {
-        // get the languages in that repo
-        const repoLanguages = await axios.get(
-          `https://api.github.com/repos/${githubUsername}/${repo}/languages`
-        );
-        for (const language in repoLanguages) {
-          // if that language is already in our userLanguages piece of state, increment it
-          if (Object.keys(userLanguages).includes(language)) {
-            setUserLanguages({ ...userLanguages, [language]:  userLanguages[language] + repoLanguages[language]});
-          } 
-          // otherwise, add that language to userLanguages
-          else {
-            setUserLanguages({...userLanguages, [language]: repoLanguages[language]})
-          };
-        };
-      } catch (error) {
-        console.log(error);
-      };
-    };
-    console.log('USER LANGUAGES AFTER >>>>>', userLanguages)
-  }
+  // const calculateLanguages = async () => {
+  //   console.log('USER LANGUAGES BEFORE >>>>>', userLanguages)
+  //   // for each repo in all the user's repos...
+  //   for (const repo in userRepos) {
+  //     try {
+  //       // get the languages in that repo
+  //       const repoLanguages = await axios.get(
+  //         `https://api.github.com/repos/${githubUsername}/${repo}/languages`
+  //       );
+  //       for (const language in repoLanguages) {
+  //         // if that language is already in our userLanguages piece of state, increment it
+  //         if (Object.keys(userLanguages).includes(language)) {
+  //           setUserLanguages({ ...userLanguages, [language]:  userLanguages[language] + repoLanguages[language]});
+  //         } 
+  //         // otherwise, add that language to userLanguages
+  //         else {
+  //           setUserLanguages({...userLanguages, [language]: repoLanguages[language]})
+  //         };
+  //       };
+  //     } catch (error) {
+  //       console.log(error);
+  //     };
+  //   };
+  //   console.log('USER LANGUAGES AFTER >>>>>', userLanguages)
+  // }
 
-  console.log('calculateLanguages >>>', calculateLanguages());
+  // console.log('calculateLanguages >>>', calculateLanguages());
 
   const checkRateLimit = async () => {
     try {

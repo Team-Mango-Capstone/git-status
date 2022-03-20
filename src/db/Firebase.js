@@ -21,6 +21,8 @@ const firebaseConfig = {
   messagingSenderId: "353841373758",
   appId: "1:353841373758:web:a8850c4bc0154396eba76f",
   measurementId: "G-L0MDSRRFR8",
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
 };
 
 //Initialize firebase

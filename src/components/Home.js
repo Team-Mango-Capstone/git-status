@@ -12,14 +12,15 @@ import {
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-
 function Home() {
-  const [userData, setUserData] = useState({});
-  const [userRepos, setUserRepos] = useState({});
+  const [userData, setUserData] = useState([]);
+  const [userRepos, setUserRepos] = useState([]);
   const [userLanguages, setUserLanguages] = useState({});
-  
+
   // Set default header for axios requests so that the oAuth access token will be included on all requests
-  axios.defaults.headers.common['Authorization'] = `token ${localStorage.getItem("accessToken")}`;
+  axios.defaults.headers.common[
+    "Authorization"
+  ] = `token ${localStorage.getItem("accessToken")}`;
   const githubUsername = localStorage.getItem("screenName");
 
   useEffect(() => {
@@ -49,56 +50,41 @@ function Home() {
   };
 
   const calculateLanguages = async () => {
-    console.log('USER LANGUAGES BEFORE >>>>>', userLanguages)
-    const testingRepos = [userRepos[0].name, userRepos[1].name];
-    console.log('testingRepos >>>>', testingRepos)
-
-    // for each repo in all the user's repos...
-    for (const repo in testingRepos) {
-      // let repoName = repo.name;
-      // console.log('repoName >>>>>', repoName)
+    userRepos.map(async (repo) => {
       try {
-        // get the languages in that repo
         const { data } = await axios.get(
-          `https://api.github.com/repos/${githubUsername}/${repo}/languages`
+          `https://api.github.com/repos/${githubUsername}/${repo.name}/languages`
         );
-        console.log("DATA >>>>", data)
         for (const language in data) {
-          // if that language is already in our userLanguages piece of state, increment it
+          let newObj = {};
+          //if language is already in our userLanguages piece of state, increment it
           if (Object.keys(userLanguages).includes(language)) {
-            setUserLanguages({ ...userLanguages, [language]:  userLanguages[language] + data[language]});
+            newObj[language] = userLanguages[language] + data[language];
+            let updatedLangs = Object.assign({}, userLanguages, newObj);
+            setUserLanguages(updatedLangs);
           }
           // otherwise, add that language to userLanguages
           else {
-            setUserLanguages({...userLanguages, [language]: data[language]})
+            newObj[language] = data[language];
+            let updatedLangs = Object.assign(userLanguages, newObj);
+            setUserLanguages(updatedLangs);
           };
         };
+        return;
       } catch (error) {
         console.log(error);
       };
-    };
-    console.log('USER LANGUAGES AFTER >>>>>', userLanguages)
+    });
+  };
 
-    // const oneRepo = userRepos[0];
-    // const repoLanguages = await axios.get(
-    //   `https://api.github.com/repos/${githubUsername}/${oneRepo.name}/languages`
-    // );
-
-    // console.log('repo languages >>>', repoLanguages.data)
-  }
-
-  console.log('calculateLanguages >>>', calculateLanguages());
-
-  // const checkRateLimit = async () => {
-  //   try {
-  //     const { data } = await axios.get("https://api.github.com/rate_limit");
-  //     console.log("rate limit >>>>>", data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // console.log("check rate limit: ", checkRateLimit());
+  const checkRateLimit = async () => {
+    try {
+      const { data } = await axios.get("https://api.github.com/rate_limit");
+      console.log("rate limit >>>>>", data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="Home">
@@ -119,6 +105,9 @@ function Home() {
       <button onClick={makeDiana}>Make Diana</button>
       <button onClick={deleteUser}>Delete User</button>
       <button onClick={getGoals}>Get goals</button>
+      <button onClick={calculateLanguages}>calculate languages</button>
+      <button onClick={() => console.log('userLanguages >>>>>', userLanguages)}>see user languages</button>
+      <button onClick={checkRateLimit}>check rate limit</button>
     </div>
   );
 }

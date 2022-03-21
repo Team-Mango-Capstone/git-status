@@ -2,8 +2,13 @@
 import {signOutGithub } from '../db/Firebase';
 import Navbar from './Navbar';
 import { createAda, getUsers, getSingleUser, makeDiana, deleteUser, getGoals } from '../db/test';
+import axios from 'axios'
+// Getting the logged in user's access token from local storage. 
+const token = localStorage.getItem('accessToken');//
+
 
 function Home() {
+
   return (
     <div className='Home'>
         <Navbar />

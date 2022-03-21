@@ -9,18 +9,22 @@ import {
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: 'git-status-da9f6.firebaseapp.com',
-  projectId: 'git-status-da9f6',
-  storageBucket: 'git-status-da9f6.appspot.com',
-  messagingSenderId: '353841373758',
-  appId: '1:353841373758:web:a8850c4bc0154396eba76f',
-  measurementId: 'G-L0MDSRRFR8',
+  authDomain: "git-status-da9f6.firebaseapp.com",
+  projectId: "git-status-da9f6",
+  storageBucket: "git-status-da9f6.appspot.com",
+  messagingSenderId: "353841373758",
+  appId: "1:353841373758:web:a8850c4bc0154396eba76f",
+  measurementId: "G-L0MDSRRFR8",
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
 };
 
 //Initialize firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const provider = new GithubAuthProvider();
+// adding scope to the authorization. 
+provider.addScope('repo');
 
 export const signInWithGitHub = () => {
   signInWithPopup(auth, provider)
@@ -31,11 +35,15 @@ export const signInWithGitHub = () => {
       const profilePic = result.user.photoURL;
       const githubId = result.user.providerData[0].uid;
       const uid = result.user.uid;
+      const oAuthAccessToken = result._tokenResponse.oauthAccessToken;
+     const screenName = result._tokenResponse.screenName;
       window.localStorage.setItem('name', name);
       window.localStorage.setItem('profilePic', profilePic);
       window.localStorage.setItem('githubId', githubId);
       window.localStorage.setItem('uid', uid)
       window.localStorage.setItem('accessToken', accessToken)
+      window.localStorage.setItem('oAuthAccessToken', oAuthAccessToken)
+      window.localStorage.setItem("screenName", screenName);
 
       setDoc(doc(db, 'allUsers', uid), {
         accessToken: accessToken,

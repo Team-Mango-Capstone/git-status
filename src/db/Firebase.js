@@ -29,6 +29,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const provider = new GithubAuthProvider();
+// adding scope to the authorization. 
+provider.addScope('repo');
 
 export const signInWithGitHub = () => {
   signInWithPopup(auth, provider)
@@ -38,6 +40,14 @@ export const signInWithGitHub = () => {
       const profilePic = result.user.photoURL;
       const oAuthAccessToken = result._tokenResponse.oauthAccessToken;
       const screenName = result._tokenResponse.screenName;
+
+      // Picking up UID and screenName 
+      const uid = result.user.uid;
+      const screenName = result._tokenResponse.screenName;
+
+      // Authenticate with Firebase using the GitHub provider object. this gives you a github access token you can use to access the github API . 
+      const credential = GithubAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
 
       localStorage.setItem("name", name);
       localStorage.setItem("profilePic", profilePic);

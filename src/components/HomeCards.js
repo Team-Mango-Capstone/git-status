@@ -3,14 +3,6 @@ import axios from "axios";
 
 const githubUsername = localStorage.getItem("screenName");
 
-export function Timeline(props) {
-  return (
-    <div className="timeline">
-      <h2>Your timeline</h2>
-    </div>
-  );
-}
-
 export function UsualCommitTime(props) {
   return (
     <div className="usual-commit-time">

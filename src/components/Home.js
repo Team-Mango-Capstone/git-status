@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/Home.css';
 import {
-  Timeline,
   UsualCommitTime,
 } from './HomeCards';
 import { TopLanguages } from './homeCards/TopLanguages';
 import { UserLifespan } from './homeCards/UserLifespan';
+import { Timeline } from './homeCards/Timeline';
 
 function Home() {
   const leftAngleBrace = (
@@ -51,23 +51,35 @@ function Home() {
     makeRequest();
   }, []);
 
+  const checkRateLimit = async () => {
+    try {
+      const { data } = await axios.get("https://api.github.com/rate_limit");
+      console.log("rate limit >>>>>", data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className='home'>
       <h1>
         {leftAngleBrace}
         {openText}
         {rightAngleBrace}
-        {localStorage.getItem('name')}
+        {localStorage.getItem("name") !== "null"
+          ? localStorage.getItem("name")
+          : localStorage.getItem("screenName")}
         {leftAngleBrace}
         {closeText}
         {rightAngleBrace}
       </h1>
       {/* <img src={localStorage.getItem('profilePic')} alt='profile pic' /> */}
       <div className='home-cards'>
-        <Timeline />
+        {/* <Timeline /> */}
         <UserLifespan userData={userData}/>
         <TopLanguages userData={userData} userRepos={userRepos}/>
         <UsualCommitTime />
+        <button onClick={checkRateLimit}>check rate limit</button>
       </div>
     </div>
   );

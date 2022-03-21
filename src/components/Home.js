@@ -16,12 +16,13 @@ function Home() {
   const [userData, setUserData] = useState([]);
   const [userRepos, setUserRepos] = useState([]);
   const [userLanguages, setUserLanguages] = useState({});
+  // const [userContributions, setUserContributions] = useState([]);
+  const githubUsername = localStorage.getItem("screenName");
 
   // Set default header for axios requests so that the oAuth access token will be included on all requests
   axios.defaults.headers.common[
     "Authorization"
   ] = `token ${localStorage.getItem("accessToken")}`;
-  const githubUsername = localStorage.getItem("screenName");
 
   useEffect(() => {
     const makeRequest = async () => {
@@ -30,16 +31,46 @@ function Home() {
           `https://api.github.com/users/${githubUsername}`
         );
         setUserData(userData.data);
+
         const userRepos = await axios.get(
           `https://api.github.com/users/${githubUsername}/repos`
         );
         setUserRepos(userRepos.data);
+
+        // let currentYear = new Date().getFullYear();
+        // let currentWeek = weekFinder();
+        // const allContributionsLastYear = await axios.get(
+        //   `https://skyline.github.com/${githubUsername}/${currentYear - 1}.json`
+        // );
+        // const allContributionsThisYear = await axios.get(
+        //   `https://skyline.github.com/${githubUsername}/${currentYear}.json`
+        // );
+        // allContributionsLastYear.filter(
+        //   (element) => element.week > currentWeek
+        // );
+        // allContributionsThisYear.filter(
+        //   (element) => element.week <= currentWeek
+        // );
+        // const contributionsPastYear = allContributionsLastYear.concat(
+        //   allContributionsThisYear
+        // );
+        // setUserContributions(contributionsPastYear);
       } catch (error) {
         console.log(error);
       }
     };
     makeRequest();
   }, []);
+
+  const weekFinder = () => {
+    let currentdate = new Date();
+    let oneJan = new Date(currentdate.getFullYear(), 0, 1);
+    let numberOfDays = Math.floor(
+      (currentdate - oneJan) / (24 * 60 * 60 * 1000)
+    );
+    let result = Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7);
+    return result;
+  };
 
   const makeDate = () => {
     const totalDays = (new Date() - new Date(userData.created_at)) / 86400000;
@@ -68,12 +99,12 @@ function Home() {
             newObj[language] = data[language];
             let updatedLangs = Object.assign(userLanguages, newObj);
             setUserLanguages(updatedLangs);
-          };
-        };
+          }
+        }
         return;
       } catch (error) {
         console.log(error);
-      };
+      }
     });
   };
 
@@ -106,7 +137,9 @@ function Home() {
       <button onClick={deleteUser}>Delete User</button>
       <button onClick={getGoals}>Get goals</button>
       <button onClick={calculateLanguages}>calculate languages</button>
-      <button onClick={() => console.log('userLanguages >>>>>', userLanguages)}>see user languages</button>
+      <button onClick={() => console.log("userLanguages >>>>>", userLanguages)}>
+        see user languages
+      </button>
       <button onClick={checkRateLimit}>check rate limit</button>
     </div>
   );

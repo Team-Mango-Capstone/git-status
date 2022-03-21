@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../css/Home.css';
 import {
   Timeline,
-  TotalDays,
-  TopLanguages,
   UsualCommitTime,
 } from './HomeCards';
+import { TopLanguages } from './homeCards/TopLanguages';
+import { UserLifespan } from './homeCards/UserLifespan';
 
 function Home() {
   const leftAngleBrace = (
@@ -21,6 +22,35 @@ function Home() {
     <span style={{ color: '#58a6ff', fontSize: '1.8rem' }}>/welcome</span>
   );
 
+  const [userData, setUserData] = useState([]);
+  const [userRepos, setUserRepos] = useState([]);
+  const githubUsername = localStorage.getItem("screenName");
+
+  // Set default header for axios requests so that the oAuth access token will be included on all requests
+  axios.defaults.headers.common[
+    "Authorization"
+  ] = `token ${localStorage.getItem("accessToken")}`;
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const userData = await axios.get(
+          `https://api.github.com/users/${githubUsername}`
+        );
+        setUserData(userData.data);
+
+        const userRepos = await axios.get(
+          // `https://api.github.com/users/${githubUsername}/repos`
+          `https://api.github.com/search/repositories?q=user:${githubUsername}+fork:true&per_page=100`
+        );
+        setUserRepos(userRepos.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    makeRequest();
+  }, []);
+
   return (
     <div className='home'>
       <h1>
@@ -35,8 +65,8 @@ function Home() {
       {/* <img src={localStorage.getItem('profilePic')} alt='profile pic' /> */}
       <div className='home-cards'>
         <Timeline />
-        <TotalDays />
-        <TopLanguages />
+        <UserLifespan userData={userData}/>
+        <TopLanguages userData={userData} userRepos={userRepos}/>
         <UsualCommitTime />
       </div>
     </div>

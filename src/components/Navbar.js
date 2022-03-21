@@ -1,16 +1,29 @@
 import React from 'react';
+import '../css/Navbar.css';
+import { signOut } from '../db/Firebase';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+function Navbar() {
   return (
     <div className='nav'>
-      <h2>
-        <Link to='/repos'>Repositories</Link>
-        <Link to='/goals'>Goals</Link>
-        Logout
-      </h2>
+      <Link to='/'>
+        <img src='/github.png' alt='' />
+      </Link>
+      <div className='links'>
+        <h2>
+          <Link to='/repos'>
+            <span>Repositories</span>
+          </Link>
+          <Link to='/goals'>
+            <span>Goals</span>
+          </Link>
+          <Link to='/' onClick={signOut}>
+            <span style={{ color: 'grey' }}>Logout</span>
+          </Link>
+        </h2>
+      </div>
     </div>
   );
-};
+}
 
 export default Navbar;

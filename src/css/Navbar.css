@@ -1,0 +1,63 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2.5rem;
+  background-color: #161b22;
+}
+
+.nav img {
+  width: 4rem;
+  cursor: pointer;
+}
+
+.links h2 {
+  background-color: #161b22;
+}
+
+.links a {
+  margin-left: 2rem;
+  text-decoration: none;
+  display: inline-block;
+  color: #fafafa;
+}
+
+.links span {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  background-color: #161b22;
+}
+
+.links span:before,
+.links span:after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  top: 50%;
+  margin-top: -0.5px;
+  background: #58a6ff;
+}
+
+.links span:before {
+  left: -1px;
+}
+
+.links span:after {
+  right: 1px;
+  background: #58a6ff;
+  transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.links span:hover:before {
+  background: #58a6ff;
+  width: 100%;
+  transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.links span:hover:after {
+  background: transparent;
+  width: 100%;
+  transition: 0s;
+}

@@ -2,31 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
 import App from './components/App';
-import Home from './components/Home';
-import Goals from './components/Goals';
-import AddGoal from './components/AddGoal';
-import EditGoal from './components/EditGoal';
-import AllRepos from './components/AllRepos';
-import SingleRepo from './components/SingleRepo';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<App />} />
-        <Route path='home' element={<Home />} />
-      
-
-        <Route path='goals' element={<Goals />} />
-        <Route path='goals/add' element={<AddGoal />} />
-        <Route path='goals/edit/:id' element={<EditGoal />} />
-
-        <Route path='repos' element={<AllRepos />} />
-        <Route path='repos/:id' element={<SingleRepo />} />
-      </Routes>
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,6 +1,5 @@
 // import './css/SingleGoalCard.css';
 import {useState} from 'react';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 // delete and edit buttons inside single goal card
@@ -67,6 +66,6 @@ const SingleGoalCard = ({ goal, toggleComplete, handleDelete, handleEditDesc, ha
       </button>
     </div>
   );
-};
+}
 
 export default SingleGoalCard;

@@ -1,6 +1,7 @@
 //import firebase from 'firebase'
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GithubAuthProvider } from 'firebase/auth';
+
 import {
   getFirestore,
   setDoc,
@@ -26,7 +27,7 @@ const provider = new GithubAuthProvider();
 // adding scope to the authorization. 
 provider.addScope('repo');
 
-export const signInWithGitHub = () => {
+export async function signInWithGitHub() {
   signInWithPopup(auth, provider)
     .then((result) => {
       console.log(result);
@@ -44,21 +45,22 @@ export const signInWithGitHub = () => {
       window.localStorage.setItem('accessToken', accessToken)
       window.localStorage.setItem('oAuthAccessToken', oAuthAccessToken)
       window.localStorage.setItem("screenName", screenName);
-
+     
       setDoc(doc(db, 'allUsers', uid), {
         accessToken: accessToken,
       })
+      window.location = '/';
     })
     .catch((error) => {
       console.log(error);
     });
-};
+}
 
 export const signOutGithub = (e) => {
   e.preventDefault();
   auth.signOut();
   window.localStorage.clear();
-  console.log('logged out');
+  window.location = '/';
 };
 
 

@@ -1,27 +1,44 @@
-// import './css/Home.css';
-import {signOutGithub } from '../db/Firebase';
-import Navbar from './Navbar';
-import { createAda, getUsers, getSingleUser, makeDiana, deleteUser, getGoals } from '../db/test';
-import axios from 'axios'
-// Getting the logged in user's access token from local storage. 
-const token = localStorage.getItem('accessToken');//
-
+import React from 'react';
+import '../css/Home.css';
+import {
+  Timeline,
+  TotalDays,
+  TopLanguages,
+  UsualCommitTime,
+} from './HomeCards';
 
 function Home() {
+  const leftAngleBrace = (
+    <span style={{ color: 'grey', fontSize: '1.8rem' }}>&lt;</span>
+  );
+  const rightAngleBrace = (
+    <span style={{ color: 'grey', fontSize: '1.8rem' }}>&gt;</span>
+  );
+  const openText = (
+    <span style={{ color: '#58a6ff', fontSize: '1.8rem' }}>welcome</span>
+  );
+  const closeText = (
+    <span style={{ color: '#58a6ff', fontSize: '1.8rem' }}>/welcome</span>
+  );
 
   return (
-    <div className='Home'>
-        <Navbar />
-        <p>Homepage</p>
-        <button onClick={signOutGithub}>Sign Out</button>
-        <h1>Welcome {localStorage.getItem('name')}</h1>
-        <img src={localStorage.getItem('profilePic')} alt='profile pic' />
-        <button onClick={createAda}>Create Ada!!</button>
-        <button onClick={getUsers}>Get User</button>
-        <button onClick={getSingleUser}>Get Single User</button>
-        <button onClick={makeDiana}>Make Diana</button>
-        <button onClick={deleteUser}>Delete User</button>
-        <button onClick={getGoals}>Get goals</button>
+    <div className='home'>
+      <h1>
+        {leftAngleBrace}
+        {openText}
+        {rightAngleBrace}
+        {localStorage.getItem('name')}
+        {leftAngleBrace}
+        {closeText}
+        {rightAngleBrace}
+      </h1>
+      {/* <img src={localStorage.getItem('profilePic')} alt='profile pic' /> */}
+      <div className='home-cards'>
+        <Timeline />
+        <TotalDays />
+        <TopLanguages />
+        <UsualCommitTime />
+      </div>
     </div>
   );
 }

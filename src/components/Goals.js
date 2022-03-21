@@ -1,18 +1,48 @@
-// import './css/Goals.css';
-import { Link } from 'react-router-dom';
+import '../css/Goals.css';
 import SingleGoalCard from './SingleGoalCard';
 import Insights from './Insights';
-
-// links to add goal form
+import { useState, useEffect } from 'react';
+import {
+  onSnapshot,
+} from 'firebase/firestore';
+import AddGoal from './AddGoal';
+import {
+  toggleComplete,
+  handleEditDesc,
+  handleDelete,
+  handleEditDeadline,
+  q,
+} from '../db/Firestore';
 
 function Goals() {
+  const [goals, setGoals] = useState([]);
+
+  useEffect(() => {
+    const fetchData = onSnapshot(q, (querySnapshot) => {
+      let goalsArray = [];
+      querySnapshot.forEach((doc) => {
+        goalsArray.push({ ...doc.data(), id: doc.id });
+      });
+      setGoals(goalsArray);
+    });
+    return () => fetchData();
+  }, []);
+
   return (
     <div className='goals'>
-      <p>goals</p>
-      <Link to='/goals/add'>
-        <button>Add Goal</button>
-      </Link>
-      <SingleGoalCard />
+      <AddGoal />
+      <div className='goal_container'>
+        {goals.map((goal) => (
+          <SingleGoalCard
+            key={goal.id}
+            goal={goal}
+            toggleComplete={toggleComplete}
+            handleDelete={handleDelete}
+            handleEditDesc={handleEditDesc}
+            handleEditDeadline={handleEditDeadline}
+          />
+        ))}
+      </div>
       <Insights />
     </div>
   );

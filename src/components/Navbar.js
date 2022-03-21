@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/Navbar.css';
-import { signOut } from '../db/Firebase';
+import { signOutGithub} from '../db/Firebase';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
@@ -17,7 +17,7 @@ function Navbar() {
           <Link to='/goals'>
             <span>Goals</span>
           </Link>
-          <Link to='/' onClick={signOut}>
+          <Link to='/' onClick={signOutGithub}>
             <span style={{ color: 'grey' }}>Logout</span>
           </Link>
         </h2>

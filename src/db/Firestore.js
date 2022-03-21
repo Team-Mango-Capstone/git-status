@@ -1,7 +1,5 @@
 import { db } from './Firebase';
 import {
-  query,
-  collection,
   doc,
   updateDoc,
   deleteDoc,
@@ -17,8 +15,9 @@ export const handleEditDesc = async (goal, description) => {
       goal.id
     ),
     { description: description }
-  );
+  ); 
 };
+
 export const handleEditDeadline = async (goal, deadline) => {
   await updateDoc(
     doc(
@@ -48,9 +47,5 @@ export const handleDelete = async (id) => {
     doc(db, 'allUsers', window.localStorage.getItem('uid'), 'userGoals', id)
   );
 };
-
-//queries and fetches goals from user currently logged in 
-export const q = query(collection(db,"allUsers", window.localStorage.getItem('uid'), 'userGoals')
-);
 
 

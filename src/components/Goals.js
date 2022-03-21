@@ -2,8 +2,11 @@ import '../css/Goals.css';
 import SingleGoalCard from './SingleGoalCard';
 import Insights from './Insights';
 import { useState, useEffect } from 'react';
+import { db } from '../db/Firebase';
 import {
   onSnapshot,
+  query,
+  collection
 } from 'firebase/firestore';
 import AddGoal from './AddGoal';
 import {
@@ -11,21 +14,21 @@ import {
   handleEditDesc,
   handleDelete,
   handleEditDeadline,
-  q,
 } from '../db/Firestore';
 
 function Goals() {
   const [goals, setGoals] = useState([]);
 
   useEffect(() => {
-    const fetchData = onSnapshot(q, (querySnapshot) => {
-      let goalsArray = [];
-      querySnapshot.forEach((doc) => {
-        goalsArray.push({ ...doc.data(), id: doc.id });
+    const q = query(collection(db,"allUsers", window.localStorage.getItem('uid'), 'userGoals'))
+      const fetchData = onSnapshot(q, (querySnapshot) => {
+        let goalsArray = [];
+        querySnapshot.forEach((doc) => {
+          goalsArray.push({ ...doc.data(), id: doc.id });
+        });
+        setGoals(goalsArray);
       });
-      setGoals(goalsArray);
-    });
-    return () => fetchData();
+      return () => fetchData();
   }, []);
 
   return (

@@ -1,17 +1,11 @@
 //import firebase from 'firebase'
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GithubAuthProvider } from "firebase/auth";
+import { initializeApp } from 'firebase/app';
+import { getAuth, signInWithPopup, GithubAuthProvider } from 'firebase/auth';
 import {
   getFirestore,
-  collection,
-  addDoc,
-  getDoc,
-  getDocs,
+  setDoc,
   doc,
-  updateDoc,
-  deleteDoc,
-  collectionGroup,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -36,95 +30,37 @@ export const signInWithGitHub = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
       console.log(result);
+      const accessToken = result.user.accessToken;
       const name = result.user.displayName;
       const profilePic = result.user.photoURL;
-      const oAuthAccessToken = result._tokenResponse.oauthAccessToken;
-      const screenName = result._tokenResponse.screenName;
-
-      // Picking up UID and screenName 
+      const githubId = result.user.providerData[0].uid;
       const uid = result.user.uid;
-      const screenName = result._tokenResponse.screenName;
+      const oAuthAccessToken = result._tokenResponse.oauthAccessToken;
+     const screenName = result._tokenResponse.screenName;
+      window.localStorage.setItem('name', name);
+      window.localStorage.setItem('profilePic', profilePic);
+      window.localStorage.setItem('githubId', githubId);
+      window.localStorage.setItem('uid', uid)
+      window.localStorage.setItem('accessToken', accessToken)
+      window.localStorage.setItem('oAuthAccessToken', oAuthAccessToken)
+      window.localStorage.setItem("screenName", screenName);
 
-      // Authenticate with Firebase using the GitHub provider object. this gives you a github access token you can use to access the github API . 
-      const credential = GithubAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-
-      localStorage.setItem("name", name);
-      localStorage.setItem("profilePic", profilePic);
-      localStorage.setItem("accessToken", oAuthAccessToken);
-      localStorage.setItem("screenName", screenName);
+      setDoc(doc(db, 'allUsers', uid), {
+        accessToken: accessToken,
+      })
     })
     .catch((error) => {
       console.log(error);
     });
 };
 
-export const signOut = (e) => {
+export const signOutGithub = (e) => {
   e.preventDefault();
   auth.signOut();
-  localStorage.clear();
-  console.log("logged out");
+  window.localStorage.clear();
+  console.log('logged out');
 };
 
-// Initialize cloud Firestore
-const db = getFirestore();
 
-// Create a user
-export async function createAda() {
-  try {
-    const docRef = await addDoc(collection(db, "users"), {
-      first: "Ada",
-      last: "Lovelace",
-      born: 1815,
-    });
-    console.log("Document written with ID: ", docRef);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
-}
-
-// Get all users
-export async function getUsers() {
-  const querySnapshot = await getDocs(collection(db, "users"));
-  querySnapshot.forEach((doc) => {
-    console.log(doc.id, " => ", doc.data());
-  });
-}
-
-// Get all goals
-export async function getGoals() {
-  const allGoals = await getDocs(collectionGroup(db, "goals"));
-  allGoals.forEach((doc) => {
-    console.log(doc.id, " => ", doc.data());
-  });
-}
-
-// Get single user
-const docRef = doc(db, "users", "hfzkYMJiaRIMSoEXu9sp");
-
-export async function getSingleUser() {
-  const docSnap = await getDoc(docRef);
-  if (docSnap.exists()) {
-    console.log("Document data:", docSnap);
-  } else {
-    // doc.data() will be undefined in this case
-    console.log("No such document!");
-  }
-}
-
-// Update a single user
-const userToUpdate = doc(db, "users", "wwqKb3aoNbYrkTCjSRS0");
-
-export async function makeDiana() {
-  console.log("userToUpdate >>>>>", userToUpdate);
-  await updateDoc(userToUpdate, {
-    first: "Diana",
-  });
-  console.log("userToUpdate >>>>>", userToUpdate);
-}
-
-// Delete a single user
-export async function deleteUser() {
-  await deleteDoc(doc(db, "users", "wwqKb3aoNbYrkTCjSRS0"));
-  console.log("User was deleted!");
-}
+//--------------------------------- Initialize cloud Firestore---------------------------------------------
+export const db = getFirestore();

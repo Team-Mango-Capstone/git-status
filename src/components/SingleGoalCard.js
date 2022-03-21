@@ -1,17 +1,70 @@
 // import './css/SingleGoalCard.css';
-import React from 'react';
+import {useState} from 'react';
 import { Link } from 'react-router-dom';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleCheck, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 // delete and edit buttons inside single goal card
 
-const SingleGoalCard = () => {
+const SingleGoalCard = ({ goal, toggleComplete, handleDelete, handleEditDesc, handleEditDeadline }) => {
+  const [newDescription, setNewDescription] = useState(goal.description);
+  const [newDeadline, setNewDeadline] = useState(goal.deadline);
+
+  const handleChangeDesc = (e) => {
+    e.preventDefault();
+    if (goal.completed === true) {
+      setNewDescription(goal.description);
+    } else {
+      goal.description = '';
+      setNewDescription(e.target.value);
+    }
+  };
+
+  const handleChangeDeadline = (e) => {
+    e.preventDefault();
+    if (goal.completed === true) {
+      setNewDeadline(goal.deadline);
+    } else {
+      setNewDeadline(e.target.value);
+    }
+  };
+
   return (
     <div className='single-goal-card'>
-      single goal card
-      <button>Delete</button>
-      <Link to='/goals/edit/:id'>
-        <button>Edit Goal</button>
-      </Link>
+      <input
+        style={{ textDecoration: goal.completed && 'line-through' }}
+        type='text'
+        value={goal.description === '' ? newDescription : goal.description}
+        className='list'
+        onChange={(e) => {
+          handleChangeDesc(e)
+        }}
+      />
+        <input
+        type='date'
+        value={goal.deadline}
+        className='list'
+        onChange={(e)=> {
+          handleChangeDeadline(e)
+          handleEditDeadline(goal, newDeadline)
+        }}
+      />
+
+      <button className='button-complete' onClick={() => toggleComplete(goal)}>
+      <FontAwesomeIcon icon={faCircleCheck} />
+      </button>
+
+      <button
+        className='button-edit'
+        onClick={() => {
+          handleEditDesc(goal, newDescription)
+        }}
+      >
+       <FontAwesomeIcon icon={faPenToSquare}/>
+      </button>
+
+      <button className='button-delete' onClick={() =>handleDelete(goal.id)}>
+      <FontAwesomeIcon icon={faTrashCan} />
+      </button>
     </div>
   );
 };

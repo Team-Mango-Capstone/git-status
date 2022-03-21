@@ -4,8 +4,8 @@ import { signInWithGitHub } from '../db/Firebase';
 
 const Login = () => {
   return (
-    <div className='app'>
-      <div className='app-container'>
+    <div className='login'>
+      <div className='login-container'>
         <img src='/github.png' alt='' />
         <div className='container'>
           <div className='typed-out'>

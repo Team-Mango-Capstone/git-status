@@ -1,4 +1,11 @@
+import React from 'react';
 import '../css/Home.css';
+import {
+  Timeline,
+  TotalDays,
+  TopLanguages,
+  UsualCommitTime,
+} from './HomeCards';
 
 function Home() {
   const leftAngleBrace = (
@@ -7,10 +14,10 @@ function Home() {
   const rightAngleBrace = (
     <span style={{ color: 'grey', fontSize: '1.8rem' }}>&gt;</span>
   );
-  const welcome = (
+  const openText = (
     <span style={{ color: '#58a6ff', fontSize: '1.8rem' }}>welcome</span>
   );
-  const welcomeClose = (
+  const closeText = (
     <span style={{ color: '#58a6ff', fontSize: '1.8rem' }}>/welcome</span>
   );
 
@@ -18,14 +25,20 @@ function Home() {
     <div className='home'>
       <h1>
         {leftAngleBrace}
-        {welcome}
+        {openText}
         {rightAngleBrace}
         {localStorage.getItem('name')}
         {leftAngleBrace}
-        {welcomeClose}
+        {closeText}
         {rightAngleBrace}
       </h1>
       {/* <img src={localStorage.getItem('profilePic')} alt='profile pic' /> */}
+      <div className='home-cards'>
+        <Timeline />
+        <TotalDays />
+        <TopLanguages />
+        <UsualCommitTime />
+      </div>
     </div>
   );
 }

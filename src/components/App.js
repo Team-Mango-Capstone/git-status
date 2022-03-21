@@ -1,12 +1,10 @@
 import RouteList from '../RouteList';
 import Navbar from './Navbar';
-import Login from './Login';
 
 function App() {
-  console.log(localStorage);
   return (
     <div>
-      {!localStorage.accessToken ? <Login /> : <Navbar />}
+      {!localStorage.accessToken ? <div /> : <Navbar />}
       <RouteList />
     </div>
   );

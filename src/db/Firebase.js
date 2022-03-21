@@ -21,6 +21,8 @@ const firebaseConfig = {
   messagingSenderId: "353841373758",
   appId: "1:353841373758:web:a8850c4bc0154396eba76f",
   measurementId: "G-L0MDSRRFR8",
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
 };
 
 //Initialize firebase
@@ -36,6 +38,8 @@ export const signInWithGitHub = () => {
       console.log(result);
       const name = result.user.displayName;
       const profilePic = result.user.photoURL;
+      const oAuthAccessToken = result._tokenResponse.oauthAccessToken;
+      const screenName = result._tokenResponse.screenName;
 
       // Picking up UID and screenName 
       const uid = result.user.uid;
@@ -47,10 +51,7 @@ export const signInWithGitHub = () => {
 
       localStorage.setItem("name", name);
       localStorage.setItem("profilePic", profilePic);
-
-      // Added the UID, token and screenName to the localStorage
-      localStorage.setItem("uid", uid);
-      localStorage.setItem("accessToken", token);
+      localStorage.setItem("accessToken", oAuthAccessToken);
       localStorage.setItem("screenName", screenName);
     })
     .catch((error) => {

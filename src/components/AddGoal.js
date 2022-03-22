@@ -1,4 +1,4 @@
-// import './css/AddGoal.css';
+import '../css/AddGoal.css';
 import { useState } from 'react';
 import { db } from '../db/Firebase';
 import { collection, addDoc } from 'firebase/firestore';
@@ -38,7 +38,8 @@ function AddGoal() {
             setDescription(e.target.value);
           }}
         />
-          <h2> Deadline</h2>
+          <button>Add Goal</button>
+          <h3> Deadline</h3>
         <input
           type='date'
           placeholder='Enter deadline...'
@@ -47,7 +48,7 @@ function AddGoal() {
             setDeadline(e.target.value);
           }}
         />
-        <button>Add Goal</button>
+      
       </div>
 
       {/* <div className='btn_container'></div> */}

@@ -1,4 +1,13 @@
-.goals{
-    color: black;
-    background-color: rgb(255, 255, 255);
+.goals {
+  font-size: 18px;
+  color: black;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  padding: 1.2%;
 }
+
+
+.single-goal-card input {
+  font-size: 20px;
+}
+

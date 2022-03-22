@@ -1,0 +1,17 @@
+.single-goal-card input {
+  height: 2em;
+  margin-top: 10px;
+}
+
+.goal-input {
+}
+
+.date-input {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+button{
+    margin: 4px;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/Home.css';
-import { UsualCommitTime } from './homeCards/UsualCommitTime';
+import { MostProductive } from './homeCards/MostProductive';
 import { TopLanguages } from './homeCards/TopLanguages';
 import { UserLifespan } from './homeCards/UserLifespan';
 import { Timeline } from './homeCards/Timeline';
@@ -66,7 +66,7 @@ function Home() {
         <Timeline />
         <UserLifespan userData={userData}/>
         <TopLanguages userRepos={userRepos}/>
-        <UsualCommitTime />
+        <MostProductive userRepos={userRepos}/>
       </div>
     </div >
   );

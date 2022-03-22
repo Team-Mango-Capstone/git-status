@@ -27,7 +27,7 @@ function Home() {
   // Set default header for axios requests so that the oAuth access token will be included on all requests
   axios.defaults.headers.common[
     "Authorization"
-  ] = `token ${localStorage.getItem("accessToken")}`;
+  ] = `token ${localStorage.getItem("oAuthAccessToken")}`;
 
   useEffect(() => {
     const makeRequest = async () => {
@@ -38,7 +38,6 @@ function Home() {
         setUserData(userData.data);
 
         const userRepos = await axios.get(
-          // `https://api.github.com/users/${githubUsername}/repos`
           `https://api.github.com/search/repositories?q=user:${githubUsername}+fork:true&per_page=100`
         );
         setUserRepos(userRepos.data);
@@ -48,15 +47,6 @@ function Home() {
     };
     makeRequest();
   }, []);
-
-  const checkRateLimit = async () => {
-    try {
-      const { data } = await axios.get("https://api.github.com/rate_limit");
-      console.log("rate limit >>>>>", data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   return (
     <div className='home'>
@@ -77,7 +67,6 @@ function Home() {
         <UserLifespan userData={userData}/>
         <TopLanguages userRepos={userRepos}/>
         <UsualCommitTime />
-        <button onClick={checkRateLimit}>check rate limit</button>
       </div>
     </div>
   );

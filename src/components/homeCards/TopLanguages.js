@@ -7,9 +7,11 @@ export function TopLanguages(props) {
     const [userLanguages, setUserLanguages] = useState({});
     console.log('PROPS', props.userRepos.items)
 
+    const repoArr = props.userRepos.items || [];
+
     useEffect(() => {
       const calculateLanguages = async () => {
-        props.userRepos.items.map(async (repo) => {
+        repoArr.map(async (repo) => {
           try {
             const { data } = await axios.get(
               `https://api.github.com/repos/${githubUsername}/${repo.name}/languages`
@@ -35,6 +37,7 @@ export function TopLanguages(props) {
         });
       };
       calculateLanguages();
+      console.log('userLanguages >>>>>', userLanguages)
     }, [props.userRepos.items]);
   
     return (

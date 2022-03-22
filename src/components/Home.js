@@ -68,7 +68,7 @@ function Home() {
         <TopLanguages userRepos={userRepos}/>
         <UsualCommitTime />
       </div>
-    </div>
+    </div >
   );
 }
 

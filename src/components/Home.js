@@ -39,7 +39,7 @@ function Home() {
         <TopLanguages />
         <UsualCommitTime />
       </div>
-    </div>
+    </div >
   );
 }
 

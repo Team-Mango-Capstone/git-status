@@ -8,6 +8,7 @@ import EditGoal from './components/EditGoal';
 import AllRepos from './components/AllRepos';
 import SingleRepo from './components/SingleRepo';
 import NotFound from './components/NotFound';
+import GithubTesting from './components/GithubAPITesting';
 
 function RouteList() {
   return (
@@ -31,6 +32,8 @@ function RouteList() {
           <Route path='repos/:id' element={<SingleRepo />} />
           <Route path='/404' element={<NotFound />} />
           <Route path='*' element={<Navigate replace to='/404' />} />
+
+          <Route path='/testing' element={<GithubTesting />} />
         </Routes>
       )}
     </div>

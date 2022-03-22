@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/Home.css';
-import {
-  UsualCommitTime,
-} from './HomeCards';
+import { UsualCommitTime } from './homeCards/UsualCommitTime';
 import { TopLanguages } from './homeCards/TopLanguages';
 import { UserLifespan } from './homeCards/UserLifespan';
 import { Timeline } from './homeCards/Timeline';
@@ -75,9 +73,9 @@ function Home() {
       </h1>
       {/* <img src={localStorage.getItem('profilePic')} alt='profile pic' /> */}
       <div className='home-cards'>
-        {/* <Timeline /> */}
+        <Timeline />
         <UserLifespan userData={userData}/>
-        <TopLanguages userData={userData} userRepos={userRepos}/>
+        <TopLanguages userRepos={userRepos}/>
         <UsualCommitTime />
         <button onClick={checkRateLimit}>check rate limit</button>
       </div>

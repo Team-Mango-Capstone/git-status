@@ -3,10 +3,6 @@ import axios from "axios";
 
 const githubUsername = localStorage.getItem("screenName");
 
-axios.defaults.headers.common[
-    "Authorization"
-  ] = `token ${localStorage.getItem("oAuthAccessToken")}`;
-
 export function Timeline(props) {
   const [userContributions, setUserContributions] = useState([]);
 
@@ -24,13 +20,17 @@ export function Timeline(props) {
     const makeRequest = async () => {
       try {
         let currentYear = new Date().getFullYear();
+        let lastYear = currentYear - 1
         let currentWeek = weekFinder();
+        console.log('!!!!!!!')
         const allContributionsLastYear = await axios.get(
-          `https://skyline.github.com/${githubUsername}/${currentYear - 1}.json`
+          `https://skyline.github.com/${githubUsername}/${lastYear}.json`, { headers: "Access-Control-Allow-Origin: http://localhost:3000" }
         );
         const allContributionsThisYear = await axios.get(
-          `https://skyline.github.com/${githubUsername}/${currentYear}.json`
+          `https://skyline.github.com/${githubUsername}/${currentYear}.json`, { headers: "Access-Control-Allow-Origin: http://localhost:3000" }
         );
+        console.log('allContributionsLastYear >>>>', allContributionsLastYear)
+        console.log('allContributionsThisYear >>>>', allContributionsThisYear)
         allContributionsLastYear.filter(
           (element) => element.week > currentWeek
         );
@@ -46,7 +46,6 @@ export function Timeline(props) {
       }
     };
     makeRequest();
-    console.log('userContributions >>>>>', userContributions)
   }, []);
 
   return (

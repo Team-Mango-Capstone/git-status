@@ -1,10 +1,20 @@
 // import './css/SingleGoalCard.css';
-import {useState} from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleCheck, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCircleCheck,
+  faPenToSquare,
+  faTrashCan,
+} from '@fortawesome/free-solid-svg-icons';
 // delete and edit buttons inside single goal card
 
-const SingleGoalCard = ({ goal, toggleComplete, handleDelete, handleEditDesc, handleEditDeadline }) => {
+const SingleGoalCard = ({
+  goal,
+  toggleComplete,
+  handleDelete,
+  handleEditDesc,
+  handleEditDeadline,
+}) => {
   const [newDescription, setNewDescription] = useState(goal.description);
   const [newDeadline, setNewDeadline] = useState(goal.deadline);
 
@@ -35,37 +45,37 @@ const SingleGoalCard = ({ goal, toggleComplete, handleDelete, handleEditDesc, ha
         value={goal.description === '' ? newDescription : goal.description}
         className='list'
         onChange={(e) => {
-          handleChangeDesc(e)
+          handleChangeDesc(e);
         }}
       />
-        <input
+      <input
         type='date'
         value={goal.deadline}
         className='list'
-        onChange={(e)=> {
-          handleChangeDeadline(e)
-          handleEditDeadline(goal, newDeadline)
+        onChange={(e) => {
+          handleChangeDeadline(e);
+          handleEditDeadline(goal, newDeadline);
         }}
       />
 
       <button className='button-complete' onClick={() => toggleComplete(goal)}>
-      <FontAwesomeIcon icon={faCircleCheck} />
+        <FontAwesomeIcon icon={faCircleCheck} />
       </button>
 
       <button
         className='button-edit'
         onClick={() => {
-          handleEditDesc(goal, newDescription)
+          handleEditDesc(goal, newDescription);
         }}
       >
-       <FontAwesomeIcon icon={faPenToSquare}/>
+        <FontAwesomeIcon icon={faPenToSquare} />
       </button>
 
-      <button className='button-delete' onClick={() =>handleDelete(goal.id)}>
-      <FontAwesomeIcon icon={faTrashCan} />
+      <button className='button-delete' onClick={() => handleDelete(goal.id)}>
+        <FontAwesomeIcon icon={faTrashCan} />
       </button>
     </div>
   );
-}
+};
 
 export default SingleGoalCard;

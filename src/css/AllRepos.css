@@ -1,0 +1,26 @@
+.all-repos {
+  padding: 5rem;
+}
+
+.all-repos-header {
+  display: flex;
+  flex-direction: flex-start;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.all-repos h1 {
+  margin: 0rem 2rem 2rem 2rem;
+}
+
+.all-repos-container {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 0rem 1rem;
+}
+
+.invisible {
+  flex-grow: 1;
+}

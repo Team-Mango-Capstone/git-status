@@ -5,12 +5,14 @@ import {
   deleteDoc,
 } from 'firebase/firestore';
 
+const uid =  window.localStorage.getItem('uid');
+
 export const handleEditDesc = async (goal, description) => {
   await updateDoc(
     doc(
       db,
       'allUsers',
-      window.localStorage.getItem('uid'),
+      uid,
       'userGoals',
       goal.id
     ),
@@ -23,7 +25,7 @@ export const handleEditDeadline = async (goal, deadline) => {
     doc(
       db,
       'allUsers',
-      window.localStorage.getItem('uid'),
+      uid,
       'userGoals',
       goal.id
     ),
@@ -35,7 +37,7 @@ export const toggleComplete = async (goal) => {
     doc(
       db,
       'allUsers',
-      window.localStorage.getItem('uid'),
+      uid,
       'userGoals',
       goal.id
     ),
@@ -44,7 +46,7 @@ export const toggleComplete = async (goal) => {
 };
 export const handleDelete = async (id) => {
   await deleteDoc(
-    doc(db, 'allUsers', window.localStorage.getItem('uid'), 'userGoals', id)
+    doc(db, 'allUsers', uid, 'userGoals', id)
   );
 };
 

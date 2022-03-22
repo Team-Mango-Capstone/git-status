@@ -3,38 +3,55 @@ import axios from "axios";
 
 const githubUsername = localStorage.getItem("screenName");
 
+const dummyData = [
+    {
+        HTML: 1,
+        CSS: 1,
+        Javascript: 1,
+    },
+    {
+        HTML: 1,
+        CSS: 1,
+        Javascript: 1,
+    },
+    {
+        HTML: 1,
+        CSS: 1,
+        Javascript: 1,
+    },
+]
+
 
 export function TopLanguages(props) {
     const [userLanguages, setUserLanguages] = useState({});
   
-    //console.log("PROPSSSSSSSS", props.userRepos.items);
-    // console.log('LANGUAGES BEFORE>>>>>', userLanguages)
-    let allRepos = props.userRepos.items;
-    console.log('allRepos >>>>>', allRepos);
+    //console.log("PROPS >>>>>", props.userRepos.items);
   
     useEffect(() => {
       const calculateLanguages = async () => {
-        allRepos.map(async (repo) => {
+        props.userRepos.items.map(async (repo) => {
+            //dummyData.map(async (data) => {
           try {
             const { data } = await axios.get(
               `https://api.github.com/repos/${githubUsername}/${repo.name}/languages`
             );
-            console.log('DATA >>>>', data)
+            // console.log('DATA >>>>', data)
             for (const language in data) {
+              console.log('LANGUAGE >>>>', language)  
               let newObj = {};
               //if language is already in our userLanguages piece of state, increment it
               if (Object.keys(userLanguages).includes(language)) {
                 newObj[language] = userLanguages[language] + data[language];
-                let updatedLangs = Object.assign({}, userLanguages, newObj);
-                console.log('updatedLangs', updatedLangs)
+                let updatedLangs = Object.assign(userLanguages, newObj);
                 setUserLanguages(updatedLangs);
+                console.log('user languages was set .....', userLanguages)
               }
               // otherwise, add that language to userLanguages
               else {
                 newObj[language] = data[language];
                 let updatedLangs = Object.assign(userLanguages, newObj);
-                console.log('updatedLangs', updatedLangs)
                 setUserLanguages(updatedLangs);
+                console.log('user languages was set .....', userLanguages)
               }
             }
             // return;
@@ -45,7 +62,7 @@ export function TopLanguages(props) {
       };
       calculateLanguages();
       console.log('LANGUAGES AFTER>>>>>', userLanguages)
-    }, []);
+    }, [props.userRepos.items]);
   
     return (
       <div className="top-languages">

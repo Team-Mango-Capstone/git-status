@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import SingleRepoCard from './SingleRepoCard';
 
 function AllRepos() {
-  // MISSING: pagination, filter search, hook to show isLoading
+  // MISSING: pagination, filter search
 
   const leftAngleBrace = (
     <span style={{ color: 'grey', fontSize: '1.8rem' }}>&lt;</span>
@@ -20,6 +20,7 @@ function AllRepos() {
   );
 
   const [repos, setRepos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const token = localStorage.getItem('oAuthAccessToken');
   const screenName = localStorage.getItem('screenName');
 
@@ -37,6 +38,7 @@ function AllRepos() {
     // see what props we can pass down from each repo
     // console.log(data.items);
     setRepos(data.items);
+    setIsLoading(false);
   };
 
   return (
@@ -62,7 +64,11 @@ function AllRepos() {
 
       <br />
       <div className='all-repos-container'>
-        {repos.length > 0 ? (
+        {isLoading ? (
+          <h2>LOADING...</h2>
+        ) : repos.length === 0 ? (
+          <div>You have no repos!</div>
+        ) : (
           repos
             // sort by last updated
             .sort((a, b) => b.updated_at.localeCompare(a.updated_at))
@@ -75,8 +81,6 @@ function AllRepos() {
                 updated_at={repo.updated_at}
               />
             ))
-        ) : (
-          <h2>Loading / No repos</h2>
         )}
       </div>
       <div className='invisible' />

@@ -37,7 +37,7 @@ export async function signInWithGitHub() {
       const githubId = result.user.providerData[0].uid;
       const uid = result.user.uid;
       const oAuthAccessToken = result._tokenResponse.oauthAccessToken;
-     const screenName = result._tokenResponse.screenName;
+      const screenName = result._tokenResponse.screenName;
       window.localStorage.setItem('name', name);
       window.localStorage.setItem('profilePic', profilePic);
       window.localStorage.setItem('githubId', githubId);
@@ -45,7 +45,7 @@ export async function signInWithGitHub() {
       window.localStorage.setItem('accessToken', accessToken)
       window.localStorage.setItem('oAuthAccessToken', oAuthAccessToken)
       window.localStorage.setItem("screenName", screenName);
-     
+
       setDoc(doc(db, 'allUsers', uid), {
         accessToken: accessToken,
       })

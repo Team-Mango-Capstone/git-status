@@ -132,5 +132,19 @@ export async function searchCommits(user, repo) {
     }
 }
 
+///////////////////////////
 
+let githubUsername = 'dviglucci';
+let repoName = 'rats';
+
+// returns an object with two arrays: how many commits each week of the year were made total, and how
+// many commits each week of the year were made by the repo owner
+const getWeeklyCommitStats = async () => {
+    try {
+      const { data } = await axios.get(`https://api.github.com/repos/${githubUsername}/${repoName}/stats/participation`)
+      console.log('data from getWeeklyCommitStats >>>>', data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 

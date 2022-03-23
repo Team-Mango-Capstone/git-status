@@ -5,6 +5,7 @@ import { MostProductive } from './homeCards/MostProductive';
 import { TopLanguages } from './homeCards/TopLanguages';
 import { UserLifespan } from './homeCards/UserLifespan';
 import { Timeline } from './homeCards/Timeline';
+import { MostViewed } from './homeCards/MostViewed';
 
 function Home() {
   const leftAngleBrace = (
@@ -48,6 +49,19 @@ function Home() {
     makeRequest();
   }, []);
 
+  console.log('userRepos >>>', userRepos)
+
+// const test = async () => {
+//   try {
+//     // const { data } = await axios.get(`https://api.github.com/repos/${githubUsername}/rats/traffic/views`)
+//     const { data } = await axios.get(`https://api.github.com/repos/${githubUsername}/rats/stats/participation`)
+//     console.log('DATA >>>>', data)
+//   } catch (err) {
+//     console.log(err)
+//   }
+// }
+
+
   return (
     <div className='home'>
       <h1>
@@ -66,7 +80,9 @@ function Home() {
         <Timeline />
         <UserLifespan userData={userData}/>
         <TopLanguages userRepos={userRepos}/>
-        <MostProductive userRepos={userRepos}/>
+        {/* <MostProductive userRepos={userRepos}/> */}
+        <MostViewed />
+        <button onClick={() => test()}>Test my function</button>
       </div>
     </div >
   );

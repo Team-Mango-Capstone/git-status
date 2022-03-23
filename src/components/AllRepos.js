@@ -2,6 +2,7 @@ import axios from 'axios';
 import '../css/AllRepos.css';
 import '../css/SingleRepoCard.css';
 import { useState, useEffect } from 'react';
+import { spinner } from './Bootstrap-Elements';
 // import SingleRepoCard from './SingleRepoCard';
 
 function AllRepos() {
@@ -90,7 +91,8 @@ function AllRepos() {
       <br />
       <div className='all-repos-container'>
         {isLoading ? (
-          <h2>LOADING...</h2>
+          // text renders but not the spinner lol
+          spinner
         ) : repos.length === 0 ? (
           <div>You have no repos!</div>
         ) : (

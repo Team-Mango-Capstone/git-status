@@ -24,3 +24,20 @@
 .invisible {
   flex-grow: 1;
 }
+
+.filter select {
+  padding: 0.5rem;
+  color: #fafafa;
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+}
+
+.filter select:focus {
+  outline: none;
+}
+
+.filter select:hover {
+  border: 1px solid #8c959e;
+  background-color: #2e363b;
+}

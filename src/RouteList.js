@@ -29,7 +29,7 @@ function RouteList() {
           <Route path='goals/edit/:id' element={<EditGoal />} />
 
           <Route path='repos' element={<AllRepos />} />
-          <Route path='repos/:id' element={<SingleRepo />} />
+          <Route path='repos/:repoName' element={<SingleRepo />} />
           <Route path='/404' element={<NotFound />} />
           <Route path='*' element={<Navigate replace to='/404' />} />
 

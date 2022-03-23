@@ -10,7 +10,6 @@ function SingleRepo(props) {
   const params = useParams();
   // console.log("This is the params", params.repoName)
   // console.log("This is the screen Name", screenName)
-
   const [repo, setRepo] = useState({})
   const [commits, setCommit] = useState([])
   const [collabs, setCollabs] = useState([])
@@ -46,9 +45,8 @@ function SingleRepo(props) {
     fetchData()
   }, [repo])
 
-  console.log("This is from the STATE Repo data", repo)
-  console.log("this is STATE Commits info ", commits)
-  console.log("This is the STATE Collabs info", collabs);
+  console.log('This is from the STATE Repo data', repo);
+  // console.log("!!!!!!!!!!!!!!!THIS IS THE REPO FULLNAME", repo.full_name)
 
   return (
     <div className='single-repo'>
@@ -74,7 +72,6 @@ function SingleRepo(props) {
         <div>Number of Collaborators: {collabs.length}</div>
         names : {collabs.map((item) => { return <ul key={item.id}>{item.login}</ul> })}
       </div>
-
     </div>
   );
 }

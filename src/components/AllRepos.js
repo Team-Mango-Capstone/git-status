@@ -1,11 +1,14 @@
 import axios from 'axios';
 import '../css/AllRepos.css';
+import '../css/SingleRepoCard.css';
 import { useState, useEffect } from 'react';
-import SingleRepoCard from './SingleRepoCard';
+import { spinner } from './Bootstrap-Elements';
+// import SingleRepoCard from './SingleRepoCard';
 
 
 function AllRepos() {
-  // MISSING: pagination, filter search
+  // MISSING: pagination
+  const screenName = localStorage.getItem('screenName');
 
   const leftAngleBrace = (
     <span style={{ color: 'grey', fontSize: '1.8rem' }}>&lt;</span>
@@ -22,25 +25,43 @@ function AllRepos() {
 
   const [repos, setRepos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const token = localStorage.getItem('oAuthAccessToken');
-  const screenName = localStorage.getItem('screenName');
-
+  const [filter, setFilter] = useState('last-updated');
+  // date created will compare the same as updated at
+  // alphabetical will compare by name
   useEffect(() => {
     getRepos();
   }, []);
 
   const getRepos = async () => {
     const { data } = await axios.get(
-      `https://api.github.com/search/repositories?q=user:${screenName}+fork:true&per_page=100`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
+      `https://api.github.com/search/repositories?q=user:${screenName}+fork:true&per_page=100`
     );
     // see what props we can pass down from each repo
     // console.log(data.items);
     setRepos(data.items);
     setIsLoading(false);
   };
+
+  // calls the new updated state
+  useEffect(() => {}, [filter]);
+
+  // changes the state but doesn't reflect the change inside yet
+  const handleChangeFilter = (e) => {
+    e.preventDefault();
+    setFilter(e.target.value);
+  };
+
+  const renderFilteredRepos = () => {
+    if (filter === 'date-created') {
+      return repos.sort((a, b) => b.created_at.localeCompare(a.created_at));
+    } else if (filter === 'alphabetical') {
+      return repos.sort((a, b) => a.name.localeCompare(b.name));
+    } else {
+      return repos.sort((a, b) => b.updated_at.localeCompare(a.updated_at));
+    }
+  };
+
+  console.log(renderFilteredRepos());
 
   return (
     <div className='all-repos'>
@@ -55,7 +76,12 @@ function AllRepos() {
           {rightAngleBrace}
         </h1>
         <div className='filter'>
-          <select defaultValue='last-updated'>
+          <select
+            defaultValue='last-updated'
+            onChange={(e) => {
+              handleChangeFilter(e);
+            }}
+          >
             <option value='last-updated'>Sort by: Last updated</option>
             <option value='alphabetical'>Sort by: Alphabetical</option>
             <option value='date-created'>Sort by: Date created</option>
@@ -66,22 +92,31 @@ function AllRepos() {
       <br />
       <div className='all-repos-container'>
         {isLoading ? (
-          <h2>LOADING...</h2>
+          // text renders but not the spinner lol
+          spinner
         ) : repos.length === 0 ? (
           <div>You have no repos!</div>
         ) : (
-          repos
-            // sort by last updated
-            .sort((a, b) => b.updated_at.localeCompare(a.updated_at))
-            .map((repo) => (
-              <SingleRepoCard
-                key={repo.id}
-                repo={repo}
-                name={repo.name}
-                clone_url={repo.clone_url}
-                updated_at={repo.updated_at}
-              />
-            ))
+          renderFilteredRepos().map((repo) => (
+            <div className='single-repo-card' key={repo.id}>
+              <a href={`${repo.clone_url}`} target='_blank' rel='noreferrer'>
+                <h2>{repo.name}</h2>
+              </a>
+              <hr />
+
+              {filter === 'date-created' ? (
+                <div>
+                  <p>Created at:</p>
+                  <p>{repo.created_at.slice(0, 10)}</p>
+                </div>
+              ) : (
+                <div>
+                  <p>Last updated at:</p>
+                  <p>{repo.updated_at.slice(0, 10)}</p>
+                </div>
+              )}
+            </div>
+          ))
         )}
       </div>
       <div className='invisible' />

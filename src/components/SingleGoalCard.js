@@ -22,6 +22,7 @@ const SingleGoalCard = ({
       setNewDescription(goal.description);
     } else {
       goal.description = '';
+      console.log(e.target.value);
       setNewDescription(e.target.value);
     }
   };

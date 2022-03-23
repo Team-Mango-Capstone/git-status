@@ -1,30 +1,28 @@
+import axios from 'axios';
 
-import axios from 'axios'
-
-// Getting the logged in user's access token from local storage. 
-const token = localStorage.getItem('oAuthAccessToken');//
+// Getting the logged in user's access token from local storage.
+const token = localStorage.getItem('oAuthAccessToken'); //
 
 export default function GithubTesting() {
-
-    return (
-        <div>
-            <button onClick={clickHandler}> Testing Button</button>
-        </div>
-    )
+  return (
+    <div>
+      <button onClick={clickHandler}> Testing Button</button>
+    </div>
+  );
 }
 
-// Created a button to test the API routes, and to see if data was being returned. click handler which runs the http request. 
+// Created a button to test the API routes, and to see if data was being returned. click handler which runs the http request.
 export const clickHandler = () => {
-    getRepos();
-    // getSingleRepo();
-    // getRepoCollaborators();
-    // getOrgsforUser();
-    // getCommitsforRepo();
-    // searchRepos();
-    // searchCommits('choi2010', 'teampluto2201/grace-shopper');
-}
+  getRepos();
+  // getSingleRepo();
+  // getRepoCollaborators();
+  // getOrgsforUser();
+  // getCommitsforRepo();
+  // searchRepos();
+  // searchCommits('choi2010', 'teampluto2201/grace-shopper');
+};
 
-//Axios calls to github API endpoints 
+//Axios calls to github API endpoints
 
 // getting user's repos
 // NOTE: This function does not get the repos that are part of
@@ -62,7 +60,6 @@ export async function getSingleRepo(owner, repo) {
 // getting list of repository collaborators
 // /repos/{owner}/{repo}/collaborators
 export async function getRepoCollaborators(owner, repo) {
-
     try {
         const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}/collaborators`)
         console.log("this is the data from get Repo Collaborators", data)
@@ -89,7 +86,6 @@ export async function getOrgsforUser() {
 // Team-Mango-Capstone/git-status
 
 export async function getCommitsforRepo(owner, repo) {
-
     try {
         const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}/commits`)
         // data returns an array with list of commits. 
@@ -107,7 +103,6 @@ export async function getCommitsforRepo(owner, repo) {
 // searchrepo API route
 // https://api.github.com/search/repositories?q=user%3Achoi2010
 export async function searchRepos(user) {
-
     try {
         const { data } = await axios.get(`https://api.github.com/search/repositories?q=user:${user}}+fork:true&per_page=100 `)
         // data returns an array with list of commits. 
@@ -134,6 +129,3 @@ export async function searchCommits(user, repo) {
         console.log("error")
     }
 }
-
-
-

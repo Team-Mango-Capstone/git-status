@@ -49,19 +49,6 @@ function Home() {
     makeRequest();
   }, []);
 
-  console.log('userRepos >>>', userRepos)
-
-// const test = async () => {
-//   try {
-//     // const { data } = await axios.get(`https://api.github.com/repos/${githubUsername}/rats/traffic/views`)
-//     const { data } = await axios.get(`https://api.github.com/repos/${githubUsername}/rats/stats/participation`)
-//     console.log('DATA >>>>', data)
-//   } catch (err) {
-//     console.log(err)
-//   }
-// }
-
-
   return (
     <div className='home'>
       <h1>
@@ -82,7 +69,6 @@ function Home() {
         <TopLanguages userRepos={userRepos}/>
         {/* <MostProductive userRepos={userRepos}/> */}
         <MostViewed />
-        <button onClick={() => test()}>Test my function</button>
       </div>
     </div >
   );

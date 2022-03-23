@@ -24,23 +24,25 @@ export function Timeline(props) {
         let currentWeek = weekFinder();
         console.log('!!!!!!!')
         const allContributionsLastYear = await axios.get(
-          `https://skyline.github.com/${githubUsername}/${lastYear}.json`, {
-              headers: "Access-Control-Allow-Origin: http://localhost:3000",
-            // method: 'GET',
-            mode: 'cors',
-            // headers: { 'Access-Control-Allow-Origin': 'http://localhost:3000' },
-          }
+        //   `https://skyline.github.com/${githubUsername}/${lastYear}.json`,
+        //   {
+        //     //   headers: "Access-Control-Allow-Origin: http://localhost:3000",
+        //     // method: 'GET',
+        //     mode: 'no-cors',
+        //     headers: { 'Access-Control-Allow-Origin': '*' },
+        //   }
+        `https://cors-anywhere.herokuapp.com/https://skyline.github.com/dviglucci/2022.json`
         );
-        const allContributionsThisYear = await axios.get(
-          `https://skyline.github.com/${githubUsername}/${currentYear}.json`, {
-              headers: "Access-Control-Allow-Origin: http://localhost:3000",
-            // method: 'GET',
-            mode: 'cors',
-            // headers: { 'Access-Control-Allow-Origin': 'http://localhost:3000' },
-           }
-        );
+        // const allContributionsThisYear = await axios.get(
+        //   `https://skyline.github.com/${githubUsername}/${currentYear}.json`, {
+        //     //   headers: "Access-Control-Allow-Origin: http://localhost:3000",
+        //     // method: 'GET',
+        //     // mode: 'cors',
+        //     headers: { 'Access-Control-Allow-Origin': 'http://localhost:3000' },
+        //    }
+        // );
         console.log('allContributionsLastYear >>>>', allContributionsLastYear.data)
-        console.log('allContributionsThisYear >>>>', allContributionsThisYear.data)
+        // console.log('allContributionsThisYear >>>>', allContributionsThisYear.data)
         // allContributionsLastYear.filter(
         //   (element) => element.week > currentWeek
         // );

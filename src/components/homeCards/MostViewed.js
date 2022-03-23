@@ -43,7 +43,7 @@ export const MostViewed = () => {
 
   return (
     <div>
-      Among repos you own, your most viewed repo is {topRepoStats.name} with{" "}
+      Among repos you created, your most viewed repo is {topRepoStats.name} with{" "}
       {topRepoStats.count} total views and {topRepoStats.uniques} uniques.
     </div>
   );

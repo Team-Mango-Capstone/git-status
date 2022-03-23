@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/Home.css';
-import { UsualCommitTime } from './homeCards/UsualCommitTime';
+import { MostProductive } from './homeCards/MostProductive';
 import { TopLanguages } from './homeCards/TopLanguages';
 import { UserLifespan } from './homeCards/UserLifespan';
 import { Timeline } from './homeCards/Timeline';
+import { MostViewed } from './homeCards/MostViewed';
 
 function Home() {
   const leftAngleBrace = (
@@ -60,9 +61,10 @@ function Home() {
       {/* <img src={localStorage.getItem('profilePic')} alt='profile pic' /> */}
       <div className='home-cards'>
         <Timeline />
-        <UserLifespan userData={userData} />
-        <TopLanguages userRepos={userRepos} />
-        <UsualCommitTime />
+        <UserLifespan userData={userData}/>
+        <TopLanguages userRepos={userRepos}/>
+        {/* <MostProductive userRepos={userRepos}/> */}
+        <MostViewed />
       </div>
     </div>
   );

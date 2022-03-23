@@ -5,7 +5,6 @@ const githubUsername = localStorage.getItem("screenName");
 
 export function TopLanguages(props) {
     const [userLanguages, setUserLanguages] = useState({});
-    console.log('PROPS', props.userRepos.items)
 
     const repoArr = props.userRepos.items || [];
 
@@ -37,7 +36,7 @@ export function TopLanguages(props) {
         });
       };
       calculateLanguages();
-      console.log('userLanguages >>>>>', userLanguages)
+    //   console.log('userLanguages >>>>>', userLanguages)
     }, [props.userRepos.items]);
   
     return (

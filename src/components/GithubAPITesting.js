@@ -4,22 +4,23 @@ import axios from 'axios';
 const token = localStorage.getItem('oAuthAccessToken'); //
 
 export default function GithubTesting() {
-  return (
-    <div>
-      <button onClick={clickHandler}> Testing Button</button>
-    </div>
-  );
+    return (
+        <div>
+            <button onClick={clickHandler}> Testing Button</button>
+        </div>
+    );
 }
 
 // Created a button to test the API routes, and to see if data was being returned. click handler which runs the http request.
 export const clickHandler = () => {
-  getRepos();
-  // getSingleRepo();
-  // getRepoCollaborators();
-  // getOrgsforUser();
-  // getCommitsforRepo();
-  // searchRepos();
-  // searchCommits('choi2010', 'teampluto2201/grace-shopper');
+    // getRepos();
+    // getSingleRepo();
+    // getRepoCollaborators();
+    // getOrgsforUser();
+    // getCommitsforRepo();
+    // searchRepos();
+    // searchCommits('choi2010', 'teampluto2201/grace-shopper');
+    getCommitStateforRepo("choi2010", "2201-GHP-NY-WEB-FT-JPFP")
 };
 
 //Axios calls to github API endpoints
@@ -130,6 +131,21 @@ export async function searchCommits(user, repo) {
     }
 }
 
+// /repos/{owner}/{repo}/stats/contributors
+export async function getCommitStateforRepo(owner, repoName) {
+    try {
+        const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repoName}/stats/contributors`)
+        // data returns an array with list of commits. 
+
+        console.log("this is the data from getCommitStateforRepo", data.items)
+        // data.items.forEach(i => console.log(i.commit.author.date, i.commit.author.name, i.commit.message))
+        return data.items;
+    }
+    catch (err) {
+        console.log("error")
+    }
+}
+
 
 ///////////////////////////
 
@@ -140,11 +156,11 @@ let repoName = 'rats';
 // many commits each week of the year were made by the repo owner
 const getWeeklyCommitStats = async () => {
     try {
-      const { data } = await axios.get(`https://api.github.com/repos/${githubUsername}/${repoName}/stats/participation`)
-      console.log('data from getWeeklyCommitStats >>>>', data)
+        const { data } = await axios.get(`https://api.github.com/repos/${githubUsername}/${repoName}/stats/participation`)
+        console.log('data from getWeeklyCommitStats >>>>', data)
     } catch (err) {
-      console.log(err)
+        console.log(err)
     }
-  }
+}
 
 

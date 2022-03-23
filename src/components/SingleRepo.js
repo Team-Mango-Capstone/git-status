@@ -38,7 +38,8 @@ function SingleRepo(props) {
         // const commitsInfo = await searchCommits('choi2010', 'choi2010/2201-GHP-NY-WEB-FT-JPFP');
         // const commitsInfo = await searchCommits(screenName, repo.full_name);
         const commitsInfo = await getCommitsforRepo(screenName, repo.name);
-        setCommit(commitsInfo);
+        const cleanedCommitsInfo = commitsInfo.filter((commit) => { return (commit.author.login === screenName) })
+        setCommit(cleanedCommitsInfo);
       }
 
     }

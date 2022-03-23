@@ -20,7 +20,7 @@ export const clickHandler = () => {
     // getCommitsforRepo();
     // searchRepos();
     // searchCommits('choi2010', 'teampluto2201/grace-shopper');
-    getCommitStateforRepo("choi2010", "2201-GHP-NY-WEB-FT-JPFP")
+    // getCommitStatforRepo("choi2010", "2201-GHP-NY-WEB-FT-JPFP")
 };
 
 //Axios calls to github API endpoints
@@ -30,7 +30,7 @@ export const clickHandler = () => {
 export async function getRepos() {
     try {
         const { data } = await axios.get(`https://api.github.com/user/repos`)
-        console.log("this is the data from get repos", data)
+        // console.log("this is the data from get repos", data)
     }
     catch (err) {
         console.log("error")
@@ -49,7 +49,7 @@ export async function getSingleRepo(owner, repo) {
     try {
         // const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}`, { headers: { Authorization: `Bearer ${token}` } })
         const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}`)
-        console.log("this is the data from get Single Repo", data)
+        // console.log("this is the data from get Single Repo", data)
         // const dateCreated = new Date(data.created_at)
         // console.log("Repo was created", dateCreated)
         return data;
@@ -63,7 +63,7 @@ export async function getSingleRepo(owner, repo) {
 export async function getRepoCollaborators(owner, repo) {
     try {
         const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}/collaborators`)
-        console.log("this is the data from get Repo Collaborators", data)
+        // console.log("this is the data from get Repo Collaborators", data)
         return data;
     }
     catch (err) {
@@ -75,7 +75,7 @@ export async function getRepoCollaborators(owner, repo) {
 export async function getOrgsforUser() {
     try {
         const { data } = await axios.get(`https://api.github.com/user/orgs`)
-        console.log("this is the data from getOrgsforUser", data)
+        // console.log("this is the data from getOrgsforUser", data)
         return data;
     }
     catch (err) {
@@ -94,7 +94,7 @@ export async function getCommitsforRepo(owner, repo) {
         // console.log("this is the date", data[0].commit.author.date)
         // console.log("this is the message", data[0].commit.message)
 
-        console.log("this is the data from getCommitsforRepo", data)
+        // console.log("this is the data from getCommitsforRepo", data)
         return data;
     }
     catch (err) {
@@ -108,7 +108,7 @@ export async function searchRepos(user) {
         const { data } = await axios.get(`https://api.github.com/search/repositories?q=user:${user}}+fork:true&per_page=100 `)
         // data returns an array with list of commits. 
 
-        console.log("this is the data from Search Repos", data)
+        // console.log("this is the data from Search Repos", data)
     }
     catch (err) {
         console.log("error")
@@ -122,7 +122,7 @@ export async function searchCommits(user, repo) {
         const { data } = await axios.get(`https://api.github.com/search/commits?q=author:${user} repo:${repo} merge:false fork:true sort:author-date`)
         // data returns an array with list of commits. 
 
-        console.log("this is the data from searchCommits", data.items)
+        // console.log("this is the data from searchCommits", data.items)
         // data.items.forEach(i => console.log(i.commit.author.date, i.commit.author.name, i.commit.message))
         return data.items;
     }
@@ -132,14 +132,13 @@ export async function searchCommits(user, repo) {
 }
 
 // /repos/{owner}/{repo}/stats/contributors
-export async function getCommitStateforRepo(owner, repoName) {
+export async function getCommitStatforRepo(owner, repoName) {
     try {
         const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repoName}/stats/contributors`)
         // data returns an array with list of commits. 
-
-        console.log("this is the data from getCommitStateforRepo", data.items)
+        console.log("this is the data from getCommitStatforRepo", data)
         // data.items.forEach(i => console.log(i.commit.author.date, i.commit.author.name, i.commit.message))
-        return data.items;
+        return data;
     }
     catch (err) {
         console.log("error")

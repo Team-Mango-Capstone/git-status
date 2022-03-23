@@ -32,6 +32,20 @@ export const handleEditDeadline = async (goal, deadline) => {
     { deadline: deadline }
   );
 };
+
+export const handleEditTitle = async (goal, title) => {
+  await updateDoc(
+    doc(
+      db,
+      'allUsers',
+      uid,
+      'userGoals',
+      goal.id
+    ),
+    { title: title }
+  );
+};
+
 export const toggleComplete = async (goal) => {
   await updateDoc(
     doc(

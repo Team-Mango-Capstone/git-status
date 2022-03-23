@@ -1,17 +1,18 @@
 import '../css/SingleGoalCard.css';
-import {useState} from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleCheck, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react';
+import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
 
 // delete and edit buttons inside single goal card
-
 const SingleGoalCard = ({
   goal,
   toggleComplete,
   handleDelete,
   handleEditDesc,
   handleEditDeadline,
+  handleEditTitle,
 }) => {
+  const [newTitle, setNewTitle] = useState(goal.title);
   const [newDescription, setNewDescription] = useState(goal.description);
   const [newDeadline, setNewDeadline] = useState(goal.deadline);
 
@@ -21,10 +22,10 @@ const SingleGoalCard = ({
       setNewDescription(goal.description);
     } else {
       goal.description = '';
+      console.log(e.target.value);
       setNewDescription(e.target.value);
     }
   };
-
   const handleChangeDeadline = (e) => {
     e.preventDefault();
     if (goal.completed === true) {
@@ -33,41 +34,76 @@ const SingleGoalCard = ({
       setNewDeadline(e.target.value);
     }
   };
+  const handleChangeTitle = (e) => {
+    e.preventDefault();
+    if (goal.completed === true) {
+      setNewTitle(goal.title);
+    } else {
+      goal.title = '';
+      setNewTitle(e.target.value);
+    }
+  };
+
   return (
     <div className='single-goal-card'>
-      <input className='goal-input'
-        style={{ textDecoration: goal.completed && 'line-through' }}
-        type='text'
+      <div className='goals-top-container'>
+        <button
+          className='goal-btn-delete'
+          onClick={() => handleDelete(goal.id)}
+        >
+          <i className='bi bi-x-circle-fill'></i>
+        </button>
+
+        <button
+          className='button-edit'
+          onClick={() => {
+            handleEditDesc(goal, newDescription);
+            handleEditTitle(goal, newTitle);
+            handleEditDeadline(goal, newDeadline);
+          }}
+        >
+          {newTitle !== goal.title || newDescription !== goal.description || newDeadline !== goal.deadline ? 'Save Changes' : 'Edit'}
+        </button>
+      </div>
+
+      <div className='goal-title-container'>
+        <input
+          className='goal-title'
+          type='text'
+          style={{ textDecoration: goal.completed && 'line-through' }}
+          value={goal.title === '' ? newTitle : goal.title}
+          onChange={(e) => {
+            handleChangeTitle(e);
+          }}
+        />
+        <button
+          className='goal-btn-complete'
+          onClick={() => toggleComplete(goal)}
+        >
+          <i className='bi bi-check-circle-fill'></i>
+        </button>
+      </div>
+
+      {/* Change bars */}
+      <FormControl
+        className='goal-desc-input'
+        as='textarea'
+        aria-label='With textarea'
+        placeholder='Enter goal description....'
+        style={{ fontSize: '18px' }}
         value={goal.description === '' ? newDescription : goal.description}
         onChange={(e) => {
           handleChangeDesc(e);
         }}
       />
-        <input className='date-input'
+      <input
+        className='date-input'
         type='date'
-        value={goal.deadline}
-        onChange={(e)=> {
-          handleChangeDeadline(e)
-          handleEditDeadline(goal, newDeadline)
-
+        value={newDeadline}
+        onChange={(e) => {
+          handleChangeDeadline(e);
         }}
       />
-      <button className='button-complete' onClick={() => toggleComplete(goal)}>
-      <FontAwesomeIcon icon={faCircleCheck} size='2x' />
-      </button>
-      <button
-        className='button-edit'
-        onClick={() => {
-          handleEditDesc(goal, newDescription);
-        }}
-      >
-       <FontAwesomeIcon icon={faPenToSquare} size='2x'/>
-      </button>
-
-      <button className='button-delete' onClick={() =>handleDelete(goal.id)}>
-      <FontAwesomeIcon icon={faTrashCan} size='2x'/>
-
-      </button>
     </div>
   );
 };

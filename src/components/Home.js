@@ -23,12 +23,8 @@ function Home() {
 
   const [userData, setUserData] = useState([]);
   const [userRepos, setUserRepos] = useState([]);
-  const githubUsername = localStorage.getItem("screenName");
+  const githubUsername = localStorage.getItem('screenName');
 
-  // Set default header for axios requests so that the oAuth access token will be included on all requests
-  axios.defaults.headers.common[
-    "Authorization"
-  ] = `token ${localStorage.getItem("oAuthAccessToken")}`;
 
   useEffect(() => {
     const makeRequest = async () => {
@@ -55,9 +51,9 @@ function Home() {
         {leftAngleBrace}
         {openText}
         {rightAngleBrace}
-        {localStorage.getItem("name") !== "null"
-          ? localStorage.getItem("name")
-          : localStorage.getItem("screenName")}
+        {localStorage.getItem('name') !== 'null'
+          ? localStorage.getItem('name')
+          : localStorage.getItem('screenName')}
         {leftAngleBrace}
         {closeText}
         {rightAngleBrace}
@@ -70,7 +66,7 @@ function Home() {
         {/* <MostProductive userRepos={userRepos}/> */}
         <MostViewed />
       </div>
-    </div >
+    </div>
   );
 }
 

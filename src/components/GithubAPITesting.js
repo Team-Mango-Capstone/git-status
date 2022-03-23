@@ -1,36 +1,34 @@
+import axios from 'axios';
 
-import axios from 'axios'
-
-// Getting the logged in user's access token from local storage. 
-const token = localStorage.getItem('oAuthAccessToken');//
+// Getting the logged in user's access token from local storage.
+const token = localStorage.getItem('oAuthAccessToken'); //
 
 export default function GithubTesting() {
-
-    return (
-        <div>
-            <button onClick={clickHandler}> Testing Button</button>
-        </div>
-    )
+  return (
+    <div>
+      <button onClick={clickHandler}> Testing Button</button>
+    </div>
+  );
 }
 
-// Created a button to test the API routes, and to see if data was being returned. click handler which runs the http request. 
+// Created a button to test the API routes, and to see if data was being returned. click handler which runs the http request.
 export const clickHandler = () => {
-    getRepos();
-    // getSingleRepo();
-    // getRepoCollaborators();
-    // getOrgsforUser();
-    // getCommitsforRepo();
-    // searchRepos();
-    // searchCommits('choi2010', 'teampluto2201/grace-shopper');
-}
+  getRepos();
+  // getSingleRepo();
+  // getRepoCollaborators();
+  // getOrgsforUser();
+  // getCommitsforRepo();
+  // searchRepos();
+  // searchCommits('choi2010', 'teampluto2201/grace-shopper');
+};
 
-//Axios calls to github API endpoints 
+//Axios calls to github API endpoints
 
 // getting user's repos
 // NOTE: This function does not get the repos that are part of
 export async function getRepos() {
     try {
-        const { data } = await axios.get(`https://api.github.com/user/repos`, { headers: { Authorization: `Bearer ${token}` } })
+        const { data } = await axios.get(`https://api.github.com/user/repos`)
         console.log("this is the data from get repos", data)
     }
     catch (err) {
@@ -48,7 +46,8 @@ export async function getSingleRepo(owner, repo) {
     // const owner = 'teampluto2201';
     // const repo = 'grace-shopper'
     try {
-        const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}`, { headers: { Authorization: `Bearer ${token}` } })
+        // const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}`, { headers: { Authorization: `Bearer ${token}` } })
+        const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}`)
         console.log("this is the data from get Single Repo", data)
         // const dateCreated = new Date(data.created_at)
         // console.log("Repo was created", dateCreated)
@@ -61,9 +60,8 @@ export async function getSingleRepo(owner, repo) {
 // getting list of repository collaborators
 // /repos/{owner}/{repo}/collaborators
 export async function getRepoCollaborators(owner, repo) {
-
     try {
-        const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}/collaborators`, { headers: { Authorization: `Bearer ${token}` } })
+        const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}/collaborators`)
         console.log("this is the data from get Repo Collaborators", data)
         return data;
     }
@@ -75,7 +73,7 @@ export async function getRepoCollaborators(owner, repo) {
 // List orgs for the authenticated user
 export async function getOrgsforUser() {
     try {
-        const { data } = await axios.get(`https://api.github.com/user/orgs`, { headers: { Authorization: `Bearer ${token}` } })
+        const { data } = await axios.get(`https://api.github.com/user/orgs`)
         console.log("this is the data from getOrgsforUser", data)
         return data;
     }
@@ -88,9 +86,8 @@ export async function getOrgsforUser() {
 // Team-Mango-Capstone/git-status
 
 export async function getCommitsforRepo(owner, repo) {
-
     try {
-        const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}/commits`, { headers: { Authorization: `Bearer ${token}` }, params: { author: 'choi2010', 'committer-date': '>2022-03-08' }, })
+        const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}/commits`)
         // data returns an array with list of commits. 
         // console.log("this is the author", data[0].commit.author.name)
         // console.log("this is the date", data[0].commit.author.date)
@@ -106,9 +103,8 @@ export async function getCommitsforRepo(owner, repo) {
 // searchrepo API route
 // https://api.github.com/search/repositories?q=user%3Achoi2010
 export async function searchRepos(user) {
-
     try {
-        const { data } = await axios.get(`https://api.github.com/search/repositories?q=user:${user}}+fork:true&per_page=100 `, { headers: { Authorization: `Bearer ${token}` } })
+        const { data } = await axios.get(`https://api.github.com/search/repositories?q=user:${user}}+fork:true&per_page=100 `)
         // data returns an array with list of commits. 
 
         console.log("this is the data from Search Repos", data)
@@ -120,7 +116,9 @@ export async function searchRepos(user) {
 
 export async function searchCommits(user, repo) {
     try {
-        const { data } = await axios.get(`https://api.github.com/search/commits?q=author:${user} repo:${repo} merge:false sort:author-date`, { headers: { Authorization: `Bearer ${token}` } })
+        // const { data } = await axios.get(`https://api.github.com/search/commits?q=author:${user} repo:${repo} merge:false sort:author-date`)
+
+        const { data } = await axios.get(`https://api.github.com/search/commits?q=author:${user} repo:${repo} merge:false fork:true sort:author-date`)
         // data returns an array with list of commits. 
 
         console.log("this is the data from searchCommits", data.items)
@@ -131,6 +129,7 @@ export async function searchCommits(user, repo) {
         console.log("error")
     }
 }
+
 
 ///////////////////////////
 
@@ -147,4 +146,5 @@ const getWeeklyCommitStats = async () => {
       console.log(err)
     }
   }
+
 

@@ -121,7 +121,9 @@ export async function searchRepos(user) {
 
 export async function searchCommits(user, repo) {
     try {
-        const { data } = await axios.get(`https://api.github.com/search/commits?q=author:${user} repo:${repo} merge:false sort:author-date`)
+        // const { data } = await axios.get(`https://api.github.com/search/commits?q=author:${user} repo:${repo} merge:false sort:author-date`)
+
+        const { data } = await axios.get(`https://api.github.com/search/commits?q=author:${user} repo:${repo} merge:false fork:true sort:author-date`)
         // data returns an array with list of commits. 
 
         console.log("this is the data from searchCommits", data.items)

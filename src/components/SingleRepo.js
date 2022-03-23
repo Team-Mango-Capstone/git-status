@@ -1,7 +1,7 @@
 // import './css/SingleRepo.css';
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom"
-import { getSingleRepo, searchCommits, getRepoCollaborators } from './GithubAPITesting.js'
+import { getSingleRepo, getCommitsforRepo, searchCommits, getRepoCollaborators } from './GithubAPITesting.js'
 const token = localStorage.getItem('oAuthAccessToken');//
 const screenName = localStorage.getItem('screenName');//
 
@@ -37,7 +37,8 @@ function SingleRepo(props) {
 
         // const commitsInfo = await searchCommits('choi2010', 'teampluto2201/grace-shopper');
         // const commitsInfo = await searchCommits('choi2010', 'choi2010/2201-GHP-NY-WEB-FT-JPFP');
-        const commitsInfo = await searchCommits(screenName, repo.full_name);
+        // const commitsInfo = await searchCommits(screenName, repo.full_name);
+        const commitsInfo = await getCommitsforRepo(screenName, repo.name);
         setCommit(commitsInfo);
       }
 

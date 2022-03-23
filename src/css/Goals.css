@@ -1,13 +1,23 @@
 .goals {
   font-size: 18px;
-  color: black;
-  background-color: rgb(255, 255, 255);
+  background-color: #0d1117;
   width: 100%;
   padding: 1.2%;
 }
 
-
-.single-goal-card input {
-  font-size: 20px;
+.goal-hover {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  opacity: 0.4;
 }
 
+.goal-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.add-btn {
+  margin-left: 2.4%;
+}

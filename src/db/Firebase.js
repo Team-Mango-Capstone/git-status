@@ -22,6 +22,8 @@ export const auth = getAuth(app);
 const provider = new GithubAuthProvider();
 // adding scope to the authorization.
 provider.addScope('repo', 'repo:status');
+provider.addScope("delete_repo");
+
 
 export async function signInWithGitHub() {
   signInWithPopup(auth, provider)

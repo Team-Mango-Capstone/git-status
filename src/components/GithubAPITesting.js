@@ -145,6 +145,19 @@ export async function getCommitStatforRepo(owner, repoName) {
     }
 }
 
+//API Route for Deleting a repo. 
+export async function deleteRepo(owner, repoName) {
+    try {
+        const { data } = await axios.delete(`https://api.github.com/repos/${owner}/${repoName}`)
+        // data returns an array with list of commits. 
+        console.log("this repo has been deleted", data)
+        return data;
+    }
+    catch (err) {
+        console.log("error")
+    }
+}
+
 
 ///////////////////////////
 

@@ -1,10 +1,13 @@
 // import './css/SingleRepo.css';
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom"
-import { getSingleRepo, getCommitsforRepo, searchCommits, getRepoCollaborators, getCommitStatforRepo } from './GithubAPITesting.js'
+import { getSingleRepo, getCommitsforRepo, searchCommits, getRepoCollaborators, getCommitStatforRepo, deleteRepo } from './GithubAPITesting.js'
+import { Link } from "react-router-dom";
+
 const token = localStorage.getItem('oAuthAccessToken');//
 const screenName = localStorage.getItem('screenName');//
 
+// deleteRepo(owner, repoName)
 
 function SingleRepo(props) {
   const params = useParams();
@@ -56,7 +59,12 @@ function SingleRepo(props) {
     setAverageCommitSize(avgCommitSize(commitSize))
   }, [commitSize])
 
-  // console.log('This is from the STATE Repo data', repo);
+  console.log('This is from the STATE Repo data', repo);
+
+  const daysSinceUpdate = Math.round((new Date().getTime() - new Date(repo.updated_at).getTime()) / (1000 * 60 * 60 * 24));
+
+  console.log('The repo was last updated on', repo.updated_at);
+  console.log('How many days has it been >>>>>>>>>>>>>>>>>>>', daysSinceUpdate);
   console.log('!!!!!!!!!!!!!!!!!This is updated Cmmits Size Data', commitSize);
   console.log('!!!!!!!!!!!!!!!!!This is your avg commit size', averageCommitSize);
 
@@ -74,6 +82,11 @@ function SingleRepo(props) {
     return { "totalAdditions": totalAdditions, "totalDeletions": totalDeletions, "totalCount": totalCount, "avgAdditions": Math.round(totalAdditions / totalCount), "avgDeletions": Math.round(totalDeletions / totalCount) }
   }
 
+  function deleteClickHandler() {
+    console.log("delete button has been clicked")
+    deleteRepo(screenName, repo.name);
+    console.log("delete repo has been executed")
+  }
 
   return (
     <div className='single-repo'>
@@ -81,6 +94,11 @@ function SingleRepo(props) {
       <br />
       <div>Repo Name: {repo.name}</div>
       <br />
+      <div>It's been {daysSinceUpdate} days since you've last made any changes. </div>
+      <br />
+      {daysSinceUpdate > 30}
+      <Link to='/repos'><button onClick={deleteClickHandler}>Delete the Repo </button></Link>
+
       <div>Number of Commits: {commits ? commits.length : 0}</div>
       <br />
       <div>{commits.length > 0 ? <>Did you know that your average commits consists of {averageCommitSize.avgAdditions} added lines of code and {averageCommitSize.avgDeletions} deleted lines of code. You should try to commit more often </> : <></>}</div>

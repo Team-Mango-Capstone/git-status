@@ -36,7 +36,7 @@ export function TopLanguages(props) {
         });
       };
       calculateLanguages();
-    //   console.log('userLanguages >>>>>', userLanguages)
+        console.log('userLanguages >>>>>', userLanguages)
     }, [props.userRepos.items]);
   
     return (

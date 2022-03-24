@@ -1,68 +1,88 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import { useQuery, gql } from "@apollo/client";
 
-const githubUsername = localStorage.getItem("screenName");
+const screenName = localStorage.getItem("screenName");
 
-export function Timeline(props) {
-  const [userContributions, setUserContributions] = useState([]);
-
-  const weekFinder = () => {
-    let currentdate = new Date();
-    let oneJan = new Date(currentdate.getFullYear(), 0, 1);
-    let numberOfDays = Math.floor(
-      (currentdate - oneJan) / (24 * 60 * 60 * 1000)
-    );
-    let result = Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7);
-    return result;
-  };
-
-  useEffect(() => {
-    const makeRequest = async () => {
-      try {
-        let currentYear = new Date().getFullYear();
-        let lastYear = currentYear - 1
-        let currentWeek = weekFinder();
-        console.log('!!!!!!!')
-        const allContributionsLastYear = await axios.get(
-        //   `https://skyline.github.com/${githubUsername}/${lastYear}.json`,
-        //   {
-        //     //   headers: "Access-Control-Allow-Origin: http://localhost:3000",
-        //     // method: 'GET',
-        //     mode: 'no-cors',
-        //     headers: { 'Access-Control-Allow-Origin': '*' },
-        //   }
-        `https://cors-anywhere.herokuapp.com/https://skyline.github.com/dviglucci/2022.json`
-        );
-        // const allContributionsThisYear = await axios.get(
-        //   `https://skyline.github.com/${githubUsername}/${currentYear}.json`, {
-        //     //   headers: "Access-Control-Allow-Origin: http://localhost:3000",
-        //     // method: 'GET',
-        //     // mode: 'cors',
-        //     headers: { 'Access-Control-Allow-Origin': 'http://localhost:3000' },
-        //    }
-        // );
-        console.log('allContributionsLastYear >>>>', allContributionsLastYear.data)
-        // console.log('allContributionsThisYear >>>>', allContributionsThisYear.data)
-        // allContributionsLastYear.filter(
-        //   (element) => element.week > currentWeek
-        // );
-        // allContributionsThisYear.filter(
-        //   (element) => element.week <= currentWeek
-        // );
-        // const contributionsPastYear = allContributionsLastYear.concat(
-        //   allContributionsThisYear
-        // );
-        // setUserContributions(contributionsPastYear);
-      } catch (error) {
-        console.log(error);
+const CONTRIBUTIONS_QUERY = gql`
+query($userName:String!) { 
+    user(login: $userName){
+      contributionsCollection {
+        contributionCalendar {
+          totalContributions
+          weeks {
+            contributionDays {
+              contributionCount
+              date
+            }
+          }
+        }
       }
-    };
-    makeRequest();
-  }, []);
+    }
+}
+`;
+
+export default function Timeline() {
+  const { data, loading, error } = useQuery(CONTRIBUTIONS_QUERY, {
+      variables: { "userName": screenName},
+  });
+
+  if (loading) return "Loading...";
+  if (error) return <pre>{error.message}</pre>
+
+  const useableData = data.user.contributionsCollection.contributionCalendar;
+  const chartData = data.user.contributionsCollection.contributionCalendar.weeks;
+
+  const testData = chartData.slice(50);
+
+  /*
+  using chartData:
+  1) map over the initial array, which is all the weeks
+  2) map over each individual week:
+    a. add number of total contributions that week
+    b. store the date of the first day of that week (aka index 0)
+  3) put data into below format
+
+  data needs to end up as an array of objects in this format:
+  {
+    x: "2022-08-22", // date
+    y: 0, // must be 0!!!
+    r: 10, // # of contributions
+  },
+  */
+
+  console.log('DATA', data)
+
+  const convertData = (arr) => {
+    let finalElement = [];
+
+    for (let i = 0; i < arr.length; i++) {
+      let currentElem = arr[i];
+      finalElement.push([currentElem.contributionDays[0].date]);
+      let total = 0;
+      for (let j = 0; j < currentElem.contributionDays.length; j++) {
+        let dayCount = currentElem.contributionDays[j].contributionCount;
+        total += dayCount;
+      }
+      finalElement[i].push(total);
+
+    //   let allDaysInfo = currentElem.contributionDays.map((dayElement) => {
+    //     if (currentElem.contributionDays.indexOf(dayElement) === 0) {
+    //       daysArr.push(dayElement.date);
+    //     }
+    //     return daysArr;
+    //   })
+    //   finalElement.push(allDaysInfo);
+    // }
+  }
+  return finalElement;
+}
+
+  console.log('ANSWER >>>>', convertData(testData));
 
   return (
-    <div className="timeline">
-      <h2>Your timeline</h2>
+    <div>
+        You have made {useableData.totalContributions} contributions in the past year.
+        <canvas id="myChart"></canvas>
     </div>
   );
 }

@@ -44,7 +44,7 @@ function Home() {
     };
     makeRequest();
   }, []);
-
+//  console.log(userRepos)
   return (
     <div className='home'>
       <h1>

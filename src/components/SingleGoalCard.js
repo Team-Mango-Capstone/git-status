@@ -1,7 +1,7 @@
 import '../css/SingleGoalCard.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
+import { GlobalContext } from '../context/GlobalState';
 
 // delete and edit buttons inside single goal card
 const SingleGoalCard = ({
@@ -43,7 +43,8 @@ const SingleGoalCard = ({
       setNewTitle(e.target.value);
     }
   };
-
+let resultFromContext = useContext(GlobalContext)
+console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
   return (
     <div className='single-goal-card'>
       <div className='goals-top-container'>
@@ -90,7 +91,7 @@ const SingleGoalCard = ({
         as='textarea'
         aria-label='With textarea'
         placeholder='Enter goal description....'
-        style={{ fontSize: '18px' }}
+        style={{ fontSize: '16px' }}
         value={goal.description === '' ? newDescription : goal.description}
         onChange={(e) => {
           handleChangeDesc(e);

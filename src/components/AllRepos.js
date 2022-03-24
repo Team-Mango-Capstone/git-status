@@ -35,7 +35,7 @@ function AllRepos() {
 
   const getRepos = async () => {
     const { data } = await axios.get(
-      `https://api.github.com/search/repositories?q=user:${screenName}+fork:true&per_page=100`
+      `https://api.github.com/search/repositories?q=user:${screenName}+fork:true+archived:false&per_page=100`
     );
     // see what props we can pass down from each repo
     // console.log(data.items);

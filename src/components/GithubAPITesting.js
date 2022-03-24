@@ -105,7 +105,7 @@ export async function getCommitsforRepo(owner, repo) {
 // https://api.github.com/search/repositories?q=user%3Achoi2010
 export async function searchRepos(user) {
     try {
-        const { data } = await axios.get(`https://api.github.com/search/repositories?q=user:${user}}+fork:true&per_page=100 `)
+        const { data } = await axios.get(`https://api.github.com/search/repositories?q=user:${user}}+fork:true+archived:false&per_page=100 `)
         // data returns an array with list of commits. 
 
         // console.log("this is the data from Search Repos", data)
@@ -151,13 +151,13 @@ export async function deleteRepo(owner, repoName) {
         const { data } = await axios.delete(`https://api.github.com/repos/${owner}/${repoName}`)
         // data returns an array with list of commits. 
         console.log("this repo has been deleted", data)
+
         return data;
     }
     catch (err) {
         console.log("error")
     }
 }
-
 
 ///////////////////////////
 

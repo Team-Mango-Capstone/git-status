@@ -42,13 +42,14 @@ function SingleRepo(props) {
         // const commitsInfo = await searchCommits('choi2010', 'choi2010/2201-GHP-NY-WEB-FT-JPFP');
         // const commitsInfo = await searchCommits(screenName, repo.full_name);
         const commitsInfo = await getCommitsforRepo(screenName, repo.name);
-        const cleanedCommitsInfo = commitsInfo.filter((commit) => { return (commit.author.login === screenName) })
-        setCommit(cleanedCommitsInfo);
+        if (commitsInfo) {
+          const cleanedCommitsInfo = commitsInfo.filter((commit) => { return (commit.author.login === screenName) })
+          setCommit(cleanedCommitsInfo);
 
-        const commitsStat = await getCommitStatforRepo(screenName, repo.name);
-        const updatedCommitStat = commitsStat.filter((commit) => { return (commit.author.login === screenName) })
-        setcommitSize(updatedCommitStat);
-
+          const commitsStat = await getCommitStatforRepo(screenName, repo.name);
+          const updatedCommitStat = commitsStat.filter((commit) => { return (commit.author.login === screenName) })
+          setcommitSize(updatedCommitStat);
+        }
       }
     }
     fetchData()
@@ -83,9 +84,11 @@ function SingleRepo(props) {
   }
 
   function deleteClickHandler() {
-    console.log("delete button has been clicked")
-    deleteRepo(screenName, repo.name);
-    console.log("delete repo has been executed")
+    let result = window.confirm("Are you sure you want to delete this repo? Once you click OK you can't go back");
+    if (result) {
+      deleteRepo(screenName, repo.name);
+      window.location.href = '/repos'
+    }
   }
 
   return (
@@ -96,9 +99,12 @@ function SingleRepo(props) {
       <br />
       <div>It's been {daysSinceUpdate} days since you've last made any changes. </div>
       <br />
-      {daysSinceUpdate > 30}
-      <Link to='/repos'><button onClick={deleteClickHandler}>Delete the Repo </button></Link>
-
+      {/* If it's been greater than x days render button giving them an option to delete the repo.  */}
+      {daysSinceUpdate >= 0 ? <div>
+        <h3>Do you want to Delete this repo? </h3>
+        <button onClick={deleteClickHandler}>Delete the Repo </button>
+      </div> : <></>}
+      <br />
       <div>Number of Commits: {commits ? commits.length : 0}</div>
       <br />
       <div>{commits.length > 0 ? <>Did you know that your average commits consists of {averageCommitSize.avgAdditions} added lines of code and {averageCommitSize.avgDeletions} deleted lines of code. You should try to commit more often </> : <></>}</div>

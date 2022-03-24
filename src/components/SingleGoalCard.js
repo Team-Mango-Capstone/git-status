@@ -89,6 +89,17 @@ console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
       </div>
 
       {/* Change bars */}
+      <label>Progression: {value}%</label>
+     <RangeSlider
+      variant={'info'}
+      size={'lg'}
+      value={value}
+      tooltipLabel={currentValue => `${currentValue}%`}
+      // tooltip='on'
+      onChange={e => setValue(e.target.value)}
+    />
+    <br/>
+
       <label>Description:</label>
       <FormControl
         className='goal-desc-input'
@@ -111,18 +122,6 @@ console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
           handleChangeDeadline(e);
         }}
       />
-    <label>Progression: {value}%</label>
-     <RangeSlider
-      variant={'success'}
-      size={'lg'}
-      value={value}
-      tooltipLabel={currentValue => `${currentValue}%`}
-      tooltip='on'
-      onChange={e => setValue(e.target.value)}
-    />
-
-    
-
     </div>
   );
 };

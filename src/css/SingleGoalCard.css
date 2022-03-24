@@ -11,7 +11,7 @@
   width: 240px;
   margin-top: 10px;
   margin-bottom: 20px;
-  padding: 1%;
+  padding: 1.5%;
   border-radius: 20px;
   background-color: var(--white);
 }
@@ -95,9 +95,9 @@ i {
 }
 
 .button-edit {
-  font-size: 16px;
+  font-size: 14px;
   min-width: 20%;
-  height: 30px;
+  height: 25px;
   color: #fff;
   padding: 5px 10px;
   font-weight: bold;

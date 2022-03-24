@@ -21,6 +21,7 @@ export const clickHandler = () => {
     // searchRepos();
     // searchCommits('choi2010', 'teampluto2201/grace-shopper');
     // getCommitStatforRepo("choi2010", "2201-GHP-NY-WEB-FT-JPFP")
+    archiveRepo("choi2010", "Test-Repo-3")
 };
 
 //Axios calls to github API endpoints
@@ -152,6 +153,19 @@ export async function deleteRepo(owner, repoName) {
         // data returns an array with list of commits. 
         console.log("this repo has been deleted", data)
 
+        return data;
+    }
+    catch (err) {
+        console.log("error")
+    }
+}
+
+//API Route for Archiving a repo 
+export async function archiveRepo(owner, repoName) {
+    try {
+        const { data } = await axios.patch(`https://api.github.com/repos/${owner}/${repoName}`, { archived: "true" })
+        // data returns an array with list of commits. 
+        console.log("this repo has been archived", data)
         return data;
     }
     catch (err) {

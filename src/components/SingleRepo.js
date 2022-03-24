@@ -1,7 +1,7 @@
 // import './css/SingleRepo.css';
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom"
-import { getSingleRepo, getCommitsforRepo, searchCommits, getRepoCollaborators, getCommitStatforRepo, deleteRepo } from './GithubAPITesting.js'
+import { getSingleRepo, getCommitsforRepo, searchCommits, getRepoCollaborators, getCommitStatforRepo, deleteRepo, archiveRepo } from './GithubAPITesting.js'
 import { Link } from "react-router-dom";
 
 const token = localStorage.getItem('oAuthAccessToken');//
@@ -91,6 +91,14 @@ function SingleRepo(props) {
     }
   }
 
+  function archiveClickHandler() {
+    let result = window.confirm("Are you sure you want to archive this repo? Once you click archive it the repo is read only. You can unarchive it from the github website.");
+    if (result) {
+      archiveRepo(screenName, repo.name);
+      window.location.href = '/repos'
+    }
+  }
+
   return (
     <div className='single-repo'>
       <p>Single Repo</p>
@@ -101,8 +109,9 @@ function SingleRepo(props) {
       <br />
       {/* If it's been greater than x days render button giving them an option to delete the repo.  */}
       {daysSinceUpdate >= 0 ? <div>
-        <h3>Do you want to Delete this repo? </h3>
+        <h3>Do you want to Delete or Archive this repo? </h3>
         <button onClick={deleteClickHandler}>Delete the Repo </button>
+        <button onClick={archiveClickHandler}>Archive the Repo </button>
       </div> : <></>}
       <br />
       <div>Number of Commits: {commits ? commits.length : 0}</div>

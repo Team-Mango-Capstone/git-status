@@ -38,9 +38,11 @@ function Goals() {
 
   return (
     <div className='goals'>
+      <div className='add-btn-container'>
       <button className='add-btn' onClick={() => setOpenModal(true)}>
         Add Goal
       </button>
+      </div>
       {openModal && <AddGoal closeModal={setOpenModal}/>}
       {console.log(openModal)}
       <div className={openModal === true ? 'goal-hover' : 'goal-container'}>

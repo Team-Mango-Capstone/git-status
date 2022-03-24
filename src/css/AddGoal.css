@@ -23,14 +23,16 @@
 .add-form-container{
   position: absolute;
   background-color: rgb(255, 255, 255);
-  margin-left: 40%;
+  margin-left: 15%;
   margin-top: 5%;
-  height: 38%;
+  height: 40%;
   width: 17%;
-  padding: 2%;
+  padding: 1%;
   border-radius: 14px;
   z-index:11;
   color: black;
+  box-shadow: 5px 5px 23px 0px rgba(0,0,0,0.38)
+  
 }
 .goal-btn-delete{
   background-color: transparent;

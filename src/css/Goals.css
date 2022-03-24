@@ -7,7 +7,7 @@
 
 .goal-hover {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   opacity: 0.4;
 }
@@ -18,7 +18,11 @@
   flex-wrap: wrap;
 }
 
-.add-btn {
-  margin-left: 1%;
+/* .add-btn {
 
+} */
+
+.add-btn-container {
+  display: flex;
+  justify-content: center;
 }

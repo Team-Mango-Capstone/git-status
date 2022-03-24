@@ -56,7 +56,7 @@ function Goals() {
           />
         ))}
       </div>
-      <Insights />
+      {/* <Insights /> */}
     </div>
   );
 }

@@ -86,6 +86,7 @@ console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
       </div>
 
       {/* Change bars */}
+      <label>Description:</label>
       <FormControl
         className='goal-desc-input'
         as='textarea'
@@ -97,6 +98,8 @@ console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
           handleChangeDesc(e);
         }}
       />
+
+      <label>Due Date:</label>
       <input
         className='date-input'
         type='date'

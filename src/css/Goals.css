@@ -1,7 +1,7 @@
 .goals {
   font-size: 18px;
   background-color: #0d1117;
-  width: 100%;
+  width: 50%;
   padding: 1.2%;
 }
 
@@ -14,10 +14,11 @@
 
 .goal-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
 .add-btn {
-  margin-left: 2.4%;
+  margin-left: 1%;
+
 }

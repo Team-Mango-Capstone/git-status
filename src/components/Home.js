@@ -6,6 +6,7 @@ import { TopLanguages } from './homeCards/TopLanguages';
 import { UserLifespan } from './homeCards/UserLifespan';
 import { Timeline } from './homeCards/Timeline';
 import { MostViewed } from './homeCards/MostViewed';
+import GraphQL from './GraphQL';
 
 function Home() {
   const leftAngleBrace = (
@@ -65,6 +66,7 @@ function Home() {
         <TopLanguages userRepos={userRepos}/>
         {/* <MostProductive userRepos={userRepos}/> */}
         <MostViewed />
+        <GraphQL />
       </div>
     </div>
   );

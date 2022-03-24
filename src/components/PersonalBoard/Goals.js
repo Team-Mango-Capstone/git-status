@@ -1,10 +1,11 @@
-import '../css/Goals.css';
+import '../../css/Goals.css';
 import SingleGoalCard from './SingleGoalCard';
-import Insights from './Insights';
+import Insights from '../Insights';
 import { useState, useEffect } from 'react';
-import { db } from '../db/Firebase';
+import { db } from '../../db/Firebase';
 import { onSnapshot, query, collection } from 'firebase/firestore';
 import AddGoal from './AddGoal';
+
 import {
   toggleComplete,
   handleEditDesc,
@@ -12,7 +13,7 @@ import {
   handleEditDeadline,
   handleEditTitle,
   handleEditProgress
-} from '../db/Firestore';
+} from '../../db/Firestore';
 
 function Goals() {
   const [goals, setGoals] = useState([]);

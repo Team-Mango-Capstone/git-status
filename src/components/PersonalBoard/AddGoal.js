@@ -1,6 +1,6 @@
-import '../css/AddGoal.css';
+import '../../css/AddGoal.css';
 import { useState } from 'react';
-import { db } from '../db/Firebase';
+import { db } from '../../db/Firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import FormControl from 'react-bootstrap/FormControl';
 
@@ -8,7 +8,6 @@ function AddGoal({ closeModal }) {
   const [description, setDescription] = useState('');
   const [deadline, setDeadline] = useState('');
   const [title, setTitle] = useState('');
-  const [goalProgress, setGoalProgress] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +23,6 @@ function AddGoal({ closeModal }) {
       );
       setDescription('');
       setTitle('');
-      setGoalProgress(0);
       setDeadline('');
       closeModal(false);
     }

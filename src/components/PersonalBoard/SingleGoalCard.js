@@ -1,7 +1,7 @@
-import '../css/SingleGoalCard.css';
+import '../../css/SingleGoalCard.css';
 import { useState, useContext } from 'react';
 import FormControl from 'react-bootstrap/FormControl';
-import { GlobalContext } from '../context/GlobalState';
+import { GlobalContext } from '../../context/GlobalState';
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 import RangeSlider from 'react-bootstrap-range-slider';
 

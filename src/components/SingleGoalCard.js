@@ -13,11 +13,12 @@ const SingleGoalCard = ({
   handleEditDesc,
   handleEditDeadline,
   handleEditTitle,
+  handleEditProgress
 }) => {
   const [newTitle, setNewTitle] = useState(goal.title);
   const [newDescription, setNewDescription] = useState(goal.description);
   const [newDeadline, setNewDeadline] = useState(goal.deadline);
-  const [ value, setValue ] = useState(0); 
+  const [progress, setProgress ] = useState(goal.goalProgress); 
 
   const handleChangeDesc = (e) => {
     e.preventDefault();
@@ -46,8 +47,8 @@ const SingleGoalCard = ({
       setNewTitle(e.target.value);
     }
   };
-let resultFromContext = useContext(GlobalContext)
-console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
+// let resultFromContext = useContext(GlobalContext)
+// console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
   return (
     <div className='single-goal-card'>
       <div className='goals-top-container'>
@@ -64,9 +65,10 @@ console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
             handleEditDesc(goal, newDescription);
             handleEditTitle(goal, newTitle);
             handleEditDeadline(goal, newDeadline);
+            handleEditProgress(goal, progress)
           }}
-        >
-          {newTitle !== goal.title || newDescription !== goal.description || newDeadline !== goal.deadline ? 'Save Changes' : 'Edit'}
+        >  
+          {newTitle !== goal.title || progress !== goal.goalProgress || newDescription !== goal.description || newDeadline !== goal.deadline ? 'Save Changes' : 'Edit'}
         </button>
       </div>
 
@@ -89,14 +91,16 @@ console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
       </div>
 
       {/* Change bars */}
-      <label>Progression: {value}%</label>
+      <label>Progression: {progress}%</label>
      <RangeSlider
       variant={'info'}
       size={'lg'}
-      value={value}
+      value={progress}
       tooltipLabel={currentValue => `${currentValue}%`}
       // tooltip='on'
-      onChange={e => setValue(e.target.value)}
+      onChange={(e) => {
+        setProgress(e.target.value)
+      }}
     />
     <br/>
 

@@ -11,6 +11,7 @@ import {
   handleDelete,
   handleEditDeadline,
   handleEditTitle,
+  handleEditProgress
 } from '../db/Firestore';
 
 function Goals() {
@@ -55,6 +56,7 @@ function Goals() {
             handleEditDesc={handleEditDesc}
             handleEditDeadline={handleEditDeadline}
             handleEditTitle={handleEditTitle}
+            handleEditProgress={handleEditProgress}
           />
         ))}
       </div>

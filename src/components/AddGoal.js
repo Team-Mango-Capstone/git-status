@@ -8,7 +8,7 @@ function AddGoal({ closeModal }) {
   const [description, setDescription] = useState('');
   const [deadline, setDeadline] = useState('');
   const [title, setTitle] = useState('');
-  const [goalType, setGoalType] = useState('');
+  const [goalProgress, setGoalProgress] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,11 +20,11 @@ function AddGoal({ closeModal }) {
           window.localStorage.getItem('uid'),
           'userGoals'
         ),
-        { title, description, deadline, goalType, completed: false }
+        { title, description, deadline, goalProgress: 0, completed: false }
       );
       setDescription('');
       setTitle('');
-      setGoalType('');
+      setGoalProgress(0);
       setDeadline('');
       closeModal(false);
     }
@@ -57,14 +57,6 @@ function AddGoal({ closeModal }) {
         }}
       />
 
-        <input
-          type='text'
-          placeholder='Enter goal type...'
-          value={goalType}
-          onChange={(e) => {
-            setGoalType(e.target.value);
-          }}
-        />
          <br/>
         <h4> Deadline</h4>
         <input

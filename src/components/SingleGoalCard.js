@@ -2,6 +2,8 @@ import '../css/SingleGoalCard.css';
 import { useState, useContext } from 'react';
 import FormControl from 'react-bootstrap/FormControl';
 import { GlobalContext } from '../context/GlobalState';
+import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
+import RangeSlider from 'react-bootstrap-range-slider';
 
 // delete and edit buttons inside single goal card
 const SingleGoalCard = ({
@@ -15,6 +17,7 @@ const SingleGoalCard = ({
   const [newTitle, setNewTitle] = useState(goal.title);
   const [newDescription, setNewDescription] = useState(goal.description);
   const [newDeadline, setNewDeadline] = useState(goal.deadline);
+  const [ value, setValue ] = useState(0); 
 
   const handleChangeDesc = (e) => {
     e.preventDefault();
@@ -108,6 +111,18 @@ console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
           handleChangeDeadline(e);
         }}
       />
+    <label>Progression: {value}%</label>
+     <RangeSlider
+      variant={'success'}
+      size={'lg'}
+      value={value}
+      tooltipLabel={currentValue => `${currentValue}%`}
+      tooltip='on'
+      onChange={e => setValue(e.target.value)}
+    />
+
+    
+
     </div>
   );
 };

@@ -57,7 +57,7 @@ function SingleRepo(props) {
   }, [commitSize])
 
   // console.log('This is from the STATE Repo data', repo);
-  // console.log('!!!!!!!!!!!!!!!!!This is updated Cmmits Size Data', commitSize);
+  console.log('!!!!!!!!!!!!!!!!!This is updated Cmmits Size Data', commitSize);
   console.log('!!!!!!!!!!!!!!!!!This is your avg commit size', averageCommitSize);
 
   // Getting the average commit size in this repo
@@ -83,14 +83,14 @@ function SingleRepo(props) {
       <br />
       <div>Number of Commits: {commits ? commits.length : 0}</div>
       <br />
-      <div>{commits ? <>Did you know that your average commits consists of {averageCommitSize.avgAdditions} added lines of code and {averageCommitSize.avgDeletions} deleted lines of code </> : <></>}</div>
+      <div>{commits.length > 0 ? <>Did you know that your average commits consists of {averageCommitSize.avgAdditions} added lines of code and {averageCommitSize.avgDeletions} deleted lines of code. You should try to commit more often </> : <></>}</div>
 
       <div>
         <br />
         {/* Capping the number of comments returned */}
         {commits ? commits.slice(0, 7).map((item) => {
           return (<div key={item.sha}>
-            <ul>Date: {(new Date(item.commit.author.date)).toLocaleDateString("en-US")} | {(new Date(item.commit.author.date)).toLocaleTimeString("en-US")} </ul>
+            {/* <ul>Date: {(new Date(item.commit.author.date)).toLocaleDateString("en-US")} | {(new Date(item.commit.author.date)).toLocaleTimeString("en-US")} </ul> */}
             <ul>Date: {item.commit.author.date.slice(0, 10)} | {(new Date(item.commit.author.date)).toLocaleTimeString("en-US")} </ul>
             <ul>Message: {item.commit.message}</ul>
             <br />

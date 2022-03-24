@@ -3,6 +3,7 @@ import '../css/AllRepos.css';
 import '../css/SingleRepoCard.css';
 import { useState, useEffect } from 'react';
 import { spinner } from './Bootstrap-Elements';
+import { Link } from "react-router-dom";
 // import SingleRepoCard from './SingleRepoCard';
 
 
@@ -43,7 +44,7 @@ function AllRepos() {
   };
 
   // calls the new updated state
-  useEffect(() => {}, [filter]);
+  useEffect(() => { }, [filter]);
 
   // changes the state but doesn't reflect the change inside yet
   const handleChangeFilter = (e) => {
@@ -102,6 +103,7 @@ function AllRepos() {
               <a href={`${repo.clone_url}`} target='_blank' rel='noreferrer'>
                 <h2>{repo.name}</h2>
               </a>
+              <Link to={`/repos/${repo.name}`}>link to repo</Link>
               <hr />
 
               {filter === 'date-created' ? (

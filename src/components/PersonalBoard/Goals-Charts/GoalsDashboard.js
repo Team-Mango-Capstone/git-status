@@ -4,9 +4,9 @@ import BarChart from './BarChart';
 
 export const GoalsDashboard = () => {
   return (
-    <div>GoalsDashboard
-      <DonutChart />
-      <BarChart />
+    <div>
+      {/* <DonutChart />
+      <BarChart /> */}
     </div>
   )
 }

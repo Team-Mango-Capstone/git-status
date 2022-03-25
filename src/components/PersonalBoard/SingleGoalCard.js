@@ -1,7 +1,9 @@
-import '../css/SingleGoalCard.css';
+import '../../css/SingleGoalCard.css';
 import { useState, useContext } from 'react';
 import FormControl from 'react-bootstrap/FormControl';
-import { GlobalContext } from '../context/GlobalState';
+import { GlobalContext } from '../../context/GlobalState';
+import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
+import RangeSlider from 'react-bootstrap-range-slider';
 
 // delete and edit buttons inside single goal card
 const SingleGoalCard = ({
@@ -11,10 +13,12 @@ const SingleGoalCard = ({
   handleEditDesc,
   handleEditDeadline,
   handleEditTitle,
+  handleEditProgress
 }) => {
   const [newTitle, setNewTitle] = useState(goal.title);
   const [newDescription, setNewDescription] = useState(goal.description);
   const [newDeadline, setNewDeadline] = useState(goal.deadline);
+  const [progress, setProgress ] = useState(goal.goalProgress); 
 
   const handleChangeDesc = (e) => {
     e.preventDefault();
@@ -43,8 +47,8 @@ const SingleGoalCard = ({
       setNewTitle(e.target.value);
     }
   };
-let resultFromContext = useContext(GlobalContext)
-console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
+// let resultFromContext = useContext(GlobalContext)
+// console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
   return (
     <div className='single-goal-card'>
       <div className='goals-top-container'>
@@ -61,9 +65,10 @@ console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
             handleEditDesc(goal, newDescription);
             handleEditTitle(goal, newTitle);
             handleEditDeadline(goal, newDeadline);
+            handleEditProgress(goal, progress)
           }}
-        >
-          {newTitle !== goal.title || newDescription !== goal.description || newDeadline !== goal.deadline ? 'Save Changes' : 'Edit'}
+        >  
+          {newTitle !== goal.title || progress !== goal.goalProgress || newDescription !== goal.description || newDeadline !== goal.deadline ? 'Save Changes' : 'Edit'}
         </button>
       </div>
 
@@ -86,17 +91,33 @@ console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
       </div>
 
       {/* Change bars */}
+      <label>Progression: {progress}%</label>
+     <RangeSlider
+      variant={'info'}
+      size={'lg'}
+      value={progress}
+      tooltipLabel={currentValue => `${currentValue}%`}
+      // tooltip='on'
+      onChange={(e) => {
+        setProgress(e.target.value)
+      }}
+    />
+    <br/>
+
+      <label>Description:</label>
       <FormControl
         className='goal-desc-input'
         as='textarea'
         aria-label='With textarea'
         placeholder='Enter goal description....'
-        style={{ fontSize: '16px' }}
+        style={{ fontSize: '14px' }}
         value={goal.description === '' ? newDescription : goal.description}
         onChange={(e) => {
           handleChangeDesc(e);
         }}
       />
+
+      <label>Due Date:</label>
       <input
         className='date-input'
         type='date'

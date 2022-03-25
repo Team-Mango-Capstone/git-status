@@ -1,13 +1,13 @@
-import '../css/AddGoal.css';
+import '../../css/AddGoal.css';
 import { useState } from 'react';
-import { db } from '../db/Firebase';
+import { db } from '../../db/Firebase';
 import { collection, addDoc } from 'firebase/firestore';
+import FormControl from 'react-bootstrap/FormControl';
 
 function AddGoal({ closeModal }) {
   const [description, setDescription] = useState('');
   const [deadline, setDeadline] = useState('');
   const [title, setTitle] = useState('');
-  const [goalType, setGoalType] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,20 +19,21 @@ function AddGoal({ closeModal }) {
           window.localStorage.getItem('uid'),
           'userGoals'
         ),
-        { title, description, deadline, goalType, completed: false }
+        { title, description, deadline, goalProgress: 0, completed: false }
       );
       setDescription('');
       setTitle('');
-      setGoalType('');
       setDeadline('');
-      closeModal(false)
+      closeModal(false);
     }
   };
   return (
     <div className='add-form-container'>
-      <button onClick={() => closeModal(false)}>x</button>
-      <form onSubmit={handleSubmit}>
-        <h2>My Goals</h2>
+      <button className='goal-btn-delete' onClick={() => closeModal(false)}>
+        <i className='bi bi-x-circle-fill'></i>
+      </button>
+      <form className="form-container" onSubmit={handleSubmit}>
+        <h4> Add a Goal</h4>
         <input
           type='text'
           placeholder='Enter goal...'
@@ -41,25 +42,20 @@ function AddGoal({ closeModal }) {
             setTitle(e.target.value);
           }}
         />
-        <input
-          type='text'
-          placeholder='Enter description...'
-          value={description}
-          onChange={(e) => {
-            setDescription(e.target.value);
-          }}
-        />
+        <br/>
+        <FormControl
+        className='add-goal-desc-input'
+        as='textarea'
+        aria-label='With textarea'
+        placeholder='Enter goal description....'
+        style={{ fontSize: '16px' }}
+        onChange={(e) => {
+          setDescription(e.target.value);
+        }}
+      />
 
-        <input
-          type='text'
-          placeholder='Enter goal type...'
-          value={goalType}
-          onChange={(e) => {
-            setGoalType(e.target.value);
-          }}
-        />
-
-        <h3> Deadline</h3>
+         <br/>
+        <h4> Deadline</h4>
         <input
           type='date'
           placeholder='Enter deadline...'
@@ -70,7 +66,7 @@ function AddGoal({ closeModal }) {
         />
         <button className='add-btn'>Add Goal</button>
       </form>
-      <button onClick={() => closeModal(false)}>Cancel</button>
+
     </div>
   );
 }

@@ -100,10 +100,8 @@ function AllRepos() {
         ) : (
           renderFilteredRepos().map((repo) => (
             <div className='single-repo-card' key={repo.id}>
-              <a href={`${repo.clone_url}`} target='_blank' rel='noreferrer'>
-                <h2>{repo.name}</h2>
-              </a>
-              <Link to={`/repos/${repo.name}`}>link to repo</Link>
+              <Link to={`/repos/${repo.name}`}><h2>{repo.name}</h2></Link>
+
               <hr />
 
               {filter === 'date-created' ? (

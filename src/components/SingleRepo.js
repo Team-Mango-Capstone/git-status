@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom"
 import { getSingleRepo, getCommitsforRepo, searchCommits, getRepoCollaborators, getCommitStatforRepo, deleteRepo, archiveRepo } from './GithubAPITesting.js'
 import SingleRepoModal from './SingleRepoModal.js'
+import { Link } from "react-router-dom";
 
 const screenName = localStorage.getItem('screenName');//
 
@@ -91,12 +92,17 @@ function SingleRepo(props) {
       <p>Single Repo</p>
       <br />
       <div>Repo Name: {repo.name}</div>
+
+      <a href={`${repo.clone_url}`} target='_blank' rel='noreferrer'>
+        <h3>Link to Github Repo Page</h3>
+      </a>
+
       <br />
-      <div>It's been {daysSinceUpdate} days since you've last made any changes. </div>
       <br />
       <div>
         {/* If it's been greater than x days render button giving them an option to delete the repo.  */}
-        {daysSinceUpdate >= 30 && <div>
+        {daysSinceUpdate >= 60 && <div>
+          <div>It's been {daysSinceUpdate} days since you've last made any changes. </div>
           <h3>Do you want to Delete or Archive this repo? </h3>
           <button value="Delete" onClick={clickTest}>Delete the Repo </button>
           <button value="Archive" onClick={clickTest}>Archive the Repo </button>

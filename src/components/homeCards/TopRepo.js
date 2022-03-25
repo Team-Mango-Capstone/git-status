@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../css/TopRepo.css';
+import { getSingleRepo } from '../GithubAPITesting.js'
 
 const githubUsername = localStorage.getItem('screenName');
 
@@ -15,6 +16,7 @@ export const TopRepo = () => {
     count: 0,
     uniques: 0,
   });
+  const [topRepo, setTopRepo] = useState({})
 
   useEffect(() => {
     const findTopRepo = async () => {
@@ -46,6 +48,21 @@ export const TopRepo = () => {
     };
     findTopRepo();
   }, [topRepoStats]);
+
+
+  useEffect(() => {
+
+    async function fetchRepoData() {
+      if (topRepoStats) {
+        const repoData = await getSingleRepo(githubUsername, topRepoStats.name)
+        setTopRepo(repoData)
+      }
+    }
+    fetchRepoData()
+  }, [topRepoStats])
+
+  // console.log('This it the top repos data!!!!!!!!!!!!!!!!!!!!', topRepoStats)
+  console.log('This it the top repo Data', topRepoStats, topRepo)
 
   return (
     <div className='popular'>

@@ -24,6 +24,7 @@ function Home() {
 
   const [userData, setUserData] = useState([]);
   const [userRepos, setUserRepos] = useState([]);
+  const [dateState, setDateState] = useState("")
   const githubUsername = localStorage.getItem('screenName');
 
   useEffect(() => {
@@ -45,6 +46,13 @@ function Home() {
     makeRequest();
   }, []);
 
+  useEffect(() => {
+    setInterval(() => setDateState(new Date()), 60000)
+
+  }, [])
+
+  console.log("This is the dateState!!!!!!!", dateState);
+
   return (
     <div className='home'>
       <div className='welcome'>
@@ -60,7 +68,11 @@ function Home() {
           {rightAngleBrace}
         </h1>
         <div className='time'>
-          <h1>Day / Time</h1>
+          <h1>Day {dateState.toLocaleDateString("en-US")} / Time {dateState.toLocaleTimeString("en-US", {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+          })}</h1>
         </div>
       </div>
       <div className='home-cards'>

@@ -1,10 +1,9 @@
 :root {
   --background: #303438;
-  --color: rgb(238, 238, 238);
+  --color: #4e5358;
   --card-width: 230px;
 }
 .single-goal-card {
-  color: var(--color);
   display: flex;
   flex-direction: column;
   height: 300px;
@@ -27,6 +26,16 @@
   max-width: var(--card-width);
   min-width: var(--card-width);
   background-color: var(--color);
+  color: rgb(209, 209, 209);
+  padding: 1px;
+  border-radius: 5px;
+}
+
+.date-input{
+  background-color: var(--color);
+  color: rgb(209, 209, 209);
+  border-radius: 5px;
+  padding: 1px;
 }
 
 button{
@@ -49,7 +58,7 @@ button{
   border-bottom-style: groove;
   width: 80%;
   font-size: 20px;
-  color: var(--color);
+  color: #58a6ff;
   background-color: var(--background);
 }
 
@@ -122,6 +131,7 @@ label {
   font-size: 12px;
   margin-top: 3%;
   margin-bottom: -3%;
+  color: rgb(209, 209, 209);
 }
 
 

@@ -1,0 +1,92 @@
+.profile {
+  padding: 2rem;
+}
+
+.profile hr {
+  margin: 2rem 0rem;
+  height: 1px;
+  border: 0;
+  background: #30363d;
+}
+
+.profile img {
+  width: 90px;
+  margin: 0rem 2rem 0rem 0rem;
+}
+
+.profile-header {
+  display: flex;
+  position: relative;
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+}
+
+.names h1:first-of-type {
+  font-size: 2.4rem;
+}
+
+.names h1:nth-of-type(2) {
+  color: #8b949e;
+}
+
+.names h2 {
+  bottom: 0;
+  position: absolute;
+}
+
+.bio {
+  margin-bottom: 2rem;
+}
+
+.bio h2:last-child {
+  line-height: 2.5rem;
+}
+
+.follow-type,
+.follow-type-info {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.follow-type-info {
+  align-items: center;
+  height: 80px;
+}
+
+.follow-type hr,
+.follow-type-info hr {
+  margin: 0;
+  height: 20px;
+  width: 1px;
+}
+
+.follow-type-info hr {
+  height: 100%;
+}
+
+.follow-type h2 {
+  color: #58a6ff;
+}
+
+.follow-type h2:first-of-type,
+.follow-type-info h2:first-of-type {
+  width: 150px;
+}
+.follow-type h2:nth-of-type(2),
+.follow-type-info h2:nth-of-type(2) {
+  width: 150px;
+}
+.follow-type h2:nth-of-type(3),
+.follow-type-info h2:nth-of-type(3) {
+  width: 100px;
+}
+
+.total-days {
+  text-align: center;
+  margin: 2rem 0rem;
+  line-height: 2.5rem;
+}

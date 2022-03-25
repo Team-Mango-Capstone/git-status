@@ -1,7 +1,13 @@
-import Spinner from 'react-bootstrap/Spinner';
+import '../css/Elements.css';
 
-export const spinner = (
-  <div class='spinner-border text-light' role='status'>
-    <span class='sr-only'>Loading...</span>
+export const loading = (
+  <div className='loading'>
+    <div className='loading-container'>
+      <img src='capoo-blue.gif' alt='' />
+      <h2>
+        data too DUMMY THICC!!
+        <br /> PLZ WAIT
+      </h2>
+    </div>
   </div>
 );

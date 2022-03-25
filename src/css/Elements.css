@@ -1,0 +1,25 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  margin-top: -8%;
+}
+
+.loading-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.loading-container img {
+  width: 200px;
+}
+
+.loading-container h2 {
+  margin: 30px;
+}

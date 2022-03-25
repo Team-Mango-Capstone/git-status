@@ -3,9 +3,9 @@ import axios from 'axios';
 import '../css/Home.css';
 import { MostProductive } from './homeCards/MostProductive';
 import { TopLanguages } from './homeCards/TopLanguages';
-import { UserLifespan } from './homeCards/UserLifespan';
 import { Timeline } from './homeCards/Timeline';
 import { MostViewed } from './homeCards/MostViewed';
+import { Profile } from './homeCards/Profile';
 
 function Home() {
   const leftAngleBrace = (
@@ -25,7 +25,6 @@ function Home() {
   const [userRepos, setUserRepos] = useState([]);
   const githubUsername = localStorage.getItem('screenName');
 
-
   useEffect(() => {
     const makeRequest = async () => {
       try {
@@ -44,7 +43,9 @@ function Home() {
     };
     makeRequest();
   }, []);
-//  console.log(userRepos)
+
+  console.log(userData);
+
   return (
     <div className='home'>
       <h1>
@@ -60,11 +61,17 @@ function Home() {
       </h1>
       {/* <img src={localStorage.getItem('profilePic')} alt='profile pic' /> */}
       <div className='home-cards'>
-        <Timeline />
-        <UserLifespan userData={userData}/>
-        <TopLanguages userRepos={userRepos}/>
+        <div className='timeline'></div>
+        {/* <Timeline /> */}
+
+        {/* <TopLanguages userRepos={userRepos} /> */}
         {/* <MostProductive userRepos={userRepos}/> */}
-        <MostViewed />
+        {/* <MostViewed /> */}
+        <div className='bottom-charts'>
+          <Profile userData={userData} />
+          {/* <div className='popular'></div>
+          <div className='top-languages'></div> */}
+        </div>
       </div>
     </div>
   );

@@ -2,10 +2,9 @@ import axios from 'axios';
 import '../css/AllRepos.css';
 import '../css/SingleRepoCard.css';
 import { useState, useEffect } from 'react';
-import { spinner } from './Bootstrap-Elements';
-import { Link } from "react-router-dom";
+import { loading } from './Bootstrap-Elements';
+import { Link } from 'react-router-dom';
 // import SingleRepoCard from './SingleRepoCard';
-
 
 function AllRepos() {
   // MISSING: pagination
@@ -44,7 +43,7 @@ function AllRepos() {
   };
 
   // calls the new updated state
-  useEffect(() => { }, [filter]);
+  useEffect(() => {}, [filter]);
 
   // changes the state but doesn't reflect the change inside yet
   const handleChangeFilter = (e) => {
@@ -61,8 +60,6 @@ function AllRepos() {
       return repos.sort((a, b) => b.updated_at.localeCompare(a.updated_at));
     }
   };
-
-  console.log(renderFilteredRepos());
 
   return (
     <div className='all-repos'>
@@ -94,7 +91,7 @@ function AllRepos() {
       <div className='all-repos-container'>
         {isLoading ? (
           // text renders but not the spinner lol
-          spinner
+          loading
         ) : repos.length === 0 ? (
           <div>You have no repos!</div>
         ) : (

@@ -5,9 +5,16 @@ import { UserLifespan } from './UserLifespan';
 export function Profile(props) {
   const user = props.userData;
   const spanStyle = { color: '#58a6ff' };
+  console.log(user);
 
   return (
     <div className='profile'>
+      <div className='top-right-fold'></div>
+
+      <a href={`${user.html_url}`} target='_blank' rel='noreferrer'>
+        <div className='bottom-left-fold'></div>
+      </a>
+
       <div className='profile-header'>
         <img src={`${user.avatar_url}`} alt='' />
         <div className='names'>

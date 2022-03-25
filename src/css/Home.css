@@ -2,6 +2,11 @@
   padding: 5rem;
 }
 
+.welcome {
+  display: flex;
+  justify-content: space-between;
+}
+
 .home-cards {
   margin-top: 5rem;
 }

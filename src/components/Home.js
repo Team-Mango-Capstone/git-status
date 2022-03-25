@@ -6,6 +6,7 @@ import { TopLanguages } from './homeCards/TopLanguages';
 import { Timeline } from './homeCards/Timeline';
 import { TopRepo } from './homeCards/TopRepo';
 import { Profile } from './homeCards/Profile';
+import { Notifications } from './homeCards/Notifications';
 
 function Home() {
   const leftAngleBrace = (
@@ -46,17 +47,22 @@ function Home() {
 
   return (
     <div className='home'>
-      <h1>
-        {leftAngleBrace}
-        {openText}
-        {rightAngleBrace}
-        {localStorage.getItem('name') !== 'null'
-          ? localStorage.getItem('name')
-          : localStorage.getItem('screenName')}
-        {leftAngleBrace}
-        {closeText}
-        {rightAngleBrace}
-      </h1>
+      <div className='welcome'>
+        <h1>
+          {leftAngleBrace}
+          {openText}
+          {rightAngleBrace}
+          {localStorage.getItem('name') !== 'null'
+            ? localStorage.getItem('name')
+            : localStorage.getItem('screenName')}
+          {leftAngleBrace}
+          {closeText}
+          {rightAngleBrace}
+        </h1>
+        <div className='time'>
+          <h1>Day / Time</h1>
+        </div>
+      </div>
       <div className='home-cards'>
         <div className='timeline'>
           <h1>Your Timeline</h1>
@@ -68,7 +74,7 @@ function Home() {
           <Profile userData={userData} />
           <TopRepo />
           <TopLanguages userRepos={userRepos} />
-          <div className='notifications'>NOTIFICATIONS</div>
+          <Notifications />
         </div>
       </div>
     </div>

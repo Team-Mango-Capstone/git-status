@@ -35,7 +35,7 @@ function AllRepos() {
 
   const getRepos = async () => {
     const { data } = await axios.get(
-      `https://api.github.com/search/repositories?q=user:${screenName}+fork:true&per_page=100`
+      `https://api.github.com/search/repositories?q=user:${screenName}+fork:true+archived:false&per_page=100`
     );
     // see what props we can pass down from each repo
     // console.log(data.items);
@@ -100,10 +100,8 @@ function AllRepos() {
         ) : (
           renderFilteredRepos().map((repo) => (
             <div className='single-repo-card' key={repo.id}>
-              <a href={`${repo.clone_url}`} target='_blank' rel='noreferrer'>
-                <h2>{repo.name}</h2>
-              </a>
-              <Link to={`/repos/${repo.name}`}>link to repo</Link>
+              <Link to={`/repos/${repo.name}`}><h2>{repo.name}</h2></Link>
+
               <hr />
 
               {filter === 'date-created' ? (

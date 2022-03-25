@@ -21,12 +21,13 @@ export const clickHandler = () => {
     // searchRepos();
     // searchCommits('choi2010', 'teampluto2201/grace-shopper');
     // getCommitStatforRepo("choi2010", "2201-GHP-NY-WEB-FT-JPFP")
+    archiveRepo("choi2010", "Test-Repo-3")
 };
 
 //Axios calls to github API endpoints
 
 // getting user's repos
-// NOTE: This function does not get the repos that are part of
+// NOTE: This function does not get the repos that are part of orgs
 export async function getRepos() {
     try {
         const { data } = await axios.get(`https://api.github.com/user/repos`)
@@ -37,21 +38,11 @@ export async function getRepos() {
     }
 }
 
-// getting user's single repo
-// /repos/{owner}/{repo}
-// teampluto2201/grace-shopper
-// Team-Mango-Capstone/git-status
-// choi2010/goodiebag
-
 export async function getSingleRepo(owner, repo) {
-    // const owner = 'teampluto2201';
-    // const repo = 'grace-shopper'
     try {
         // const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}`, { headers: { Authorization: `Bearer ${token}` } })
         const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}`)
         // console.log("this is the data from get Single Repo", data)
-        // const dateCreated = new Date(data.created_at)
-        // console.log("Repo was created", dateCreated)
         return data;
     }
     catch (err) {
@@ -84,47 +75,11 @@ export async function getOrgsforUser() {
 }
 
 // /repos/{owner}/{repo}/commits
-// Team-Mango-Capstone/git-status
-
 export async function getCommitsforRepo(owner, repo) {
     try {
         const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repo}/commits`)
-        // data returns an array with list of commits. 
-        // console.log("this is the author", data[0].commit.author.name)
-        // console.log("this is the date", data[0].commit.author.date)
-        // console.log("this is the message", data[0].commit.message)
-
         // console.log("this is the data from getCommitsforRepo", data)
         return data;
-    }
-    catch (err) {
-        console.log("error")
-    }
-}
-// searchrepo API route
-// https://api.github.com/search/repositories?q=user%3Achoi2010
-export async function searchRepos(user) {
-    try {
-        const { data } = await axios.get(`https://api.github.com/search/repositories?q=user:${user}}+fork:true&per_page=100 `)
-        // data returns an array with list of commits. 
-
-        // console.log("this is the data from Search Repos", data)
-    }
-    catch (err) {
-        console.log("error")
-    }
-}
-
-export async function searchCommits(user, repo) {
-    try {
-        // const { data } = await axios.get(`https://api.github.com/search/commits?q=author:${user} repo:${repo} merge:false sort:author-date`)
-
-        const { data } = await axios.get(`https://api.github.com/search/commits?q=author:${user} repo:${repo} merge:false fork:true sort:author-date`)
-        // data returns an array with list of commits. 
-
-        // console.log("this is the data from searchCommits", data.items)
-        // data.items.forEach(i => console.log(i.commit.author.date, i.commit.author.name, i.commit.message))
-        return data.items;
     }
     catch (err) {
         console.log("error")
@@ -135,9 +90,7 @@ export async function searchCommits(user, repo) {
 export async function getCommitStatforRepo(owner, repoName) {
     try {
         const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repoName}/stats/contributors`)
-        // data returns an array with list of commits. 
         console.log("this is the data from getCommitStatforRepo", data)
-        // data.items.forEach(i => console.log(i.commit.author.date, i.commit.author.name, i.commit.message))
         return data;
     }
     catch (err) {
@@ -145,8 +98,58 @@ export async function getCommitStatforRepo(owner, repoName) {
     }
 }
 
+//API Route for Deleting a repo. 
+export async function deleteRepo(owner, repoName) {
+    try {
+        const { data } = await axios.delete(`https://api.github.com/repos/${owner}/${repoName}`)
+        console.log("this repo has been deleted", data)
+        return data;
+    }
+    catch (err) {
+        console.log("error")
+    }
+}
+
+//API Route for Archiving a repo 
+export async function archiveRepo(owner, repoName) {
+    try {
+        const { data } = await axios.patch(`https://api.github.com/repos/${owner}/${repoName}`, { archived: "true" })
+        // data returns an array with list of commits. 
+        console.log("this repo has been archived", data)
+        return data;
+    }
+    catch (err) {
+        console.log("error")
+    }
+}
 
 ///////////////////////////
+
+// searchrepo API route
+// https://api.github.com/search/repositories?q=user%3Achoi2010
+export async function searchRepos(user) {
+    try {
+        const { data } = await axios.get(`https://api.github.com/search/repositories?q=user:${user}}+fork:true+archived:false&per_page=100 `)
+        // console.log("this is the data from Search Repos", data)
+        return data.items;
+    }
+    catch (err) {
+        console.log("error")
+    }
+}
+
+export async function searchCommits(user, repo) {
+    try {
+        // const { data } = await axios.get(`https://api.github.com/search/commits?q=author:${user} repo:${repo} merge:false sort:author-date`)
+        const { data } = await axios.get(`https://api.github.com/search/commits?q=author:${user} repo:${repo} merge:false fork:true sort:author-date`)
+        return data.items;
+    }
+    catch (err) {
+        console.log("error")
+    }
+}
+
+////////////////////////////////////////////////////////////////
 
 let githubUsername = 'dviglucci';
 let repoName = 'rats';

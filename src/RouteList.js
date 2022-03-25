@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Home from './components/Home';
 import AddGoal from './components/PersonalBoard/AddGoal';
-import EditGoal from './components/EditGoal';
+import EditGoal from './components/PersonalBoard/EditGoal';
 import AllRepos from './components/AllRepos';
 import SingleRepo from './components/SingleRepo';
 import NotFound from './components/NotFound';

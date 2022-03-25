@@ -110,7 +110,7 @@ const SingleGoalCard = ({
         as='textarea'
         aria-label='With textarea'
         placeholder='Enter goal description....'
-        style={{ fontSize: '16px' }}
+        style={{ fontSize: '14px' }}
         value={goal.description === '' ? newDescription : goal.description}
         onChange={(e) => {
           handleChangeDesc(e);

@@ -1,12 +1,14 @@
-import React from 'react'
-import Goals from './Goals'
+import React from 'react';
+import Goals from './Goals';
+import '../../css/PersonalBoard.css';
 
 function PersonalBoard() {
   return (
     <div>
-        <Goals/>
+      
+      <Goals />
     </div>
-  )
+  );
 }
 
-export default PersonalBoard
+export default PersonalBoard;

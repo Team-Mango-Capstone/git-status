@@ -30,7 +30,6 @@ function AddGoal({ closeModal }) {
   return (
     <div className='add-form-container'>
       <button className='goal-btn-delete' onClick={() => closeModal(false)}>
-        {' '}
         <i className='bi bi-x-circle-fill'></i>
       </button>
       <form className="form-container" onSubmit={handleSubmit}>
@@ -43,7 +42,7 @@ function AddGoal({ closeModal }) {
             setTitle(e.target.value);
           }}
         />
-
+        <br/>
         <FormControl
         className='add-goal-desc-input'
         as='textarea'

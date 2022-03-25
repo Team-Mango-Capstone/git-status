@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
     position: "fixed",
     bottom: 0,
     zIndex: 200,
-    backgroundColor: "#c9d1d9",
+    backgroundColor: "rgb(139, 139, 139)",
     borderRadius: '30px',
     padding: "7px 30px",
     color: "white",

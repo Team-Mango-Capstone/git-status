@@ -83,7 +83,7 @@
 }
 
 .bio h3 {
-  line-height: 2.5rem;
+  line-height: 2.3rem;
 }
 
 .follow-type,
@@ -129,5 +129,5 @@
 .total-days {
   text-align: center;
   margin: 2rem 0rem;
-  line-height: 2.5rem;
+  line-height: 2.3rem;
 }

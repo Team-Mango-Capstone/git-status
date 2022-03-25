@@ -18,6 +18,7 @@ export const TopRepo = () => {
 
   useEffect(() => {
     const findTopRepo = async () => {
+      let topRepoSoFar = {}; // setting toprepo
       let allOwnedRepos;
       try {
         const { data } = await axios.get(
@@ -34,6 +35,7 @@ export const TopRepo = () => {
           );
           if (data.count > topRepoStats.count) {
             setTopRepoStats({
+              // set this as an object
               name: repo.name,
               count: data.count,
               uniques: data.uniques,
@@ -44,8 +46,11 @@ export const TopRepo = () => {
         }
       });
     };
+    // set toprepostats here
     findTopRepo();
   }, [topRepoStats]);
+
+  // make a new call using the name from the state
 
   return (
     <div className='popular'>

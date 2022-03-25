@@ -21,7 +21,7 @@ export function Profile(props) {
       </div>
       <div className='bio'>
         <hr />
-        <h2>{user.bio ? user.bio : 'Nothing about yourself yet!'}</h2>
+        <h2>{user.bio ? user.bio : 'Your bio is empty!'}</h2>
       </div>
       <hr />
       <div className='follow-type'>

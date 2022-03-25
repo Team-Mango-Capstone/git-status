@@ -4,7 +4,7 @@ import '../css/Home.css';
 import { MostProductive } from './homeCards/MostProductive';
 import { TopLanguages } from './homeCards/TopLanguages';
 import { Timeline } from './homeCards/Timeline';
-import { MostViewed } from './homeCards/MostViewed';
+import { TopRepo } from './homeCards/TopRepo';
 import { Profile } from './homeCards/Profile';
 
 function Home() {
@@ -44,8 +44,6 @@ function Home() {
     makeRequest();
   }, []);
 
-  console.log(userData);
-
   return (
     <div className='home'>
       <h1>
@@ -59,18 +57,18 @@ function Home() {
         {closeText}
         {rightAngleBrace}
       </h1>
-      {/* <img src={localStorage.getItem('profilePic')} alt='profile pic' /> */}
       <div className='home-cards'>
-        <div className='timeline'></div>
+        <div className='timeline'>
+          <h1>Your Timeline</h1>
+        </div>
         {/* <Timeline /> */}
 
-        {/* <TopLanguages userRepos={userRepos} /> */}
         {/* <MostProductive userRepos={userRepos}/> */}
-        {/* <MostViewed /> */}
         <div className='bottom-charts'>
           <Profile userData={userData} />
-          {/* <div className='popular'></div>
-          <div className='top-languages'></div> */}
+          <TopRepo />
+          <TopLanguages userRepos={userRepos} />
+          <div className='notifications'>NOTIFICATIONS</div>
         </div>
       </div>
     </div>

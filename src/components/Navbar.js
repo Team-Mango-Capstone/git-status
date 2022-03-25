@@ -9,6 +9,9 @@ function Navbar() {
       <Link to='/'>
         <img src='/github.png' alt='' />
       </Link>
+      <div className='badges-container'>
+        This is the badges container...
+      </div>
       <div className='links'>
         <h2>
           <Link to='/repos'>

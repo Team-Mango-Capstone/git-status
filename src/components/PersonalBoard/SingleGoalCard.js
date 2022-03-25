@@ -4,6 +4,8 @@ import FormControl from 'react-bootstrap/FormControl';
 import { GlobalContext } from '../../context/GlobalState';
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 import RangeSlider from 'react-bootstrap-range-slider';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../db/Firebase';
 
 // delete and edit buttons inside single goal card
 const SingleGoalCard = ({
@@ -47,6 +49,20 @@ const SingleGoalCard = ({
       setNewTitle(e.target.value);
     }
   };
+
+  const createBadge = async (e) => {
+    e.preventDefault();
+      await addDoc(
+        collection(
+          db,
+          'allUsers',
+          window.localStorage.getItem('uid'),
+          'userBagdes'
+        ),
+        { count: 1, title: newTitle}
+      );
+  };
+
 // let resultFromContext = useContext(GlobalContext)
 // console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
   return (
@@ -84,7 +100,7 @@ const SingleGoalCard = ({
         />
         <button
           className='goal-btn-complete'
-          onClick={() => toggleComplete(goal)}
+          onClick={(e) => {toggleComplete(goal); createBadge(e)}}
         >
           <i className='bi bi-check-circle-fill'></i>
         </button>

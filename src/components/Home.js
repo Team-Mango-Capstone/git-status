@@ -3,9 +3,10 @@ import axios from 'axios';
 import '../css/Home.css';
 import { MostProductive } from './homeCards/MostProductive';
 import { TopLanguages } from './homeCards/TopLanguages';
-import { UserLifespan } from './homeCards/UserLifespan';
 import Timeline from './homeCards/Timeline';
-import { MostViewed } from './homeCards/MostViewed';
+import { TopRepo } from './homeCards/TopRepo';
+import { Profile } from './homeCards/Profile';
+import { Notifications } from './homeCards/Notifications';
 
 function Home() {
   const leftAngleBrace = (
@@ -25,7 +26,6 @@ function Home() {
   const [userRepos, setUserRepos] = useState([]);
   const githubUsername = localStorage.getItem('screenName');
 
-
   useEffect(() => {
     const makeRequest = async () => {
       try {
@@ -44,27 +44,38 @@ function Home() {
     };
     makeRequest();
   }, []);
-//  console.log(userRepos)
+
   return (
     <div className='home'>
-      <h1>
-        {leftAngleBrace}
-        {openText}
-        {rightAngleBrace}
-        {localStorage.getItem('name') !== 'null'
-          ? localStorage.getItem('name')
-          : localStorage.getItem('screenName')}
-        {leftAngleBrace}
-        {closeText}
-        {rightAngleBrace}
-      </h1>
-      {/* <img src={localStorage.getItem('profilePic')} alt='profile pic' /> */}
+      <div className='welcome'>
+        <h1>
+          {leftAngleBrace}
+          {openText}
+          {rightAngleBrace}
+          {localStorage.getItem('name') !== 'null'
+            ? localStorage.getItem('name')
+            : localStorage.getItem('screenName')}
+          {leftAngleBrace}
+          {closeText}
+          {rightAngleBrace}
+        </h1>
+        <div className='time'>
+          <h1>Day / Time</h1>
+        </div>
+      </div>
       <div className='home-cards'>
-        <Timeline />
-        <UserLifespan userData={userData}/>
-        <TopLanguages userRepos={userRepos}/>
+        <div className='timeline'>
+          <h1>Your Timeline</h1>
+        </div>
+        {/* <Timeline /> */}
+
         {/* <MostProductive userRepos={userRepos}/> */}
-        {/* <MostViewed /> */}
+        <div className='bottom-charts'>
+          <Profile userData={userData} />
+          <TopRepo />
+          <TopLanguages userRepos={userRepos} />
+          <Notifications />
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import '../css/Home.css';
 import { MostProductive } from './homeCards/MostProductive';
 import { TopLanguages } from './homeCards/TopLanguages';
 import { UserLifespan } from './homeCards/UserLifespan';
-import { Timeline } from './homeCards/Timeline';
+import Timeline from './homeCards/Timeline';
 import { MostViewed } from './homeCards/MostViewed';
 
 function Home() {
@@ -64,7 +64,7 @@ function Home() {
         <UserLifespan userData={userData}/>
         <TopLanguages userRepos={userRepos}/>
         {/* <MostProductive userRepos={userRepos}/> */}
-        <MostViewed />
+        {/* <MostViewed /> */}
       </div>
     </div>
   );

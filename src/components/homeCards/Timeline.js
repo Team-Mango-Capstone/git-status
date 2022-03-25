@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
+import TimelineChart from "../homeCharts/TimelineChart";
 
 const screenName = localStorage.getItem("screenName");
 
@@ -33,8 +34,6 @@ export default function Timeline() {
   const chartData =
     data.user.contributionsCollection.contributionCalendar.weeks;
 
-  const testData = chartData.slice(50);
-
   // returns an array of arrays in the below format:
   // [date, number of contributions for the week starting on that date]
   const compileRawData = (arr) => {
@@ -47,9 +46,9 @@ export default function Timeline() {
       for (let j = 0; j < currentElem.contributionDays.length; j++) {
         let dayCount = currentElem.contributionDays[j].contributionCount;
         total += dayCount;
-      }
+      };
       finalElement[i].push(total);
-    }
+    };
     return finalElement;
   };
   
@@ -61,7 +60,6 @@ export default function Timeline() {
   // },
   const prepDataForChart = (arr) => {
     const finalArr = arr.map((element) => {
-      console.log("element >>>", element);
       return {
         x: element[0],
         y: 0,
@@ -72,13 +70,18 @@ export default function Timeline() {
     return finalArr;
   };
 
-  console.log("ANSWER >>>>", prepDataForChart(compileRawData(chartData)));
+  const dataForChart = prepDataForChart(compileRawData(chartData));
+
+  const testData = dataForChart.slice(50);
+
+  console.log('TEST DATA >>>', testData);
 
   return (
     <div>
       You have made {useableData.totalContributions} contributions in the past
       year.
-      <canvas id="myChart"></canvas>
+      {/* <canvas id="timeline"></canvas> */}
+      <TimelineChart chartData={testData}/>
     </div>
   );
 }

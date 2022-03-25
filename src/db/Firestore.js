@@ -46,6 +46,20 @@ export const handleEditTitle = async (goal, title) => {
   );
 };
 
+export const handleEditProgress = async (goal, progress) => {
+  await updateDoc(
+    doc(
+      db,
+      'allUsers',
+      uid,
+      'userGoals',
+      goal.id
+    ),
+    { goalProgress: progress }
+  ); 
+};
+
+
 export const toggleComplete = async (goal) => {
   await updateDoc(
     doc(

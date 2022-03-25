@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../css/Home.css';
 import { MostProductive } from './homeCards/MostProductive';
 import { TopLanguages } from './homeCards/TopLanguages';
-import { Timeline } from './homeCards/Timeline';
+import Timeline from './homeCards/Timeline';
 import { TopRepo } from './homeCards/TopRepo';
 import { Profile } from './homeCards/Profile';
 import { Notifications } from './homeCards/Notifications';

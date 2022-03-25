@@ -1,16 +1,16 @@
 .add-btn {
   font-size: 16px;
-  min-width: 10%;
-  height: 40px;
-  color: #fff;
-  padding: 5px 10px;
+  min-width: 6%;
+  height: 30px;
+  color: rgb(240, 240, 240);
+  padding: 6px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
   outline: none;
-  border-radius: 5px;
+  border-radius: 30px;
   border: none;
   background: #58a6ff;
 }
@@ -23,12 +23,54 @@
 .add-form-container{
   position: absolute;
   background-color: rgb(255, 255, 255);
-  margin-left: 40%;
+  margin-left: 15%;
   margin-top: 5%;
-  height: 45%;
-  width: 20%;
-  padding: 2%;
+  height: 40%;
+  width: 17%;
+  padding: 1%;
   border-radius: 14px;
   z-index:11;
   color: black;
+  box-shadow: 5px 5px 23px 0px rgba(0,0,0,0.38)
+  
+}
+.goal-btn-delete{
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  color: #e34c26;
+}
+
+.goal-btn-delete:hover{
+  color: #db6d52;
+}
+
+.goal-btn-complete{
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  color: #238636;
+}
+
+.goal-btn-complete:hover{
+  color: #5f996b;
+}
+
+i {
+  font-size: 25px;
+}
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.add-goal-desc-input{
+  min-height: 150px;
 }

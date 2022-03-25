@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoalsDashboard } from './Goals-Charts/GoalsDashboard';
+import { GoalsDashboard } from './PersonalBoard/Goals-Charts/GoalsDashboard';
 
 function Insights() {
   return (

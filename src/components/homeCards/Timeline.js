@@ -1,68 +1,87 @@
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
+import React from "react";
+import { useQuery, gql } from "@apollo/client";
+import TimelineChart from "../homeCharts/TimelineChart";
 
-// const githubUsername = localStorage.getItem("screenName");
+const screenName = localStorage.getItem("screenName");
 
-// export function Timeline(props) {
-//   const [userContributions, setUserContributions] = useState([]);
+const CONTRIBUTIONS_QUERY = gql`
+  query ($userName: String!) {
+    user(login: $userName) {
+      contributionsCollection {
+        contributionCalendar {
+          totalContributions
+          weeks {
+            contributionDays {
+              contributionCount
+              date
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
-//   const weekFinder = () => {
-//     let currentdate = new Date();
-//     let oneJan = new Date(currentdate.getFullYear(), 0, 1);
-//     let numberOfDays = Math.floor(
-//       (currentdate - oneJan) / (24 * 60 * 60 * 1000)
-//     );
-//     let result = Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7);
-//     return result;
-//   };
+export default function Timeline() {
+  const { data, loading, error } = useQuery(CONTRIBUTIONS_QUERY, {
+    variables: { userName: screenName },
+  });
 
-//   useEffect(() => {
-//     const makeRequest = async () => {
-//       try {
-//         let currentYear = new Date().getFullYear();
-//         let lastYear = currentYear - 1
-//         let currentWeek = weekFinder();
-//         console.log('!!!!!!!')
-//         const allContributionsLastYear = await axios.get(
-//         //   `https://skyline.github.com/${githubUsername}/${lastYear}.json`,
-//         //   {
-//         //     //   headers: "Access-Control-Allow-Origin: http://localhost:3000",
-//         //     // method: 'GET',
-//         //     mode: 'no-cors',
-//         //     headers: { 'Access-Control-Allow-Origin': '*' },
-//         //   }
-//         `https://cors-anywhere.herokuapp.com/https://skyline.github.com/dviglucci/2022.json`
-//         );
-//         // const allContributionsThisYear = await axios.get(
-//         //   `https://skyline.github.com/${githubUsername}/${currentYear}.json`, {
-//         //     //   headers: "Access-Control-Allow-Origin: http://localhost:3000",
-//         //     // method: 'GET',
-//         //     // mode: 'cors',
-//         //     headers: { 'Access-Control-Allow-Origin': 'http://localhost:3000' },
-//         //    }
-//         // );
-//         console.log('allContributionsLastYear >>>>', allContributionsLastYear.data)
-//         // console.log('allContributionsThisYear >>>>', allContributionsThisYear.data)
-//         // allContributionsLastYear.filter(
-//         //   (element) => element.week > currentWeek
-//         // );
-//         // allContributionsThisYear.filter(
-//         //   (element) => element.week <= currentWeek
-//         // );
-//         // const contributionsPastYear = allContributionsLastYear.concat(
-//         //   allContributionsThisYear
-//         // );
-//         // setUserContributions(contributionsPastYear);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     };
-//     makeRequest();
-//   }, []);
+  if (loading) return "Loading...";
+  if (error) return <pre>{error.message}</pre>;
 
-//   return (
-//     <div className="timeline">
-//       <h2>Your timeline</h2>
-//     </div>
-//   );
-// }
+  const useableData = data.user.contributionsCollection.contributionCalendar;
+  const chartData =
+    data.user.contributionsCollection.contributionCalendar.weeks;
+
+  // returns an array of arrays in the below format:
+  // [date, number of contributions for the week starting on that date]
+  const compileRawData = (arr) => {
+    let finalElement = [];
+
+    for (let i = 0; i < arr.length; i++) {
+      let currentElem = arr[i];
+      finalElement.push([currentElem.contributionDays[0].date]);
+      let total = 0;
+      for (let j = 0; j < currentElem.contributionDays.length; j++) {
+        let dayCount = currentElem.contributionDays[j].contributionCount;
+        total += dayCount;
+      };
+      finalElement[i].push(total);
+    };
+    return finalElement;
+  };
+  
+  // returns an array of objects in the format needed for Chart.js:
+  // {
+  //   x: "YYYY-MM-DD",
+  //   y: 0,
+  //   r: # of contributions
+  // },
+  const prepDataForChart = (arr) => {
+    const finalArr = arr.map((element) => {
+      return {
+        x: element[0],
+        y: 0,
+        r: element[1],
+      };
+    });
+
+    return finalArr;
+  };
+
+  const dataForChart = prepDataForChart(compileRawData(chartData));
+
+  const testData = dataForChart.slice(50);
+
+  console.log('TEST DATA >>>', testData);
+
+  return (
+    <div>
+      You have made {useableData.totalContributions} contributions in the past
+      year.
+      {/* <canvas id="timeline"></canvas> */}
+      <TimelineChart chartData={testData}/>
+    </div>
+  );
+}

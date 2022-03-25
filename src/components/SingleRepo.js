@@ -2,12 +2,10 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom"
 import { getSingleRepo, getCommitsforRepo, searchCommits, getRepoCollaborators, getCommitStatforRepo, deleteRepo, archiveRepo } from './GithubAPITesting.js'
-import { Link } from "react-router-dom";
+import SingleRepoModal from './SingleRepoModal.js'
 
 const token = localStorage.getItem('oAuthAccessToken');//
 const screenName = localStorage.getItem('screenName');//
-
-// deleteRepo(owner, repoName)
 
 function SingleRepo(props) {
   const params = useParams();
@@ -18,6 +16,8 @@ function SingleRepo(props) {
   const [collabs, setCollabs] = useState([])
   const [commitSize, setcommitSize] = useState([])
   const [averageCommitSize, setAverageCommitSize] = useState({})
+  const [modalOpen, setModalOpen] = useState(false)
+  const [buttonClicked, setButtonClicked] = useState("")
 
   useEffect(() => {
     async function fetchRepoData() {
@@ -33,7 +33,6 @@ function SingleRepo(props) {
   useEffect(() => {
     async function fetchData() {
       if (repo) {
-        // console.log("!!!!!!!!!!!!!!!THIS IS THE REPO FULLNAME", repo.full_name)
         // const collabsInfo = await getRepoCollaborators("teampluto2201", 'grace-shopper');
         const collabsInfo = await getRepoCollaborators(repo.owner.login, repo.name);
         setCollabs(collabsInfo);
@@ -60,14 +59,15 @@ function SingleRepo(props) {
     setAverageCommitSize(avgCommitSize(commitSize))
   }, [commitSize])
 
-  console.log('This is from the STATE Repo data', repo);
+  // console.log('This is from the STATE Repo data', repo);
 
   const daysSinceUpdate = Math.round((new Date().getTime() - new Date(repo.updated_at).getTime()) / (1000 * 60 * 60 * 24));
 
-  console.log('The repo was last updated on', repo.updated_at);
-  console.log('How many days has it been >>>>>>>>>>>>>>>>>>>', daysSinceUpdate);
-  console.log('!!!!!!!!!!!!!!!!!This is updated Cmmits Size Data', commitSize);
-  console.log('!!!!!!!!!!!!!!!!!This is your avg commit size', averageCommitSize);
+  // console.log('The repo was last updated on', repo.updated_at);
+  // console.log('How many days has it been >>>>>>>>>>>>>>>>>>>', daysSinceUpdate);
+  // console.log('!!!!!!!!!!!!!!!!!This is updated Cmmits Size Data', commitSize);
+  // console.log('!!!!!!!!!!!!!!!!!This is your avg commit size', averageCommitSize);
+  console.log("State of the openModal", modalOpen)
 
   // Getting the average commit size in this repo
   function avgCommitSize(commitsArray) {
@@ -84,19 +84,25 @@ function SingleRepo(props) {
   }
 
   function deleteClickHandler() {
-    let result = window.confirm("Are you sure you want to delete this repo? Once you click OK you can't go back");
-    if (result) {
-      deleteRepo(screenName, repo.name);
-      window.location.href = '/repos'
-    }
+    // let result = window.confirm("Are you sure you want to delete this repo? Once you click OK you can't go back");
+    // if (result) {
+    deleteRepo(screenName, repo.name);
+    window.location.href = '/repos'
+    // }
   }
 
   function archiveClickHandler() {
-    let result = window.confirm("Are you sure you want to archive this repo? Once you click archive it the repo is read only. You can unarchive it from the github website.");
-    if (result) {
-      archiveRepo(screenName, repo.name);
-      window.location.href = '/repos'
-    }
+    // let result = window.confirm("Are you sure you want to archive this repo? Once you click archive it the repo is read only. You can unarchive it from the github website.");
+    // if (result) {
+    archiveRepo(screenName, repo.name);
+    window.location.href = '/repos'
+    // }
+  }
+
+  function clickTest(e) {
+    console.log("This is inside the clickTest function", e.target.value)
+    setButtonClicked(e.target.value)
+    setModalOpen(true)
   }
 
   return (
@@ -110,14 +116,20 @@ function SingleRepo(props) {
       {/* If it's been greater than x days render button giving them an option to delete the repo.  */}
       {daysSinceUpdate >= 0 ? <div>
         <h3>Do you want to Delete or Archive this repo? </h3>
-        <button onClick={deleteClickHandler}>Delete the Repo </button>
-        <button onClick={archiveClickHandler}>Archive the Repo </button>
+        {/* <button onClick={deleteClickHandler}>Delete the Repo </button> */}
+        {/* <button onClick={archiveClickHandler}>Archive the Repo </button> */}
+        <button value="Delete" onClick={clickTest}>Delete the Repo </button>
+        <button value="Archive" onClick={clickTest}>Archive the Repo </button>
       </div> : <></>}
+
+      {modalOpen ? <SingleRepoModal setOpenModal={setModalOpen} deleteClickHandler={deleteClickHandler} archiveClickHandler={archiveClickHandler} buttonClicked={buttonClicked} /> : <></>}
       <br />
       <div>Number of Commits: {commits ? commits.length : 0}</div>
       <br />
       <div>{commits.length > 0 ? <>Did you know that your average commits consists of {averageCommitSize.avgAdditions} added lines of code and {averageCommitSize.avgDeletions} deleted lines of code. You should try to commit more often </> : <></>}</div>
 
+
+      {/*  */}
       <div>
         <br />
         {/* Capping the number of comments returned */}
@@ -131,7 +143,6 @@ function SingleRepo(props) {
         }) : <div>Nothing exists</div>}
 
       </div>
-
 
       <div>
         <div>Number of Collaborators: {collabs.length}</div>

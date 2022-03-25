@@ -1,15 +1,15 @@
 import React from "react";
 import "../css/SingleRepoModal.css";
 
-function SingleRepoModal({ setOpenModal, deleteClickHandler, buttonClicked, archiveClickHandler }) {
+function SingleRepoModal({ setOpenModal, deleteRepo, buttonClicked, archiveRepo }) {
     console.log("This is frmo the MOdal PROPS", buttonClicked)
 
     function clickHandler() {
         if (buttonClicked === "Delete") {
-            deleteClickHandler()
+            deleteRepo()
         }
         else {
-            archiveClickHandler()
+            archiveRepo()
         }
     }
 
@@ -26,10 +26,10 @@ function SingleRepoModal({ setOpenModal, deleteClickHandler, buttonClicked, arch
                     </button>
                 </div>
                 <div className="title">
-                    <h1>Are You Sure You Want to Continue?</h1>
+                    <h1>WARNING!</h1>
                 </div>
                 <div className="body">
-                    <p>Danger Zone: This action is only reversible on the Github website.</p>
+                    <p>THIS ACTION IS ONLY REVERSIBLE ON THE GITHUB WEBSITE. ARE YOU SURE YOU WANT TO CONTINUE?</p>
                 </div>
                 <div className="footer">
                     <button

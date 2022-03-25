@@ -52,15 +52,16 @@ const SingleGoalCard = ({
 
   const createBadge = async (e) => {
     e.preventDefault();
-      await addDoc(
-        collection(
-          db,
-          'allUsers',
-          window.localStorage.getItem('uid'),
-          'userBagdes'
-        ),
-        { count: 1, title: newTitle}
-      );
+      // await addDoc(
+      //   collection(
+      //     db,
+      //     'allUsers',
+      //     window.localStorage.getItem('uid'),
+      //     'userBagdes'
+      //   ),
+      //   { count: 1, title: newTitle}
+      // );
+      console.log('come back to this...')
   };
 
 // let resultFromContext = useContext(GlobalContext)

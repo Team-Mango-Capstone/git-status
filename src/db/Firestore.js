@@ -71,11 +71,28 @@ export const toggleComplete = async (goal) => {
     ),
     { completed: !goal.completed }
   );
+  // await updateDoc(
+  //   doc(
+  //     db,
+  //     'allUsers',
+  //     uid,
+  //     'userBadges',
+  //     goal.id // this field needs to be updated 
+  //   ),
+  //   { earned: !goal.completed }
+  // );
+  // to also toggle the userBadges doc, you need to pick
+  // up the userBadges id somewhere and store on state
 };
 export const handleDelete = async (id) => {
   await deleteDoc(
     doc(db, 'allUsers', uid, 'userGoals', id)
   );
+  // await deleteDoc(
+  //   doc(db, 'allUsers', uid, 'userBadges', id)
+  // );
+  // to also delete the userBadges doc, you need to pick
+  // up the userBadges id somewhere and store on state
 };
 
 

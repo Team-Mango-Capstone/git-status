@@ -6,7 +6,7 @@ import { TopLanguages } from './homeCards/TopLanguages';
 import Timeline from './homeCards/Timeline';
 import { TopRepo } from './homeCards/TopRepo';
 import { Profile } from './homeCards/Profile';
-import { Notifications } from './homeCards/Notifications';
+import { Activity } from './homeCards/Activity';
 
 function Home() {
   const leftAngleBrace = (
@@ -86,7 +86,7 @@ function Home() {
           <Profile userData={userData} />
           <TopRepo />
           <TopLanguages userRepos={userRepos} />
-          <Notifications />
+          <Activity />
         </div>
       </div>
     </div>

@@ -29,11 +29,12 @@
 .profile,
 .popular,
 .top-languages,
-.notifications {
+.activity {
   margin-top: 5rem;
   background-color: #161b22;
   border: 1px solid #30363d;
   border-radius: 10px;
   width: 300px;
+  height: 400px;
   padding: 2rem;
 }

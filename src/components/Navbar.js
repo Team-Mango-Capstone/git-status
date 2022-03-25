@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/Navbar.css';
-import { signOutGithub} from '../db/Firebase';
+import { signOutGithub } from '../db/Firebase';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
@@ -20,6 +20,8 @@ function Navbar() {
           <Link to='/' onClick={signOutGithub}>
             <span style={{ color: 'grey' }}>Logout</span>
           </Link>
+
+          {/* add home link */}
         </h2>
       </div>
     </div>

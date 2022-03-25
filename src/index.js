@@ -1,22 +1,27 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./css/index.css";
-import App from "./components/App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import axios from "axios";
-import { ApolloProvider, ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './css/index.css';
+import App from './components/App';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import axios from 'axios';
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+  HttpLink,
+} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-
 // Set default header for axios requests so that the oAuth access token will be included on all requests
-axios.defaults.headers.common["Authorization"] = `token ${localStorage.getItem(
-  "oAuthAccessToken"
+axios.defaults.headers.common['Authorization'] = `token ${localStorage.getItem(
+  'oAuthAccessToken'
 )}`;
+axios.defaults.headers.common['Accept'] = 'application/vnd.github.v3+json';
 
 const httpLink = new HttpLink({
-  uri: "https://api.github.com/graphql"
+  uri: 'https://api.github.com/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -26,9 +31,9 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    }
-  }
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
 });
 
 const client = new ApolloClient({
@@ -44,7 +49,7 @@ ReactDOM.render(
       </BrowserRouter>
     </React.StrictMode>
   </ApolloProvider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

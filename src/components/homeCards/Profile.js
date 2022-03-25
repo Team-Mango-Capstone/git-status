@@ -18,32 +18,32 @@ export function Profile(props) {
       <div className='profile-header'>
         <img src={`${user.avatar_url}`} alt='' />
         <div className='names'>
-          <h1>{user.name}</h1>
-          <h1>{user.login}</h1>
-          <h2>
+          <h2>{user.name}</h2>
+          <h2>{user.login}</h2>
+          <h3>
             <span style={spanStyle}>Email:</span>{' '}
             {user.email ? user.email : 'Private'}
-          </h2>
+          </h3>
         </div>
       </div>
       <div className='bio'>
         <hr />
-        <h2>{user.bio ? user.bio : 'Your bio is empty!'}</h2>
+        <h3>{user.bio ? user.bio : 'Your bio is empty!'}</h3>
       </div>
       <hr />
       <div className='follow-type'>
-        <h2>Following</h2>
+        <h3>Following</h3>
         <hr />
-        <h2>Followers</h2>
+        <h3>Followers</h3>
         <hr />
-        <h2>Type</h2>
+        <h3>Type</h3>
       </div>
       <div className='follow-type-info'>
-        <h2>{user.following}</h2>
+        <h3>{user.following}</h3>
         <hr />
-        <h2>{user.followers}</h2>
+        <h3>{user.followers}</h3>
         <hr />
-        <h2>{user.type}</h2>
+        <h3>{user.type}</h3>
       </div>
       <hr />
       <UserLifespan userData={props.userData} />

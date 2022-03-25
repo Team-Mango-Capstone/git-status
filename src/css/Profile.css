@@ -50,7 +50,7 @@
 }
 
 .profile img {
-  width: 90px;
+  width: 70px;
   margin: 0rem 2rem 0rem 0rem;
   transition: transform 0.5s ease-in-out;
 }
@@ -69,11 +69,11 @@
   flex-direction: column;
 }
 
-.names h1:nth-of-type(2) {
+.names h2:nth-of-type(2) {
   color: #8b949e;
 }
 
-.names h2 {
+.names h3 {
   bottom: 0;
   position: absolute;
 }
@@ -82,7 +82,7 @@
   margin-bottom: 2rem;
 }
 
-.bio h2 {
+.bio h3 {
   line-height: 2.5rem;
 }
 
@@ -95,7 +95,7 @@
 
 .follow-type-info {
   align-items: center;
-  height: 80px;
+  height: 40px;
 }
 
 .follow-type hr,
@@ -109,20 +109,20 @@
   height: 100%;
 }
 
-.follow-type h2 {
+.follow-type h3 {
   color: #58a6ff;
 }
 
-.follow-type h2:first-of-type,
-.follow-type-info h2:first-of-type {
+.follow-type h3:first-of-type,
+.follow-type-info h3:first-of-type {
   width: 150px;
 }
-.follow-type h2:nth-of-type(2),
-.follow-type-info h2:nth-of-type(2) {
+.follow-type h3:nth-of-type(2),
+.follow-type-info h3:nth-of-type(2) {
   width: 150px;
 }
-.follow-type h2:nth-of-type(3),
-.follow-type-info h2:nth-of-type(3) {
+.follow-type h3:nth-of-type(3),
+.follow-type-info h3:nth-of-type(3) {
   width: 100px;
 }
 

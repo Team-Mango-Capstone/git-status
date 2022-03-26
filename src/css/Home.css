@@ -12,7 +12,7 @@
 }
 
 .timeline {
-  margin: 5rem 8rem 0rem 0rem;
+  margin: 5rem 8rem 5rem 0rem;
   background-color: #161b22;
   border: 1px solid #30363d;
   border-radius: 10px;
@@ -23,18 +23,23 @@
 .bottom-charts {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 5rem;
 }
 
-.profile,
+.profile-card,
 .popular,
 .top-languages,
 .activity {
-  margin-top: 5rem;
   background-color: #161b22;
   border: 1px solid #30363d;
   border-radius: 10px;
-  width: 300px;
-  height: 400px;
+  width: 30px;
+  height: 40rem;
   padding: 2rem;
+}
+
+.top-languages,
+.popular {
+  flex-grow: 2;
 }

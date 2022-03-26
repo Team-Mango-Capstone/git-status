@@ -24,7 +24,7 @@ function Home() {
 
   const [userData, setUserData] = useState([]);
   const [userRepos, setUserRepos] = useState([]);
-  const [dateState, setDateState] = useState("")
+  const [dateState, setDateState] = useState('');
   const githubUsername = localStorage.getItem('screenName');
 
   useEffect(() => {
@@ -47,11 +47,10 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    setInterval(() => setDateState(new Date()), 60000)
+    setInterval(() => setDateState(new Date()), 60000);
+  }, []);
 
-  }, [])
-
-  console.log("This is the dateState!!!!!!!", dateState);
+  console.log('This is the dateState!!!!!!!', dateState);
 
   return (
     <div className='home'>
@@ -68,11 +67,11 @@ function Home() {
           {rightAngleBrace}
         </h1>
         <div className='time'>
-          <h1>Day {dateState.toLocaleDateString("en-US")} / Time {dateState.toLocaleTimeString("en-US", {
+          {/* <h1>Day {dateState.toLocaleDateString("en-US")} / Time {dateState.toLocaleTimeString("en-US", {
             hour: 'numeric',
             minute: 'numeric',
             hour12: true,
-          })}</h1>
+          })}</h1> */}
         </div>
       </div>
       <div className='home-cards'>
@@ -84,9 +83,9 @@ function Home() {
         {/* <MostProductive userRepos={userRepos}/> */}
         <div className='bottom-charts'>
           <Profile userData={userData} />
+          <Activity />
           <TopRepo />
           <TopLanguages userRepos={userRepos} />
-          <Activity />
         </div>
       </div>
     </div>

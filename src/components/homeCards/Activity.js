@@ -17,7 +17,7 @@ export function Activity() {
     const { data } = await axios.get(
       `https://api.github.com/users/${screenName}/events`
     );
-    setYourEvents(data);
+    setYourEvents(data.slice(0, 20));
   };
 
   const getOthersEvents = async () => {
@@ -32,16 +32,29 @@ export function Activity() {
 
   return (
     <div className='activity'>
-      <h3>Activity</h3>
-
-      {yourEvents.map((event) => (
-        <div className='events' key={event.id}>
-          <p>{event.type}</p>
-          <p>{event.repo.name}</p>
-          <p>{event.created_at.slice(0, 10)}</p>
-          <hr />
+      <div className='activity-tab'>
+        <h1>Activity</h1>
+        <div className='activity-toggle'>
+          <button className='activity-btn'>
+            <h4>Yours</h4>
+          </button>
+          <button className='activity-btn'>
+            <h4>Others</h4>
+          </button>
         </div>
-      ))}
+      </div>
+      <div className='your-events'>
+        {yourEvents.map((event) => (
+          <div className='event' key={event.id}>
+            <div className='event-day'>
+              <h2>{event.type.match(/[A-Z][a-z]+|[0-9]+/g).join(' ')}</h2>
+              <h2>{event.created_at.slice(0, 10)}</h2>
+            </div>
+            <p>{event.repo.name}</p>
+            {event === yourEvents[yourEvents.length - 1] ? <div /> : <hr />}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -15,11 +15,11 @@ export function UserLifespan(props) {
 
   return (
     <div className='total-days'>
-      <h3>
+      <p>
         You have been a GitHub user for: <br />{' '}
         <span style={spanStyle}>{totalYears}</span> {year} and{' '}
         <span style={spanStyle}>{remainderDays}</span> {days}
-      </h3>
+      </p>
     </div>
   );
 }

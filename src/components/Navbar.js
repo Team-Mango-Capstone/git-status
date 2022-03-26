@@ -11,6 +11,9 @@ function Navbar() {
       </Link>
       <div className='links'>
         <h2>
+          <Link to='/'>
+            <span>Home</span>
+          </Link>
           <Link to='/repos'>
             <span>Repositories</span>
           </Link>

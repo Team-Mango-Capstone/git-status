@@ -85,8 +85,9 @@ export const toggleComplete = async (goal) => {
   // up the userBadges id somewhere and store on state
 };
 export const handleDelete = async (id) => {
-  await deleteDoc(
-    doc(db, 'allUsers', uid, 'userGoals', id)
+  await updateDoc(
+    doc(db, 'allUsers', uid, 'userGoals', id),
+    { deleted: true }
   );
   // await deleteDoc(
   //   doc(db, 'allUsers', uid, 'userBadges', id)

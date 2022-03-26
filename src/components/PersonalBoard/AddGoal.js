@@ -19,17 +19,24 @@ function AddGoal({ closeModal }) {
           window.localStorage.getItem('uid'),
           'userGoals'
         ),
-        { title, description, deadline, goalProgress: 0, completed: false }
+        { 
+          title,
+          description,
+          deadline,
+          goalProgress: 0,
+          completed: false,
+          deleted: false,
+        }
       );
-      await addDoc(
-        collection(
-          db,
-          'allUsers',
-          window.localStorage.getItem('uid'),
-          'userBagdes'
-        ),
-        { earned: false, title }
-      );
+      // await addDoc(
+      //   collection(
+      //     db,
+      //     'allUsers',
+      //     window.localStorage.getItem('uid'),
+      //     'userBagdes'
+      //   ),
+      //   { earned: false, title }
+      // );
       setDescription('');
       setTitle('');
       setDeadline('');

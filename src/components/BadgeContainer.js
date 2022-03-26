@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../db/Firebase';
 import { query, collection, where, onSnapshot } from 'firebase/firestore';
+import '../css/Badges.css';
+import { BadgeHover } from './BadgeHover';
 
 export const BadgeContainer = () => {
   // query firestore to get all of the user's goals that are marked 'completed === true'
   const [completedGoals, setCompletedGoals] = useState([]);
+  const [hover, setHover] = useState(false);
   const uid = window.localStorage.getItem('uid');
 
    useEffect(() => {
@@ -40,11 +43,26 @@ export const BadgeContainer = () => {
 
   console.log('completedGoals >>>>', completedGoals)
 
+  const onHover = () => {
+      console.log('onHover!!!')
+      setHover(true);
+  };
+
+  const onLeave = () => {
+    console.log('onLeave!!!')
+      setHover(false);
+  };
+
   return (
       <div className='badges-container'>
           {completedGoals.map ((goal) => {
               return (
-                  <div id={goal.id}>&#11088;</div>
+                <div>
+                  <div key={completedGoals.indexOf(goal)} className='badge' onMouseEnter={onHover} onMouseLeave={onLeave}></div>
+                  <div>
+                      { hover ? <BadgeHover/> : ''}
+                  </div>
+                </div>
               )
           })}
       </div>

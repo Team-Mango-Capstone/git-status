@@ -1,0 +1,9 @@
+.badges-container {
+    display: flex;
+}
+
+.badge::after {
+    content: "\2B50";
+    font-size: 30px;
+    padding: 0px 10px;
+}

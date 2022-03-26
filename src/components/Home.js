@@ -46,11 +46,11 @@ function Home() {
     makeRequest();
   }, []);
 
-  useEffect(() => {
-    setInterval(() => setDateState(new Date()), 60000);
-  }, []);
+  // useEffect(() => {
+  //   setInterval(() => setDateState(new Date()), 1000);
+  // }, []);
 
-  console.log('This is the dateState!!!!!!!', dateState);
+  // console.log('This is the dateState!!!!!!!', dateState);
 
   return (
     <div className='home'>
@@ -66,21 +66,13 @@ function Home() {
           {closeText}
           {rightAngleBrace}
         </h1>
-        <div className='time'>
-          {/* <h1>Day {dateState.toLocaleDateString("en-US")} / Time {dateState.toLocaleTimeString("en-US", {
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true,
-          })}</h1> */}
-        </div>
+        {/* <h2>{dateState.toLocaleString()}</h2> */}
       </div>
       <div className='home-cards'>
         <div className='timeline'>
           <h1>Your Timeline</h1>
         </div>
         {/* <Timeline /> */}
-
-        {/* <MostProductive userRepos={userRepos}/> */}
         <div className='bottom-charts'>
           <Profile userData={userData} />
           <Activity />

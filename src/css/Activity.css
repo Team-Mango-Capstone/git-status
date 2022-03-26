@@ -27,11 +27,34 @@
   border: 1px solid #8c959e;
   background-color: #343c41;
 }
+
+.activity-btn:active {
+  outline: none;
+}
+
+.activity-btn-active {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  color: #fafafa;
+  border: 1px solid #8c959e;
+  background-color: #343c41;
+  border-radius: 10px;
+}
+
+.activity-btn-active:focus {
+  outline: none;
+}
+
 .your-events {
   width: 34rem;
   height: 35rem;
   padding-right: 1rem;
   overflow: auto;
+}
+
+.no-activity {
+  margin-top: 50%;
+  text-align: center;
 }
 
 .your-events hr {
@@ -44,18 +67,25 @@
 .event-day {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0.5rem 0rem;
 }
 
-.event-day h2:first-of-type {
+.event-day h2 {
   color: #58a6ff;
 }
 
-.event-day h2:nth-of-type(2) {
+.event-day h3 {
   margin-right: 1rem;
+  color: #8b949e;
 }
 
 .event p {
   font-size: 1.2rem;
   margin-top: 0.8rem;
+}
+
+.event p:first-child {
+  margin-bottom: 0.8rem;
+  font-weight: bolder;
 }

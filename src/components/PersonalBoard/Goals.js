@@ -54,8 +54,11 @@ function Goals() {
   }, []);
 
   const PER_PAGE = 6;
-  const count = Math.ceil(currentGoals.length / PER_PAGE);
-  const _DATA = usePagination(currentGoals, PER_PAGE);
+  const countCurrent = Math.ceil(currentGoals.length / PER_PAGE);
+  const countCompleted = Math.ceil(completedGoals.length / PER_PAGE);
+
+  const DATA_CURRENT = usePagination(currentGoals, PER_PAGE);
+  const DATA_COMPLETED = usePagination(completedGoals, PER_PAGE);
 
   return (
     <div className='goals'>
@@ -82,7 +85,7 @@ function Goals() {
       {openModal && <AddGoal closeModal={setOpenModal} />}
       <div className={openModal === true ? 'goal-hover' : 'goal-container'}>
         {status
-          ? _DATA
+          ? DATA_CURRENT
               .currentData()
               .map((goal) => (
                 <SingleGoalCard
@@ -96,7 +99,7 @@ function Goals() {
                   handleEditProgress={handleEditProgress}
                 />
               ))
-          : completedGoals.map((goal) => (
+          : DATA_COMPLETED.currentData().map((goal) => (
               <SingleGoalCard
                 key={goal.id}
                 goal={goal}
@@ -108,17 +111,20 @@ function Goals() {
                 handleEditProgress={handleEditProgress}
               />
             ))}
-      </div>
-      {/* <Insights /> */}
       <PaginationGoals
         completedGoals={completedGoals}
         currentGoals={currentGoals}
-        _DATA={_DATA}
-        count={count}
+        DATA_CURRENT={DATA_CURRENT}
+        DATA_COMPLETED={DATA_COMPLETED}
+        countCurrent={countCurrent}
+        countCompleted={countCompleted}
         page={page}
         setPage={setPage}
+        status={status}
         PER_PAGE={PER_PAGE}
       />
+      </div>
+      {/* <Insights /> */}
     </div>
   );
 }

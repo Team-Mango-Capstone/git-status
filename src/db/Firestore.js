@@ -72,6 +72,8 @@ export const toggleComplete = async (goal) => {
     { completed: !goal.completed }
   );
 };
+
+
 export const handleDelete = async (id) => {
   await deleteDoc(
     doc(db, 'allUsers', uid, 'userGoals', id)

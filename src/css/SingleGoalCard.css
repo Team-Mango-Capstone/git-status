@@ -1,18 +1,20 @@
 :root {
-  --background: #303438;
+  --background: #191e25;
+  --border:  1px solid #30363d;
   --color: #4e5358;
-  --card-width: 230px;
+  --card-width: 210px;
 }
 .single-goal-card {
   display: flex;
   flex-direction: column;
-  height: 300px;
+  height: 290px;
   width: var(--card-width);
   margin-top: 10px;
   margin-bottom: 20px;
   padding: 1.5%;
   border-radius: 20px;
   background-color: var(--background);
+  border: var(--border);
 }
 
 .single-goal-card input {
@@ -22,7 +24,7 @@
 
 .goal-desc-input{
   margin-top: 10px;
-  min-height: 70px;
+  min-height: 50px;
   max-width: var(--card-width);
   min-width: var(--card-width);
   background-color: var(--color);

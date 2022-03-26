@@ -1,5 +1,7 @@
 import '../../css/Goals.css';
 import SingleGoalCard from './SingleGoalCard';
+import DonutChart from './Goals-Charts/DonutChart'
+import BarChart from './Goals-Charts/BarChart'
 import AddGoal from './AddGoal';
 import { useState, useEffect } from 'react';
 import { db } from '../../db/Firebase';
@@ -61,6 +63,7 @@ function Goals() {
   const DATA_COMPLETED = usePagination(completedGoals, PER_PAGE);
 
   return (
+    <div className='goals-container'>
     <div className='goals'>
       <div className='status-bar'>
         <button
@@ -124,7 +127,24 @@ function Goals() {
         PER_PAGE={PER_PAGE}
       />
       </div>
-      {/* <Insights /> */}
+    </div >
+
+    <div className='todo-list'>
+    <div className='status-bar'>
+        <button
+          className={'status-btn-active'}
+        >
+          <h4>Tasks</h4>
+        </button>
+      </div>
+    </div>
+    
+    <div className='charts-container'>
+    <DonutChart completedGoals={completedGoals} currentGoals={currentGoals}/>
+    
+    <BarChart />
+    </div>
+   
     </div>
   );
 }

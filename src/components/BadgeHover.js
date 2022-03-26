@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const BadgeHover = () => {
+export const BadgeHover = (props) => {
     return (
-        <div>Here is my BadgeHover component :)</div>
+        <div>Goal completed: {props.goalName}</div>
     );
 };

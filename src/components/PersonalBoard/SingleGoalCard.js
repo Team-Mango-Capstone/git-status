@@ -1,9 +1,10 @@
 import '../../css/SingleGoalCard.css';
-import { useState, useContext } from 'react';
+import { useState, useContext} from 'react';
 import FormControl from 'react-bootstrap/FormControl';
 import { GlobalContext } from '../../context/GlobalState';
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 import RangeSlider from 'react-bootstrap-range-slider';
+
 
 // delete and edit buttons inside single goal card
 const SingleGoalCard = ({
@@ -47,10 +48,13 @@ const SingleGoalCard = ({
       setNewTitle(e.target.value);
     }
   };
+
 // let resultFromContext = useContext(GlobalContext)
-// console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
+// console.log('MY RESULTS FROM CONTEXT API',resultFromContext.count)
+
   return (
     <div className='single-goal-card'>
+   
       <div className='goals-top-container'>
         <button
           className='goal-btn-delete'

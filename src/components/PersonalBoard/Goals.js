@@ -1,5 +1,7 @@
 import '../../css/Goals.css';
 import SingleGoalCard from './SingleGoalCard';
+import DonutChart from './Goals-Charts/DonutChart'
+import BarChart from './Goals-Charts/BarChart'
 import AddGoal from './AddGoal';
 import { useState, useEffect } from 'react';
 import { db } from '../../db/Firebase';
@@ -54,10 +56,14 @@ function Goals() {
   }, []);
 
   const PER_PAGE = 6;
-  const count = Math.ceil(currentGoals.length / PER_PAGE);
-  const _DATA = usePagination(currentGoals, PER_PAGE);
+  const countCurrent = Math.ceil(currentGoals.length / PER_PAGE);
+  const countCompleted = Math.ceil(completedGoals.length / PER_PAGE);
+
+  const DATA_CURRENT = usePagination(currentGoals, PER_PAGE);
+  const DATA_COMPLETED = usePagination(completedGoals, PER_PAGE);
 
   return (
+    <div className='goals-container'>
     <div className='goals'>
       <div className='status-bar'>
         <button
@@ -82,7 +88,7 @@ function Goals() {
       {openModal && <AddGoal closeModal={setOpenModal} />}
       <div className={openModal === true ? 'goal-hover' : 'goal-container'}>
         {status
-          ? _DATA
+          ? DATA_CURRENT
               .currentData()
               .map((goal) => (
                 <SingleGoalCard
@@ -96,7 +102,7 @@ function Goals() {
                   handleEditProgress={handleEditProgress}
                 />
               ))
-          : completedGoals.map((goal) => (
+          : DATA_COMPLETED.currentData().map((goal) => (
               <SingleGoalCard
                 key={goal.id}
                 goal={goal}
@@ -108,17 +114,37 @@ function Goals() {
                 handleEditProgress={handleEditProgress}
               />
             ))}
-      </div>
-      {/* <Insights /> */}
       <PaginationGoals
         completedGoals={completedGoals}
         currentGoals={currentGoals}
-        _DATA={_DATA}
-        count={count}
+        DATA_CURRENT={DATA_CURRENT}
+        DATA_COMPLETED={DATA_COMPLETED}
+        countCurrent={countCurrent}
+        countCompleted={countCompleted}
         page={page}
         setPage={setPage}
+        status={status}
         PER_PAGE={PER_PAGE}
       />
+      </div>
+    </div >
+
+    <div className='todo-list'>
+    <div className='status-bar'>
+        <button
+          className={'status-btn-active'}
+        >
+          <h4>Tasks</h4>
+        </button>
+      </div>
+    </div>
+    
+    <div className='charts-container'>
+    <DonutChart completedGoals={completedGoals} currentGoals={currentGoals}/>
+    
+    <BarChart />
+    </div>
+   
     </div>
   );
 }

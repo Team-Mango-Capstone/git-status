@@ -69,6 +69,8 @@ function SingleRepo(props) {
     return { "totalAdditions": totalAdditions, "totalDeletions": totalDeletions, "totalCount": totalCount, "avgAdditions": Math.round(totalAdditions / totalCount), "avgDeletions": Math.round(totalDeletions / totalCount) }
   }
 
+  console.log("Repo Data ", repo)
+
   function deleteClickHandler() {
     // let result = window.confirm("Are you sure you want to delete this repo?");
     // if (result) {

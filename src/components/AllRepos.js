@@ -88,16 +88,20 @@ function AllRepos() {
       </div>
 
       <br />
-      <div className='all-repos-container'>
-        {isLoading ? (
-          // text renders but not the spinner lol
-          loading
-        ) : repos.length === 0 ? (
+      {isLoading ? (
+        // text renders but not the spinner lol
+        loading
+      ) : repos.length === 0 ? (
+        <div className='all-repos-container'>
           <div>You have no repos!</div>
-        ) : (
-          renderFilteredRepos().map((repo) => (
+        </div>
+      ) : (
+        <div className='all-repos-container'>
+          {renderFilteredRepos().map((repo) => (
             <div className='single-repo-card' key={repo.id}>
-              <Link to={`/repos/${repo.name}`}><h2>{repo.name}</h2></Link>
+              <Link to={`/repos/${repo.name}`}>
+                <h2>{repo.name}</h2>
+              </Link>
 
               <hr />
 
@@ -113,9 +117,9 @@ function AllRepos() {
                 </div>
               )}
             </div>
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
       <div className='invisible' />
     </div>
   );

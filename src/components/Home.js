@@ -6,7 +6,7 @@ import { TopLanguages } from './homeCards/TopLanguages';
 import Timeline from './homeCards/Timeline';
 import { TopRepo } from './homeCards/TopRepo';
 import { Profile } from './homeCards/Profile';
-import { Notifications } from './homeCards/Notifications';
+import { Activity } from './homeCards/Activity';
 
 function Home() {
   const leftAngleBrace = (
@@ -24,6 +24,7 @@ function Home() {
 
   const [userData, setUserData] = useState([]);
   const [userRepos, setUserRepos] = useState([]);
+  const [dateState, setDateState] = useState("")
   const githubUsername = localStorage.getItem('screenName');
 
   useEffect(() => {
@@ -45,6 +46,13 @@ function Home() {
     makeRequest();
   }, []);
 
+  useEffect(() => {
+    setInterval(() => setDateState(new Date()), 60000)
+
+  }, [])
+
+  console.log("This is the dateState!!!!!!!", dateState);
+
   return (
     <div className='home'>
       <div className='welcome'>
@@ -60,7 +68,11 @@ function Home() {
           {rightAngleBrace}
         </h1>
         <div className='time'>
-          <h1>Day / Time</h1>
+          <h1>Day {dateState.toLocaleDateString("en-US")} / Time {dateState.toLocaleTimeString("en-US", {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+          })}</h1>
         </div>
       </div>
       <div className='home-cards'>
@@ -74,7 +86,7 @@ function Home() {
           <Profile userData={userData} />
           <TopRepo />
           <TopLanguages userRepos={userRepos} />
-          <Notifications />
+          <Activity />
         </div>
       </div>
     </div>

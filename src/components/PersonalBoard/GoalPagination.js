@@ -9,32 +9,31 @@ export function PaginationGoals({
   countCompleted,
   setPage,
   page,
-  status
+  status,
 }) {
-
   const handleChangeCurrent = (e, p) => {
     setPage(p);
     DATA_CURRENT.jump(p);
     console.log(p);
-    console.log(status)
+    console.log(status);
   };
 
   const handleChangeCompleted = (e, p) => {
     setPage(p);
     DATA_COMPLETED.jump(p);
     console.log(p);
-    console.log(status)
+    console.log(status);
   };
 
   return (
     <div className='pagination-container'>
-        <Pagination
-          count={status ?  countCurrent : countCompleted}
-          size='small'
-          page={page}
-          variant='outlined'
-          onChange={status ? handleChangeCurrent : handleChangeCompleted}
-        />
+      <Pagination
+        count={status ? countCurrent : countCompleted}
+        size='small'
+        page={page}
+        variant='outlined'
+        onChange={status ? handleChangeCurrent : handleChangeCompleted}
+      />
     </div>
   );
 }

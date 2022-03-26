@@ -4,6 +4,8 @@ import '../css/SingleRepoCard.css';
 import { useState, useEffect } from 'react';
 import { loading } from './Bootstrap-Elements';
 import { Link } from 'react-router-dom';
+import { usePagination, PaginationGoals } from './PersonalBoard/GoalPagination.js';// pagination
+
 // import SingleRepoCard from './SingleRepoCard';
 
 function AllRepos() {
@@ -26,6 +28,8 @@ function AllRepos() {
   const [repos, setRepos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState('last-updated');
+  let [page, setPage] = useState(1);//pagination
+
   // date created will compare the same as updated at
   // alphabetical will compare by name
   useEffect(() => {
@@ -43,7 +47,7 @@ function AllRepos() {
   };
 
   // calls the new updated state
-  useEffect(() => {}, [filter]);
+  useEffect(() => { }, [filter]);
 
   // changes the state but doesn't reflect the change inside yet
   const handleChangeFilter = (e) => {
@@ -60,6 +64,12 @@ function AllRepos() {
       return repos.sort((a, b) => b.updated_at.localeCompare(a.updated_at));
     }
   };
+
+  //pagination stuff added below 
+  const PER_PAGE = 20;
+  const count = Math.ceil(repos.length / PER_PAGE);
+  const _DATA = usePagination(renderFilteredRepos(), PER_PAGE);
+  ///////////////////////////////////////////////
 
   return (
     <div className='all-repos'>
@@ -87,6 +97,16 @@ function AllRepos() {
         </div>
       </div>
 
+      {/* PAGINATION STUFF */}
+      <PaginationGoals
+        _DATA={_DATA}
+        count={count}
+        page={page}
+        setPage={setPage}
+        PER_PAGE={PER_PAGE}
+      />
+
+      {/*  */}
       <br />
       <div className='all-repos-container'>
         {isLoading ? (
@@ -95,7 +115,7 @@ function AllRepos() {
         ) : repos.length === 0 ? (
           <div>You have no repos!</div>
         ) : (
-          renderFilteredRepos().map((repo) => (
+          _DATA.currentData().map((repo) => (
             <div className='single-repo-card' key={repo.id}>
               <Link to={`/repos/${repo.name}`}><h2>{repo.name}</h2></Link>
 

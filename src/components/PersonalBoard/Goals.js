@@ -83,20 +83,8 @@ function Goals() {
       <div className={openModal === true ? 'goal-hover' : 'goal-container'}>
         {status
           ? _DATA
-              .currentData()
-              .map((goal) => (
-                <SingleGoalCard
-                  key={goal.id}
-                  goal={goal}
-                  toggleComplete={toggleComplete}
-                  handleDelete={handleDelete}
-                  handleEditDesc={handleEditDesc}
-                  handleEditDeadline={handleEditDeadline}
-                  handleEditTitle={handleEditTitle}
-                  handleEditProgress={handleEditProgress}
-                />
-              ))
-          : completedGoals.map((goal) => (
+            .currentData()
+            .map((goal) => (
               <SingleGoalCard
                 key={goal.id}
                 goal={goal}
@@ -107,7 +95,19 @@ function Goals() {
                 handleEditTitle={handleEditTitle}
                 handleEditProgress={handleEditProgress}
               />
-            ))}
+            ))
+          : completedGoals.map((goal) => (
+            <SingleGoalCard
+              key={goal.id}
+              goal={goal}
+              toggleComplete={toggleComplete}
+              handleDelete={handleDelete}
+              handleEditDesc={handleEditDesc}
+              handleEditDeadline={handleEditDeadline}
+              handleEditTitle={handleEditTitle}
+              handleEditProgress={handleEditProgress}
+            />
+          ))}
       </div>
       {/* <Insights /> */}
       <PaginationGoals

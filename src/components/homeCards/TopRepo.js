@@ -17,6 +17,7 @@ export const TopRepo = () => {
     uniques: 0,
   });
   const [topRepo, setTopRepo] = useState({})
+  // Sarina the topRepo object in the local state is the single repo's information that you need. 
 
   useEffect(() => {
     const findTopRepo = async () => {

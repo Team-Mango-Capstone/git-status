@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/Navbar.css';
 import { signOutGithub} from '../db/Firebase';
 import { Link } from 'react-router-dom';
+import { BadgeContainer } from './BadgeContainer';
 
 function Navbar() {
   return (
@@ -9,9 +10,10 @@ function Navbar() {
       <Link to='/'>
         <img src='/github.png' alt='' />
       </Link>
-      <div className='badges-container'>
+      {/* <div className='badges-container'>
         This is the badges container...
-      </div>
+      </div> */}
+      <BadgeContainer />
       <div className='links'>
         <h2>
           <Link to='/repos'>

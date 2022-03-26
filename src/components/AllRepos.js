@@ -4,7 +4,7 @@ import '../css/SingleRepoCard.css';
 import { useState, useEffect } from 'react';
 import { loading } from './Bootstrap-Elements';
 import { Link } from 'react-router-dom';
-import { usePagination, PaginationGoals } from './PersonalBoard/GoalPagination.js';// pagination
+import { usePagination, AllReposPagination } from './AllReposPagination.js';// pagination
 
 // import SingleRepoCard from './SingleRepoCard';
 
@@ -66,7 +66,7 @@ function AllRepos() {
   };
 
   //pagination stuff added below 
-  const PER_PAGE = 20;
+  const PER_PAGE = 25;
   const count = Math.ceil(repos.length / PER_PAGE);
   const _DATA = usePagination(renderFilteredRepos(), PER_PAGE);
   ///////////////////////////////////////////////
@@ -98,15 +98,15 @@ function AllRepos() {
       </div>
 
       {/* PAGINATION STUFF */}
-      <PaginationGoals
+      <AllReposPagination
         _DATA={_DATA}
         count={count}
         page={page}
         setPage={setPage}
         PER_PAGE={PER_PAGE}
       />
-
       {/*  */}
+
       <br />
       <div className='all-repos-container'>
         {isLoading ? (

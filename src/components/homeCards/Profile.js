@@ -5,7 +5,6 @@ import { UserLifespan } from './UserLifespan';
 export function Profile(props) {
   const user = props.userData;
   const spanStyle = { color: '#58a6ff' };
-  console.log(user);
 
   return (
     <div className='profile'>

@@ -12,11 +12,11 @@ ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
 
 export const options = {
   scales: {
-    // x: [{
+    // xAxis: [{
     //     type: 'time',
     //     time: {
     //         displayFormats: {
-    //             day: 'MMM D'
+    //             day: 'MMM Do YYYY'
     //         }
     //     }
     // }],
@@ -33,20 +33,20 @@ export const data = {
       label: "Dummy data",
       data: [
         {
-        //   x: 'Mar 1',
-          x: 3,
+          x: 'Mar 01 2022',
+          // x: 3,
           y: 0,
           r: 11,
         },
         {
-        //   x: 'Mar 8',
-          x: 8,
+          x: 'Mar 08 2022',
+          // x: 8,
           y: 0,
           r: 7,
         },
         {
-        //   x: 'Mar 15',
-          x: 6,
+          x: 'Mar 15 2022',
+          // x: 6,
           y: 0,
           r: 14,
         },

@@ -72,7 +72,7 @@ export default function Timeline() {
 
   const dataForChart = prepDataForChart(compileRawData(chartData));
 
-  const testData = dataForChart.slice(50);
+  const testData = dataForChart.slice(25);
 
   console.log('TEST DATA >>>', testData);
 

@@ -7,7 +7,6 @@ import RangeSlider from "react-bootstrap-range-slider";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../db/Firebase";
 
-
 // delete and edit buttons inside single goal card
 const SingleGoalCard = ({
   goal,
@@ -95,8 +94,9 @@ const SingleGoalCard = ({
         <button
           className="goal-btn-complete"
           onClick={() => {
-            toggleComplete(goal);
-            setOpenModal(!openModal);
+            if (!goal.completed) {
+              setOpenModal(!openModal);
+            } else toggleComplete(goal);
           }}
         >
           <i className="bi bi-check-circle-fill"></i>
@@ -104,10 +104,18 @@ const SingleGoalCard = ({
         {openModal ? (
           <div className="badge-modal">
             <div className="badge-modal-content">
-              <span className="close-badge-modal" onClick={() => setOpenModal(false)}>
+              <span
+                className="close-badge-modal"
+                onClick={() => {
+                  toggleComplete(goal);
+                  setOpenModal(false);
+                }}
+              >
                 &times;
               </span>
-              <p>Some text in the Modal..</p>
+              <p className="modal-text">
+                Congrats on completing your goal! You've earned a new badge.
+              </p>
             </div>
           </div>
         ) : null}

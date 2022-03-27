@@ -6,7 +6,6 @@ import { faAward } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const BadgeContainer = () => {
-  // query firestore to get all of the user's goals that are marked 'completed === true'
   const [completedGoals, setCompletedGoals] = useState([]);
   const uid = window.localStorage.getItem("uid");
 
@@ -25,8 +24,6 @@ export const BadgeContainer = () => {
     });
 
   }, []);
-
-  console.log("completedGoals >>>>", completedGoals);
 
   return (
     <div className="badges-container">

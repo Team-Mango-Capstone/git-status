@@ -17,6 +17,8 @@ export default function TimelineChart(props) {
   console.log("PROPS >>>", props.chartData)
 
 const options = {
+  responsive: true,
+  maintainAspectRatio: false,
   scales: {
     // x: {
     //   type: 'time',
@@ -54,7 +56,7 @@ console.log('TIMELINE DATA >>>>', timelineData)
 const data = {
   datasets: [
     {
-      label: "Your commits",
+      label: "Your contributions",
       data: timelineData,
       // [
       //   {
@@ -94,8 +96,8 @@ const data = {
     // }, []);
 
   return (
-    <div>
-      <Bubble data={data} options={options} />
+    <div className='timeline-container'>
+      <Bubble data={data} options={options} id='bubble-chart'/>
     </div>
   );
 };

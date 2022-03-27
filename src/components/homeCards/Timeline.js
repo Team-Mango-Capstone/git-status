@@ -80,7 +80,6 @@ export default function Timeline() {
     <div>
       You have made {useableData.totalContributions} contributions in the past
       year.
-      {/* <canvas id="timeline"></canvas> */}
       <TimelineChart chartData={testData}/>
     </div>
   );

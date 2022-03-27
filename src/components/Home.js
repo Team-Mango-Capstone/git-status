@@ -66,8 +66,8 @@ function Home() {
       <div className='home-cards'>
         <div className='timeline'>
           <h1>Your Timeline</h1>
-        </div>
         <Timeline />
+        </div>
 
         {/* <MostProductive userRepos={userRepos}/> */}
         <div className='bottom-charts'>

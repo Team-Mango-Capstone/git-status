@@ -5,12 +5,15 @@ import {
   PointElement,
   Tooltip,
   Legend,
+  TimeScale,
 } from "chart.js";
 import { Bubble } from "react-chartjs-2";
-// import 'chartjs-adapter-date-fns';
+import 'chartjs-adapter-date-fns';
+import { format } from 'date-fns';
+// import { en-US } from 'date-fns/locale';
 
 
-ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
+ChartJS.register(LinearScale, PointElement, Tooltip, Legend, TimeScale);
 
 
 export default function TimelineChart(props) {
@@ -20,15 +23,14 @@ const options = {
   responsive: true,
   maintainAspectRatio: false,
   scales: {
-    // x: {
-    //   type: 'time',
-    //   time: {
-    //       unit: 'day',
-    //       displayFormats: {
-    //         week: 'LLL do yyyy'
-    //       }
-    //   }
-    // },
+    x: {
+      type: 'time',
+      time: {
+          displayFormats: {
+            day: 'MMM Do yyyy'
+          },
+      },
+    },
     // xAxes: [{
     //   type: 'time',
     //   time: {
@@ -55,6 +57,10 @@ const timelineData = props.chartData.map((element) => {
   let dateElements = element.x.split('-')
 
   return {...element, x: Date.UTC(dateElements[0], dateElements[1], dateElements[2])}
+  // return {
+  //   ...element,
+  //   x: format(new Date(dateElements[0], dateElements[1], dateElements[2]), 'MM/dd/yyyy')
+  // };
 });
 
 console.log('TIMELINE DATA >>>>', timelineData)

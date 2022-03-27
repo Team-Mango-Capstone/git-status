@@ -74,7 +74,7 @@ export default function Timeline() {
 
   const testData = dataForChart.slice(25);
 
-  console.log('TEST DATA >>>', testData);
+  console.log('TEST DATA >>>', dataForChart);
 
   return (
     <div>
@@ -82,7 +82,7 @@ export default function Timeline() {
       You made {useableData.totalContributions} contributions in the past
       year.
       </h2>
-      <TimelineChart chartData={testData}/>
+      <TimelineChart chartData={dataForChart}/>
     </div>
   );
 }

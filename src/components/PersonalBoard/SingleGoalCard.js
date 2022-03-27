@@ -58,7 +58,7 @@ const SingleGoalCard = ({
       <div className='goals-top-container'>
         <button
           className='goal-btn-delete'
-          onClick={() => handleDelete(goal.id)}
+          onClick={() => handleDelete('userGoals', goal.id)}
         >
           <i className='bi bi-x-circle-fill'></i>
         </button>
@@ -66,10 +66,10 @@ const SingleGoalCard = ({
         <button
           className='button-edit'
           onClick={() => {
-            handleEditDesc(goal, newDescription);
-            handleEditTitle(goal, newTitle);
-            handleEditDeadline(goal, newDeadline);
-            handleEditProgress(goal, progress)
+            handleEditDesc('userGoals', goal, newDescription);
+            handleEditTitle('userGoals',goal, newTitle);
+            handleEditDeadline('userGoals', goal, newDeadline);
+            handleEditProgress('userGoals',goal, progress)
           }}
         >  
           {newTitle !== goal.title || progress !== goal.goalProgress || newDescription !== goal.description || newDeadline !== goal.deadline ? 'Save Changes' : 'Edit'}
@@ -88,7 +88,7 @@ const SingleGoalCard = ({
         />
         <button
           className='goal-btn-complete'
-          onClick={() => toggleComplete(goal)}
+          onClick={() => toggleComplete('userGoals',goal)}
         >
           <i className='bi bi-check-circle-fill'></i>
         </button>

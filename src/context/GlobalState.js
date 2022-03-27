@@ -1,5 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { db } from '../db/Firebase';
+import { onSnapshot, query, collection, where } from 'firebase/firestore';
 
 export const GlobalContext = createContext({});
 
@@ -7,6 +9,9 @@ export const GlobalProvider = (props) => {
     const [userData, setUserData] = useState([]);
     const [userRepos, setUserRepos] = useState([]);
     const githubUsername = localStorage.getItem('screenName');
+    const [currentGoals, setCurrentGoals] = useState([]);
+    const [completedGoals, setCompletedGoals] = useState([]);
+    const uid = window.localStorage.getItem('uid');
 
     useEffect(() => {
         const makeRequest = async () => {
@@ -62,10 +67,41 @@ export const GlobalProvider = (props) => {
 
     }, [userRepos.items]);
 
+    useEffect(() => {
+      const q = query(
+        collection(db, 'allUsers', uid, 'userGoals'),
+        where('completed', '==', false)
+      );
+      const fetchData = onSnapshot(q, (querySnapshot) => {
+        let goalsArray = [];
+        querySnapshot.forEach((doc) => {
+          goalsArray.push({ ...doc.data(), id: doc.id });
+        });
+        setCurrentGoals(goalsArray);
+      });
+  
+      const q2 = query(
+        collection(db, 'allUsers', uid, 'userGoals'),
+        where('completed', '==', true)
+      );
+      const fetchCompletedData = onSnapshot(q2, (querySnapshot) => {
+        let goalsArray = [];
+        querySnapshot.forEach((doc) => {
+          goalsArray.push({ ...doc.data(), id: doc.id });
+        });
+        setCompletedGoals(goalsArray);
+      });
+  
+      return () => {
+        fetchData();
+        fetchCompletedData();
+      };
+    }, []);
+
 
     return (
       <GlobalContext.Provider
-        value={{userRepos, userData, userLanguages}}
+        value={{userRepos, userData, userLanguages, currentGoals, completedGoals}}
       >
         {props.children}
       </GlobalContext.Provider>

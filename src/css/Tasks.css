@@ -1,0 +1,10 @@
+.task-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+  }
+
+.add-task-form {
+    margin-top: 19%;
+    margin-bottom: 5%;
+}

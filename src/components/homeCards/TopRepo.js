@@ -64,11 +64,20 @@ export const TopRepo = () => {
         `https://api.github.com/repos/${githubUsername}/${topRepo.name}/languages`
       );
       setTopRepoLanguages(data);
-      console.log(topRepoLanguages);
       setIsLoading(false);
     };
     getTopRepoLanguages();
   }, [topRepo]); // this should run everytime the topRepo is updated
+
+  const languageList = Object.entries(topRepoLanguages).map(([key, value]) => {
+    return (
+      <div className='top-repo-languages' key={value}>
+        <h3>
+          {key} : {value.toString()}
+        </h3>
+      </div>
+    );
+  });
 
   return (
     <div className='popular'>
@@ -83,14 +92,11 @@ export const TopRepo = () => {
           <h2>
             {topRepoStats.count} total views and {topRepoStats.uniques} uniques.
           </h2>
-          <p>Created at: {topRepo.created_at}</p>
-          <p>Forks: {topRepo.forks}</p>
-          <p>Stars: {topRepo.stargazers_count}</p>
-          <p>Watchers: {topRepo.watchers}</p>
-
-          {/* {topRepoLanguages.map((language) => (
-            <div className='top-repo-languages'>{language}</div>
-          ))} */}
+          <h3>Created at: {topRepo.created_at.slice(0, 10)}</h3>
+          <h3>Forks: {topRepo.forks}</h3>
+          <h3>Stars: {topRepo.stargazers_count}</h3>
+          <h3>Watchers: {topRepo.watchers}</h3>
+          {languageList}
         </div>
       )}
     </div>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { db } from "../db/Firebase";
 import { query, collection, where, onSnapshot } from "firebase/firestore";
 import "../css/Badges.css";
+import { faAward } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const BadgeContainer = () => {
   // query firestore to get all of the user's goals that are marked 'completed === true'
@@ -37,7 +39,7 @@ export const BadgeContainer = () => {
               className="badge"
               data-hover={hoverText}
             >                	
-              &#11088;
+              <FontAwesomeIcon icon={faAward} id='award-icon'/>
             </div>
         );
       })}

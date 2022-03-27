@@ -10,9 +10,6 @@ function Navbar() {
       <Link to='/'>
         <img src='/github.png' alt='' />
       </Link>
-      {/* <div className='badges-container'>
-        This is the badges container...
-      </div> */}
       <BadgeContainer />
       <div className='links'>
         <h2>

@@ -1,5 +1,7 @@
 .badges-container {
     display: flex;
+    position: absolute;
+    left: 100px;
 }
 
 .badge {
@@ -28,4 +30,11 @@
   .badge:hover:before {
     opacity: 1;
     visibility: visible;
+  }
+
+  #award-icon {
+    width: 25px;
+    height: auto;
+    padding-right: 1rem;
+    color: #58a6ff;
   }

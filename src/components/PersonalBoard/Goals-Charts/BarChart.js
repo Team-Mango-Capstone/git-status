@@ -101,7 +101,7 @@ export default function BarChart() {
 
   return (
     <div className="goals-bar-chart">
-    <button>Set commit target</button>
+    <button className='status-btn'>Set commit target</button>
     <input></input>
     <Bar
       type="bar"

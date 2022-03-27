@@ -13,7 +13,10 @@ function PersonalBoard() {
       <Tasks/>
       </div>
       <div className='charts-container'>
+      <h2>Status</h2>
         <DonutChart/>
+        <br/>
+        <br/>
         <BarChart />
       </div>
      

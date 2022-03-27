@@ -1,8 +1,5 @@
 import '../../css/Goals.css';
 import SingleGoalCard from './SingleGoalCard';
-import DonutChart from './Goals-Charts/DonutChart';
-import BarChart from './Goals-Charts/BarChart';
-import Tasks from './Tasks';
 import AddGoal from './AddGoal';
 import { useState, useContext } from 'react';
 import {
@@ -36,7 +33,12 @@ function Goals() {
   return (
     <div className='goals-container'>
       <div className='goals'>
+      <h5>My Goals</h5>  
+      <br/>
         <div className='status-bar'>
+        <button className='add-btn' onClick={() => setOpenModal(true)}>
+           +
+          </button>
           <button
             className={status ? 'status-btn-active' : 'status-btn'}
             onClick={() => setStatus(true)}
@@ -52,9 +54,7 @@ function Goals() {
           </button>
         </div>
         <div className='add-btn-container'>
-          <button className='add-btn' onClick={() => setOpenModal(true)}>
-            Add Goal
-          </button>
+        
         </div>
         {openModal && <AddGoal closeModal={setOpenModal} />}
         <div className={openModal === true ? 'goal-hover' : 'goal-container'}>

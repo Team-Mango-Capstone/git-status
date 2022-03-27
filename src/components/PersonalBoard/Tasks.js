@@ -1,17 +1,21 @@
+import '../../css/Tasks.css';
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { db } from '../../db/Firebase';
 import { onSnapshot, query, addDoc, collection } from 'firebase/firestore';
 import {
   toggleComplete,
-  handleEditDesc,
+  handleEditTitle,
   handleDelete,
 } from '../../db/Firestore';
 import SingleTaskCard from './SingleTaskCard';
+import { GlobalContext } from '../../context/GlobalState';
 
 function Tasks() {
-  const [tasks, setTasks] = useState([]);
+  // const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
+  const { tasks } = useContext(GlobalContext);
+  console.log(tasks)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,40 +27,18 @@ function Tasks() {
         window.localStorage.getItem('uid'),
         'userTasks'
       ),
-      { title }
+      { title, completed: false }
     );
     setTitle('');
   };
 
-  useEffect(() => {
-    const q = query(
-      collection(
-        db,
-        'allUsers',
-        window.localStorage.getItem('uid'),
-        'userTasks'
-      )
-    );
-    const fetchData = onSnapshot(q, (querySnapshot) => {
-      let tasksArray = [];
-      querySnapshot.forEach((doc) => {
-        tasksArray.push({ ...doc.data(), id: doc.id });
-      });
-      setTasks(tasksArray);
-    });
-    return () => fetchData();
-  }, []);
-
   return (
     <div>
       <div className='task-title'>
-      <button className={'status-btn-active'}>
-        <h4>Tasks</h4>
-      </button>
+        <h2>Today's Tasks</h2>
       </div>
     
       <form className='add-task-form' onSubmit={handleSubmit}>
-        <button> add task</button>
         <input
           type='text'
           placeholder='Enter task...'
@@ -66,7 +48,7 @@ function Tasks() {
           }}
         />
       </form>
-      <div className='goal_container'>
+      <div className='task-container'>
         {tasks.map((task) => (
           <SingleTaskCard
             key={task.id}
@@ -74,7 +56,7 @@ function Tasks() {
             handleSubmit={handleSubmit}
             toggleComplete={toggleComplete}
             handleDelete={handleDelete}
-            handleEditDesc={handleEditDesc}
+            handleEditTitle={handleEditTitle}
           />
         ))}
       </div>

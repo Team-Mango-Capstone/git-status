@@ -55,7 +55,7 @@ export const handleEditProgress = async (collection, item, goalProgress) => {
       collection,
       item.id
     ),
-    { goalProgress }
+    { goalProgress: goalProgress }
   ); 
 };
 

@@ -7,11 +7,11 @@ function SingleTaskCard({
   task,
   toggleComplete,
   handleDelete,
-  handleEditDesc,
+  handleEditTitle,
 }) {
   const [newTitle, setNewTitle] = useState(task.title);
 
-  const handleChangeDesc = (e) => {
+  const handleChangeTitle = (e) => {
     e.preventDefault();
     if (task.completed === true) {
       setNewTitle(task.title);
@@ -20,40 +20,40 @@ function SingleTaskCard({
       setNewTitle(e.target.value);
     }
   };
-
+  console.log(newTitle)
   return (
-    <div className=''>
+    <div className='tasks'>
       <input
-        className=''
+        className='task-input'
         style={{ textDecoration: task.completed && 'line-through' }}
         type='text'
         value={task.title === '' ? newTitle : task.title}
         onChange={(e) => {
-          handleChangeDesc(e);
+          handleChangeTitle(e);
         }}
       />
 
       <button
-        className='button-complete'
+        className='task-btn'
         onClick={() => toggleComplete('userTasks', task)}
       >
-        done
+        <i className="bi bi-check-lg"></i>
       </button>
 
       <button
-        className=''
+        className='task-btn'
         onClick={() => {
-          handleEditDesc(task, newTitle);
+          handleEditTitle('userTasks',task, newTitle);
         }}
       >
-        edit
+        <i className="bi bi-pencil-square"></i>
       </button>
 
       <button
-        className='button-delete'
+        className='task-btn'
         onClick={() => handleDelete('userTasks', task.id)}
       >
-        X
+        <i className="bi bi-trash"></i>
       </button>
     </div>
   );

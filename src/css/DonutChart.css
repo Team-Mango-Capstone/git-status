@@ -1,8 +1,10 @@
 
 
 .donut {
-  /* width: 50%; */
+  width: 90%;
   /* display: flex;
   justify-content: center; */
+  text-align: center;
+  margin-top: 5%;
 }
 

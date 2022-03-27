@@ -2,7 +2,6 @@ import '../../css/Goals.css';
 import SingleGoalCard from './SingleGoalCard';
 import DonutChart from './Goals-Charts/DonutChart'
 import BarChart from './Goals-Charts/BarChart'
-import Tasks from './Tasks'
 import AddGoal from './AddGoal';
 import { useState, useEffect } from 'react';
 import { db } from '../../db/Firebase';
@@ -138,11 +137,11 @@ function Goals() {
           <h4>Tasks</h4>
         </button>
       </div>
-      <Tasks/>
     </div>
     
     <div className='charts-container'>
     <DonutChart completedGoals={completedGoals} currentGoals={currentGoals}/>
+    
     <BarChart />
     </div>
    

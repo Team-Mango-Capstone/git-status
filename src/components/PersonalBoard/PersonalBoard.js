@@ -5,7 +5,6 @@ import '../../css/PersonalBoard.css';
 function PersonalBoard() {
   return (
     <div>
-      
       <Goals />
     </div>
   );

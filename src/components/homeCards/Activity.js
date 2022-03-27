@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../css/Activity.css';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export function Activity() {
@@ -30,7 +29,7 @@ export function Activity() {
   return (
     <div className='activity'>
       <div className='activity-tab'>
-        <h1>Activity</h1>
+        <h2>Activity</h2>
         <div className='activity-toggle'>
           <button
             className={status ? 'activity-btn-active' : 'activity-btn'}

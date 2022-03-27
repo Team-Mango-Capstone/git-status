@@ -1,4 +1,6 @@
 .popular {
+  min-width: 23rem;
+  word-break: break-word;
   text-align: center;
-  line-height: 3rem;
+  line-height: 2.5rem;
 }

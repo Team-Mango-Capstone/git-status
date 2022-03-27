@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/Home.css';
-import { MostProductive } from './homeCards/MostProductive';
 import { TopLanguages } from './homeCards/TopLanguages';
 import Timeline from './homeCards/Timeline';
 import { TopRepo } from './homeCards/TopRepo';
@@ -46,11 +45,10 @@ function Home() {
     makeRequest();
   }, []);
 
+  // COMMENTED OUT bc this will keep spam the console lol
   // useEffect(() => {
   //   setInterval(() => setDateState(new Date()), 1000);
   // }, []);
-
-  // console.log('This is the dateState!!!!!!!', dateState);
 
   return (
     <div className='home'>
@@ -75,9 +73,9 @@ function Home() {
         {/* <Timeline /> */}
         <div className='bottom-charts'>
           <Profile userData={userData} />
-          <Activity />
           <TopRepo />
           <TopLanguages userRepos={userRepos} />
+          <Activity />
         </div>
       </div>
     </div>

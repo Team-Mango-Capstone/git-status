@@ -78,8 +78,10 @@ export default function Timeline() {
 
   return (
     <div>
-      You have made {useableData.totalContributions} contributions in the past
+      <h2>
+      You made {useableData.totalContributions} contributions in the past
       year.
+      </h2>
       <TimelineChart chartData={testData}/>
     </div>
   );

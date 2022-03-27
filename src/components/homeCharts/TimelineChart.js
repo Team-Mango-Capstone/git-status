@@ -37,11 +37,17 @@ const options = {
     //   }
     // }],
     y: {
-      // beginAtZero: true,
       display: false,
       min: -1,
       max: 1,
     },
+    // plugins: {
+    //   legend: {
+    //     title: {
+    //       display: false,
+    //     },
+    //   },
+    // },
   },
 };
 
@@ -58,32 +64,10 @@ const data = {
     {
       label: "Your contributions",
       data: timelineData,
-      // [
-      //   {
-      //     x: Date.UTC(2022, 3, 1),
-      //     // x: 3,
-      //     y: 0,
-      //     r: 11,
-      //   },
-      //   {
-      //     x: Date.UTC(2022, 3, 8),
-      //     // x: 8,
-      //     y: 0,
-      //     r: 7,
-      //   },
-      //   {
-      //     x: Date.UTC(2022, 3, 15),
-      //     // x: 6,
-      //     y: 0,
-      //     r: 14,
-      //   },
-      // ],
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
+      backgroundColor: "rgba(35, 134, 54, 0.5)",
     },
   ],
 };
-
-
 
     // useEffect(() => {
     //   const script = document.createElement('script');
@@ -97,7 +81,7 @@ const data = {
 
   return (
     <div className='timeline-container'>
-      <Bubble data={data} options={options} id='bubble-chart'/>
+      <Bubble data={data} options={options} />
     </div>
   );
 };

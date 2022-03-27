@@ -28,11 +28,18 @@ export default function TimelineChart(props) {
           },
           tooltipFormat: 'MMM dd yyyy'
         },
+        grid: {
+          // color: "rgba(200, 0, 0, 0)",
+          display: false,
+        },
       },
       y: {
         display: false,
         min: -1,
         max: 1,
+        grid: {
+          display: false,
+        },
       },
     },
   };

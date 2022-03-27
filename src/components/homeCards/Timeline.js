@@ -72,10 +72,6 @@ export default function Timeline() {
 
   const dataForChart = prepDataForChart(compileRawData(chartData));
 
-  const testData = dataForChart.slice(25);
-
-  console.log('TEST DATA >>>', dataForChart);
-
   return (
     <div>
       <h2>
@@ -85,4 +81,5 @@ export default function Timeline() {
       <TimelineChart chartData={dataForChart}/>
     </div>
   );
-}
+};
+

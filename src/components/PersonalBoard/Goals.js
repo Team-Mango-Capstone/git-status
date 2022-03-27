@@ -53,24 +53,6 @@ function Goals() {
     };
   }, []);
 
-  // const filterHelper = (obj) => {
-  //   console.log('OBJ >>>>>', obj)
-  //   if (obj.deleted === false) {
-  //     return (
-  //       <SingleGoalCard
-  //         key={obj.id}
-  //         goal={obj}
-  //         toggleComplete={toggleComplete}
-  //         handleDelete={handleDelete}
-  //         handleEditDesc={handleEditDesc}
-  //         handleEditDeadline={handleEditDeadline}
-  //         handleEditTitle={handleEditTitle}
-  //         handleEditProgress={handleEditProgress}
-  //       />
-  //     );
-  //   };
-  // };
-
   const PER_PAGE = 6;
   const count = Math.ceil(currentGoals.length / PER_PAGE);
   const _DATA = usePagination(currentGoals, PER_PAGE);

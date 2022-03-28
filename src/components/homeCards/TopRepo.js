@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../css/TopRepo.css';
 import { loadingCard } from '../Elements';
+import TopRepoChart from '../homeCharts/TopRepoChart';
 
 const githubUsername = localStorage.getItem('screenName');
 
@@ -55,9 +56,6 @@ export const TopRepo = () => {
       setTopRepo(data);
     };
     getTopRepo();
-  }, [topRepoStats]); // this should run everytime the topRepoStats are updated
-
-  useEffect(() => {
     const getTopRepoLanguages = async () => {
       // axios call to get the languages for the topRepo
       const { data } = await axios.get(
@@ -67,7 +65,7 @@ export const TopRepo = () => {
       setIsLoading(false);
     };
     getTopRepoLanguages();
-  }, [topRepo]); // this should run everytime the topRepo is updated
+  }, [topRepoStats, topRepo]); // this should run everytime the topRepo/Stats is updated
 
   const languageList = Object.entries(topRepoLanguages).map(([key, value]) => {
     return (
@@ -78,8 +76,6 @@ export const TopRepo = () => {
       </div>
     );
   });
-
-  console.log(topRepoStats);
 
   return (
     <div className='top-repo'>
@@ -152,6 +148,7 @@ export const TopRepo = () => {
             ) : (
               <h2>Trouble fetching language data.</h2>
             )}
+            {/* <TopRepoChart /> */}
           </div>
         </div>
       )}

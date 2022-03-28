@@ -13,6 +13,10 @@
   background: #30363d;
 }
 
+.top-repo-container {
+  min-width: 30rem;
+}
+
 .top-repo-container h2:first-of-type {
   margin-top: 1rem;
 }

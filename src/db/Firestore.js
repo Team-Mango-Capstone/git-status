@@ -7,76 +7,76 @@ import {
 
 const uid =  window.localStorage.getItem('uid');
 
-export const handleEditDesc = async (goal, description) => {
+export const handleEditDesc = async (collection, item, description) => {
   await updateDoc(
     doc(
       db,
       'allUsers',
       uid,
-      'userGoals',
-      goal.id
+      collection,
+      item.id
     ),
-    { description: description }
+     { description }
   ); 
 };
 
-export const handleEditDeadline = async (goal, deadline) => {
+export const handleEditDeadline = async (collection, item, deadline) => {
   await updateDoc(
     doc(
       db,
       'allUsers',
       uid,
-      'userGoals',
-      goal.id
+      collection,
+      item.id
     ),
-    { deadline: deadline }
+    { deadline }
   );
 };
 
-export const handleEditTitle = async (goal, title) => {
+export const handleEditTitle = async (collection, item, title) => {
   await updateDoc(
     doc(
       db,
       'allUsers',
       uid,
-      'userGoals',
-      goal.id
+      collection,
+      item.id
     ),
-    { title: title }
+    { title }
   );
 };
 
-export const handleEditProgress = async (goal, progress) => {
+export const handleEditProgress = async (collection, item, goalProgress) => {
   await updateDoc(
     doc(
       db,
       'allUsers',
       uid,
-      'userGoals',
-      goal.id
+      collection,
+      item.id
     ),
-    { goalProgress: progress }
+    { goalProgress: goalProgress }
   ); 
 };
 
 
-export const toggleComplete = async (goal) => {
+export const toggleComplete = async (collection, item) => {
   await updateDoc(
     doc(
       db,
       'allUsers',
       uid,
-      'userGoals',
-      goal.id
+      collection,
+      item.id
     ),
-    { completed: !goal.completed }
+    { completed: !item.completed }
   );
 };
 
 
-export const handleDelete = async (id) => {
+export const handleDelete = async (collection, id) => {
   await deleteDoc(
-    doc(db, 'allUsers', uid, 'userGoals', id)
+    doc(db, 'allUsers', uid, collection, id)
   );
 };
 

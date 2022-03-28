@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import '../../../css/DonutChart.css';
 import Chart from 'react-apexcharts';
+import { GlobalContext } from '../../../context/GlobalState';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.defaults.color = '#fff';
@@ -28,7 +29,10 @@ const options = {
     },
   },
 };
-export default function DonutChart({ completedGoals, currentGoals }) {
+export default function DonutChart() {
+  const { currentGoals, completedGoals } = useContext(GlobalContext);
+  // console.log('current', currentGoals);
+  // console.log('completed', completedGoals);
   const data = {
     labels: ['Completed Goals', 'In progress'],
     datasets: [
@@ -45,6 +49,7 @@ export default function DonutChart({ completedGoals, currentGoals }) {
   return (
     <div className='goals-donut-chart'>
         <div className='donut'>
+       
         <Doughnut data={data} options={options} />
         </div>
       

@@ -1,7 +1,7 @@
 .add-btn {
-  font-size: 16px;
-  min-width: 6%;
-  height: 30px;
+  font-size: 14px;
+  min-width: 5%;
+  height: 29px;
   color: rgb(240, 240, 240);
   padding: 6px;
   font-weight: bold;
@@ -10,7 +10,7 @@
   position: relative;
   display: inline-block;
   outline: none;
-  border-radius: 30px;
+  border-radius: 14px;
   border: none;
   background: #58a6ff;
 }
@@ -23,10 +23,10 @@
 .add-form-container{
   position: absolute;
   background-color: rgb(255, 255, 255);
-  margin-left: 15%;
-  margin-top: 5%;
+  margin-left: 20.5%;
+  margin-top: 8%;
   height: 40%;
-  width: 17%;
+  width: 14%;
   padding: 1%;
   border-radius: 14px;
   z-index:11;
@@ -72,5 +72,5 @@ i {
 }
 
 .add-goal-desc-input{
-  min-height: 150px;
+  min-height: 10px;
 }

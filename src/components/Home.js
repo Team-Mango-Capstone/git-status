@@ -68,11 +68,11 @@ function Home() {
           {rightAngleBrace}
         </h1>
         <div className='time'>
-          <h1>Day {dateState.toLocaleDateString("en-US")} / Time {dateState.toLocaleTimeString("en-US", {
+          {/* <h1>Day {dateState.toLocaleDateString("en-US")} / Time {dateState.toLocaleTimeString("en-US", {
             hour: 'numeric',
             minute: 'numeric',
             hour12: true,
-          })}</h1>
+          })}</h1> */}
         </div>
       </div>
       <div className='home-cards'>

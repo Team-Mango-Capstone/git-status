@@ -1,9 +1,10 @@
-.goals-donut-chart{
-    display: flex;
-    justify-content: center;
-}
+
 
 .donut {
-  width: 50%;
+  width: 90%;
+  /* display: flex;
+  justify-content: center; */
+  text-align: center;
+  margin-top: 5%;
 }
 

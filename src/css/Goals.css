@@ -1,32 +1,3 @@
-.goals-container {
-  display: grid;
-  grid-template-columns: 2.5fr 1.5fr 1.2fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-}
-
-.goals {
-  font-size: 18px;
-  background-color: #0d1117;
-  padding: 1.2%;
-  width: 60%;
-  grid-area: 1 / 1 / 2 / 3;
-}
-
-.todo-list { 
-  grid-area: 1 / 2 / 2 / 3; 
-  padding: 3.5%;
-}
-
-.charts-container {
-  grid-area: 1 / 3 / 2 / 4;
-  display: flex; 
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  justify-content: space-evenly;
-}
-
 
 
 .status-bar {
@@ -84,4 +55,13 @@
 .status-btn-active:hover {
   border: 1px solid #8c959e;
   background-color: #343c41;
+}
+
+h5 {
+  text-align: center;
+  padding: 0.5rem;
+  color: #fafafa;
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
 }

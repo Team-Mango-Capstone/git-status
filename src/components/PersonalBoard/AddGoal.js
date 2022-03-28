@@ -33,7 +33,7 @@ function AddGoal({ closeModal }) {
         <i className='bi bi-x-circle-fill'></i>
       </button>
       <form className="form-container" onSubmit={handleSubmit}>
-        <h4> Add a Goal</h4>
+        <h5> Add a Goal</h5>
         <input
           type='text'
           placeholder='Enter goal...'
@@ -48,14 +48,14 @@ function AddGoal({ closeModal }) {
         as='textarea'
         aria-label='With textarea'
         placeholder='Enter goal description....'
-        style={{ fontSize: '16px' }}
+        style={{ fontSize: '14px' }}
         onChange={(e) => {
           setDescription(e.target.value);
         }}
       />
 
          <br/>
-        <h4> Deadline</h4>
+        <h5> Deadline</h5>
         <input
           type='date'
           placeholder='Enter deadline...'

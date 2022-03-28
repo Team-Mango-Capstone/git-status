@@ -28,15 +28,6 @@ function AddGoal({ closeModal }) {
           deleted: false,
         }
       );
-      // await addDoc(
-      //   collection(
-      //     db,
-      //     'allUsers',
-      //     window.localStorage.getItem('uid'),
-      //     'userBagdes'
-      //   ),
-      //   { earned: false, title }
-      // );
       setDescription('');
       setTitle('');
       setDeadline('');

@@ -10,7 +10,7 @@ import {
   handleEditTitle,
   handleEditProgress,
 } from '../../db/Firestore';
-import { usePagination, PaginationGoals } from './GoalPagination';
+import { usePagination, PaginationGoals } from './PaginationGoals';
 import { GlobalContext } from '../../context/GlobalState';
 
 function Goals() {

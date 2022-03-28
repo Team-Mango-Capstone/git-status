@@ -6,9 +6,7 @@ import Timeline from './homeCards/Timeline';
 import { TopRepo } from './homeCards/TopRepo';
 import { Profile } from './homeCards/Profile';
 import DateTime from './homeCards/DateTime.js';
-import { Notifications } from './homeCards/Notifications';
 import { Activity } from './homeCards/Activity';
-
 
 function Home() {
   const leftAngleBrace = (
@@ -48,7 +46,6 @@ function Home() {
     makeRequest();
   }, []);
 
-
   // COMMENTED OUT bc this will keep spam the console lol
   // useEffect(() => {
   //   setInterval(() => setDateState(new Date()), 1000);
@@ -75,7 +72,7 @@ function Home() {
       <div className='home-cards'>
         <div className='timeline'>
           {/* <h1>Your Timeline</h1> */}
-        <Timeline />
+          <Timeline />
         </div>
 
         {/* <Timeline /> */}

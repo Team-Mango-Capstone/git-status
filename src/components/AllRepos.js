@@ -2,7 +2,7 @@ import axios from 'axios';
 import '../css/AllRepos.css';
 import '../css/SingleRepoCard.css';
 import { useState, useEffect } from 'react';
-import { loading } from './Bootstrap-Elements';
+import { loading } from './Elements';
 import { Link } from 'react-router-dom';
 // import SingleRepoCard from './SingleRepoCard';
 

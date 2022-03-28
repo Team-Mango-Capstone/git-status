@@ -1,5 +1,10 @@
-.profile {
+.profile-card {
   position: relative;
+  min-width: 30rem;
+  max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .top-right-fold {
@@ -82,8 +87,12 @@
   margin-bottom: 2rem;
 }
 
-.bio h3 {
+.bio p {
+  font-size: 1.2rem;
   line-height: 2.3rem;
+  max-height: 7rem;
+  padding-right: 1em;
+  overflow: auto;
 }
 
 .follow-type,
@@ -127,7 +136,12 @@
 }
 
 .total-days {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
   text-align: center;
-  margin: 2rem 0rem;
   line-height: 2.3rem;
+  font-size: 1.4rem;
 }

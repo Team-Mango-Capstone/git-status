@@ -1,4 +1,60 @@
-.popular {
+.top-repo {
+  min-width: 30rem;
+  word-break: break-word;
   text-align: center;
-  line-height: 3rem;
+  line-height: 2.5rem;
+  position: relative;
+}
+
+.top-repo hr {
+  margin: 2rem 0rem;
+  height: 1px;
+  border: 0;
+  background: #30363d;
+}
+
+.top-repo-container {
+  min-width: 30rem;
+}
+
+.top-repo-container h2:first-of-type {
+  margin-top: 1rem;
+}
+
+.views-stats {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.views-stats p {
+  font-size: 1.4rem;
+}
+
+.forks-stars-watchers {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.forks-stars-watchers p {
+  display: flex;
+  align-items: center;
+}
+
+.hr {
+  margin: 0rem 1rem;
+  background-color: #30363d;
+  width: 1px;
+  align-self: stretch;
+}
+
+path {
+  fill: #8b949e;
+}
+
+svg {
+  margin-right: 1rem;
 }

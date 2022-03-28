@@ -11,3 +11,9 @@ export const loading = (
     </div>
   </div>
 );
+
+export const loadingCard = (
+  <div className='loading-card'>
+    <img src='/loading-circle.gif' alt='' />
+  </div>
+);

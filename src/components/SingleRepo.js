@@ -70,6 +70,10 @@ function SingleRepo(props) {
   }
 
   console.log("Repo Data ", repo)
+  console.log("Commits Data ", commits)
+  console.log("CommitSize Data ", commitSize)
+
+
 
   function deleteClickHandler() {
     // let result = window.confirm("Are you sure you want to delete this repo?");

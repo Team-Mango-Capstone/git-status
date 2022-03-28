@@ -1,9 +1,10 @@
-import '../../css/Goals.css';
-import SingleGoalCard from './SingleGoalCard';
-import AddGoal from './AddGoal';
-import { useState, useEffect } from 'react';
-import { db } from '../../db/Firebase';
-import { onSnapshot, query, collection, where } from 'firebase/firestore';
+
+import "../../css/Goals.css";
+import SingleGoalCard from "./SingleGoalCard";
+import AddGoal from "./AddGoal";
+import { useState, useEffect } from "react";
+import { db } from "../../db/Firebase";
+import { onSnapshot, query, collection, where } from "firebase/firestore";
 import {
   toggleComplete,
   handleEditDesc,
@@ -13,19 +14,21 @@ import {
   handleEditProgress,
 } from '../../db/Firestore';
 import { usePagination, PaginationGoals } from './GoalPagination';
+import { GlobalContext } from '../../context/GlobalState';
+
 
 function Goals() {
-  const [currentGoals, setCurrentGoals] = useState([]);
-  const [completedGoals, setCompletedGoals] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [status, setStatus] = useState(true);
-  const uid = window.localStorage.getItem('uid');
+  const uid = window.localStorage.getItem("uid");
   let [page, setPage] = useState(1);
-
+  
+   //============ DIANA'S BADGES
+  
   useEffect(() => {
     const q = query(
-      collection(db, 'allUsers', uid, 'userGoals'),
-      where('completed', '==', false)
+      collection(db, "allUsers", uid, "userGoals"),
+      where("completed", "==", false)
     );
     const fetchData = onSnapshot(q, (querySnapshot) => {
       let goalsArray = [];
@@ -36,8 +39,8 @@ function Goals() {
     });
 
     const q2 = query(
-      collection(db, 'allUsers', uid, 'userGoals'),
-      where('completed', '==', true)
+      collection(db, "allUsers", uid, "userGoals"),
+      where("completed", "==", true)
     );
     const fetchCompletedData = onSnapshot(q2, (querySnapshot) => {
       let goalsArray = [];
@@ -52,73 +55,72 @@ function Goals() {
       fetchCompletedData();
     };
   }, []);
+  
+  //============
+
+  const { currentGoals, completedGoals } = useContext(GlobalContext);
+  // console.log('current', currentGoals);
+  // console.log('completed', completedGoals);
+
 
   const PER_PAGE = 6;
-  const count = Math.ceil(currentGoals.length / PER_PAGE);
-  const _DATA = usePagination(currentGoals, PER_PAGE);
+  const countCurrent = Math.ceil(currentGoals.length / PER_PAGE);
+  const countCompleted = Math.ceil(completedGoals.length / PER_PAGE);
+
+  const DATA_CURRENT = usePagination(currentGoals, PER_PAGE);
+  const DATA_COMPLETED = usePagination(completedGoals, PER_PAGE);
+  let data = status ? DATA_CURRENT.currentData() : DATA_COMPLETED.currentData();
 
   return (
-    <div className='goals'>
-      <div className='status-bar'>
+    <div className="goals">
+      <div className="status-bar">
         <button
-          className={status ? 'status-btn-active' : 'status-btn'}
+          className={status ? "status-btn-active" : "status-btn"}
           onClick={() => setStatus(true)}
         >
           <h4>in progress</h4>
         </button>
         <h4>|</h4>
         <button
-          className={!status ? 'status-btn-active' : 'status-btn'}
+          className={!status ? "status-btn-active" : "status-btn"}
           onClick={() => setStatus(false)}
         >
           <h4>completed</h4>
         </button>
       </div>
-      <div className='add-btn-container'>
-        <button className='add-btn' onClick={() => setOpenModal(true)}>
-          Add Goal
+      <div className="add-btn-container">
+        <button className="add-btn" onClick={() => setOpenModal(true)}>
+          +
         </button>
       </div>
       {openModal && <AddGoal closeModal={setOpenModal} />}
-      <div className={openModal === true ? 'goal-hover' : 'goal-container'}>
-        {status
-          ? _DATA
-              .currentData()
-              .map((goal) => (
-                <SingleGoalCard
-                  key={goal.id}
-                  goal={goal}
-                  toggleComplete={toggleComplete}
-                  handleDelete={handleDelete}
-                  handleEditDesc={handleEditDesc}
-                  handleEditDeadline={handleEditDeadline}
-                  handleEditTitle={handleEditTitle}
-                  handleEditProgress={handleEditProgress}
-                />
-              ))
-          : completedGoals.map((goal) => (
-              <SingleGoalCard
-                key={goal.id}
-                goal={goal}
-                toggleComplete={toggleComplete}
-                handleDelete={handleDelete}
-                handleEditDesc={handleEditDesc}
-                handleEditDeadline={handleEditDeadline}
-                handleEditTitle={handleEditTitle}
-                handleEditProgress={handleEditProgress}
-              />
-            ))}
+      <div className={openModal === true ? "goal-hover" : "goal-container"}>
+        {data.map((goal) => (
+            <SingleGoalCard
+              key={goal.id}
+              goal={goal}
+              toggleComplete={toggleComplete}
+              handleDelete={handleDelete}
+              handleEditDesc={handleEditDesc}
+              handleEditDeadline={handleEditDeadline}
+              handleEditTitle={handleEditTitle}
+              handleEditProgress={handleEditProgress}
+            />
+          ))}
+          <PaginationGoals
+            completedGoals={completedGoals}
+            currentGoals={currentGoals}
+            DATA_CURRENT={DATA_CURRENT}
+            DATA_COMPLETED={DATA_COMPLETED}
+            countCurrent={countCurrent}
+            countCompleted={countCompleted}
+            page={page}
+            setPage={setPage}
+            status={status}
+            PER_PAGE={PER_PAGE}
+          />
+        </div>
       </div>
-      {/* <Insights /> */}
-      <PaginationGoals
-        completedGoals={completedGoals}
-        currentGoals={currentGoals}
-        _DATA={_DATA}
-        count={count}
-        page={page}
-        setPage={setPage}
-        PER_PAGE={PER_PAGE}
-      />
     </div>
   );
 }

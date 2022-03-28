@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/Home.css';
-import { MostProductive } from './homeCards/MostProductive';
 import { TopLanguages } from './homeCards/TopLanguages';
 import Timeline from './homeCards/Timeline';
 import { TopRepo } from './homeCards/TopRepo';
 import { Profile } from './homeCards/Profile';
+import DateTime from './homeCards/DateTime.js';
 import { Notifications } from './homeCards/Notifications';
+import { Activity } from './homeCards/Activity';
+
 
 function Home() {
   const leftAngleBrace = (
@@ -24,6 +26,7 @@ function Home() {
 
   const [userData, setUserData] = useState([]);
   const [userRepos, setUserRepos] = useState([]);
+  const [dateState, setDateState] = useState('');
   const githubUsername = localStorage.getItem('screenName');
 
   useEffect(() => {
@@ -45,6 +48,12 @@ function Home() {
     makeRequest();
   }, []);
 
+
+  // COMMENTED OUT bc this will keep spam the console lol
+  // useEffect(() => {
+  //   setInterval(() => setDateState(new Date()), 1000);
+  // }, []);
+
   return (
     <div className='home'>
       <div className='welcome'>
@@ -60,7 +69,7 @@ function Home() {
           {rightAngleBrace}
         </h1>
         <div className='time'>
-          <h1>Day / Time</h1>
+          <DateTime />
         </div>
       </div>
       <div className='home-cards'>
@@ -69,12 +78,13 @@ function Home() {
         <Timeline />
         </div>
 
-        {/* <MostProductive userRepos={userRepos}/> */}
+        {/* <Timeline /> */}
+
         <div className='bottom-charts'>
           <Profile userData={userData} />
           <TopRepo />
           <TopLanguages userRepos={userRepos} />
-          <Notifications />
+          <Activity />
         </div>
       </div>
     </div>

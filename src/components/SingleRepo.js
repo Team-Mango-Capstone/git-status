@@ -69,6 +69,12 @@ function SingleRepo(props) {
     return { "totalAdditions": totalAdditions, "totalDeletions": totalDeletions, "totalCount": totalCount, "avgAdditions": Math.round(totalAdditions / totalCount), "avgDeletions": Math.round(totalDeletions / totalCount) }
   }
 
+  console.log("Repo Data ", repo)
+  console.log("Commits Data ", commits)
+  console.log("CommitSize Data ", commitSize)
+
+
+
   function deleteClickHandler() {
     // let result = window.confirm("Are you sure you want to delete this repo?");
     // if (result) {
@@ -89,6 +95,8 @@ function SingleRepo(props) {
 
   return (
     <div className='single-repo'>
+
+
       <p>Single Repo</p>
       <br />
       <div>Repo Name: {repo.name}</div>
@@ -96,11 +104,10 @@ function SingleRepo(props) {
       <a href={`${repo.clone_url}`} target='_blank' rel='noreferrer'>
         <h3>Link to Github Repo Page</h3>
       </a>
-
-      <br />
       <br />
       <div>
         {/* If it's been greater than x days render button giving them an option to delete the repo.  */}
+
         {daysSinceUpdate >= 60 && <div>
           <div>It's been {daysSinceUpdate} days since you've last made any changes. </div>
           <h3>Do you want to Delete or Archive this repo? </h3>
@@ -113,6 +120,7 @@ function SingleRepo(props) {
           deleteRepo={deleteClickHandler}
           archiveRepo={archiveClickHandler}
           buttonClicked={buttonClicked} />}
+
       </div>
 
       <br />

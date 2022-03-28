@@ -2,8 +2,10 @@ import axios from 'axios';
 import '../css/AllRepos.css';
 import '../css/SingleRepoCard.css';
 import { useState, useEffect } from 'react';
-import { loading } from './Elements';
+import { loading } from './Bootstrap-Elements';
 import { Link } from 'react-router-dom';
+import { usePagination, AllReposPagination } from './AllReposPagination.js';// pagination
+
 // import SingleRepoCard from './SingleRepoCard';
 
 function AllRepos() {
@@ -26,6 +28,8 @@ function AllRepos() {
   const [repos, setRepos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState('last-updated');
+  let [page, setPage] = useState(1);//pagination
+
   // date created will compare the same as updated at
   // alphabetical will compare by name
   useEffect(() => {
@@ -43,7 +47,7 @@ function AllRepos() {
   };
 
   // calls the new updated state
-  useEffect(() => {}, [filter]);
+  useEffect(() => { }, [filter]);
 
   // changes the state but doesn't reflect the change inside yet
   const handleChangeFilter = (e) => {
@@ -60,6 +64,12 @@ function AllRepos() {
       return repos.sort((a, b) => b.updated_at.localeCompare(a.updated_at));
     }
   };
+
+  //pagination stuff added below 
+  const PER_PAGE = 25;
+  const count = Math.ceil(repos.length / PER_PAGE);
+  const _DATA = usePagination(renderFilteredRepos(), PER_PAGE);
+  ///////////////////////////////////////////////
 
   return (
     <div className='all-repos'>
@@ -87,21 +97,27 @@ function AllRepos() {
         </div>
       </div>
 
+      {/* PAGINATION STUFF */}
+      <AllReposPagination
+        _DATA={_DATA}
+        count={count}
+        page={page}
+        setPage={setPage}
+        PER_PAGE={PER_PAGE}
+      />
+      {/*  */}
+
       <br />
-      {isLoading ? (
-        // text renders but not the spinner lol
-        loading
-      ) : repos.length === 0 ? (
-        <div className='all-repos-container'>
+      <div className='all-repos-container'>
+        {isLoading ? (
+          // text renders but not the spinner lol
+          loading
+        ) : repos.length === 0 ? (
           <div>You have no repos!</div>
-        </div>
-      ) : (
-        <div className='all-repos-container'>
-          {renderFilteredRepos().map((repo) => (
+        ) : (
+          _DATA.currentData().map((repo) => (
             <div className='single-repo-card' key={repo.id}>
-              <Link to={`/repos/${repo.name}`}>
-                <h2>{repo.name}</h2>
-              </Link>
+              <Link to={`/repos/${repo.name}`}><h2>{repo.name}</h2></Link>
 
               <hr />
 
@@ -117,9 +133,9 @@ function AllRepos() {
                 </div>
               )}
             </div>
-          ))}
-        </div>
-      )}
+          ))
+        )}
+      </div>
       <div className='invisible' />
     </div>
   );

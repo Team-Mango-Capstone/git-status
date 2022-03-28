@@ -13,9 +13,11 @@ export const TopRepo = () => {
     count: 0,
     uniques: 0,
   });
+
   const [topRepo, setTopRepo] = useState({});
   const [topRepoLanguages, setTopRepoLanguages] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     const findTopRepo = async () => {

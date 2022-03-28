@@ -5,7 +5,10 @@ import { TopLanguages } from './homeCards/TopLanguages';
 import Timeline from './homeCards/Timeline';
 import { TopRepo } from './homeCards/TopRepo';
 import { Profile } from './homeCards/Profile';
+import DateTime from './homeCards/DateTime.js';
+import { Notifications } from './homeCards/Notifications';
 import { Activity } from './homeCards/Activity';
+
 
 function Home() {
   const leftAngleBrace = (
@@ -45,6 +48,7 @@ function Home() {
     makeRequest();
   }, []);
 
+
   // COMMENTED OUT bc this will keep spam the console lol
   // useEffect(() => {
   //   setInterval(() => setDateState(new Date()), 1000);
@@ -64,9 +68,9 @@ function Home() {
           {closeText}
           {rightAngleBrace}
         </h1>
-
-        {/* <h2>{dateState.toLocaleString()}</h2> */}
-
+        <div className='time'>
+          <DateTime />
+        </div>
       </div>
       <div className='home-cards'>
         <div className='timeline'>

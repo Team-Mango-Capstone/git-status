@@ -5,62 +5,69 @@ import {
   PointElement,
   Tooltip,
   Legend,
+  TimeScale,
 } from "chart.js";
 import { Bubble } from "react-chartjs-2";
+import "chartjs-adapter-date-fns";
 
-ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
 
-export const options = {
-  scales: {
-    // x: [{
-    //     type: 'time',
-    //     time: {
-    //         displayFormats: {
-    //             day: 'MMM D'
-    //         }
-    //     }
-    // }],
-    y: {
-      beginAtZero: true,
-      display: false,
-    },
-  },
-};
-
-export const data = {
-  datasets: [
-    {
-      label: "Dummy data",
-      data: [
-        {
-        //   x: 'Mar 1',
-          x: 3,
-          y: 0,
-          r: 11,
-        },
-        {
-        //   x: 'Mar 8',
-          x: 8,
-          y: 0,
-          r: 7,
-        },
-        {
-        //   x: 'Mar 15',
-          x: 6,
-          y: 0,
-          r: 14,
-        },
-      ],
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-  ],
-};
+ChartJS.register(LinearScale, PointElement, Tooltip, Legend, TimeScale);
 
 export default function TimelineChart(props) {
-    console.log("PROPS >>>", props.chartData)
+  console.log("PROPS >>>", props.chartData);
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        type: "time",
+        time: {
+          displayFormats: {
+            day: "MMM dd yyyy",
+          },
+          tooltipFormat: 'MMM dd yyyy'
+        },
+        grid: {
+          // color: "rgba(200, 0, 0, 0)",
+          display: false,
+        },
+      },
+      y: {
+        display: false,
+        min: -1,
+        max: 1,
+        grid: {
+          display: false,
+        },
+      },
+    },
+  };
+
+  const timelineData = props.chartData.map((element) => {
+    let dateElements = element.x.split("-");
+
+    return {
+      ...element,
+      x: Date.UTC(dateElements[0], dateElements[1] - 1, dateElements[2]),
+    };
+    // UTC time records months starting at zero, so I am decrementing the
+    // month to account for that.
+  });
+
+  const data = {
+    datasets: [
+      {
+        label: "Your contributions",
+        data: timelineData,
+        backgroundColor: "rgba(35, 134, 54, 0.5)",
+      },
+    ],
+  };
+
   return (
-    <div>
+    <div className="timeline-container">
       <Bubble data={data} options={options} />
     </div>
   );
-};
+}

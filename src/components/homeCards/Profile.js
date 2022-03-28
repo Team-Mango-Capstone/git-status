@@ -5,12 +5,14 @@ import { UserLifespan } from './UserLifespan';
 export function Profile(props) {
   const user = props.userData;
   const spanStyle = { color: '#58a6ff' };
+
   let email;
   if (user.email) {
     email = <span>{user.email}</span>;
   } else {
     email = <span style={{ color: '#e34c26' }}>Private</span>;
   }
+
 
   return (
     <div className='profile-card'>

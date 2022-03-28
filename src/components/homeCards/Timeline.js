@@ -72,16 +72,14 @@ export default function Timeline() {
 
   const dataForChart = prepDataForChart(compileRawData(chartData));
 
-  const testData = dataForChart.slice(50);
-
-  console.log('TEST DATA >>>', testData);
-
   return (
     <div>
-      You have made {useableData.totalContributions} contributions in the past
+      <h2>
+      You made {useableData.totalContributions} contributions in the past
       year.
-      {/* <canvas id="timeline"></canvas> */}
-      <TimelineChart chartData={testData}/>
+      </h2>
+      <TimelineChart chartData={dataForChart}/>
     </div>
   );
-}
+};
+

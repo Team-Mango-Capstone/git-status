@@ -74,9 +74,12 @@ function Home() {
       </div>
       <div className='home-cards'>
         <div className='timeline'>
-          <h1>Your Timeline</h1>
+          {/* <h1>Your Timeline</h1> */}
+        <Timeline />
         </div>
+
         {/* <Timeline /> */}
+
         <div className='bottom-charts'>
           <Profile userData={userData} />
           <TopRepo />

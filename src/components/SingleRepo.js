@@ -1,12 +1,15 @@
 // import './css/SingleRepo.css';
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom"
-import { getSingleRepo, getCommitsforRepo, searchCommits, getRepoCollaborators, getCommitStatforRepo, deleteRepo, archiveRepo } from './GithubAPITesting.js'
+import { getSingleRepo, getCommitsforRepo, searchCommits, getRepoCollaborators, getCommitStatforRepo, deleteRepo, archiveRepo, getRepoLanguage } from './GithubAPITesting.js'
 import SingleRepoModal from './SingleRepoModal.js'
 import { Link } from "react-router-dom";
 import LineChart from './SingleRepoLineChart.js'
+import DonutChart from './SingleRepoDonut.js'
 
 const screenName = localStorage.getItem('screenName');//
+
+// repoLanguage(owner, repoName) 
 
 function SingleRepo(props) {
   const params = useParams();
@@ -17,6 +20,7 @@ function SingleRepo(props) {
   const [averageCommitSize, setAverageCommitSize] = useState({})
   const [modalOpen, setModalOpen] = useState(false)
   const [buttonClicked, setButtonClicked] = useState("")
+  const [repoLang, setRepoLang] = useState({})
 
   useEffect(() => {
     async function fetchRepoData() {
@@ -33,6 +37,9 @@ function SingleRepo(props) {
         // const collabsInfo = await getRepoCollaborators("teampluto2201", 'grace-shopper');
         const collabsInfo = await getRepoCollaborators(repo.owner.login, repo.name);
         setCollabs(collabsInfo);
+
+        const repoLangData = await getRepoLanguage(screenName, repo.name);
+        setRepoLang(repoLangData)
 
         // const commitsInfo = await searchCommits('choi2010', 'teampluto2201/grace-shopper');
         const commitsInfo = await getCommitsforRepo(screenName, repo.name);
@@ -70,10 +77,11 @@ function SingleRepo(props) {
     return { "totalAdditions": totalAdditions, "totalDeletions": totalDeletions, "totalCount": totalCount, "avgAdditions": Math.round(totalAdditions / totalCount), "avgDeletions": Math.round(totalDeletions / totalCount) }
   }
 
-  console.log("Repo Data ", repo)
-  console.log("Commits Data ", commits)
-  console.log("CommitSize Data ", commitSize)
-
+  // console.log("Repo Data ", repo)
+  // console.log("Collab Data on State", collabs)
+  // console.log("Commits Data ", commits)
+  // console.log("CommitSize Data ", commitSize)
+  console.log("RepoLanguage Data ", repoLang)
 
 
   function deleteClickHandler() {
@@ -145,6 +153,12 @@ function SingleRepo(props) {
       <div style={{ height: 10 }}><LineChart /></div> */}
 
       <div>
+
+        <div>
+          {/* language chart */}
+          <DonutChart />
+
+        </div>
 
         <div>Number of Collaborators: {collabs.length}</div>
         Names : {collabs.map((item) => { return <ul key={item.id}>{item.login}</ul> })}

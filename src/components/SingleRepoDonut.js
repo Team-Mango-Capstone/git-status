@@ -13,6 +13,17 @@ const dummyData = {
     "HTML": 221,
     "JavaScript": 64845
 }
+function languageLabels(obj) {
+    let dataArr = [];
+    let langArr = [];
+    let valueArr = [];
+    for (let language in obj) {
+        langArr.push(language);
+        dataArr.push(obj[language]);
+    }
+    dataArr = [langArr, dataArr];
+    return dataArr;
+}
 
 for (let language in dummyData) {
     console.log("language", language);
@@ -38,16 +49,17 @@ const options = {
         },
     },
 };
-export default function DonutChart() {
+export default function DonutChart(props) {
+    console.log("This is the props inside th Donut Chart", props)
 
     const data = {
-        labels: ['Completed Goals', 'In progress'],
+        labels: languageLabels(props.repoLang)[0],
         datasets: [
             {
                 label: 'Languages in Repo',
-                data: [dummyData.CSS, dummyData.HTML],
+                data: languageLabels(props.repoLang)[1],
                 borderColor: ['rgba(255,206,86,0.2)'],
-                backgroundColor: ['rgba(87,255,106)', 'rgba(58,135,198)'],
+                backgroundColor: ['#563d7c', '#e34c26', '#fle05a'],
                 pointBackgroundColor: 'rgba(255,206,86,0.2)',
             },
         ],

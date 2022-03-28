@@ -64,7 +64,9 @@ function Home() {
           {closeText}
           {rightAngleBrace}
         </h1>
+
         {/* <h2>{dateState.toLocaleString()}</h2> */}
+
       </div>
       <div className='home-cards'>
         <div className='timeline'>

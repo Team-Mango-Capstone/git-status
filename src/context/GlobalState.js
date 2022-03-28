@@ -1,38 +1,92 @@
 import React, { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { db } from '../db/Firebase';
+import { onSnapshot, query, collection, where } from 'firebase/firestore';
 
 export const GlobalContext = createContext({});
 
 export const GlobalProvider = (props) => {
-  const [userData, setUserData] = useState([]);
-  const [userRepos, setUserRepos] = useState([]);
-  const githubUsername = localStorage.getItem('screenName');
+    const [userData, setUserData] = useState([]);
+    const [userRepos, setUserRepos] = useState([]);
+    const [currentGoals, setCurrentGoals] = useState([]);
+    const [completedGoals, setCompletedGoals] = useState([]);
+    const [tasks, setTasks] = useState([]);
 
-  useEffect(() => {
-    const makeRequest = async () => {
-      try {
-        const userData = await axios.get(
-          `https://api.github.com/users/${githubUsername}`
-        );
-        setUserData(userData.data);
+    const githubUsername = localStorage.getItem('screenName');
+    const uid = window.localStorage.getItem('uid');
 
-        const userRepos = await axios.get(
-          `https://api.github.com/search/repositories?q=user:${githubUsername}+fork:true&per_page=100`
-        );
-        setUserRepos(userRepos.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    makeRequest();
-  }, []); //we pass state since we're accessing it
+    useEffect(() => {
+        const makeRequest = async () => {
+            try {
+              const userData = await axios.get(
+                `https://api.github.com/users/${githubUsername}`
+              );
+              setUserData(userData.data);
+      
+              const userRepos = await axios.get(
+                `https://api.github.com/search/repositories?q=user:${githubUsername}+fork:true&per_page=100`
+              );
+              setUserRepos(userRepos.data);
 
-  const [userLanguages, setUserLanguages] = useState({});
-  const repoArr = userRepos.items || [];
+            } catch (error) {
+              console.log(error);
+            }
+          };
+          //fetch firebase data
+          const currentGoalsQuery = query(
+            collection(db, 'allUsers', uid, 'userGoals'),
+            where('completed', '==', false)
+          );
+          const fetchCurrentGoals = onSnapshot(currentGoalsQuery, (querySnapshot) => {
+            let goalsArray = [];
+            querySnapshot.forEach((doc) => {
+              goalsArray.push({ ...doc.data(), id: doc.id });
+            });
+            setCurrentGoals(goalsArray);
+          });
+      
+          const completedGoalsQuery = query(
+            collection(db, 'allUsers', uid, 'userGoals'),
+            where('completed', '==', true)
+          );
+          const fetchCompletedGoals = onSnapshot(completedGoalsQuery, (querySnapshot) => {
+            let goalsArray = [];
+            querySnapshot.forEach((doc) => {
+              goalsArray.push({ ...doc.data(), id: doc.id });
+            });
+            setCompletedGoals(goalsArray);
+          });
 
-  useEffect(() => {
-    const calculateLanguages = async () => {
-      repoArr &&
+          const tasksQuery = query(
+            collection(
+              db,
+              'allUsers',
+              window.localStorage.getItem('uid'),
+              'userTasks'
+            )
+          );
+          const fetchTasks = onSnapshot(tasksQuery, (querySnapshot) => {
+            let tasksArray = [];
+            querySnapshot.forEach((doc) => {
+              tasksArray.push({ ...doc.data(), id: doc.id });
+            });
+            setTasks(tasksArray);
+          });
+    
+          return () => {
+            fetchCurrentGoals();
+            fetchCompletedGoals();
+            fetchTasks();
+            makeRequest();
+          };
+        
+    }, []); 
+  
+    const [userLanguages, setUserLanguages] = useState({});
+    const repoArr = userRepos.items || [];
+
+    useEffect(() => {
+      const calculateLanguages = async () => {
         repoArr.map(async (repo) => {
           try {
             const { data } = await axios.get(
@@ -57,13 +111,18 @@ export const GlobalProvider = (props) => {
             console.log(error);
           }
         });
-    };
-    calculateLanguages();
-  }, [userRepos.items]);
+      };
+      calculateLanguages();
 
-  return (
-    <GlobalContext.Provider value={{ userRepos, userData, userLanguages }}>
-      {props.children}
-    </GlobalContext.Provider>
-  );
-};
+    }, [userRepos.items]);
+
+
+    return (
+      <GlobalContext.Provider
+        value={{userRepos, userData, userLanguages, currentGoals, completedGoals, tasks}}
+      >
+        {props.children}
+      </GlobalContext.Provider>
+    );
+  };
+  

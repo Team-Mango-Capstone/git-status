@@ -20,7 +20,7 @@ function SingleTaskCard({
       setNewTitle(e.target.value);
     }
   };
-  console.log(newTitle)
+
   return (
     <div className='tasks'>
       <input

@@ -71,7 +71,12 @@ function Goals() {
   return (
     <div className='goals-contane'>
       <div className='goals'>
+      <h5>My Goals</h5>  
+      <br/>
         <div className='status-bar'>
+        <button className='add-btn' onClick={() => setOpenModal(true)}>
+            +
+          </button>
           <button
             className={status ? 'status-btn-active' : 'status-btn'}
             onClick={() => setStatus(true)}
@@ -87,9 +92,7 @@ function Goals() {
           </button>
         </div>
         <div className='add-btn-container'>
-          <button className='add-btn' onClick={() => setOpenModal(true)}>
-            +
-          </button>
+        
         </div>
         {openModal && <AddGoal closeModal={setOpenModal} />}
         <div className={openModal === true ? 'goal-hover' : 'goal-container'}>

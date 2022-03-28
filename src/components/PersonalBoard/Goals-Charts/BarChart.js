@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import '../../../css/BarChart.css';
 import { GlobalContext } from '../../../context/GlobalState';
 import {
@@ -11,8 +11,13 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-const { faker } = require('@faker-js/faker');
+import { DatePicker } from "@material-ui/pickers";
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import LuxonUtils from '@date-io/luxon';
+import { alpha } from '@material-ui/core/styles';
 
+
+const { faker } = require('@faker-js/faker');
 
 ChartJS.register(
   CategoryScale,
@@ -99,17 +104,28 @@ export default function BarChart() {
   //   }
   // }
 
+  const [date, changeDate] = useState(new Date());
+  const [value, setValue] = React.useState(new Date());
   return (
     <div className="goals-bar-chart">
-    <button className='status-btn'>Set commit target</button>
-    <input></input>
-    <Bar
+    {/* <button className='status-btn'>Set commit target</button>
+    <input></input> */}
+    {/* <Bar
       type="bar"
       width={60}
       height={60}
       // options={options}
       data={barChartData}
-    />
+    /> */}
+      {/* <MuiPickersUtilsProvider utils={LuxonUtils}>
+      <DatePicker
+        autoOk
+        variant="static"
+        value={date}
+        onChange={changeDate}
+      />
+    </MuiPickersUtilsProvider> */}
+
    </div>
   )
 }

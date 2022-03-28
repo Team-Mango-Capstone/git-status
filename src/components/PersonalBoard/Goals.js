@@ -1,3 +1,4 @@
+
 import "../../css/Goals.css";
 import SingleGoalCard from "./SingleGoalCard";
 import AddGoal from "./AddGoal";
@@ -11,17 +12,19 @@ import {
   handleEditDeadline,
   handleEditTitle,
   handleEditProgress,
-} from "../../db/Firestore";
-import { usePagination, PaginationGoals } from "./GoalPagination";
+} from '../../db/Firestore';
+import { usePagination, PaginationGoals } from './GoalPagination';
+import { GlobalContext } from '../../context/GlobalState';
+
 
 function Goals() {
-  const [currentGoals, setCurrentGoals] = useState([]);
-  const [completedGoals, setCompletedGoals] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [status, setStatus] = useState(true);
   const uid = window.localStorage.getItem("uid");
   let [page, setPage] = useState(1);
-
+  
+   //============ DIANA'S BADGES
+  
   useEffect(() => {
     const q = query(
       collection(db, "allUsers", uid, "userGoals"),
@@ -52,10 +55,21 @@ function Goals() {
       fetchCompletedData();
     };
   }, []);
+  
+  //============
+
+  const { currentGoals, completedGoals } = useContext(GlobalContext);
+  // console.log('current', currentGoals);
+  // console.log('completed', completedGoals);
+
 
   const PER_PAGE = 6;
-  const count = Math.ceil(currentGoals.length / PER_PAGE);
-  const _DATA = usePagination(currentGoals, PER_PAGE);
+  const countCurrent = Math.ceil(currentGoals.length / PER_PAGE);
+  const countCompleted = Math.ceil(completedGoals.length / PER_PAGE);
+
+  const DATA_CURRENT = usePagination(currentGoals, PER_PAGE);
+  const DATA_COMPLETED = usePagination(completedGoals, PER_PAGE);
+  let data = status ? DATA_CURRENT.currentData() : DATA_COMPLETED.currentData();
 
   return (
     <div className="goals">
@@ -76,51 +90,37 @@ function Goals() {
       </div>
       <div className="add-btn-container">
         <button className="add-btn" onClick={() => setOpenModal(true)}>
-          Add Goal
+          +
         </button>
       </div>
       {openModal && <AddGoal closeModal={setOpenModal} />}
       <div className={openModal === true ? "goal-hover" : "goal-container"}>
-        {status
-          ? _DATA
-              .currentData()
-              .map((goal) => (
-                <SingleGoalCard
-                  key={goal.id}
-                  goal={goal}
-                  toggleComplete={toggleComplete}
-                  handleDelete={handleDelete}
-                  handleEditDesc={handleEditDesc}
-                  handleEditDeadline={handleEditDeadline}
-                  handleEditTitle={handleEditTitle}
-                  handleEditProgress={handleEditProgress}
-                />
-              ))
-          : completedGoals
-              .filter((goal) => goal.deleted === false)
-              .map((goal) => (
-                <SingleGoalCard
-                  key={goal.id}
-                  goal={goal}
-                  toggleComplete={toggleComplete}
-                  handleDelete={handleDelete}
-                  handleEditDesc={handleEditDesc}
-                  handleEditDeadline={handleEditDeadline}
-                  handleEditTitle={handleEditTitle}
-                  handleEditProgress={handleEditProgress}
-                />
-              ))}
+        {data.map((goal) => (
+            <SingleGoalCard
+              key={goal.id}
+              goal={goal}
+              toggleComplete={toggleComplete}
+              handleDelete={handleDelete}
+              handleEditDesc={handleEditDesc}
+              handleEditDeadline={handleEditDeadline}
+              handleEditTitle={handleEditTitle}
+              handleEditProgress={handleEditProgress}
+            />
+          ))}
+          <PaginationGoals
+            completedGoals={completedGoals}
+            currentGoals={currentGoals}
+            DATA_CURRENT={DATA_CURRENT}
+            DATA_COMPLETED={DATA_COMPLETED}
+            countCurrent={countCurrent}
+            countCompleted={countCompleted}
+            page={page}
+            setPage={setPage}
+            status={status}
+            PER_PAGE={PER_PAGE}
+          />
+        </div>
       </div>
-      {/* <Insights /> */}
-      <PaginationGoals
-        completedGoals={completedGoals}
-        currentGoals={currentGoals}
-        _DATA={_DATA}
-        count={count}
-        page={page}
-        setPage={setPage}
-        PER_PAGE={PER_PAGE}
-      />
     </div>
   );
 }

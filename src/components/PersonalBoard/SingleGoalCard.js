@@ -51,14 +51,18 @@ const SingleGoalCard = ({
     }
   };
 
-  // let resultFromContext = useContext(GlobalContext)
-  // console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
+
+// let resultFromContext = useContext(GlobalContext)
+// console.log('MY RESULTS FROM CONTEXT API',resultFromContext.count)
+
   return (
-    <div className="single-goal-card">
-      <div className="goals-top-container">
+    <div className='single-goal-card'>
+   
+      <div className='goals-top-container'>
         <button
-          className="goal-btn-delete"
-          onClick={() => handleDelete(goal.id)}
+          className='goal-btn-delete'
+          onClick={() => handleDelete('userGoals', goal.id)}
+
         >
           <i className="bi bi-x-circle-fill"></i>
         </button>
@@ -66,10 +70,10 @@ const SingleGoalCard = ({
         <button
           className="button-edit"
           onClick={() => {
-            handleEditDesc(goal, newDescription);
-            handleEditTitle(goal, newTitle);
-            handleEditDeadline(goal, newDeadline);
-            handleEditProgress(goal, progress);
+            handleEditDesc('userGoals', goal, newDescription);
+            handleEditTitle('userGoals',goal, newTitle);
+            handleEditDeadline('userGoals', goal, newDeadline);
+            handleEditProgress('userGoals',goal, progress)
           }}
         >
           {newTitle !== goal.title ||
@@ -96,7 +100,7 @@ const SingleGoalCard = ({
           onClick={() => {
             if (!goal.completed) {
               setOpenModal(!openModal);
-            } else toggleComplete(goal);
+            } else toggleComplete('userGoals', goal);
           }}
         >
           <i className="bi bi-check-circle-fill"></i>

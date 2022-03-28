@@ -5,6 +5,7 @@
 .welcome {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .home-cards {
@@ -12,7 +13,7 @@
 }
 
 .timeline {
-  margin: 5rem 8rem 0rem 0rem;
+  margin: 5rem 8rem 5rem 0rem;
   background-color: #161b22;
   border: 1px solid #30363d;
   border-radius: 10px;
@@ -23,17 +24,23 @@
 .bottom-charts {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 5rem;
 }
 
-.profile,
-.popular,
+.profile-card,
+.top-repo,
 .top-languages,
-.notifications {
-  margin-top: 5rem;
+.activity {
   background-color: #161b22;
   border: 1px solid #30363d;
   border-radius: 10px;
-  width: 300px;
+  width: 30px;
+  height: 40rem;
   padding: 2rem;
+}
+
+.top-languages,
+.top-repo {
+  flex-grow: 2;
 }

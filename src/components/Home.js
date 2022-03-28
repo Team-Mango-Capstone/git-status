@@ -72,7 +72,7 @@ function Home() {
         {/* <MostProductive userRepos={userRepos}/> */}
         <div className='bottom-charts'>
           <Profile userData={userData} />
-          {/* <TopRepo /> */}
+          <TopRepo />
           <TopLanguages userRepos={userRepos} />
           <Notifications />
         </div>

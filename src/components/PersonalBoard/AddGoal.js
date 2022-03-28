@@ -19,7 +19,14 @@ function AddGoal({ closeModal }) {
           window.localStorage.getItem('uid'),
           'userGoals'
         ),
-        { title, description, deadline, goalProgress: 0, completed: false }
+        { 
+          title,
+          description,
+          deadline,
+          goalProgress: 0,
+          completed: false,
+          deleted: false,
+        }
       );
       setDescription('');
       setTitle('');

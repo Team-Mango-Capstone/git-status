@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { getSingleRepo, getCommitsforRepo, searchCommits, getRepoCollaborators, getCommitStatforRepo, deleteRepo, archiveRepo } from './GithubAPITesting.js'
 import SingleRepoModal from './SingleRepoModal.js'
 import { Link } from "react-router-dom";
+import LineChart from './SingleRepoLineChart.js'
 
 const screenName = localStorage.getItem('screenName');//
 
@@ -140,7 +141,11 @@ function SingleRepo(props) {
         }) : <div>Nothing exists</div>}
       </div>
 
+      {/* Testing the Line Chart
+      <div style={{ height: 10 }}><LineChart /></div> */}
+
       <div>
+
         <div>Number of Collaborators: {collabs.length}</div>
         Names : {collabs.map((item) => { return <ul key={item.id}>{item.login}</ul> })}
       </div>

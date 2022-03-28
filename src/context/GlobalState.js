@@ -33,53 +33,55 @@ export const GlobalProvider = (props) => {
             }
           };
           //fetch firebase data
-          const currentGoalsQuery = query(
-            collection(db, 'allUsers', uid, 'userGoals'),
-            where('completed', '==', false)
-          );
-          const fetchCurrentGoals = onSnapshot(currentGoalsQuery, (querySnapshot) => {
-            let goalsArray = [];
-            querySnapshot.forEach((doc) => {
-              goalsArray.push({ ...doc.data(), id: doc.id });
+          if(uid){
+            const currentGoalsQuery = query(
+              collection(db, 'allUsers', uid, 'userGoals'),
+              where('completed', '==', false)
+            );
+            const fetchCurrentGoals = onSnapshot(currentGoalsQuery, (querySnapshot) => {
+              let goalsArray = [];
+              querySnapshot.forEach((doc) => {
+                goalsArray.push({ ...doc.data(), id: doc.id });
+              });
+              setCurrentGoals(goalsArray);
             });
-            setCurrentGoals(goalsArray);
-          });
-      
-          const completedGoalsQuery = query(
-            collection(db, 'allUsers', uid, 'userGoals'),
-            where('completed', '==', true)
-          );
-          const fetchCompletedGoals = onSnapshot(completedGoalsQuery, (querySnapshot) => {
-            let goalsArray = [];
-            querySnapshot.forEach((doc) => {
-              goalsArray.push({ ...doc.data(), id: doc.id });
-            });
-            setCompletedGoals(goalsArray);
-          });
-
-          const tasksQuery = query(
-            collection(
-              db,
-              'allUsers',
-              window.localStorage.getItem('uid'),
-              'userTasks'
-            )
-          );
-          const fetchTasks = onSnapshot(tasksQuery, (querySnapshot) => {
-            let tasksArray = [];
-            querySnapshot.forEach((doc) => {
-              tasksArray.push({ ...doc.data(), id: doc.id });
-            });
-            setTasks(tasksArray);
-          });
-    
-          return () => {
-            fetchCurrentGoals();
-            fetchCompletedGoals();
-            fetchTasks();
-            makeRequest();
-          };
         
+            const completedGoalsQuery = query(
+              collection(db, 'allUsers', uid, 'userGoals'),
+              where('completed', '==', true)
+            );
+            const fetchCompletedGoals = onSnapshot(completedGoalsQuery, (querySnapshot) => {
+              let goalsArray = [];
+              querySnapshot.forEach((doc) => {
+                goalsArray.push({ ...doc.data(), id: doc.id });
+              });
+              setCompletedGoals(goalsArray);
+            });
+  
+            const tasksQuery = query(
+              collection(
+                db,
+                'allUsers',
+                window.localStorage.getItem('uid'),
+                'userTasks'
+              )
+            );
+            const fetchTasks = onSnapshot(tasksQuery, (querySnapshot) => {
+              let tasksArray = [];
+              querySnapshot.forEach((doc) => {
+                tasksArray.push({ ...doc.data(), id: doc.id });
+              });
+              setTasks(tasksArray);
+            });
+
+            return () => {
+              fetchCurrentGoals();
+              fetchCompletedGoals();
+              fetchTasks();
+              makeRequest();
+            };
+          }
+          
     }, []); 
   
     const [userLanguages, setUserLanguages] = useState({});

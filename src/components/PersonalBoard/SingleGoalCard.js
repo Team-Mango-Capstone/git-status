@@ -16,6 +16,7 @@ const SingleGoalCard = ({
   handleEditDeadline,
   handleEditTitle,
   handleEditProgress,
+  handlePseudoDelete
 }) => {
   const [newTitle, setNewTitle] = useState(goal.title);
   const [newDescription, setNewDescription] = useState(goal.description);
@@ -51,6 +52,13 @@ const SingleGoalCard = ({
     }
   };
 
+  const deleteHelper = (collection, goal) => {
+    console.log('inside deleteHelper...')
+     if (goal.completed === true) {
+        handlePseudoDelete(goal.id)
+     } else handleDelete(collection, goal.id);
+  };
+
 
 // let resultFromContext = useContext(GlobalContext)
 // console.log('MY RESULTS FROM CONTEXT API',resultFromContext.count)
@@ -61,7 +69,7 @@ const SingleGoalCard = ({
       <div className='goals-top-container'>
         <button
           className='goal-btn-delete'
-          onClick={() => handleDelete('userGoals', goal.id)}
+          onClick={() => deleteHelper('userGoals',goal)}
 
         >
           <i className="bi bi-x-circle-fill"></i>
@@ -98,9 +106,10 @@ const SingleGoalCard = ({
         <button
           className="goal-btn-complete"
           onClick={() => {
-            if (!goal.completed) {
-              setOpenModal(!openModal);
-            } else toggleComplete('userGoals', goal);
+            // if (!goal.completed) {
+            //   setOpenModal(!openModal);
+            // } else 
+            toggleComplete('userGoals', goal);
           }}
         >
           <i className="bi bi-check-circle-fill"></i>

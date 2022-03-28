@@ -2,8 +2,6 @@ import '../../css/Goals.css';
 import SingleGoalCard from './SingleGoalCard';
 import AddGoal from './AddGoal';
 import { useState, useEffect, useContext } from 'react';
-import { db } from '../../db/Firebase';
-import { onSnapshot, query, collection, where } from 'firebase/firestore';
 import {
   toggleComplete,
   handleEditDesc,
@@ -11,6 +9,7 @@ import {
   handleEditDeadline,
   handleEditTitle,
   handleEditProgress,
+  handlePseudoDelete
 } from '../../db/Firestore';
 import { usePagination, PaginationGoals } from './GoalPagination';
 import { GlobalContext } from '../../context/GlobalState';
@@ -20,41 +19,6 @@ function Goals() {
   const [status, setStatus] = useState(true);
   const uid = window.localStorage.getItem('uid');
   let [page, setPage] = useState(1);
-
-  //============ DIANA'S BADGES
-
-  // useEffect(() => {
-  //   const q = query(
-  //     collection(db, 'allUsers', uid, 'userGoals'),
-  //     where('completed', '==', false)
-  //   );
-  //   const fetchData = onSnapshot(q, (querySnapshot) => {
-  //     let goalsArray = [];
-  //     querySnapshot.forEach((doc) => {
-  //       goalsArray.push({ ...doc.data(), id: doc.id });
-  //     });
-  //     setCurrentGoals(goalsArray);
-  //   });
-
-  //   const q2 = query(
-  //     collection(db, 'allUsers', uid, 'userGoals'),
-  //     where('completed', '==', true)
-  //   );
-  //   const fetchCompletedData = onSnapshot(q2, (querySnapshot) => {
-  //     let goalsArray = [];
-  //     querySnapshot.forEach((doc) => {
-  //       goalsArray.push({ ...doc.data(), id: doc.id });
-  //     });
-  //     setCompletedGoals(goalsArray);
-  //   });
-
-  //   return () => {
-  //     fetchData();
-  //     fetchCompletedData();
-  //   };
-  // }, []);
-
-  //============
 
   const { currentGoals, completedGoals } = useContext(GlobalContext);
   // console.log('current', currentGoals);
@@ -71,7 +35,12 @@ function Goals() {
   return (
     <div className='goals-contane'>
       <div className='goals'>
+      <h5>My Goals</h5>  
+      <br/>
         <div className='status-bar'>
+        <button className='add-btn' onClick={() => setOpenModal(true)}>
+            +
+          </button>
           <button
             className={status ? 'status-btn-active' : 'status-btn'}
             onClick={() => setStatus(true)}
@@ -87,9 +56,7 @@ function Goals() {
           </button>
         </div>
         <div className='add-btn-container'>
-          <button className='add-btn' onClick={() => setOpenModal(true)}>
-            +
-          </button>
+        
         </div>
         {openModal && <AddGoal closeModal={setOpenModal} />}
         <div className={openModal === true ? 'goal-hover' : 'goal-container'}>
@@ -103,6 +70,7 @@ function Goals() {
               handleEditDeadline={handleEditDeadline}
               handleEditTitle={handleEditTitle}
               handleEditProgress={handleEditProgress}
+              handlePseudoDelete={handlePseudoDelete}
             />
           ))}
           <PaginationGoals

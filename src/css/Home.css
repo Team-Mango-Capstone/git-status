@@ -29,7 +29,7 @@
 }
 
 .profile-card,
-.popular,
+.top-repo,
 .top-languages,
 .activity {
   background-color: #161b22;
@@ -41,6 +41,6 @@
 }
 
 .top-languages,
-.popular {
+.top-repo {
   flex-grow: 2;
 }

@@ -4,35 +4,35 @@ import axios from 'axios';
 export const GlobalContext = createContext({});
 
 export const GlobalProvider = (props) => {
-    const [userData, setUserData] = useState([]);
-    const [userRepos, setUserRepos] = useState([]);
-    const githubUsername = localStorage.getItem('screenName');
+  const [userData, setUserData] = useState([]);
+  const [userRepos, setUserRepos] = useState([]);
+  const githubUsername = localStorage.getItem('screenName');
 
-    useEffect(() => {
-        const makeRequest = async () => {
-            try {
-              const userData = await axios.get(
-                `https://api.github.com/users/${githubUsername}`
-              );
-              setUserData(userData.data);
-      
-              const userRepos = await axios.get(
-                `https://api.github.com/search/repositories?q=user:${githubUsername}+fork:true&per_page=100`
-              );
-              setUserRepos(userRepos.data);
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const userData = await axios.get(
+          `https://api.github.com/users/${githubUsername}`
+        );
+        setUserData(userData.data);
 
-            } catch (error) {
-              console.log(error);
-            }
-          };
-          makeRequest();
-    }, []); //we pass state since we're accessing it
-  
-    const [userLanguages, setUserLanguages] = useState({});
-    const repoArr = userRepos.items || [];
+        const userRepos = await axios.get(
+          `https://api.github.com/search/repositories?q=user:${githubUsername}+fork:true&per_page=100`
+        );
+        setUserRepos(userRepos.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    makeRequest();
+  }, []); //we pass state since we're accessing it
 
-    useEffect(() => {
-      const calculateLanguages = async () => {
+  const [userLanguages, setUserLanguages] = useState({});
+  const repoArr = userRepos.items || [];
+
+  useEffect(() => {
+    const calculateLanguages = async () => {
+      repoArr &&
         repoArr.map(async (repo) => {
           try {
             const { data } = await axios.get(
@@ -57,18 +57,13 @@ export const GlobalProvider = (props) => {
             console.log(error);
           }
         });
-      };
-      calculateLanguages();
+    };
+    calculateLanguages();
+  }, [userRepos.items]);
 
-    }, [userRepos.items]);
-
-
-    return (
-      <GlobalContext.Provider
-        value={{userRepos, userData, userLanguages}}
-      >
-        {props.children}
-      </GlobalContext.Provider>
-    );
-  };
-  
+  return (
+    <GlobalContext.Provider value={{ userRepos, userData, userLanguages }}>
+      {props.children}
+    </GlobalContext.Provider>
+  );
+};

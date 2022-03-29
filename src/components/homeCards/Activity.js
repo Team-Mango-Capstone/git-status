@@ -59,7 +59,7 @@ export function Activity() {
               </div>
             ))
           ) : (
-            <h3 className='no-activity'>No activity to display!</h3>
+            <h3>No activity to display!</h3>
           )
         ) : othersEvents ? (
           othersEvents.map((event) => (
@@ -78,7 +78,7 @@ export function Activity() {
             </div>
           ))
         ) : (
-          <h3 className='no-activity'>No activity to display!</h3>
+          <h3>No activity to display!</h3>
         )}
       </div>
     </div>

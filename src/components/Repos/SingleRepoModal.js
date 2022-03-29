@@ -7,8 +7,6 @@ function SingleRepoModal({
   buttonClicked,
   archiveRepo,
 }) {
-  console.log('This is frmo the MOdal PROPS', buttonClicked);
-
   function clickHandler() {
     if (buttonClicked === 'Delete') {
       deleteRepo();

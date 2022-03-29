@@ -27,6 +27,7 @@
 .activity-btn:hover {
   border: 1px solid #8c959e;
   background-color: #343c41;
+  cursor: pointer;
 }
 
 .activity-btn:active {
@@ -50,11 +51,6 @@
   height: 35rem;
   padding-right: 1rem;
   overflow: auto;
-}
-
-.no-activity {
-  margin-top: 50%;
-  text-align: center;
 }
 
 .your-events hr {

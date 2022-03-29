@@ -9,7 +9,7 @@ import {
   handleEditDeadline,
   handleEditTitle,
   handleEditProgress,
-  handlePseudoDelete
+  handlePseudoDelete,
 } from '../../db/Firestore';
 import { usePagination, PaginationGoals } from './GoalPagination';
 import { GlobalContext } from '../../context/GlobalState';
@@ -41,15 +41,15 @@ function Goals() {
   let data = status ? DATA_CURRENT.currentData() : DATA_COMPLETED.currentData();
 
   return (
-    <div className='goals-contane'>
-      {showBadgeModal ? 
-      <BadgeModal isOpen={showBadgeModal} toggle={toggleModal}/>
-      : null}
+    <div className='goals-container'>
+      {showBadgeModal ? (
+        <BadgeModal isOpen={showBadgeModal} toggle={toggleModal} />
+      ) : null}
       <div className='goals'>
-      <h5>My Goals</h5>  
-      <br/>
+        <h5>My Goals</h5>
+        <br />
         <div className='status-bar'>
-        <button className='add-btn' onClick={() => setOpenModal(true)}>
+          <button className='add-btn' onClick={() => setOpenModal(true)}>
             +
           </button>
           <button
@@ -66,27 +66,26 @@ function Goals() {
             <h4>completed</h4>
           </button>
         </div>
-        <div className='add-btn-container'>
-        
-        </div>
+        <div className='add-btn-container'></div>
         {openModal && <AddGoal closeModal={setOpenModal} />}
         <div className={openModal === true ? 'goal-hover' : 'goal-container'}>
-          {data.filter(goal => goal.deleted === false)
-          .map((goal) => (
-            <SingleGoalCard
-              key={goal.id}
-              goal={goal}
-              toggleComplete={toggleComplete}
-              handleDelete={handleDelete}
-              handleEditDesc={handleEditDesc}
-              handleEditDeadline={handleEditDeadline}
-              handleEditTitle={handleEditTitle}
-              handleEditProgress={handleEditProgress}
-              handlePseudoDelete={handlePseudoDelete}
-              isOpen={showBadgeModal}
-              toggle={toggleModal}
-            />
-          ))}
+          {data
+            .filter((goal) => goal.deleted === false)
+            .map((goal) => (
+              <SingleGoalCard
+                key={goal.id}
+                goal={goal}
+                toggleComplete={toggleComplete}
+                handleDelete={handleDelete}
+                handleEditDesc={handleEditDesc}
+                handleEditDeadline={handleEditDeadline}
+                handleEditTitle={handleEditTitle}
+                handleEditProgress={handleEditProgress}
+                handlePseudoDelete={handlePseudoDelete}
+                isOpen={showBadgeModal}
+                toggle={toggleModal}
+              />
+            ))}
           <PaginationGoals
             completedGoals={completedGoals}
             currentGoals={currentGoals}
@@ -103,6 +102,6 @@ function Goals() {
       </div>
     </div>
   );
-};
+}
 
 export default Goals;

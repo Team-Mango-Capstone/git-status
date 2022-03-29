@@ -18,7 +18,6 @@ export const TopRepo = () => {
   const [topRepoLanguages, setTopRepoLanguages] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-
   useEffect(() => {
     const findTopRepo = async () => {
       let allOwnedRepos;
@@ -58,6 +57,9 @@ export const TopRepo = () => {
       setTopRepo(data);
     };
     getTopRepo();
+  }, [topRepoStats]); // this should run everytime the topRepo/Stats is updated
+
+  useEffect(() => {
     const getTopRepoLanguages = async () => {
       // axios call to get the languages for the topRepo
       const { data } = await axios.get(
@@ -67,7 +69,7 @@ export const TopRepo = () => {
       setIsLoading(false);
     };
     getTopRepoLanguages();
-  }, [topRepoStats, topRepo]); // this should run everytime the topRepo/Stats is updated
+  }, [topRepo]);
 
   const languageList = Object.entries(topRepoLanguages).map(([key, value]) => {
     return (

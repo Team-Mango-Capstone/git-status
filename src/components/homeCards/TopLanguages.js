@@ -60,6 +60,18 @@ export function TopLanguages(props) {
   //   );
   // });
 
+  let resultFromContext = useContext(GlobalContext)
+  console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
+  let languages = localStorage.getItem('languages')
+  ? JSON.parse(localStorage.getItem('languages'))
+  : [];
+
+  if(!Object.keys(languages).length){
+    localStorage.setItem('languages', JSON.stringify(resultFromContext.userLanguages));
+  }
+
+   console.log('from local storage',languages)
+
   return (
     <div className='top-languages'>
       <h2>Most used languages</h2>

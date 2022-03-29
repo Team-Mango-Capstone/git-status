@@ -22,8 +22,8 @@ function Goals() {
   const { currentGoals, completedGoals } = useContext(GlobalContext);
   // console.log('current', currentGoals);
   // console.log('completed', completedGoals);
-  let result = useContext(GlobalContext);
-  console.log(result);
+  // let result = useContext(GlobalContext);
+  // console.log(result);
 
   const PER_PAGE = 6;
   const countCurrent = Math.ceil(currentGoals.length / PER_PAGE);

@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { db } from '../../db/Firebase';
-import { collection, addDoc } from 'firebase/firestore';
 import '../../css/Tasks.css';
 
 function SingleTaskCard({

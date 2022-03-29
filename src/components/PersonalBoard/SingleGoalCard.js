@@ -60,8 +60,8 @@ const SingleGoalCard = ({
   };
 
 
-let resultFromContext = useContext(GlobalContext)
-console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
+// let resultFromContext = useContext(GlobalContext)
+// console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
 
   return (
     <div className='single-goal-card'>

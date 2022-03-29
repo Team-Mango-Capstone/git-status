@@ -2,6 +2,8 @@ import '../../css/SingleRepo.css';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import DonutChart from './singleRepoCards/SingleRepoDonut.js'
+
 import {
   getSingleRepo,
   getCommitsforRepo,
@@ -9,6 +11,7 @@ import {
   getCommitStatforRepo,
   deleteRepo,
   archiveRepo,
+  getRepoLanguage
 } from '../GithubAPITesting.js';
 import SingleRepoModal from './SingleRepoModal.js';
 import RepoCollaborators from './singleRepoCards/RepoCollaborators';
@@ -28,6 +31,8 @@ function SingleRepo(props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [buttonClicked, setButtonClicked] = useState('');
   const [dismiss, setDismiss] = useState(false);
+  const [repoLang, setRepoLang] = useState({})
+
 
   useEffect(() => {
     async function fetchRepoData() {
@@ -47,6 +52,9 @@ function SingleRepo(props) {
           repo.name
         );
         setCollabs(collabsInfo);
+
+        const repoLangData = await getRepoLanguage(screenName, repo.name);
+        setRepoLang(repoLangData)
 
         // const commitsInfo = await searchCommits('choi2010', 'teampluto2201/grace-shopper');
         const commitsInfo = await getCommitsforRepo(screenName, repo.name);
@@ -74,7 +82,7 @@ function SingleRepo(props) {
 
   const daysSinceUpdate = Math.round(
     (new Date().getTime() - new Date(repo.updated_at).getTime()) /
-      (1000 * 60 * 60 * 24)
+    (1000 * 60 * 60 * 24)
   );
 
   // Getting the average commit size in this repo
@@ -210,7 +218,13 @@ function SingleRepo(props) {
       </div>
 
       <div className='single-repo-second-row'>
-        <RepoLanguages />
+        <RepoLanguages repoLang={repoLang} />
+        {/* <div style={{ width: 250 }}>
+          language chart
+          <DonutChart repoLang={repoLang} />
+
+        </div> */}
+
         <RepoCollaborators collabs={collabs} />
       </div>
     </div>

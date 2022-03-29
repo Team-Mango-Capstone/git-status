@@ -123,6 +123,18 @@ export async function archiveRepo(owner, repoName) {
     }
 }
 
+//API Route for getting repo languages
+export async function getRepoLanguage(owner, repoName) {
+    try {
+        const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repoName}/languages`)
+        // data returns an object with languages. 
+        console.log("Repo Languages", data)
+        return data;
+    }
+    catch (err) {
+        console.log("error")
+    }
+}
 ///////////////////////////
 
 // searchrepo API route

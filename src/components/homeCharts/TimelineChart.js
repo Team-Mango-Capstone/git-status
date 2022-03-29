@@ -40,6 +40,12 @@ export default function TimelineChart(props) {
         // },
       },
     },
+    // due to the chartjs datalabel plug in , I believe your chart is showing datalabels. You should be able to get rid of them by uncomments the rows below. 
+    // plugins: {
+    //   datalabels: {
+    //     display: false
+    //   }
+    // }
   };
 
   const timelineData = props.chartData.map((element) => {

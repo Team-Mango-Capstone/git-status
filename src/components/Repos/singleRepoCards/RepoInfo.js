@@ -7,10 +7,9 @@ function RepoInfo(props) {
   const red = { color: '#e34c26' };
   const green = { color: '#39d353' };
 
-  // const date = repo.created_at.slice(0, 10);
-  // const time = repo.created_at.slice(11, 19);
-  // const visibility =
-  //   repo.visibility[0].toUpperCase() + repo.visibility.substring(1);
+  const date = repo.created_at;
+  const time = repo.created_at;
+  const visibility = repo.visibility;
 
   return (
     <div className='single-repo-info'>
@@ -25,9 +24,9 @@ function RepoInfo(props) {
         <h3>{repo.id}</h3>
         <hr />
         <h3>
-          {/* {date} */}
+          {date ? date.slice(0, 10) : null}
           <br />
-          {/* {time} */}
+          {time ? time.slice(11, 19) : null}
         </h3>
         <hr />
         <h3>
@@ -46,7 +45,9 @@ function RepoInfo(props) {
         <h3>Views</h3>
         <hr />
         <h3 style={repo.visibility === 'private' ? red : green}>
-          {/* {visibility} */}
+          {visibility
+            ? visibility[0].toUpperCase() + repo.visibility.substring(1)
+            : null}
         </h3>
       </div>
 

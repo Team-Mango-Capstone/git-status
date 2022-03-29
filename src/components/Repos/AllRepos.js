@@ -105,13 +105,14 @@ function AllRepos() {
       {/*  */}
 
       <br />
-      <div className='all-repos-container'>
-        {isLoading ? (
-          loading
-        ) : repos.length === 0 ? (
-          <div>You have no repos!</div>
-        ) : (
-          _DATA.currentData().map((repo) => (
+
+      {isLoading ? (
+        loading
+      ) : repos.length === 0 ? (
+        <div className='all-repos-container'>You have no repos!</div>
+      ) : (
+        <div className='all-repos-container'>
+          {_DATA.currentData().map((repo) => (
             <div className='single-repo-card' key={repo.id}>
               <Link to={`/repos/${repo.name}`}>
                 <h2>{repo.name}</h2>
@@ -131,9 +132,10 @@ function AllRepos() {
                 </div>
               )}
             </div>
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
+
       <div className='invisible' />
     </div>
   );

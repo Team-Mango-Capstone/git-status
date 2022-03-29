@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { db } from '../../db/Firebase';
-import { collection, addDoc } from 'firebase/firestore';
 import '../../css/Tasks.css';
 
 function SingleTaskCard({
@@ -20,7 +18,7 @@ function SingleTaskCard({
       setNewTitle(e.target.value);
     }
   };
-  console.log(newTitle)
+
   return (
     <div className='tasks'>
       <input

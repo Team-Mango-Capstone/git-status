@@ -13,7 +13,6 @@ import 'chartjs-adapter-date-fns';
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend, TimeScale);
 
 export default function TimelineChart(props) {
-  // console.log('PROPS >>>', props.chartData);
 
   const options = {
     responsive: true,

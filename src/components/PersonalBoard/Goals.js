@@ -1,7 +1,7 @@
 import '../../css/Goals.css';
 import SingleGoalCard from './SingleGoalCard';
 import AddGoal from './AddGoal';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import {
   toggleComplete,
   handleEditDesc,
@@ -25,6 +25,8 @@ function Goals() {
   const { currentGoals, completedGoals } = useContext(GlobalContext);
   // console.log('current', currentGoals);
   // console.log('completed', completedGoals);
+  // let result = useContext(GlobalContext);
+  // console.log(result);
 
   const toggleModal = () => {
     setShowBadgeModal(!showBadgeModal);

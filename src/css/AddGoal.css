@@ -48,20 +48,6 @@
   color: #db6d52;
 }
 
-.goal-btn-complete{
-  background-color: transparent;
-  background-repeat: no-repeat;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  outline: none;
-  color: #238636;
-}
-
-.goal-btn-complete:hover{
-  color: #5f996b;
-}
-
 i {
   font-size: 25px;
 }

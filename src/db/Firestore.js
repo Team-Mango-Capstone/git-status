@@ -73,12 +73,6 @@ export const toggleComplete = async (collection, item) => {
   );
 };
 
-export const handleDelete = async (collection, id) => {
-  await deleteDoc(
-    doc(db, 'allUsers', uid, collection, id)
-
-  );
-};
 
 export const handlePseudoDelete = async (id) => {
   await updateDoc(
@@ -88,3 +82,9 @@ export const handlePseudoDelete = async (id) => {
 };
 
 
+export const handleDelete = async (collection, id) => {
+  await deleteDoc(
+    doc(db, 'allUsers', uid, collection, id)
+
+  );
+};

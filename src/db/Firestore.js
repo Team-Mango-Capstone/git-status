@@ -73,12 +73,13 @@ export const toggleComplete = async (collection, item) => {
   );
 };
 
-// ========
-// export const handleDeleteFake = async (id) => {
-//   await updateDoc(
-//     doc(db, 'allUsers', uid, 'userGoals', id),
-//     { deleted: true }
-// ========
+
+export const handlePseudoDelete = async (id) => {
+  await updateDoc(
+    doc(db, 'allUsers', uid, 'userGoals', id),
+    { deleted: true }
+  );
+};
 
 export const handleDelete = async (collection, id) => {
   await deleteDoc(

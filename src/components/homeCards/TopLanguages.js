@@ -4,10 +4,10 @@ import { GlobalContext } from '../../context/GlobalState';
 const githubUsername = localStorage.getItem('screenName');
 
 export function TopLanguages(props) {
-  // const [userLanguages, setUserLanguages] = useState({});
+  const [userLanguages, setUserLanguages] = useState({});
 
   let result = useContext(GlobalContext);
-  console.log(result.userLanguages);
+  console.log(result);
 
   // const repoArr = props.userRepos.items; // gets array of all users repos from props
   // useEffect(() => {

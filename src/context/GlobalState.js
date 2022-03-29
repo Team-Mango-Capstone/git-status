@@ -16,24 +16,21 @@ export const GlobalProvider = (props) => {
     const uid = window.localStorage.getItem('uid');
 
     useEffect(() => {
+      if(uid){
         const makeRequest = async () => {
-            try {
+         
               const userData = await axios.get(
                 `https://api.github.com/users/${githubUsername}`
               );
               setUserData(userData.data);
       
               const userRepos = await axios.get(
-                `https://api.github.com/search/repositories?q=user:${githubUsername}+fork:true&per_page=100`
+                `https://api.github.com/search/repositories?q=user:${githubUsername}+fork:true+archived:false&per_page=100`
               );
               setUserRepos(userRepos.data);
-
-            } catch (error) {
-              console.log(error);
-            }
+             
           };
           //fetch firebase data
-          if(uid){
             const currentGoalsQuery = query(
               collection(db, 'allUsers', uid, 'userGoals'),
               where('completed', '==', false)
@@ -84,44 +81,44 @@ export const GlobalProvider = (props) => {
           
     }, []); 
   
-    const [userLanguages, setUserLanguages] = useState({});
-    const repoArr = userRepos.items || [];
+    // const [userLanguages, setUserLanguages] = useState({});
+    // const repoArr = userRepos.items || [];
 
-    useEffect(() => {
-      const calculateLanguages = async () => {
-        repoArr.map(async (repo) => {
-          try {
-            const { data } = await axios.get(
-              `https://api.github.com/repos/${githubUsername}/${repo.name}/languages`
-            );
-            for (const language in data) {
-              let newObj = {};
-              //if language is already in our userLanguages piece of state, increment it
-              if (Object.keys(userLanguages).includes(language)) {
-                newObj[language] = userLanguages[language] + data[language];
-                let updatedLangs = Object.assign(userLanguages, newObj);
-                setUserLanguages(updatedLangs);
-              }
-              // otherwise, add that language to userLanguages
-              else {
-                newObj[language] = data[language];
-                let updatedLangs = Object.assign(userLanguages, newObj);
-                setUserLanguages(updatedLangs);
-              }
-            }
-          } catch (error) {
-            console.log(error);
-          }
-        });
-      };
-      calculateLanguages();
+    // useEffect(() => {
+    //   const calculateLanguages = async () => {
+    //     repoArr.map(async (repo) => {
+    //       try {
+    //         const { data } = await axios.get(
+    //           `https://api.github.com/repos/${githubUsername}/${repo.name}/languages`
+    //         );
+    //         for (const language in data) {
+    //           let newObj = {};
+    //           //if language is already in our userLanguages piece of state, increment it
+    //           if (Object.keys(userLanguages).includes(language)) {
+    //             newObj[language] = userLanguages[language] + data[language];
+    //             let updatedLangs = Object.assign(userLanguages, newObj);
+    //             setUserLanguages(updatedLangs);
+    //           }
+    //           // otherwise, add that language to userLanguages
+    //           else {
+    //             newObj[language] = data[language];
+    //             let updatedLangs = Object.assign(userLanguages, newObj);
+    //             setUserLanguages(updatedLangs);
+    //           }
+    //         }
+    //       } catch (error) {
+    //         console.log(error);
+    //       }
+    //     });
+    //   };
+    //   calculateLanguages();
 
-    }, [userRepos.items]);
-
+    // }, [userRepos.items]);
+    console.log(userRepos)
 
     return (
       <GlobalContext.Provider
-        value={{userRepos, userData, userLanguages, currentGoals, completedGoals, tasks}}
+        value={{userRepos, userData, currentGoals, completedGoals, tasks}}
       >
         {props.children}
       </GlobalContext.Provider>

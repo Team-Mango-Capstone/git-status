@@ -181,7 +181,11 @@ function SingleRepo(props) {
 
       <div className='single-repo-first-row'>
         <RepoInfo repo={repo} />
-        <RepoActivity commits={commits} averageCommitSize={averageCommitSize} />
+        <RepoActivity
+          commits={commits}
+          averageCommitSize={averageCommitSize}
+          // date={commits.author.date}
+        />
       </div>
 
       <div className='single-repo-second-row'>

@@ -1,6 +1,7 @@
 .single-repo-info {
   font-size: 1.2rem;
-  min-width: 40rem;
+  max-width: 40rem;
+  max-height: 30rem;
 }
 
 .single-repo-info hr {

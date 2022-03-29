@@ -7,7 +7,7 @@ export function TopLanguages(props) {
   // const [userLanguages, setUserLanguages] = useState({});
 
   let result = useContext(GlobalContext);
-  console.log(result.userLanguages);
+  // console.log(result.userLanguages);
 
   // const repoArr = props.userRepos.items; // gets array of all users repos from props
   // useEffect(() => {

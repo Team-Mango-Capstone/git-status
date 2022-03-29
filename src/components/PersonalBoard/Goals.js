@@ -1,9 +1,7 @@
 import '../../css/Goals.css';
 import SingleGoalCard from './SingleGoalCard';
 import AddGoal from './AddGoal';
-import { useState, useEffect, useContext } from 'react';
-import { db } from '../../db/Firebase';
-import { onSnapshot, query, collection, where } from 'firebase/firestore';
+import { useState, useContext } from 'react';
 import {
   toggleComplete,
   handleEditDesc,
@@ -11,54 +9,28 @@ import {
   handleEditDeadline,
   handleEditTitle,
   handleEditProgress,
+  handlePseudoDelete
 } from '../../db/Firestore';
 import { usePagination, PaginationGoals } from './GoalPagination';
 import { GlobalContext } from '../../context/GlobalState';
+import { BadgeModal } from './BadgeModal';
 
 function Goals() {
   const [openModal, setOpenModal] = useState(false);
   const [status, setStatus] = useState(true);
+  const [showBadgeModal, setShowBadgeModal] = useState(false);
   const uid = window.localStorage.getItem('uid');
   let [page, setPage] = useState(1);
-
-  //============ DIANA'S BADGES
-
-  // useEffect(() => {
-  //   const q = query(
-  //     collection(db, 'allUsers', uid, 'userGoals'),
-  //     where('completed', '==', false)
-  //   );
-  //   const fetchData = onSnapshot(q, (querySnapshot) => {
-  //     let goalsArray = [];
-  //     querySnapshot.forEach((doc) => {
-  //       goalsArray.push({ ...doc.data(), id: doc.id });
-  //     });
-  //     setCurrentGoals(goalsArray);
-  //   });
-
-  //   const q2 = query(
-  //     collection(db, 'allUsers', uid, 'userGoals'),
-  //     where('completed', '==', true)
-  //   );
-  //   const fetchCompletedData = onSnapshot(q2, (querySnapshot) => {
-  //     let goalsArray = [];
-  //     querySnapshot.forEach((doc) => {
-  //       goalsArray.push({ ...doc.data(), id: doc.id });
-  //     });
-  //     setCompletedGoals(goalsArray);
-  //   });
-
-  //   return () => {
-  //     fetchData();
-  //     fetchCompletedData();
-  //   };
-  // }, []);
-
-  //============
 
   const { currentGoals, completedGoals } = useContext(GlobalContext);
   // console.log('current', currentGoals);
   // console.log('completed', completedGoals);
+  // let result = useContext(GlobalContext);
+  // console.log(result);
+
+  const toggleModal = () => {
+    setShowBadgeModal(!showBadgeModal);
+  };
 
   const PER_PAGE = 6;
   const countCurrent = Math.ceil(currentGoals.length / PER_PAGE);
@@ -70,8 +42,16 @@ function Goals() {
 
   return (
     <div className='goals-contane'>
+      {showBadgeModal ? 
+      <BadgeModal isOpen={showBadgeModal} toggle={toggleModal}/>
+      : null}
       <div className='goals'>
+      <h5>My Goals</h5>  
+      <br/>
         <div className='status-bar'>
+        <button className='add-btn' onClick={() => setOpenModal(true)}>
+            +
+          </button>
           <button
             className={status ? 'status-btn-active' : 'status-btn'}
             onClick={() => setStatus(true)}
@@ -87,13 +67,12 @@ function Goals() {
           </button>
         </div>
         <div className='add-btn-container'>
-          <button className='add-btn' onClick={() => setOpenModal(true)}>
-            +
-          </button>
+        
         </div>
         {openModal && <AddGoal closeModal={setOpenModal} />}
         <div className={openModal === true ? 'goal-hover' : 'goal-container'}>
-          {data.map((goal) => (
+          {data.filter(goal => goal.deleted === false)
+          .map((goal) => (
             <SingleGoalCard
               key={goal.id}
               goal={goal}
@@ -103,6 +82,9 @@ function Goals() {
               handleEditDeadline={handleEditDeadline}
               handleEditTitle={handleEditTitle}
               handleEditProgress={handleEditProgress}
+              handlePseudoDelete={handlePseudoDelete}
+              isOpen={showBadgeModal}
+              toggle={toggleModal}
             />
           ))}
           <PaginationGoals
@@ -121,6 +103,6 @@ function Goals() {
       </div>
     </div>
   );
-}
+};
 
 export default Goals;

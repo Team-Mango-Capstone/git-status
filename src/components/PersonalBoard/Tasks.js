@@ -1,8 +1,8 @@
 import '../../css/Tasks.css';
 import React from 'react';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { db } from '../../db/Firebase';
-import { onSnapshot, query, addDoc, collection } from 'firebase/firestore';
+import {addDoc, collection } from 'firebase/firestore';
 import {
   toggleComplete,
   handleEditTitle,
@@ -12,10 +12,9 @@ import SingleTaskCard from './SingleTaskCard';
 import { GlobalContext } from '../../context/GlobalState';
 
 function Tasks() {
-  // const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
   const { tasks } = useContext(GlobalContext);
-  console.log(tasks)
+  // console.log(tasks)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +48,8 @@ function Tasks() {
         />
       </form>
       <div className='task-container'>
-        {tasks.map((task) => (
+     
+        {tasks.length > 0 ? tasks.map((task) => (
           <SingleTaskCard
             key={task.id}
             task={task}
@@ -58,7 +58,7 @@ function Tasks() {
             handleDelete={handleDelete}
             handleEditTitle={handleEditTitle}
           />
-        ))}
+        )) : <h3>No tasks at the moment...</h3>}
       </div>
     </div>
   );

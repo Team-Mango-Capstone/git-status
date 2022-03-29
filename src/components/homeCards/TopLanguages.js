@@ -4,10 +4,12 @@ import { GlobalContext } from '../../context/GlobalState';
 const githubUsername = localStorage.getItem('screenName');
 
 export function TopLanguages(props) {
-  // const [userLanguages, setUserLanguages] = useState({});
+  const [userLanguages, setUserLanguages] = useState({});
 
   let result = useContext(GlobalContext);
-  console.log(result.userLanguages);
+  console.log(result);
+  // console.log(result.userLanguages);
+
 
   // const repoArr = props.userRepos.items; // gets array of all users repos from props
   // useEffect(() => {
@@ -59,6 +61,18 @@ export function TopLanguages(props) {
   //     </div>
   //   );
   // });
+
+  let resultFromContext = useContext(GlobalContext)
+  console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
+  let languages = localStorage.getItem('languages')
+  ? JSON.parse(localStorage.getItem('languages'))
+  : [];
+
+  if(!Object.keys(languages).length){
+    localStorage.setItem('languages', JSON.stringify(resultFromContext.userLanguages));
+  }
+
+   console.log('from local storage',languages)
 
   return (
     <div className='top-languages'>

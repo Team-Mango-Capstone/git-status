@@ -11,78 +11,85 @@ export const GlobalProvider = (props) => {
     const [currentGoals, setCurrentGoals] = useState([]);
     const [completedGoals, setCompletedGoals] = useState([]);
     const [tasks, setTasks] = useState([]);
+    const [userLanguages, setUserLanguages] = useState({});
 
     const githubUsername = localStorage.getItem('screenName');
     const uid = window.localStorage.getItem('uid');
 
     useEffect(() => {
-        const makeRequest = async () => {
-            try {
-              const userData = await axios.get(
-                `https://api.github.com/users/${githubUsername}`
-              );
-              setUserData(userData.data);
-      
-              const userRepos = await axios.get(
-                `https://api.github.com/search/repositories?q=user:${githubUsername}+fork:true&per_page=100`
-              );
-              setUserRepos(userRepos.data);
-
-            } catch (error) {
-              console.log(error);
-            }
-          };
+          if(uid){
           //fetch firebase data
-          const currentGoalsQuery = query(
-            collection(db, 'allUsers', uid, 'userGoals'),
-            where('completed', '==', false)
-          );
-          const fetchCurrentGoals = onSnapshot(currentGoalsQuery, (querySnapshot) => {
-            let goalsArray = [];
-            querySnapshot.forEach((doc) => {
-              goalsArray.push({ ...doc.data(), id: doc.id });
+            const currentGoalsQuery = query(
+              collection(db, 'allUsers', uid, 'userGoals'),
+              where('completed', '==', false)
+            );
+            const fetchCurrentGoals = onSnapshot(currentGoalsQuery, (querySnapshot) => {
+              let goalsArray = [];
+              querySnapshot.forEach((doc) => {
+                goalsArray.push({ ...doc.data(), id: doc.id });
+              });
+              setCurrentGoals(goalsArray);
             });
-            setCurrentGoals(goalsArray);
-          });
-      
-          const completedGoalsQuery = query(
-            collection(db, 'allUsers', uid, 'userGoals'),
-            where('completed', '==', true)
-          );
-          const fetchCompletedGoals = onSnapshot(completedGoalsQuery, (querySnapshot) => {
-            let goalsArray = [];
-            querySnapshot.forEach((doc) => {
-              goalsArray.push({ ...doc.data(), id: doc.id });
-            });
-            setCompletedGoals(goalsArray);
-          });
-
-          const tasksQuery = query(
-            collection(
-              db,
-              'allUsers',
-              window.localStorage.getItem('uid'),
-              'userTasks'
-            )
-          );
-          const fetchTasks = onSnapshot(tasksQuery, (querySnapshot) => {
-            let tasksArray = [];
-            querySnapshot.forEach((doc) => {
-              tasksArray.push({ ...doc.data(), id: doc.id });
-            });
-            setTasks(tasksArray);
-          });
-    
-          return () => {
-            fetchCurrentGoals();
-            fetchCompletedGoals();
-            fetchTasks();
-            makeRequest();
-          };
         
-    }, []); 
+            const completedGoalsQuery = query(
+              collection(db, 'allUsers', uid, 'userGoals'),
+              where('completed', '==', true)
+            );
+            const fetchCompletedGoals = onSnapshot(completedGoalsQuery, (querySnapshot) => {
+              let goalsArray = [];
+              querySnapshot.forEach((doc) => {
+                goalsArray.push({ ...doc.data(), id: doc.id });
+              });
+              setCompletedGoals(goalsArray);
+            });
   
-    const [userLanguages, setUserLanguages] = useState({});
+            const tasksQuery = query(
+              collection(
+                db,
+                'allUsers',
+                window.localStorage.getItem('uid'),
+                'userTasks'
+              )
+            );
+            const fetchTasks = onSnapshot(tasksQuery, (querySnapshot) => {
+              let tasksArray = [];
+              querySnapshot.forEach((doc) => {
+                tasksArray.push({ ...doc.data(), id: doc.id });
+              });
+              setTasks(tasksArray);
+            });
+
+            return () => {
+              fetchCurrentGoals();
+              fetchCompletedGoals();
+              fetchTasks();
+            };
+          }
+          
+    }, []); 
+
+
+    useEffect(() => {
+      const makeRequest = async () => {
+          try {
+            const userData = await axios.get(
+              `https://api.github.com/users/${githubUsername}`
+            );
+            setUserData(userData.data);
+    
+            const userRepos = await axios.get(
+              `https://api.github.com/search/repositories?q=user:${githubUsername}+fork:true&per_page=100`
+            );
+            setUserRepos(userRepos.data);
+
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        makeRequest();
+  }, []); //we pass state since we're accessing it
+  
+
     const repoArr = userRepos.items || [];
 
     useEffect(() => {
@@ -116,13 +123,13 @@ export const GlobalProvider = (props) => {
 
     }, [userRepos.items]);
 
+    // console.log(userRepos)
 
     return (
       <GlobalContext.Provider
-        value={{userRepos, userData, userLanguages, currentGoals, completedGoals, tasks}}
+        value={{userRepos, userData, currentGoals, completedGoals, tasks, userLanguages}}
       >
         {props.children}
       </GlobalContext.Provider>
     );
   };
-  

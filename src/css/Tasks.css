@@ -4,7 +4,7 @@
 
 .add-task-form {
   margin-top: 7%;
-  margin-bottom: 5%;
+  margin-bottom: 8%;
 
 }
 
@@ -28,9 +28,10 @@
   border-left-style: hidden;
   color: white;
   background-color: var(--background);
-  height: 25px;
+  height: 30px;
   width: 70%;
   margin: 1%;
+  margin-bottom: 5%;
   padding-left: 4%;
   border-radius: 14px;
   border: none;

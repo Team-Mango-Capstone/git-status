@@ -1,0 +1,27 @@
+.single-repo {
+  padding: 5rem;
+}
+
+.single-repo a {
+  text-decoration: none;
+  color: #fafafa;
+}
+
+.single-repo-first-row,
+.single-repo-second-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+  margin-top: 5rem;
+}
+
+.single-repo-info,
+.single-repo-activity,
+.single-repo-languages,
+.single-repo-collaborators {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 2rem;
+  flex-grow: 2;
+}

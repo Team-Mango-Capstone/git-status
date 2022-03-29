@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -6,46 +6,44 @@ import {
   Tooltip,
   Legend,
   TimeScale,
-} from "chart.js";
-import { Bubble } from "react-chartjs-2";
-import "chartjs-adapter-date-fns";
-
+} from 'chart.js';
+import { Bubble } from 'react-chartjs-2';
+import 'chartjs-adapter-date-fns';
 
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend, TimeScale);
 
 export default function TimelineChart(props) {
-  console.log("PROPS >>>", props.chartData);
 
   const options = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
       x: {
-        type: "time",
+        type: 'time',
         time: {
           displayFormats: {
-            day: "MMM dd yyyy",
+            day: 'MMM dd yyyy',
           },
-          tooltipFormat: 'MMM dd yyyy'
+          tooltipFormat: 'MMM dd yyyy',
         },
         grid: {
-          // color: "rgba(200, 0, 0, 0)",
-          display: false,
+          color: 'rgba(200, 0, 0, 0)',
+          // display: false,
         },
       },
       y: {
         display: false,
         min: -1,
         max: 1,
-        grid: {
-          display: false,
-        },
+        // grid: {
+        //   display: false,
+        // },
       },
     },
   };
 
   const timelineData = props.chartData.map((element) => {
-    let dateElements = element.x.split("-");
+    let dateElements = element.x.split('-');
 
     return {
       ...element,
@@ -58,15 +56,15 @@ export default function TimelineChart(props) {
   const data = {
     datasets: [
       {
-        label: "Your contributions",
+        label: 'Your contributions',
         data: timelineData,
-        backgroundColor: "rgba(35, 134, 54, 0.5)",
+        backgroundColor: 'rgba(35, 134, 54, 0.5)',
       },
     ],
   };
 
   return (
-    <div className="timeline-container">
+    <div className='timeline-container'>
       <Bubble data={data} options={options} />
     </div>
   );

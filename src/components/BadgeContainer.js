@@ -36,7 +36,7 @@ export const BadgeContainer = () => {
               className="badge"
               data-hover={hoverText}
             >                	
-              <FontAwesomeIcon icon={faAward} id='award-icon'/>
+              <FontAwesomeIcon icon={faAward} className='award-icon'/>
             </div>
         );
       })}

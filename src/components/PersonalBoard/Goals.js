@@ -13,10 +13,13 @@ import {
 } from '../../db/Firestore';
 import { usePagination, PaginationGoals } from './GoalPagination';
 import { GlobalContext } from '../../context/GlobalState';
+import { BadgeModal } from './BadgeModal';
 
 function Goals() {
   const [openModal, setOpenModal] = useState(false);
   const [status, setStatus] = useState(true);
+  const [showBadgeModal, setShowBadgeModal] = useState(false);
+  const uid = window.localStorage.getItem('uid');
   let [page, setPage] = useState(1);
 
   const { currentGoals, completedGoals } = useContext(GlobalContext);
@@ -24,6 +27,10 @@ function Goals() {
   // console.log('completed', completedGoals);
   // let result = useContext(GlobalContext);
   // console.log(result);
+
+  const toggleModal = () => {
+    setShowBadgeModal(!showBadgeModal);
+  };
 
   const PER_PAGE = 6;
   const countCurrent = Math.ceil(currentGoals.length / PER_PAGE);
@@ -35,6 +42,9 @@ function Goals() {
 
   return (
     <div className='goals-contane'>
+      {showBadgeModal ? 
+      <BadgeModal isOpen={showBadgeModal} toggle={toggleModal}/>
+      : null}
       <div className='goals'>
       <h5>My Goals</h5>  
       <br/>
@@ -61,7 +71,8 @@ function Goals() {
         </div>
         {openModal && <AddGoal closeModal={setOpenModal} />}
         <div className={openModal === true ? 'goal-hover' : 'goal-container'}>
-          {data.map((goal) => (
+          {data.filter(goal => goal.deleted === false)
+          .map((goal) => (
             <SingleGoalCard
               key={goal.id}
               goal={goal}
@@ -72,6 +83,8 @@ function Goals() {
               handleEditTitle={handleEditTitle}
               handleEditProgress={handleEditProgress}
               handlePseudoDelete={handlePseudoDelete}
+              isOpen={showBadgeModal}
+              toggle={toggleModal}
             />
           ))}
           <PaginationGoals
@@ -90,6 +103,6 @@ function Goals() {
       </div>
     </div>
   );
-}
+};
 
 export default Goals;

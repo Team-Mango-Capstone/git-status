@@ -8,6 +8,8 @@ export function TopLanguages(props) {
 
   let result = useContext(GlobalContext);
   console.log(result);
+  // console.log(result.userLanguages);
+
 
   // const repoArr = props.userRepos.items; // gets array of all users repos from props
   // useEffect(() => {

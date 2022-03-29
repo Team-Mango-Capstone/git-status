@@ -1,0 +1,51 @@
+.single-repo-activity {
+  display: flex;
+  height: 30rem;
+  /* max height later */
+}
+
+.single-repo-activity hr {
+  margin: 0rem 2rem;
+  border: 0;
+  background: #30363d;
+  width: 1px;
+}
+
+.activity-left-container {
+  width: 40%;
+}
+
+.activity-left-container h2:first-of-type {
+  margin-bottom: 2rem;
+}
+
+.commits {
+  height: 26rem;
+  padding-right: 2rem;
+  overflow: auto;
+}
+
+.commit h2:first-of-type {
+  color: #58a6ff;
+}
+
+.commit p {
+  font-size: 1.2rem;
+  margin-top: 0.8rem;
+}
+
+.commit hr {
+  margin: 2rem 0rem;
+  height: 1px;
+  border: 0;
+  width: auto;
+}
+
+.test {
+  display: flex;
+  justify-content: space-between;
+}
+
+.activity-right-container {
+  flex-grow: 1;
+}

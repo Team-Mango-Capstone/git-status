@@ -1,15 +1,12 @@
 import axios from 'axios';
-import '../css/AllRepos.css';
-import '../css/SingleRepoCard.css';
+import '../../css/AllRepos.css';
+import '../../css/SingleRepoCard.css';
 import { useState, useEffect } from 'react';
-import { loading } from './Elements';
+import { loading } from '../Elements';
 import { Link } from 'react-router-dom';
 import { usePagination, AllReposPagination } from './AllReposPagination.js'; // pagination
 
-// import SingleRepoCard from './SingleRepoCard';
-
 function AllRepos() {
-  // MISSING: pagination
   const screenName = localStorage.getItem('screenName');
 
   const leftAngleBrace = (
@@ -110,7 +107,6 @@ function AllRepos() {
       <br />
       <div className='all-repos-container'>
         {isLoading ? (
-          // text renders but not the spinner lol
           loading
         ) : repos.length === 0 ? (
           <div>You have no repos!</div>

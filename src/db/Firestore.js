@@ -81,11 +81,10 @@ export const handlePseudoDelete = async (id) => {
   );
 };
 
+
 export const handleDelete = async (collection, id) => {
   await deleteDoc(
     doc(db, 'allUsers', uid, collection, id)
 
   );
 };
-
-

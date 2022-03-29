@@ -27,6 +27,7 @@
 .activity-btn:hover {
   border: 1px solid #8c959e;
   background-color: #343c41;
+  cursor: pointer;
 }
 
 .activity-btn:active {
@@ -83,9 +84,4 @@
 .event p:first-child {
   margin-bottom: 0.8rem;
   font-weight: bolder;
-}
-
-.no-activity {
-  margin-top: 50%;
-  text-align: center;
 }

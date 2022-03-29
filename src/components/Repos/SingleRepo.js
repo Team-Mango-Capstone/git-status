@@ -27,6 +27,7 @@ function SingleRepo(props) {
   const [averageCommitSize, setAverageCommitSize] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
   const [buttonClicked, setButtonClicked] = useState('');
+  const [dismiss, setDismiss] = useState(false);
 
   useEffect(() => {
     async function fetchRepoData() {
@@ -159,44 +160,48 @@ function SingleRepo(props) {
           </h1>
         </div>
 
-        <div className='delete-archive'>
-          {daysSinceUpdate >= 60 && (
-            <div>
-              <h3>
-                It's been <span style={spanStyle}>{daysSinceUpdate}</span> days
-                since you've last made any changes.{' '}
-              </h3>
-              <h3>
-                Do you want to
-                <button
-                  className='delete-btn'
-                  value='Delete'
-                  onClick={clickTest}
-                >
-                  Delete
-                </button>
-                or
-                <button
-                  className='archive-btn'
-                  value='Archive'
-                  onClick={clickTest}
-                >
-                  Archive
-                </button>
-                this repo?
-              </h3>
-            </div>
-          )}
-
-          {modalOpen && (
-            <SingleRepoModal
-              setOpenModal={setModalOpen}
-              deleteRepo={deleteClickHandler}
-              archiveRepo={archiveClickHandler}
-              buttonClicked={buttonClicked}
-            />
-          )}
-        </div>
+        {dismiss ? null : (
+          <div className='delete-archive'>
+            {daysSinceUpdate >= 60 && (
+              <div>
+                <h3>
+                  It's been <span style={spanStyle}>{daysSinceUpdate}</span>{' '}
+                  days since you've last made any changes.{' '}
+                </h3>
+                <h3>
+                  Do you want to
+                  <button
+                    className='delete-btn'
+                    value='Delete'
+                    onClick={clickTest}
+                  >
+                    Delete
+                  </button>
+                  or
+                  <button
+                    className='archive-btn'
+                    value='Archive'
+                    onClick={clickTest}
+                  >
+                    Archive
+                  </button>
+                  this repo?
+                </h3>
+                <h3 className='dismiss-notif' onClick={() => setDismiss(true)}>
+                  DISMISS FOR NOW
+                </h3>
+              </div>
+            )}
+            {modalOpen && (
+              <SingleRepoModal
+                setOpenModal={setModalOpen}
+                deleteRepo={deleteClickHandler}
+                archiveRepo={archiveClickHandler}
+                buttonClicked={buttonClicked}
+              />
+            )}
+          </div>
+        )}
       </div>
 
       <div className='single-repo-first-row'>

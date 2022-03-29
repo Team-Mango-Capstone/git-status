@@ -60,4 +60,11 @@
 .archive-btn:hover {
   border: 1px solid #f09696;
   background-color: #e34c26;
+  cursor: pointer;
+}
+
+.dismiss-notif {
+  cursor: pointer;
+  color: #8b949e;
+  margin-top: 1rem;
 }

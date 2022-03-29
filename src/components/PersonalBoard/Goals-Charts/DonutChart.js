@@ -34,7 +34,7 @@ export default function DonutChart() {
   // console.log('current', currentGoals);
   // console.log('completed', completedGoals);
   const data = {
-    labels: ['Completed Goals', 'In progress'],
+    labels: ['In progress', 'Completed Goals'],
     datasets: [
       {
         label: 'Attendance for Week 1',

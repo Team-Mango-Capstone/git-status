@@ -52,11 +52,6 @@
   overflow: auto;
 }
 
-.no-activity {
-  margin-top: 50%;
-  text-align: center;
-}
-
 .your-events hr {
   margin: 2rem 0rem;
   height: 1px;
@@ -88,4 +83,9 @@
 .event p:first-child {
   margin-bottom: 0.8rem;
   font-weight: bolder;
+}
+
+.no-activity {
+  margin-top: 50%;
+  text-align: center;
 }

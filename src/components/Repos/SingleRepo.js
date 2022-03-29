@@ -82,6 +82,16 @@ function SingleRepo(props) {
     let totalDeletions = 0;
     let totalCount = 0;
 
+    if (commitsArray.length < 1) {
+      return {
+        totalAdditions,
+        totalDeletions,
+        totalCount,
+        avgAdditions: 0,
+        avgDeletions: 0,
+      };
+    }
+
     if (commitsArray.length === 1) {
       totalAdditions = commitsArray[0].weeks.reduce((accum, week) => {
         return accum + week.a;
@@ -94,9 +104,9 @@ function SingleRepo(props) {
       }, 0);
     }
     return {
-      totalAdditions: totalAdditions,
-      totalDeletions: totalDeletions,
-      totalCount: totalCount,
+      totalAdditions,
+      totalDeletions,
+      totalCount,
       avgAdditions: Math.round(totalAdditions / totalCount),
       avgDeletions: Math.round(totalDeletions / totalCount),
     };
@@ -137,55 +147,61 @@ function SingleRepo(props) {
 
   return (
     <div className='single-repo'>
-      <h2>
-        <Link to='/repos'>&#171; Back</Link>
-      </h2>
-      <h1>
-        {leftAngleBrace}
-        {repoName}
-        {rightAngleBrace}
-      </h1>
+      <div className='single-repo-header'>
+        <div className='back-name'>
+          <h2>
+            <Link to='/repos'>&#171; Back</Link>
+          </h2>
+          <h1>
+            {leftAngleBrace}
+            {repoName}
+            {rightAngleBrace}
+          </h1>
+        </div>
 
-      <a href={`${repo.clone_url}`} target='_blank' rel='noreferrer'>
-        <h3>Link to Github Repo Page</h3>
-      </a>
-
-      <div>
-        {/* If it's been greater than x days render button giving them an option to delete the repo.  */}
-
-        {daysSinceUpdate >= 60 && (
-          <div>
+        <div className='delete-archive'>
+          {daysSinceUpdate >= 60 && (
             <div>
-              It's been {daysSinceUpdate} days since you've last made any
-              changes.{' '}
+              <h3>
+                It's been <span style={spanStyle}>{daysSinceUpdate}</span> days
+                since you've last made any changes.{' '}
+              </h3>
+              <h3>
+                Do you want to
+                <button
+                  className='delete-btn'
+                  value='Delete'
+                  onClick={clickTest}
+                >
+                  Delete
+                </button>
+                or
+                <button
+                  className='archive-btn'
+                  value='Archive'
+                  onClick={clickTest}
+                >
+                  Archive
+                </button>
+                this repo?
+              </h3>
             </div>
-            <h3>Do you want to Delete or Archive this repo? </h3>
-            <button value='Delete' onClick={clickTest}>
-              Delete the Repo{' '}
-            </button>
-            <button value='Archive' onClick={clickTest}>
-              Archive the Repo{' '}
-            </button>
-          </div>
-        )}
+          )}
 
-        {modalOpen && (
-          <SingleRepoModal
-            setOpenModal={setModalOpen}
-            deleteRepo={deleteClickHandler}
-            archiveRepo={archiveClickHandler}
-            buttonClicked={buttonClicked}
-          />
-        )}
+          {modalOpen && (
+            <SingleRepoModal
+              setOpenModal={setModalOpen}
+              deleteRepo={deleteClickHandler}
+              archiveRepo={archiveClickHandler}
+              buttonClicked={buttonClicked}
+            />
+          )}
+        </div>
       </div>
 
       <div className='single-repo-first-row'>
         <RepoInfo repo={repo} />
-        <RepoActivity
-          commits={commits}
-          averageCommitSize={averageCommitSize}
-          // date={commits.author.date}
-        />
+        <RepoActivity commits={commits} averageCommitSize={averageCommitSize} />
       </div>
 
       <div className='single-repo-second-row'>

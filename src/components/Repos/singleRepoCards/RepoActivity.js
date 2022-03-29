@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../../css/RepoActivity.css';
 
 function RepoActivity(props) {
@@ -10,7 +10,7 @@ function RepoActivity(props) {
       <div className='activity-left-container'>
         <h2>Activity</h2>
         <div className='commits'>
-          {commits ? (
+          {commits && commits.length > 0 ? (
             commits.slice(0, 10).map((item) => {
               return (
                 <div className='commit' key={item.sha}>
@@ -23,33 +23,50 @@ function RepoActivity(props) {
                     </h2>
                   </div>
                   <p>{item.commit.message}</p>
-                  {item === commits[9] ? <div /> : <hr />}
+                  {item === commits[commits.length - 1] ? null : <hr />}
                 </div>
               );
             })
           ) : (
-            <h2>No commits yet!</h2>
+            <h3>No commits yet!</h3>
           )}
         </div>
       </div>
+
       {/* separator line */}
       <hr />
+
       <div className='activity-right-container'>
-        <div className='average-commits'>
-          <h3>Total Number of Commits: {commits ? commits.length : 0}</h3>
-          <div>
+        <div className='commit-stats'>
+          <div className='total-commits'>
+            <h2>Total Commits</h2>
+            <h2>{commits ? commits.length : 0}</h2>
+          </div>
+
+          <hr />
+
+          <div className='average-commits'>
             <h2>Average Commits</h2>
-            {commits.length > 0 && (
-              <>
-                Did you know that your average commits consists of{' '}
-                <div className='avg-additions'>
-                  {averageCommitSize.avgAdditions} added lines of code and{' '}
-                </div>
-                <div className='avg-deletions'>
-                  {averageCommitSize.avgDeletions} deleted lines of code.
-                </div>
-              </>
-            )}
+            <div className='avg-additions'>
+              <h2>
+                {averageCommitSize ? averageCommitSize.avgAdditions : '0'}
+              </h2>
+              <h3>added lines of code</h3>
+            </div>
+            <div className='avg-deletions'>
+              <h2>
+                {averageCommitSize ? averageCommitSize.avgDeletions : '0'}{' '}
+              </h2>
+              <h3> deleted lines of code</h3>
+            </div>
+          </div>
+          <div className='commit-tip'>
+            <p>
+              <span style={{ color: '#58a6ff' }}>TIP:</span>{' '}
+              <span style={{ color: '#8b949e' }}>
+                Remember to commit often!
+              </span>
+            </p>
           </div>
         </div>
       </div>

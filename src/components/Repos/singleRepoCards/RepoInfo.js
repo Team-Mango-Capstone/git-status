@@ -13,6 +13,12 @@ function RepoInfo(props) {
 
   return (
     <div className='single-repo-info'>
+      <div className='top-right-fold'></div>
+
+      <a href={`${repo.html_url}`} target='_blank' rel='noreferrer'>
+        <div className='bottom-left-fold'></div>
+      </a>
+
       <div className='single-repo-info-first-titles'>
         <h3>ID</h3>
         <hr />

@@ -4,7 +4,7 @@
 
 .single-repo a {
   text-decoration: none;
-  color: #fafafa;
+  color: #8b949e;
 }
 
 .single-repo-first-row,
@@ -24,4 +24,40 @@
   border-radius: 10px;
   padding: 2rem;
   flex-grow: 2;
+}
+
+/* ============================== HEADER LINKS / DELETE INFO */
+
+.single-repo-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-name h1 {
+  margin-top: 2rem;
+}
+
+.delete-archive {
+  text-align: right;
+}
+
+.delete-archive h3:nth-of-type(2) {
+  margin-top: 0.8rem;
+}
+
+.delete-btn,
+.archive-btn {
+  display: inline-block;
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  color: #fafafa;
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+}
+
+.delete-btn:hover,
+.archive-btn:hover {
+  border: 1px solid #f09696;
+  background-color: #e34c26;
 }

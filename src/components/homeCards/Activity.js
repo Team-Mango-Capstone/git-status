@@ -47,7 +47,7 @@ export function Activity() {
       </div>
       <div className='your-events'>
         {status ? (
-          yourEvents ? (
+          yourEvents && yourEvents.length > 0 ? (
             yourEvents.map((event) => (
               <div className='event' key={event.id}>
                 <div className='event-day'>
@@ -59,9 +59,9 @@ export function Activity() {
               </div>
             ))
           ) : (
-            <h3 className='no-activity'>No activity to display!</h3>
+            <h3>No activity to display!</h3>
           )
-        ) : othersEvents ? (
+        ) : othersEvents && othersEvents > 0 ? (
           othersEvents.map((event) => (
             <div className='event' key={event.id}>
               <p>&#187; {event.actor.display_login}</p>
@@ -78,7 +78,7 @@ export function Activity() {
             </div>
           ))
         ) : (
-          <h3 className='no-activity'>No activity to display!</h3>
+          <h3>No activity to display!</h3>
         )}
       </div>
     </div>

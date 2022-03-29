@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import '../../../css/DonutChart.css';
@@ -12,9 +12,9 @@ ChartJS.defaults.defaultFont = 'Georgia';
 const options = {
   plugins: {
     title: {
-    //   display: true,
-    //   text: 'Doughnut Chart',
-    //   color: 'blue',
+      //   display: true,
+      //   text: 'Doughnut Chart',
+      //   color: 'blue',
       font: {
         size: 34,
       },
@@ -26,6 +26,9 @@ const options = {
       animation: {
         animateScale: true,
       },
+    },
+    datalabels: {
+      display: false,
     },
   },
 };
@@ -48,11 +51,9 @@ export default function DonutChart() {
 
   return (
     <div className='goals-donut-chart'>
-        <div className='donut'>
-       
+      <div className='donut'>
         <Doughnut data={data} options={options} />
-        </div>
-      
+      </div>
     </div>
   );
 }

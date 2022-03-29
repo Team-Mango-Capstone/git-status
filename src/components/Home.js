@@ -71,10 +71,10 @@ function Home() {
         <div className='first-row-cards'>
           <Profile userData={userData} />
           <Activity />
+          <TopRepo />
         </div>
         <div className='second-row-cards'>
-          <TopRepo />
-          <TopLanguages userRepos={userRepos} />
+          {/* <TopLanguages userRepos={userRepos} /> */}
         </div>
       </div>
     </div>

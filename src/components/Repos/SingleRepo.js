@@ -1,17 +1,20 @@
-import '../css/SingleRepo.css';
+import '../../css/SingleRepo.css';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   getSingleRepo,
   getCommitsforRepo,
-  searchCommits,
   getRepoCollaborators,
   getCommitStatforRepo,
   deleteRepo,
   archiveRepo,
-} from './GithubAPITesting.js';
+} from '../GithubAPITesting.js';
 import SingleRepoModal from './SingleRepoModal.js';
-import { Link } from 'react-router-dom';
+import Collaborators from './singleRepoCards/Collaborators';
+import Info from './singleRepoCards/Info';
+import Activity from './singleRepoCards/Activity';
+import Languages from './singleRepoCards/Languages';
 
 const screenName = localStorage.getItem('screenName'); //
 
@@ -99,7 +102,7 @@ function SingleRepo(props) {
     };
   }
 
-  console.log('Repo Data ', repo);
+  // console.log('Repo Data ', repo);
   // console.log('Commits Data ', commits);
   // console.log('CommitSize Data ', commitSize);
 
@@ -177,77 +180,13 @@ function SingleRepo(props) {
       </div>
 
       <div className='single-repo-first-row'>
-        <div className='single-repo-info'>
-          <h3>Created at {repo.created_at}</h3>
-          <h3>Size {repo.size} KB</h3>
-          <h3>Visibility {repo.visibility}</h3>
-          <h3>Views</h3>
-          <h3>Forks {repo.forks}</h3>
-          <h3>Stars {repo.stargazers_count}</h3>
-          <h3>Watchers {repo.watchers}</h3>
-        </div>
-
-        <div className='single-repo-activity'>
-          <h2>Activity</h2>
-          {/* Capping the number of comments returned */}
-          {commits ? (
-            commits.slice(0, 10).map((item) => {
-              return (
-                <div key={item.sha}>
-                  <ul>
-                    Date: {item.commit.author.date.slice(0, 10)} |{' '}
-                    {new Date(item.commit.author.date).toLocaleTimeString(
-                      'en-US'
-                    )}{' '}
-                  </ul>
-                  <ul>Message: {item.commit.message}</ul>
-                  <br />
-                </div>
-              );
-            })
-          ) : (
-            <div>No commits yet!</div>
-          )}
-
-          <div>Number of Commits: {commits ? commits.length : 0}</div>
-          <br />
-          <div>
-            {commits.length > 0 && (
-              <>
-                Did you know that your average commits consists of{' '}
-                {averageCommitSize.avgAdditions} added lines of code and{' '}
-                {averageCommitSize.avgDeletions} deleted lines of code.
-              </>
-            )}
-          </div>
-        </div>
+        <Info repo={repo} />
+        <Activity commits={commits} averageCommitSize={averageCommitSize} />
       </div>
 
       <div className='single-repo-second-row'>
-        <div className='single-repo-languages'>
-          <h2>Languages</h2>
-        </div>
-
-        <div className='single-repo-collaborators'>
-          <div className='collaborators-total'>
-            <h2>Collaborators</h2>
-            <h2>
-              <span style={spanStyle}>Total:</span> {collabs.length}
-            </h2>
-          </div>
-          <div className='collaborators'>
-            {collabs.map((item) => {
-              return (
-                <div className='collaborator' key={item.id}>
-                  <a href={`${item.html_url}`} target='_blank' rel='noreferrer'>
-                    <img src={`${item.avatar_url}`} alt='' />
-                  </a>
-                  <div className='collaborator-name'>{item.login}</div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <Languages />
+        <Collaborators collabs={collabs} />
       </div>
     </div>
   );

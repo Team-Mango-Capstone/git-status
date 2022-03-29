@@ -47,6 +47,5 @@
 .top-languages,
 .top-repo {
   min-width: 30rem;
-  max-height: 40rem;
   flex-grow: 2;
 }

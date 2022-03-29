@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../css/Home.css';
+import './../css/Home.css';
 import { TopLanguages } from './homeCards/TopLanguages';
 import Timeline from './homeCards/Timeline';
 import { TopRepo } from './homeCards/TopRepo';

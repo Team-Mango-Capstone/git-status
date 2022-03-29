@@ -4,8 +4,8 @@ import Login from './components/Login';
 import Home from './components/Home';
 import AddGoal from './components/PersonalBoard/AddGoal';
 import EditGoal from './components/PersonalBoard/EditGoal';
-import AllRepos from './components/AllRepos';
-import SingleRepo from './components/SingleRepo';
+import AllRepos from './components/Repos/AllRepos';
+import SingleRepo from './components/Repos/SingleRepo';
 import NotFound from './components/NotFound';
 import GithubTesting from './components/GithubAPITesting';
 import PersonalBoard from './components/PersonalBoard/PersonalBoard';
@@ -24,7 +24,7 @@ function RouteList() {
         <Routes>
           <Route path='/' element={<Home />} />
 
-          <Route path='goals' element={<PersonalBoard/>} />
+          <Route path='goals' element={<PersonalBoard />} />
           <Route path='goals/add' element={<AddGoal />} />
           <Route path='goals/edit/:id' element={<EditGoal />} />
 

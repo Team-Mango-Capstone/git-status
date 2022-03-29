@@ -154,7 +154,7 @@ function SingleRepo(props) {
 
       <div>
 
-        <div>
+        <div style={{ width: 250 }}>
           {/* language chart */}
           <DonutChart repoLang={repoLang} />
 

@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import '../css/DonutChart.css';
 import Chart from 'react-apexcharts';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
-ChartJS.defaults.color = '#fff';
+ChartJS.register(ArcElement, Legend); //Tooltip removed
+ChartJS.register(ChartDataLabels);
+// ChartJS.defaults.color = '#fff';
 ChartJS.defaults.defaultFont = 'Georgia';
 
 const dummyData = {
@@ -32,11 +34,9 @@ for (let language in dummyData) {
 const options = {
     plugins: {
         title: {
-            //   display: true,
-            //   text: 'Doughnut Chart',
-            //   color: 'blue',
+
             font: {
-                size: 34,
+                size: 20,
             },
             padding: {
                 top: 30,
@@ -44,13 +44,30 @@ const options = {
             },
             responsive: true,
             animation: {
-                animateScale: true,
+                animateScale: false,
             },
         },
     },
+
+    tooltip: { enabled: false },
+
+    plugins: [ChartDataLabels],
+    plugins: {
+        datalabels: {
+            formatter: (value, ctx) => {
+                let sum = 0;
+                let dataArr = ctx.chart.data.datasets[0].data;
+                dataArr.map(data => {
+                    sum += data;
+                });
+                let percentage = (value * 100 / sum).toFixed(0) + "%";
+                return percentage;
+            },
+        }
+    },
 };
 export default function DonutChart(props) {
-    console.log("This is the props inside th Donut Chart", props)
+    console.log("This is the props inside the Donut Chart", props)
 
     const data = {
         labels: languageLabels(props.repoLang)[0],
@@ -58,9 +75,11 @@ export default function DonutChart(props) {
             {
                 label: 'Languages in Repo',
                 data: languageLabels(props.repoLang)[1],
-                borderColor: ['rgba(255,206,86,0.2)'],
-                backgroundColor: ['#563d7c', '#e34c26', '#fle05a'],
-                pointBackgroundColor: 'rgba(255,206,86,0.2)',
+                // borderColor: ['rgba(255,206,86,0.2)'],
+                backgroundColor: ["#0074D9", "#FF4136", "#2ECC40"],
+
+                // backgroundColor: ['563d7c', '#fle05a', '#e34c26'],
+                // pointBackgroundColor: 'rgba(255,206,86,0.2)',
             },
         ],
     };
@@ -68,7 +87,6 @@ export default function DonutChart(props) {
     return (
         <div className='goals-donut-chart'>
             <div className='donut'>
-
                 <Doughnut data={data} options={options} />
             </div>
 

@@ -13,7 +13,6 @@ export function Profile(props) {
     email = <span style={{ color: '#e34c26' }}>Private</span>;
   }
 
-
   return (
     <div className='profile-card'>
       <div className='top-right-fold'></div>
@@ -26,8 +25,8 @@ export function Profile(props) {
         <div className='profile-header'>
           <img src={`${user.avatar_url}`} alt='' />
           <div className='names'>
-            <h2>{user.name}</h2>
-            <h2>{user.login}</h2>
+            <h1>{user.name}</h1>
+            <h1>{user.login}</h1>
             <h3>
               <span style={spanStyle}>Email:</span> {email}
             </h3>

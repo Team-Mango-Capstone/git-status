@@ -1,6 +1,7 @@
 .activity {
-  min-width: 35rem;
-  max-width: 35rem;
+  min-width: 30rem;
+  max-height: 40rem;
+  flex-grow: 1;
 }
 
 .activity-tab {
@@ -46,7 +47,6 @@
 }
 
 .your-events {
-  width: 34rem;
   height: 35rem;
   padding-right: 1rem;
   overflow: auto;

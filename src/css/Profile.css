@@ -1,10 +1,11 @@
 .profile-card {
   position: relative;
-  min-width: 30rem;
-  max-width: 30rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  min-width: 40rem;
+  max-width: 40%;
+  max-height: 40rem;
 }
 
 .top-right-fold {
@@ -74,7 +75,7 @@
   flex-direction: column;
 }
 
-.names h2:nth-of-type(2) {
+.names h1:nth-of-type(2) {
   color: #8b949e;
 }
 
@@ -88,7 +89,7 @@
 }
 
 .bio p {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 2.3rem;
   max-height: 7rem;
   padding-right: 1em;
@@ -98,8 +99,9 @@
 .follow-type,
 .follow-type-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   text-align: center;
+  font-size: 1.2rem;
 }
 
 .follow-type-info {

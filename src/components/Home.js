@@ -34,7 +34,6 @@ function Home() {
           `https://api.github.com/users/${githubUsername}`
         );
         setUserData(userData.data);
-
         const userRepos = await axios.get(
           `https://api.github.com/search/repositories?q=user:${githubUsername}+fork:true&per_page=100`
         );
@@ -45,11 +44,6 @@ function Home() {
     };
     makeRequest();
   }, []);
-
-  // COMMENTED OUT bc this will keep spam the console lol
-  // useEffect(() => {
-  //   setInterval(() => setDateState(new Date()), 1000);
-  // }, []);
 
   return (
     <div className='home'>
@@ -74,14 +68,13 @@ function Home() {
           {/* <h1>Your Timeline</h1> */}
           <Timeline />
         </div>
-
-        {/* <Timeline /> */}
-
-        <div className='bottom-charts'>
+        <div className='first-row-cards'>
           <Profile userData={userData} />
+          <Activity />
+        </div>
+        <div className='second-row-cards'>
           <TopRepo />
           <TopLanguages userRepos={userRepos} />
-          <Activity />
         </div>
       </div>
     </div>

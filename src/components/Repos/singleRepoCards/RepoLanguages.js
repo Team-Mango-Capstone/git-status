@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Languages(props) {
+function RepoLanguages(props) {
   return (
     <div className='single-repo-languages'>
-      <h2>Languages</h2>
+      <h2>RepoLanguages</h2>
     </div>
   );
 }
 
-export default Languages;
+export default RepoLanguages;

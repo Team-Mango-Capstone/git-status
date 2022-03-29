@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Activity(props) {
+function RepoActivity(props) {
   const commits = props.commits;
   const averageCommitSize = props.averageCommitSize;
   return (
@@ -39,4 +39,4 @@ function Activity(props) {
   );
 }
 
-export default Activity;
+export default RepoActivity;

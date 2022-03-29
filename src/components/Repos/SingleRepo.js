@@ -11,10 +11,10 @@ import {
   archiveRepo,
 } from '../GithubAPITesting.js';
 import SingleRepoModal from './SingleRepoModal.js';
-import Collaborators from './singleRepoCards/Collaborators';
-import Info from './singleRepoCards/Info';
-import Activity from './singleRepoCards/Activity';
-import Languages from './singleRepoCards/Languages';
+import RepoCollaborators from './singleRepoCards/RepoCollaborators';
+import RepoInfo from './singleRepoCards/RepoInfo';
+import RepoActivity from './singleRepoCards/RepoActivity';
+import RepoLanguages from './singleRepoCards/RepoLanguages';
 
 const screenName = localStorage.getItem('screenName'); //
 
@@ -137,9 +137,9 @@ function SingleRepo(props) {
 
   return (
     <div className='single-repo'>
-      <h3>
+      <h2>
         <Link to='/repos'>&#171; Back</Link>
-      </h3>
+      </h2>
       <h1>
         {leftAngleBrace}
         {repoName}
@@ -180,13 +180,13 @@ function SingleRepo(props) {
       </div>
 
       <div className='single-repo-first-row'>
-        <Info repo={repo} />
-        <Activity commits={commits} averageCommitSize={averageCommitSize} />
+        <RepoInfo repo={repo} />
+        <RepoActivity commits={commits} averageCommitSize={averageCommitSize} />
       </div>
 
       <div className='single-repo-second-row'>
-        <Languages />
-        <Collaborators collabs={collabs} />
+        <RepoLanguages />
+        <RepoCollaborators collabs={collabs} />
       </div>
     </div>
   );

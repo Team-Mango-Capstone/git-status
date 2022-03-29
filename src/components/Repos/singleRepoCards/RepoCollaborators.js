@@ -1,6 +1,7 @@
 import React from 'react';
+import '../../../css/RepoCollaborators.css';
 
-function Collaborators(props) {
+function RepoCollaborators(props) {
   const collabs = props.collabs;
   const spanStyle = { color: '#58a6ff' };
   return (
@@ -27,4 +28,4 @@ function Collaborators(props) {
   );
 }
 
-export default Collaborators;
+export default RepoCollaborators;

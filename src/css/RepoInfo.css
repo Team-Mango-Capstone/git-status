@@ -1,0 +1,101 @@
+.single-repo-info {
+  font-size: 1.2rem;
+  min-width: 40rem;
+}
+
+.single-repo-info hr {
+  margin: 2rem 0rem;
+  height: 1px;
+  border: 0;
+  background: #30363d;
+}
+
+.single-repo-info-first-titles hr,
+.single-repo-info-second-titles hr,
+.single-repo-info-third-titles hr {
+  margin: 0;
+  height: 15px;
+  width: 1px;
+}
+
+.single-repo-info-first-data hr,
+.single-repo-info-second-data hr,
+.single-repo-info-third-data hr {
+  height: 100%;
+  width: 1px;
+}
+
+.single-repo-info-first-titles,
+.single-repo-info-first-data,
+.single-repo-info-second-titles,
+.single-repo-info-second-data,
+.single-repo-info-third-titles,
+.single-repo-info-third-data {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.single-repo-info-first-titles h3,
+.single-repo-info-second-titles h3,
+.single-repo-info-third-titles h3 {
+  color: #58a6ff;
+  flex-grow: 1;
+}
+
+.single-repo-info-first-data,
+.single-repo-info-second-data,
+.single-repo-info-third-data {
+  align-items: center;
+  height: 6rem;
+}
+
+/* ============================== FIRST ROW */
+
+.single-repo-info-first-titles h3:first-of-type,
+.single-repo-info-first-data h3:first-of-type {
+  width: 113px;
+}
+
+.single-repo-info-first-titles h3:nth-of-type(2),
+.single-repo-info-first-data h3:nth-of-type(2) {
+  width: 155px;
+}
+
+.single-repo-info-first-titles h3:nth-of-type(3),
+.single-repo-info-first-data h3:nth-of-type(3) {
+  width: 130px;
+}
+
+.single-repo-info-first-data h3:nth-of-type(2) {
+  line-height: 2rem;
+}
+
+/* ============================== SECOND ROW */
+
+.single-repo-info-second-titles h3:first-of-type,
+.single-repo-info-second-data h3:first-of-type {
+  width: 178px;
+}
+
+.single-repo-info-second-titles h3:nth-of-type(2),
+.single-repo-info-second-data h3:nth-of-type(2) {
+  width: 220px;
+}
+
+/* ============================== THIRD ROW */
+
+.single-repo-info-third-titles h3:first-of-type,
+.single-repo-info-third-data h3:first-of-type {
+  width: 105px;
+}
+
+.single-repo-info-third-titles h3:nth-of-type(2),
+.single-repo-info-third-data h3:nth-of-type(2) {
+  width: 105px;
+}
+
+.single-repo-info-third-titles h3:nth-of-type(3),
+.single-repo-info-third-data h3:nth-of-type(3) {
+  width: 130px;
+}

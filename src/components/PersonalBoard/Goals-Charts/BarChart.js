@@ -117,14 +117,14 @@ export default function BarChart() {
       // options={options}
       data={barChartData}
     /> */}
-      {/* <MuiPickersUtilsProvider utils={LuxonUtils}>
+      <MuiPickersUtilsProvider utils={LuxonUtils}>
       <DatePicker
         autoOk
         variant="static"
         value={date}
         onChange={changeDate}
       />
-    </MuiPickersUtilsProvider> */}
+    </MuiPickersUtilsProvider>
 
    </div>
   )

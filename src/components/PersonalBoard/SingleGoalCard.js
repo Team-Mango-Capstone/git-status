@@ -4,8 +4,7 @@ import FormControl from "react-bootstrap/FormControl";
 import { GlobalContext } from "../../context/GlobalState";
 import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 import RangeSlider from "react-bootstrap-range-slider";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../db/Firebase";
+
 
 // delete and edit buttons inside single goal card
 const SingleGoalCard = ({
@@ -16,12 +15,13 @@ const SingleGoalCard = ({
   handleEditDeadline,
   handleEditTitle,
   handleEditProgress,
+  handlePseudoDelete,
+  toggle
 }) => {
   const [newTitle, setNewTitle] = useState(goal.title);
   const [newDescription, setNewDescription] = useState(goal.description);
   const [newDeadline, setNewDeadline] = useState(goal.deadline);
   const [progress, setProgress] = useState(goal.goalProgress);
-  const [openModal, setOpenModal] = useState(false);
 
   const handleChangeDesc = (e) => {
     e.preventDefault();
@@ -51,6 +51,13 @@ const SingleGoalCard = ({
     }
   };
 
+  const deleteHelper = (collection, goal) => {
+    console.log('inside deleteHelper...')
+     if (goal.completed === true) {
+        handlePseudoDelete(goal.id)
+     } else handleDelete(collection, goal.id);
+  };
+
 
 // let resultFromContext = useContext(GlobalContext)
 // console.log('MY RESULTS FROM CONTEXT API',resultFromContext.count)
@@ -61,7 +68,7 @@ const SingleGoalCard = ({
       <div className='goals-top-container'>
         <button
           className='goal-btn-delete'
-          onClick={() => handleDelete('userGoals', goal.id)}
+          onClick={() => deleteHelper('userGoals',goal)}
 
         >
           <i className="bi bi-x-circle-fill"></i>
@@ -99,30 +106,13 @@ const SingleGoalCard = ({
           className="goal-btn-complete"
           onClick={() => {
             if (!goal.completed) {
-              setOpenModal(!openModal);
-            } else toggleComplete('userGoals', goal);
+              toggle();
+            };
+            toggleComplete('userGoals', goal);
           }}
         >
           <i className="bi bi-check-circle-fill"></i>
         </button>
-        {openModal ? (
-          <div className="badge-modal">
-            <div className="badge-modal-content">
-              <span
-                className="close-badge-modal"
-                onClick={() => {
-                  toggleComplete(goal);
-                  setOpenModal(false);
-                }}
-              >
-                &times;
-              </span>
-              <p className="modal-text">
-                Congrats on completing your goal! You've earned a new badge.
-              </p>
-            </div>
-          </div>
-        ) : null}
       </div>
 
       {/* Change bars */}

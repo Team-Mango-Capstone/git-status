@@ -152,7 +152,7 @@ export const TopRepo = () => {
             ) : (
               <h2>Trouble fetching language data.</h2>
             )}
-            {/* <TopRepoChart /> */}
+            <TopRepoChart languages={topRepoLanguages}/>
           </div>
         </div>
       )}

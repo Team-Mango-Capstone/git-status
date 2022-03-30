@@ -1,16 +1,34 @@
-import React from 'react';
-import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import React, { useState, useEffect } from 'react';
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, BarElement, Tooltip, Legend } from 'chart.js';
 import '../../css/TopRepo.css';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(BarElement, Tooltip, Legend);
+
+export default function TopRepoChart(props) {
+  const [labelData, setLabelData] = useState([]);
+  const [dataInputs, setDataInputs] = useState([]);
+  
+  useEffect(() => {
+    let languageKeys = [];
+    let languageValues = [];
+
+    for (let key in props.languages) {
+      languageKeys.push(key);
+      languageValues.push(props.languages[key]);
+    };
+    console.log('languageKeys >>>', languageKeys)
+    console.log('languageValues >>>', languageValues)
+  }, [props]);
 
 const data = {
-  labels: ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri'],
+  labels: ['Javascript', 'HTML', 'CSS'],
+  // labels: labelData,
   datasets: [
     {
       label: 'Attendance for Week 1',
-      data: [25, 24, 25, 25, 3],
+      data: [8566, 1020, 72],
+      // data: dataInputs,
       borderColor: ['rgba(255,206,86,0.2)'],
       backgroundColor: [
         'rgba(232,99,132,1)',
@@ -25,6 +43,7 @@ const data = {
 };
 
 const options = {
+  indexAxis: 'y',
   plugins: {
     title: {
       // display: true,
@@ -45,10 +64,9 @@ const options = {
   },
 };
 
-export default function TopRepoChart() {
   return (
     <div className='top-repo-chart'>
-      <Doughnut data={data} options={options} />
+      <Bar data={data} options={options} />
     </div>
   );
 }

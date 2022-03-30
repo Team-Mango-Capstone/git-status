@@ -71,15 +71,15 @@ export const TopRepo = () => {
     getTopRepoLanguages();
   }, [topRepo]);
 
-  const languageList = Object.entries(topRepoLanguages).map(([key, value]) => {
-    return (
-      <div className='top-repo-languages' key={value}>
-        <p>
-          {key} : {value.toString()}
-        </p>
-      </div>
-    );
-  });
+  // const languageList = Object.entries(topRepoLanguages).map(([key, value]) => {
+  //   return (
+  //     <div className='top-repo-languages' key={value}>
+  //       <p>
+  //         {key} : {value.toString()}
+  //       </p>
+  //     </div>
+  //   );
+  // });
 
   return (
     <div className='top-repo'>
@@ -147,12 +147,11 @@ export const TopRepo = () => {
               </div>
             </div>
             <hr />
-            {languageList ? (
-              languageList
+            {topRepoLanguages ? (
+              <TopRepoChart languages={topRepoLanguages}/>
             ) : (
               <h2>Trouble fetching language data.</h2>
             )}
-            <TopRepoChart languages={topRepoLanguages}/>
           </div>
         </div>
       )}

@@ -6,10 +6,6 @@ import '../../css/TopRepo.css';
 ChartJS.register(BarElement, Tooltip, Legend);
 
 export default function TopRepoChart(props) {
-  const [labelData, setLabelData] = useState([]);
-  const [dataInputs, setDataInputs] = useState([]);
-  
-  useEffect(() => {
     let languageKeys = [];
     let languageValues = [];
 
@@ -19,16 +15,12 @@ export default function TopRepoChart(props) {
     };
     console.log('languageKeys >>>', languageKeys)
     console.log('languageValues >>>', languageValues)
-  }, [props]);
 
 const data = {
-  labels: ['Javascript', 'HTML', 'CSS'],
-  // labels: labelData,
+  labels: languageKeys,
   datasets: [
     {
-      label: 'Attendance for Week 1',
-      data: [8566, 1020, 72],
-      // data: dataInputs,
+      data: languageValues,
       borderColor: ['rgba(255,206,86,0.2)'],
       backgroundColor: [
         'rgba(232,99,132,1)',
@@ -44,11 +36,15 @@ const data = {
 
 const options = {
   indexAxis: 'y',
+  scales: {
+    x: {
+      ticks: {
+        display: false,
+      },
+    },
+  },
   plugins: {
     title: {
-      // display: true,
-      // text: 'Doughnut Chart',
-      // color:'blue',
       font: {
         size: 34,
       },
@@ -61,6 +57,23 @@ const options = {
       },
       responsive: false,
     },
+    legend: {
+      display: false,
+    },
+    datalabels: {
+      formatter: (value, ctx) => {
+          let sum = 0;
+          let dataArr = ctx.chart.data.datasets[0].data;
+          dataArr.map(data => {
+              sum += data;
+          });
+          let percentage = (value * 100 / sum).toFixed(0 )+ "%";
+          return percentage;
+      },
+    },
+    tooltip: {
+      enabled: false,
+    },
   },
 };
 
@@ -69,4 +82,4 @@ const options = {
       <Bar data={data} options={options} />
     </div>
   );
-}
+};

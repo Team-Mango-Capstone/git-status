@@ -70,23 +70,28 @@ function Goals() {
 
         {openModal && <AddGoal closeModal={setOpenModal} />}
         <div className={openModal === true ? 'goal-hover' : 'goal-container'}>
-          {data
-            .filter((goal) => goal.deleted === false)
-            .map((goal) => (
-              <SingleGoalCard
-                key={goal.id}
-                goal={goal}
-                toggleComplete={toggleComplete}
-                handleDelete={handleDelete}
-                handleEditDesc={handleEditDesc}
-                handleEditDeadline={handleEditDeadline}
-                handleEditTitle={handleEditTitle}
-                handleEditProgress={handleEditProgress}
-                handlePseudoDelete={handlePseudoDelete}
-                isOpen={showBadgeModal}
-                toggle={toggleModal}
-              />
-            ))}
+          {data && data.length > 0 ? (
+            data
+              .filter((goal) => goal.deleted === false)
+              .sort((a, b) => (a.id > b.id ? 1 : -1))
+              .map((goal) => (
+                <SingleGoalCard
+                  key={goal.id}
+                  goal={goal}
+                  toggleComplete={toggleComplete}
+                  handleDelete={handleDelete}
+                  handleEditDesc={handleEditDesc}
+                  handleEditDeadline={handleEditDeadline}
+                  handleEditTitle={handleEditTitle}
+                  handleEditProgress={handleEditProgress}
+                  handlePseudoDelete={handlePseudoDelete}
+                  isOpen={showBadgeModal}
+                  toggle={toggleModal}
+                />
+              ))
+          ) : (
+            <h4>No goals yet!</h4>
+          )}
         </div>
       </div>
       <PaginationGoals

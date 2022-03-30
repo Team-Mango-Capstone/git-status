@@ -4,7 +4,7 @@
   position: absolute;
   background-color: rgb(255, 255, 255);
   margin-left: 20%;
-  margin-top: -10%;
+  margin-top: 45%;
   height: 40rem;
   width: 25rem;
   padding: 2rem;
@@ -51,6 +51,7 @@ i {
 
 .form-container input {
   height: 3rem;
+  outline: none;
 }
 
 .add-goal-deadline {

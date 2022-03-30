@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 function DateTime() {
   const [dateState, setDateState] = useState('');
 
-  useEffect(() => {
-    setInterval(() => setDateState(new Date()), 1000);
-  }, []);
+  // useEffect(() => {
+  //   setInterval(() => setDateState(new Date()), 1000);
+  // }, []);
 
   return (
     <div className='time'>

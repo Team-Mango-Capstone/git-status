@@ -50,16 +50,18 @@ function Tasks() {
         <div className='tasks'>
           {tasks.length > 0 ? (
             // could probably add a sort method here
-            tasks.map((task) => (
-              <SingleTaskCard
-                key={task.id}
-                task={task}
-                handleSubmit={handleSubmit}
-                toggleComplete={toggleComplete}
-                handleDelete={handleDelete}
-                handleEditTitle={handleEditTitle}
-              />
-            ))
+            tasks
+              .sort((a, b) => (a.id > b.id ? 1 : -1))
+              .map((task) => (
+                <SingleTaskCard
+                  key={task.id}
+                  task={task}
+                  handleSubmit={handleSubmit}
+                  toggleComplete={toggleComplete}
+                  handleDelete={handleDelete}
+                  handleEditTitle={handleEditTitle}
+                />
+              ))
           ) : (
             <h3>No tasks at the moment...</h3>
           )}

@@ -61,7 +61,7 @@ export default function TimelineChart(props) {
   const data = {
     datasets: [
       {
-        label: 'Your contributions',
+        label: 'Contributions',
         data: timelineData,
         backgroundColor: 'rgba(35, 134, 54, 0.5)',
       },

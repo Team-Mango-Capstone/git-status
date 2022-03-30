@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, Tooltip, Legend } from 'chart.js';
 import '../../css/TopRepo.css';
@@ -13,8 +13,6 @@ export default function TopRepoChart(props) {
       languageKeys.push(key);
       languageValues.push(props.languages[key]);
     };
-    console.log('languageKeys >>>', languageKeys)
-    console.log('languageValues >>>', languageValues)
 
 const data = {
   labels: languageKeys,
@@ -46,19 +44,6 @@ const options = {
     },
   },
   plugins: {
-    // title: {
-    //   font: {
-    //     size: 34,
-    //   },
-    //   padding: {
-    //     top: 30,
-    //     bottom: 30,
-    //   },
-    //   animation: {
-    //     animateScale: true,
-    //   },
-    //   responsive: false,
-    // },
     legend: {
       display: false,
     },

@@ -148,7 +148,9 @@ export const TopRepo = () => {
             </div>
             <hr />
             {topRepoLanguages ? (
-              <TopRepoChart languages={topRepoLanguages}/>
+              <div className='top-repo-chart-container' style={{'position': 'relative'}}>
+                <TopRepoChart languages={topRepoLanguages}/>
+              </div>
             ) : (
               <h2>Trouble fetching language data.</h2>
             )}

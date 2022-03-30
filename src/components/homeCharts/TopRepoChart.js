@@ -36,6 +36,8 @@ const data = {
 
 const options = {
   indexAxis: 'y',
+  responsive: true,
+  maintainAspectRatio: false,
   scales: {
     x: {
       ticks: {
@@ -44,19 +46,19 @@ const options = {
     },
   },
   plugins: {
-    title: {
-      font: {
-        size: 34,
-      },
-      padding: {
-        top: 30,
-        bottom: 30,
-      },
-      animation: {
-        animateScale: true,
-      },
-      responsive: false,
-    },
+    // title: {
+    //   font: {
+    //     size: 34,
+    //   },
+    //   padding: {
+    //     top: 30,
+    //     bottom: 30,
+    //   },
+    //   animation: {
+    //     animateScale: true,
+    //   },
+    //   responsive: false,
+    // },
     legend: {
       display: false,
     },

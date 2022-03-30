@@ -50,6 +50,7 @@ function Tasks() {
       <div className='task-container'>
         <div className='tasks'>
           {tasks.length > 0 ? (
+            // could probably add a sort method here
             tasks.map((task) => (
               <SingleTaskCard
                 key={task.id}

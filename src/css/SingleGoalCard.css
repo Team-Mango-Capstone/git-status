@@ -19,14 +19,18 @@
 
 .single-goal-card input {
   height: 2em;
+  outline: none;
 }
 
 .goal-desc-input {
-  min-height: 50px;
+  min-height: 5.5rem;
+  max-width: 100%;
   background-color: var(--color);
   color: rgb(209, 209, 209);
   padding: 0.5rem;
   border-radius: 5px;
+  outline: none;
+  resize: none;
 }
 
 .date-input {
@@ -127,8 +131,6 @@ i {
 
 label {
   font-size: 12px;
-  /* margin-top: 3%;
-  margin-bottom: -3%; */
   color: rgb(209, 209, 209);
 }
 
@@ -140,7 +142,7 @@ label {
 }
 
 .progression {
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 }
 
 .description label,

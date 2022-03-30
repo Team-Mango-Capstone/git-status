@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Goals from './Goals';
 import Tasks from './Tasks';
 import '../../css/PersonalBoard.css';
-import BarChart from './Goals-Charts/BarChart';
 import DonutChart from './Goals-Charts/DonutChart';
 
 function PersonalBoard() {
@@ -18,7 +17,6 @@ function PersonalBoard() {
           <h2>Status</h2>
           <div className='charts'>
             <DonutChart />
-            {/* <BarChart /> */}
           </div>
         </div>
       </div>

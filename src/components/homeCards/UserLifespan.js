@@ -11,8 +11,6 @@ export function UserLifespan(props) {
   const year = totalYears === 1 ? 'year' : 'years';
   const days = remainderDays === 1 ? 'day' : 'days';
 
-  // ${totalYears} ${year} and ${remainderDays} ${days}
-
   return (
     <div className='total-days'>
       <p>You have been a GitHub user for:</p>

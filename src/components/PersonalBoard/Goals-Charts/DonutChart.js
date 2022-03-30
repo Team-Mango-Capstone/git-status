@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import '../../../css/DonutChart.css';
-import Chart from 'react-apexcharts';
 import { GlobalContext } from '../../../context/GlobalState';
 
 ChartJS.register(ArcElement, Tooltip, Legend);

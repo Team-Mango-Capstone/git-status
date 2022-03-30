@@ -4,7 +4,6 @@ import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import '../../../css/SingleRepoLanguages.css';
-import Chart from 'react-apexcharts';
 
 ChartJS.register(ArcElement); //Tooltip removed
 ChartJS.register(ChartDataLabels);

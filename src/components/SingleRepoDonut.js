@@ -3,7 +3,6 @@ import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import '../css/DonutChart.css';
-import Chart from 'react-apexcharts';
 
 ChartJS.register(ArcElement, Legend); //Tooltip removed
 ChartJS.register(ChartDataLabels);

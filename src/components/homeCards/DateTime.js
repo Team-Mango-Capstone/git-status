@@ -7,15 +7,8 @@ function DateTime() {
   //   setInterval(() => setDateState(new Date()), 1000);
   // }, []);
 
-  // console.log("This is the date state", dateState.toISOString().slice(0, 10))
-
   return (
     <div className='time'>
-      {/* {dateState && <h2>Day {dateState.toISOString().slice(0, 10)} / Time {dateState.toLocaleTimeString("en-US", {
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: true,
-            })}</h2>} */}
       {dateState && (
         <h2>
           {

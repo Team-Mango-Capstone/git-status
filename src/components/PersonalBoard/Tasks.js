@@ -2,7 +2,7 @@ import '../../css/Tasks.css';
 import React from 'react';
 import { useState, useContext } from 'react';
 import { db } from '../../db/Firebase';
-import {addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 import {
   toggleComplete,
   handleEditTitle,
@@ -32,11 +32,11 @@ function Tasks() {
   };
 
   return (
-    <div>
+    <div className='todo-list'>
       <div className='task-title'>
         <h2>Today's Tasks</h2>
       </div>
-    
+
       <form className='add-task-form' onSubmit={handleSubmit}>
         <input
           type='text'
@@ -48,17 +48,23 @@ function Tasks() {
         />
       </form>
       <div className='task-container'>
-     
-        {tasks.length > 0 ? tasks.map((task) => (
-          <SingleTaskCard
-            key={task.id}
-            task={task}
-            handleSubmit={handleSubmit}
-            toggleComplete={toggleComplete}
-            handleDelete={handleDelete}
-            handleEditTitle={handleEditTitle}
-          />
-        )) : <h3>No tasks at the moment...</h3>}
+        <div className='tasks'>
+          {tasks.length > 0 ? (
+            // could probably add a sort method here
+            tasks.map((task) => (
+              <SingleTaskCard
+                key={task.id}
+                task={task}
+                handleSubmit={handleSubmit}
+                toggleComplete={toggleComplete}
+                handleDelete={handleDelete}
+                handleEditTitle={handleEditTitle}
+              />
+            ))
+          ) : (
+            <h3>No tasks at the moment...</h3>
+          )}
+        </div>
       </div>
     </div>
   );

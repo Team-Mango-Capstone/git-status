@@ -31,10 +31,14 @@
 .single-repo-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.back-name h1 {
-  margin-top: 2rem;
+.back-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 7.3rem;
 }
 
 .delete-archive {

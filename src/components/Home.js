@@ -64,18 +64,15 @@ function Home() {
         </div>
       </div>
       <div className='home-cards'>
-        <div className='timeline'>
-          {/* <h1>Your Timeline</h1> */}
-          <Timeline />
-        </div>
+        <Timeline />
         <div className='first-row-cards'>
           <Profile userData={userData} />
           <Activity />
           <TopRepo />
         </div>
-        <div className='second-row-cards'>
-          {/* <TopLanguages userRepos={userRepos} /> */}
-        </div>
+        {/* <div className='second-row-cards'>
+          <TopLanguages userRepos={userRepos} />
+        </div> */}
       </div>
     </div>
   );

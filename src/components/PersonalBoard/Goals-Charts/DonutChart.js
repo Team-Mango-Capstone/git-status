@@ -33,8 +33,7 @@ const options = {
 };
 export default function DonutChart() {
   const { currentGoals, completedGoals } = useContext(GlobalContext);
-  // console.log('current', currentGoals);
-  // console.log('completed', completedGoals);
+
   const data = {
     labels: ['In progress', 'Completed Goals'],
     datasets: [

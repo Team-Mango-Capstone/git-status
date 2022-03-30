@@ -14,7 +14,6 @@ import { GlobalContext } from '../../context/GlobalState';
 function Tasks() {
   const [title, setTitle] = useState('');
   const { tasks } = useContext(GlobalContext);
-  // console.log(tasks)
 
   const handleSubmit = async (e) => {
     e.preventDefault();

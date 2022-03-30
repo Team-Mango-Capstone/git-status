@@ -57,9 +57,6 @@ const SingleGoalCard = ({
     } else handleDelete(collection, goal.id);
   };
 
-  // let resultFromContext = useContext(GlobalContext)
-  // console.log('MY RESULTS FROM CONTEXT API',resultFromContext)
-
   return (
     <div className='single-goal-card'>
       <div className='goals-top-container'>
@@ -120,7 +117,6 @@ const SingleGoalCard = ({
           size={'lg'}
           value={progress}
           tooltipLabel={(currentValue) => `${currentValue}%`}
-          // tooltip='on'
           onChange={(e) => {
             setProgress(e.target.value);
           }}

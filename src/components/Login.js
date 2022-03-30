@@ -1,18 +1,8 @@
 import React from 'react';
 import '../css/Login.css';
 import { signInWithGitHub } from '../db/Firebase';
-// import axios from 'axios'
+
 const Login = () => {
-  // const checkRateLimit = async () => {
-  //   try {
-  //     const { data } = await axios.get(
-  //       'https://api.github.com/rate_limit'
-  //     );
-  //     console.log('rate limit >>>>>', data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
   return (
     <div className='login'>
       <div className='login-container'>
@@ -23,13 +13,6 @@ const Login = () => {
           </div>
         </div>
         <button onClick={signInWithGitHub}>LOGIN</button>
-        {/* <button
-          onClick={() => {
-           checkRateLimit()
-          }}
-        >
-          test
-        </button> */}
       </div>
       <footer>&#129389; Diana, Linda, May, Sarina &#129389;</footer>
     </div>

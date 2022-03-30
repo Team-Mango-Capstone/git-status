@@ -4,7 +4,8 @@
   flex-direction: column;
   justify-content: flex-start;
   max-height: 40rem;
-  flex: 0 0 35rem;
+  width: 30rem;
+  flex-grow: 1;
 }
 
 .top-right-fold {

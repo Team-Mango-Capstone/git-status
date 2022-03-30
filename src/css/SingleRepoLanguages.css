@@ -1,7 +1,9 @@
 .single-repo-languages {
   display: flex;
   flex-direction: column;
+  max-height: 30rem;
 }
 
-.horizontal-bar-chart {
+.single-repo-languages h2 {
+  margin-bottom: 3rem;
 }

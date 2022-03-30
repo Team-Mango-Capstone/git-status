@@ -13,7 +13,6 @@ function Navbar() {
         </Link>
         <BadgeContainer />
       </div>
-
       <div className='links'>
         <h2>
           <Link to='/'>
@@ -28,8 +27,6 @@ function Navbar() {
           <Link to='/' onClick={signOutGithub}>
             <span style={{ color: 'grey' }}>Logout</span>
           </Link>
-
-          {/* add home link */}
         </h2>
       </div>
     </div>

@@ -1,6 +1,4 @@
 .activity {
-  min-width: 35rem;
-  width: 40rem;
   max-height: 40rem;
   flex-grow: 2;
 }
@@ -52,6 +50,7 @@
   height: 35rem;
   padding-right: 1rem;
   overflow: auto;
+  width: 100%;
 }
 
 .your-events hr {

@@ -3,13 +3,16 @@
   justify-content: space-between;
   padding: 5rem;
   height: 83.7rem;
+  flex-wrap: wrap;
 }
+
+/* ====================== GOALS */
 
 .goals-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 0 0 76.5rem;
+  width: 80rem;
 }
 
 .goals {

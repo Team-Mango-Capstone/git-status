@@ -1,5 +1,4 @@
 .top-repo {
-  min-width: 30rem;
   word-break: break-word;
   text-align: center;
   line-height: 2.5rem;
@@ -14,7 +13,7 @@
 }
 
 .top-repo-container {
-  min-width: 30rem;
+  /* min-width: 30rem; */
 }
 
 .top-repo-container h2:first-of-type {

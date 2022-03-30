@@ -3,7 +3,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Home from './components/Home';
 import AddGoal from './components/PersonalBoard/AddGoal';
-import EditGoal from './components/PersonalBoard/EditGoal';
 import AllRepos from './components/Repos/AllRepos';
 import SingleRepo from './components/Repos/SingleRepo';
 import NotFound from './components/NotFound';
@@ -26,7 +25,6 @@ function RouteList() {
 
           <Route path='goals' element={<PersonalBoard />} />
           <Route path='goals/add' element={<AddGoal />} />
-          <Route path='goals/edit/:id' element={<EditGoal />} />
 
           <Route path='repos' element={<AllRepos />} />
           <Route path='repos/:repoName' element={<SingleRepo />} />

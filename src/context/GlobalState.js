@@ -92,7 +92,7 @@ export const GlobalProvider = (props) => {
     makeRequest();
   }, []); //we pass state since we're accessing it
 
-  const repoArr = userRepos.items || [];
+  // const repoArr = userRepos.items || [];
 
   // useEffect(() => {
   //   const calculateLanguages = async () => {

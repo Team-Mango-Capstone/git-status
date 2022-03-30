@@ -1,7 +1,6 @@
 .single-repo-activity {
   display: flex;
-  height: 30rem;
-  /* max height later */
+  max-height: 30rem;
 }
 
 .single-repo-activity hr {
@@ -15,7 +14,7 @@
 
 .activity-left-container {
   width: 50%;
-  min-width: 30rem;
+  /* min-width: 30rem; */
 }
 
 .activity-left-container h2:first-of-type {
@@ -53,8 +52,9 @@
 
 .activity-right-container {
   flex-grow: 1;
-  min-width: 30rem;
+  /* min-width: 30rem; */
   height: 30rem;
+  overflow: auto;
 }
 
 .commit-stats {

@@ -5,10 +5,8 @@ import { GlobalProvider } from '../context/GlobalState';
 function App() {
   return (
     <GlobalProvider>
-      <div>
-        {!localStorage.accessToken ? <div /> : <Navbar />}
-        <RouteList />
-      </div>
+      {!localStorage.accessToken ? <div /> : <Navbar />}
+      <RouteList />
     </GlobalProvider>
   );
 }

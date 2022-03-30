@@ -13,6 +13,7 @@
   justify-content: space-between;
   gap: 5rem;
   margin-top: 5rem;
+  flex-wrap: wrap;
 }
 
 .single-repo-info,

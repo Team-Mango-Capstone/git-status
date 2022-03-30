@@ -70,9 +70,6 @@ function Home() {
           <Activity />
           <TopRepo />
         </div>
-        {/* <div className='second-row-cards'>
-          <TopLanguages userRepos={userRepos} />
-        </div> */}
       </div>
     </div>
   );

@@ -71,16 +71,6 @@ export const TopRepo = () => {
     getTopRepoLanguages();
   }, [topRepo]);
 
-  // const languageList = Object.entries(topRepoLanguages).map(([key, value]) => {
-  //   return (
-  //     <div className='top-repo-languages' key={value}>
-  //       <p>
-  //         {key} : {value.toString()}
-  //       </p>
-  //     </div>
-  //   );
-  // });
-
   return (
     <div className='top-repo'>
       <h2>Top Repository</h2>
@@ -148,8 +138,11 @@ export const TopRepo = () => {
             </div>
             <hr />
             {topRepoLanguages ? (
-              <div className='top-repo-chart-container' style={{'position': 'relative'}}>
-                <TopRepoChart languages={topRepoLanguages}/>
+              <div
+                className='top-repo-chart-container'
+                style={{ position: 'relative' }}
+              >
+                <TopRepoChart languages={topRepoLanguages} />
               </div>
             ) : (
               <h2>Trouble fetching language data.</h2>

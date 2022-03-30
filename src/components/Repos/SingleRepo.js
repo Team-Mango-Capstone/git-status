@@ -120,10 +120,6 @@ function SingleRepo(props) {
     };
   }
 
-  // console.log('Repo Data ', repo);
-  // console.log('Commits Data ', commits);
-  // console.log('CommitSize Data ', commitSize);
-
   function deleteClickHandler() {
     deleteRepo(screenName, repo.name);
     window.location.href = '/repos';

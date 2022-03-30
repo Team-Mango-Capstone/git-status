@@ -1,16 +1,24 @@
 import React from 'react';
-import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, BarElement, Tooltip, Legend } from 'chart.js';
 import '../../css/TopRepo.css';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(BarElement, Tooltip, Legend);
+
+export default function TopRepoChart(props) {
+    let languageKeys = [];
+    let languageValues = [];
+
+    for (let key in props.languages) {
+      languageKeys.push(key);
+      languageValues.push(props.languages[key]);
+    };
 
 const data = {
-  labels: ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri'],
+  labels: languageKeys,
   datasets: [
     {
-      label: 'Attendance for Week 1',
-      data: [25, 24, 25, 25, 3],
+      data: languageValues,
       borderColor: ['rgba(255,206,86,0.2)'],
       backgroundColor: [
         'rgba(232,99,132,1)',
@@ -25,30 +33,40 @@ const data = {
 };
 
 const options = {
+  indexAxis: 'y',
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    x: {
+      ticks: {
+        display: false,
+      },
+    },
+  },
   plugins: {
-    title: {
-      // display: true,
-      // text: 'Doughnut Chart',
-      // color:'blue',
-      font: {
-        size: 34,
+    legend: {
+      display: false,
+    },
+    datalabels: {
+      formatter: (value, ctx) => {
+          let sum = 0;
+          let dataArr = ctx.chart.data.datasets[0].data;
+          dataArr.map(data => {
+              sum += data;
+          });
+          let percentage = (value * 100 / sum).toFixed(0 )+ "%";
+          return percentage;
       },
-      padding: {
-        top: 30,
-        bottom: 30,
-      },
-      animation: {
-        animateScale: true,
-      },
-      responsive: false,
+    },
+    tooltip: {
+      enabled: false,
     },
   },
 };
 
-export default function TopRepoChart() {
   return (
     <div className='top-repo-chart'>
-      <Doughnut data={data} options={options} />
+      <Bar data={data} options={options} />
     </div>
   );
-}
+};

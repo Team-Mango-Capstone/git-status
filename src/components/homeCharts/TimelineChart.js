@@ -63,7 +63,7 @@ export default function TimelineChart(props) {
       {
         label: 'Your contributions',
         data: timelineData,
-        backgroundColor: 'rgba(35, 134, 54, 0.5)',
+        backgroundColor: 'rgb(57, 211, 83, 0.5)',
       },
     ],
   };

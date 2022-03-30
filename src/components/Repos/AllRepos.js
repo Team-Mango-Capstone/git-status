@@ -27,8 +27,6 @@ function AllRepos() {
   const [filter, setFilter] = useState('last-updated');
   let [page, setPage] = useState(1); //pagination
 
-  // date created will compare the same as updated at
-  // alphabetical will compare by name
   useEffect(() => {
     getRepos();
   }, []);
@@ -37,16 +35,13 @@ function AllRepos() {
     const { data } = await axios.get(
       `https://api.github.com/search/repositories?q=user:${screenName}+fork:true+archived:false&per_page=100`
     );
-    // see what props we can pass down from each repo
-    // console.log(data.items);
+
     setRepos(data.items);
     setIsLoading(false);
   };
 
-  // calls the new updated state
   useEffect(() => {}, [filter]);
 
-  // changes the state but doesn't reflect the change inside yet
   const handleChangeFilter = (e) => {
     e.preventDefault();
     setFilter(e.target.value);
@@ -94,18 +89,6 @@ function AllRepos() {
         </div>
       </div>
 
-      {/* PAGINATION STUFF */}
-      <AllReposPagination
-        _DATA={_DATA}
-        count={count}
-        page={page}
-        setPage={setPage}
-        PER_PAGE={PER_PAGE}
-      />
-      {/*  */}
-
-      <br />
-
       {isLoading ? (
         loading
       ) : repos.length === 0 ? (
@@ -113,30 +96,34 @@ function AllRepos() {
       ) : (
         <div className='all-repos-container'>
           {_DATA.currentData().map((repo) => (
-            <div className='single-repo-card' key={repo.id}>
-              <Link to={`/repos/${repo.name}`}>
+            <Link to={`/repos/${repo.name}`}>
+              <div className='single-repo-card' key={repo.id}>
                 <h2>{repo.name}</h2>
-              </Link>
-
-              <hr />
-
-              {filter === 'date-created' ? (
-                <div>
-                  <p>Created at:</p>
-                  <p>{repo.created_at.slice(0, 10)}</p>
-                </div>
-              ) : (
-                <div>
-                  <p>Last updated at:</p>
-                  <p>{repo.updated_at.slice(0, 10)}</p>
-                </div>
-              )}
-            </div>
+                <hr />
+                {filter === 'date-created' ? (
+                  <div>
+                    <p>Created at:</p>
+                    <p>{repo.created_at.slice(0, 10)}</p>
+                  </div>
+                ) : (
+                  <div>
+                    <p>Last updated at:</p>
+                    <p>{repo.updated_at.slice(0, 10)}</p>
+                  </div>
+                )}
+              </div>
+            </Link>
           ))}
         </div>
       )}
 
-      <div className='invisible' />
+      <AllReposPagination
+        _DATA={_DATA}
+        count={count}
+        page={page}
+        setPage={setPage}
+        PER_PAGE={PER_PAGE}
+      />
     </div>
   );
 }

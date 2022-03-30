@@ -51,9 +51,7 @@ export default function DonutChart() {
 
   return (
     <div className='goals-donut-chart'>
-      <div className='donut'>
-        <Doughnut data={data} options={options} />
-      </div>
+      <Doughnut data={data} options={options} />
     </div>
   );
 }

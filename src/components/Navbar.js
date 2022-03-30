@@ -7,10 +7,13 @@ import { BadgeContainer } from './BadgeContainer';
 function Navbar() {
   return (
     <div className='nav'>
-      <Link to='/'>
-        <img src='/github.png' alt='' />
-      </Link>
-      <BadgeContainer />
+      <div className='icon-badges'>
+        <Link to='/'>
+          <img src='/github.png' alt='' />
+        </Link>
+        <BadgeContainer />
+      </div>
+
       <div className='links'>
         <h2>
           <Link to='/'>

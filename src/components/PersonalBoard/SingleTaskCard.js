@@ -20,7 +20,7 @@ function SingleTaskCard({
   };
 
   return (
-    <div className='tasks'>
+    <div className='task'>
       <input
         className='task-input'
         style={{ textDecoration: task.completed && 'line-through' }}
@@ -30,29 +30,30 @@ function SingleTaskCard({
           handleChangeTitle(e);
         }}
       />
+      <div className='task-btns'>
+        <button
+          className='task-btn'
+          onClick={() => toggleComplete('userTasks', task)}
+        >
+          <i className='bi bi-check-lg'></i>
+        </button>
 
-      <button
-        className='task-btn'
-        onClick={() => toggleComplete('userTasks', task)}
-      >
-        <i className="bi bi-check-lg"></i>
-      </button>
+        <button
+          className='task-btn'
+          onClick={() => {
+            handleEditTitle('userTasks', task, newTitle);
+          }}
+        >
+          <i className='bi bi-pencil-square'></i>
+        </button>
 
-      <button
-        className='task-btn'
-        onClick={() => {
-          handleEditTitle('userTasks',task, newTitle);
-        }}
-      >
-        <i className="bi bi-pencil-square"></i>
-      </button>
-
-      <button
-        className='task-btn'
-        onClick={() => handleDelete('userTasks', task.id)}
-      >
-        <i className="bi bi-trash"></i>
-      </button>
+        <button
+          className='task-btn'
+          onClick={() => handleDelete('userTasks', task.id)}
+        >
+          <i className='bi bi-trash'></i>
+        </button>
+      </div>
     </div>
   );
 }

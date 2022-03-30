@@ -45,28 +45,29 @@ function Goals() {
       {showBadgeModal ? (
         <BadgeModal isOpen={showBadgeModal} toggle={toggleModal} />
       ) : null}
+
       <div className='goals'>
         <h5>My Goals</h5>
-        <br />
         <div className='status-bar'>
+          <div className='status-btns'>
+            <button
+              className={status ? 'status-btn-active' : 'status-btn'}
+              onClick={() => setStatus(true)}
+            >
+              <h4>In Progress</h4>
+            </button>
+            <button
+              className={!status ? 'status-btn-active' : 'status-btn'}
+              onClick={() => setStatus(false)}
+            >
+              <h4>Completed</h4>
+            </button>
+          </div>
           <button className='add-btn' onClick={() => setOpenModal(true)}>
-            +
-          </button>
-          <button
-            className={status ? 'status-btn-active' : 'status-btn'}
-            onClick={() => setStatus(true)}
-          >
-            <h4>in progress</h4>
-          </button>
-          <h4>|</h4>
-          <button
-            className={!status ? 'status-btn-active' : 'status-btn'}
-            onClick={() => setStatus(false)}
-          >
-            <h4>completed</h4>
+            Add a Goal
           </button>
         </div>
-        <div className='add-btn-container'></div>
+
         {openModal && <AddGoal closeModal={setOpenModal} />}
         <div className={openModal === true ? 'goal-hover' : 'goal-container'}>
           {data
@@ -86,20 +87,20 @@ function Goals() {
                 toggle={toggleModal}
               />
             ))}
-          <PaginationGoals
-            completedGoals={completedGoals}
-            currentGoals={currentGoals}
-            DATA_CURRENT={DATA_CURRENT}
-            DATA_COMPLETED={DATA_COMPLETED}
-            countCurrent={countCurrent}
-            countCompleted={countCompleted}
-            page={page}
-            setPage={setPage}
-            status={status}
-            PER_PAGE={PER_PAGE}
-          />
         </div>
       </div>
+      <PaginationGoals
+        completedGoals={completedGoals}
+        currentGoals={currentGoals}
+        DATA_CURRENT={DATA_CURRENT}
+        DATA_COMPLETED={DATA_COMPLETED}
+        countCurrent={countCurrent}
+        countCompleted={countCompleted}
+        page={page}
+        setPage={setPage}
+        status={status}
+        PER_PAGE={PER_PAGE}
+      />
     </div>
   );
 }

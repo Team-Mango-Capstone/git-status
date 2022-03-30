@@ -21,10 +21,6 @@
   gap: 0rem 1.5rem;
 }
 
-.invisible {
-  flex-grow: 1;
-}
-
 .filter select {
   padding: 0.5rem;
   color: #fafafa;

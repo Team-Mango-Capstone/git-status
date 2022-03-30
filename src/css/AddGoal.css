@@ -1,26 +1,27 @@
 .add-btn {
   font-size: 14px;
-  min-width: 5%;
-  height: 29px;
   color: rgb(240, 240, 240);
-  padding: 6px;
+  padding: 0.5rem 1rem;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
   outline: none;
-  border-radius: 14px;
+  border-radius: 10px;
   border: none;
   background: #58a6ff;
 }
+
 .add-btn:hover {
   background-color: #3a86ff;
 }
+
 .add-btn:active {
   top: 2px;
 }
-.add-form-container{
+
+.add-form-container {
   position: absolute;
   background-color: rgb(255, 255, 255);
   margin-left: 20.5%;
@@ -29,12 +30,12 @@
   width: 14%;
   padding: 1%;
   border-radius: 14px;
-  z-index:11;
+  z-index: 11;
   color: black;
-  box-shadow: 5px 5px 23px 0px rgba(0,0,0,0.38)
-  
+  box-shadow: 5px 5px 23px 0px rgba(0, 0, 0, 0.38);
 }
-.goal-btn-delete{
+
+.goal-btn-delete {
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
@@ -44,7 +45,7 @@
   color: #e34c26;
 }
 
-.goal-btn-delete:hover{
+.goal-btn-delete:hover {
   color: #db6d52;
 }
 
@@ -52,11 +53,11 @@ i {
   font-size: 25px;
 }
 
-.form-container{
+.form-container {
   display: flex;
   flex-direction: column;
 }
 
-.add-goal-desc-input{
+.add-goal-desc-input {
   min-height: 10px;
 }

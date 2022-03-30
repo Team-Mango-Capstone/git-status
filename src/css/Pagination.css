@@ -1,0 +1,17 @@
+.goals-pagination,
+.all-repos-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  background-color: rgb(139, 139, 139);
+  border-radius: 30px;
+  padding: 0.5rem 1rem;
+  align-self: center;
+}
+
+.all-repos-pagination-container {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

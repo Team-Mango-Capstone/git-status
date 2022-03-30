@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+<div style="text-align: center;">
+<h1>git status</h1>
+<p>(insert logo here)</p<>
+<p>A productivity app for developers.</p>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# About the Project
 
-In the project directory, you can run:
+git status is a developer-focused, vizualization-driven productivity app that provides personalized insights on GitHub usage and a dashboard for setting and tracking goals.
 
-### `npm start`
+# Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Upon logging in with their GitHub credentials, users can access a wealth of GitHub usage information in one centralized location, including:
+* a timeline of contributions
+* stats for their most-viewed repo
+* recent account activity
+* more detailed stats for each of their repos, including commit data, languages, collaborators, and more
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Armed with the above insights, users can also set and monitor productivity goals using the following tools:
+* a dashboard for setting and tracking progress on goals
+* a task dashboard for smaller, everyday todos
+* a badges feature and progress chart that helps users visualize their ongoing progress
 
-### `npm test`
+# Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This is generally a section that explains how to get the project set up on your local machine, such as listing software/libraries needed and how to install them. Given that we'll have a deployed site, do we need this? Should we just put the deployed site link?
 
-### `npm run build`
+# Our Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* [React.js](https://reactjs.org/) - user interface
+* [GitHub API](https://docs.github.com/en/rest) - GitHub usage information
+* [Firebase](https://firebase.google.com/) - GitHub authentication
+* [Cloud Firestore](https://firebase.google.com/products/firestore?gclid=Cj0KCQjw_4-SBhCgARIsAAlegrWsM62axrFi1BIP77Dp4CzeMuMvoLCY_hhyScEIJNs0muWVMFJ1xk4aAitXEALw_wcB&gclsrc=aw.ds) - NoSQL database
+* [Chart.js](https://www.chartjs.org/) - data visualizations
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Next Steps
+* Add an option to link goals to a specific repo on GitHub, which would enable automatic tracking of progress based on number and timing of commits
+* Integrate updates from the [GitHub Status Twitter account](https://twitter.com/githubstatus?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor) to notify users of degraded site performance
+* Add capability for sharing data visualizations on social media
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Team
+* Diana Viglucci | [Github](https://github.com/dviglucci) | [LinkedIn](https://www.linkedin.com/in/diana-viglucci/)
+* Linda Choi | [Github](https://github.com/choi2010) | [LinkedIn](https://www.linkedin.com/in/maywu95/)
+* May Wu | [Github]() | [LinkedIn](https://github.com/maycwu)
+* Sarina Chang | [Github](https://github.com/s-arina) | [LinkedIn](https://www.linkedin.com/in/sarinachang/)

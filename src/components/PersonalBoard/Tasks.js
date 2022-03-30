@@ -25,7 +25,7 @@ function Tasks() {
         window.localStorage.getItem('uid'),
         'userTasks'
       ),
-      { title, completed: false }
+      { title, completed: false , created: new Date().getTime()}
     );
     setTitle('');
   };
@@ -47,11 +47,12 @@ function Tasks() {
         />
       </form>
       <div className='task-container'>
+        
         <div className='tasks'>
           {tasks.length > 0 ? (
             // could probably add a sort method here
             tasks
-              .sort((a, b) => (a.id > b.id ? 1 : -1))
+              .sort((a, b) => (a.created > b.created ? 1 : -1))
               .map((task) => (
                 <SingleTaskCard
                   key={task.id}

@@ -1,10 +1,9 @@
-
-
 .status-bar {
   display: flex;
-  justify-content: center;
-  margin-bottom: 2%;
+  justify-content: space-between;
+  margin: 2rem 0;
 }
+
 .goal-hover {
   display: flex;
   justify-content: space-evenly;
@@ -14,17 +13,17 @@
 
 .goal-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 2rem;
 }
 
-.add-btn-container {
-  display: flex;
-  justify-content: center;
+.status-btns button {
+  margin-right: 1rem;
 }
 
 .status-btn {
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   color: #fafafa;
   background-color: #161b22;
   border: 1px solid #30363d;
@@ -41,7 +40,7 @@
 }
 
 .status-btn-active {
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   color: #fafafa;
   background-color: #2e363b;
   border: 1px solid #8c959e;

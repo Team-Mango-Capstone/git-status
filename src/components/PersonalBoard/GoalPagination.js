@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Pagination } from '@material-ui/lab';
-import '../../css/GoalPagination.css';
+import '../../css/Pagination.css';
 
 export function PaginationGoals({
   DATA_CURRENT,
@@ -26,7 +26,7 @@ export function PaginationGoals({
   };
 
   return (
-    <div className='pagination-container'>
+    <div className='goals-pagination'>
       <Pagination
         count={status ? countCurrent : countCompleted}
         size='small'

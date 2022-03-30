@@ -1,56 +1,53 @@
 :root {
   --background: #161b22;
-  --border:  1px solid #30363d;
+  --border: 1px solid #30363d;
   --color: #4e5358;
   --card-width: 210px;
 }
+
 .single-goal-card {
   display: flex;
   flex-direction: column;
-  height: 290px;
-  width: var(--card-width);
-  margin-top: 10px;
-  margin-bottom: 20px;
-  padding: 1.5%;
+  justify-content: space-between;
+  height: 29rem;
   border-radius: 20px;
   background-color: var(--background);
   border: var(--border);
+  padding: 2rem;
+  flex: 0 0 calc(25% - 1em);
 }
 
 .single-goal-card input {
   height: 2em;
-  margin-top: 10px;
+  outline: none;
 }
 
-.goal-desc-input{
-  margin-top: 10px;
-  min-height: 50px;
-  max-width: var(--card-width);
-  min-width: var(--card-width);
+.goal-desc-input {
+  min-height: 5.5rem;
+  max-width: 100%;
   background-color: var(--color);
   color: rgb(209, 209, 209);
-  padding: 1px;
+  padding: 0.5rem;
   border-radius: 5px;
+  outline: none;
+  resize: none;
 }
 
-.date-input{
+.date-input {
   background-color: var(--color);
   color: rgb(209, 209, 209);
   border-radius: 5px;
-  padding: 1px;
+  padding: 0rem 0.5rem;
+  border: none;
 }
 
-button{
-    margin-left: 4px;
-}
-
-.goals-top-container{
+.goals-top-container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 
-.goal-title { 
+.goal-title {
   display: inline-flex;
   justify-content: flex-start;
   border-top-style: hidden;
@@ -64,13 +61,13 @@ button{
   font-size: 16px;
 }
 
-.goal-title-container{
+.goal-title-container {
   display: inline-flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: flex-end;
 }
 
-.goal-button-container{
+.goal-button-container {
   display: inline-flex;
   justify-content: flex-end;
 }
@@ -79,7 +76,7 @@ i {
   font-size: 25px;
 }
 
-.goal-btn-delete{
+.goal-btn-delete {
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
@@ -89,11 +86,11 @@ i {
   color: #d1593b;
 }
 
-.goal-btn-delete:hover{
+.goal-btn-delete:hover {
   color: #db6d52;
 }
 
-.goal-btn-complete{
+.goal-btn-complete {
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
@@ -104,7 +101,7 @@ i {
   margin-left: 15px;
 }
 
-.goal-btn-complete:hover{
+.goal-btn-complete:hover {
   color: #5f996b;
 }
 
@@ -123,18 +120,32 @@ i {
   border: none;
   background: #58a6ff;
 }
+
 .button-edit:hover {
   background-color: #3a86ff;
 }
+
 .button-edit:active {
   top: 2px;
 }
 
 label {
   font-size: 12px;
-  margin-top: 3%;
-  margin-bottom: -3%;
   color: rgb(209, 209, 209);
 }
 
+.progression,
+.description,
+.due-date {
+  display: flex;
+  flex-direction: column;
+}
 
+.progression {
+  margin: 1rem 0;
+}
+
+.description label,
+.due-date label {
+  margin-bottom: 0.5rem;
+}

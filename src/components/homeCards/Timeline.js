@@ -1,8 +1,9 @@
-import React from "react";
-import { useQuery, gql } from "@apollo/client";
-import TimelineChart from "../homeCharts/TimelineChart";
+import React from 'react';
+import { useQuery, gql } from '@apollo/client';
+import TimelineChart from '../homeCharts/TimelineChart';
+import '../../css/Timeline.css';
 
-const screenName = localStorage.getItem("screenName");
+const screenName = localStorage.getItem('screenName');
 
 const CONTRIBUTIONS_QUERY = gql`
   query ($userName: String!) {
@@ -27,7 +28,7 @@ export default function Timeline() {
     variables: { userName: screenName },
   });
 
-  if (loading) return "Loading...";
+  if (loading) return 'Loading...';
   if (error) return <pre>{error.message}</pre>;
 
   const useableData = data.user.contributionsCollection.contributionCalendar;
@@ -46,12 +47,12 @@ export default function Timeline() {
       for (let j = 0; j < currentElem.contributionDays.length; j++) {
         let dayCount = currentElem.contributionDays[j].contributionCount;
         total += dayCount;
-      };
+      }
       finalElement[i].push(total);
-    };
+    }
     return finalElement;
   };
-  
+
   // returns an array of objects in the format needed for Chart.js:
   // {
   //   x: "YYYY-MM-DD",
@@ -73,12 +74,18 @@ export default function Timeline() {
   const dataForChart = prepDataForChart(compileRawData(chartData));
 
   return (
-    <div>
-      <h2>
-      Your Timeline
-      </h2>
-      <TimelineChart chartData={dataForChart}/>
+    <div className='timeline'>
+      <div className='timeline-header'>
+        <h2>Your Timeline</h2>
+        <h2>
+          You made{' '}
+          <span style={{ color: '#58a6ff' }}>
+            {useableData.totalContributions}
+          </span>{' '}
+          contributions in the past year.
+        </h2>
+      </div>
+      <TimelineChart chartData={dataForChart} />
     </div>
   );
-};
-
+}

@@ -12,20 +12,6 @@
   margin-top: 5rem;
 }
 
-.timeline {
-  margin-top: 5rem;
-  background-color: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 10px;
-  height: 320px;
-  padding: 2rem 0rem 0rem 2rem;
-}
-
-.timeline-container {
-  height: 280px;
-  width: 100%;
-}
-
 .first-row-cards,
 .second-row-cards {
   display: flex;

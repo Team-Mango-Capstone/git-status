@@ -63,7 +63,7 @@ export const TopRepo = () => {
     const getTopRepoLanguages = async () => {
       // axios call to get the languages for the topRepo
       const { data } = await axios.get(
-        `https://api.github.com/repos/${githubUsername}/${topRepo.name}/languages`
+        `https://api.github.com/repos/${githubUsername}/${topRepoStats.name}/languages`
       );
       setTopRepoLanguages(data);
       setIsLoading(false);

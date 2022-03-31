@@ -3,6 +3,7 @@
   text-align: center;
   line-height: 2.5rem;
   position: relative;
+  flex-grow: 1;
 }
 
 .top-repo hr {
@@ -12,8 +13,9 @@
   background: #30363d;
 }
 
-.top-repo-container {
-  /* min-width: 30rem; */
+.top-repo-chart {
+  margin-left: 10%;
+  width: 80% !important;
 }
 
 .top-repo-container h2:first-of-type {

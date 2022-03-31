@@ -48,7 +48,7 @@ function RepoInfo(props) {
         <h3>Visibility</h3>
       </div>
       <div className='single-repo-info-second-data'>
-        <h3>Views</h3>
+        <h3>{props.repoViews.count}</h3>
         <hr />
         <h3 style={repo.visibility === 'private' ? red : green}>
           {visibility

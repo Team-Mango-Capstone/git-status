@@ -135,6 +135,19 @@ export async function getRepoLanguage(owner, repoName) {
         console.log("error")
     }
 }
+
+// API Route for getting views on repo. 
+export async function getRepoViews(owner, repoName) {
+    try {
+        const { data } = await axios.get(`https://api.github.com/repos/${owner}/${repoName}/traffic/views`)
+        console.log("Repo Views", data)
+        return data;
+    }
+    catch (err) {
+        console.log("error")
+    }
+}
+
 ///////////////////////////
 
 // searchrepo API route

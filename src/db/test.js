@@ -98,3 +98,4 @@ export async function getGoals() {
 //   querySnapshot.forEach((doc) => {
 //     goalsArray.push({ ...doc.data(), id: doc.id });
 //   });
+

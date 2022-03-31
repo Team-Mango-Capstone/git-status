@@ -6,7 +6,8 @@ import { TopRepo } from './homeCards/TopRepo';
 import { Profile } from './homeCards/Profile';
 import DateTime from './homeCards/DateTime.js';
 import { Activity } from './homeCards/Activity';
-import {setAccessToken} from '../db/Firebase.js'
+import { updateOrCreateUser } from '../db/Firebase.js';
+import { WelcomeModal } from './homeCards/WelcomeModal';
 
 function Home() {
   const leftAngleBrace = (
@@ -24,6 +25,7 @@ function Home() {
 
   const [userData, setUserData] = useState([]);
   const [userRepos, setUserRepos] = useState([]);
+  const [showWelcomeModal, setShowWelcomeModal] = useState(true);
   const githubUsername = localStorage.getItem('screenName');
 
   useEffect(() => {
@@ -42,11 +44,13 @@ function Home() {
       }
     };
     makeRequest();
-    setAccessToken();
+    updateOrCreateUser();
   }, []);
 
   return (
     <div className='home'>
+      {showWelcomeModal ?
+        <WelcomeModal setShowWelcomeModal={setShowWelcomeModal}/> : null}
       <div className='welcome'>
         <h1>
           {leftAngleBrace}

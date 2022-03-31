@@ -56,13 +56,12 @@ export async function signInWithGitHub() {
     })
 }
 
-export async function setAccessToken() {
-  const accessToken = window.localStorage.getItem('accessToken')
+export async function updateOrCreateUser() {
   const uid = window.localStorage.getItem('uid')
   await setDoc(doc(db, 'allUsers', uid), {
-   accessToken: accessToken,
+   isFirstLogin: false,
   });
-}
+};
 
 export const signOutGithub = (e) => {
   e.preventDefault();

@@ -1,8 +1,11 @@
 import React from "react";
+import { firstLoginOver } from "../../db/Firestore";
 
 export const WelcomeModal = (props) => {
 const closeModal = () => {
       props.setShowWelcomeModal(false);
+      firstLoginOver();
+      console.log('close the modal!!')
   };
 
   return (

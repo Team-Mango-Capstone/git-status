@@ -85,6 +85,12 @@ export const handlePseudoDelete = async (id) => {
 export const handleDelete = async (collection, id) => {
   await deleteDoc(
     doc(db, 'allUsers', uid, collection, id)
+  );
+};
 
+export const firstLoginOver = async () => {
+  await updateDoc(
+    doc(db, 'allUsers', uid),
+    { isFirstLogin: false }
   );
 };

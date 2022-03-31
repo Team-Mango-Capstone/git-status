@@ -26,9 +26,9 @@ function languageLabels(obj) {
   return dataArr;
 }
 
-for (let language in dummyData) {
-  console.log('language', language);
-}
+// for (let language in dummyData) {
+//   console.log('language', language);
+// }
 
 const options = {
   plugins: {

@@ -48,6 +48,14 @@ export default function TopRepoChart(props) {
         ticks: {
           display: false,
         },
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        grid: {
+          display: false,
+        },
       },
     },
     plugins: {

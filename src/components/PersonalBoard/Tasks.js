@@ -39,7 +39,7 @@ function Tasks() {
       <form className='add-task-form' onSubmit={handleSubmit}>
         <input
           type='text'
-          placeholder='Enter task...'
+          placeholder='Enter a task...'
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
@@ -64,7 +64,7 @@ function Tasks() {
                 />
               ))
           ) : (
-            <h3>No tasks at the moment...</h3>
+            <h2>No tasks at the moment...</h2>
           )}
         </div>
       </div>

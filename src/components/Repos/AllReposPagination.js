@@ -2,13 +2,9 @@ import React, { useState } from 'react';
 import { Pagination } from '@material-ui/lab';
 
 export function AllReposPagination({ _DATA, count, setPage, page, PER_PAGE }) {
-  if (_DATA) {
-    console.log(_DATA.currentData());
-  }
   const handleChange = (e, p) => {
     setPage(p);
     _DATA.jump(p);
-    console.log(p);
   };
   console.log(PER_PAGE);
 

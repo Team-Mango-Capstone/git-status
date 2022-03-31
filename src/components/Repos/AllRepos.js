@@ -9,6 +9,8 @@ import { usePagination, AllReposPagination } from './AllReposPagination.js'; // 
 function AllRepos() {
   const screenName = localStorage.getItem('screenName');
 
+  const spanStyle = { color: '#58a6ff' };
+
   const leftAngleBrace = (
     <span style={{ color: 'grey', fontSize: '1.8rem' }}>&lt;</span>
   );
@@ -58,7 +60,7 @@ function AllRepos() {
   };
 
   //pagination stuff added below
-  const PER_PAGE = 25;
+  const PER_PAGE = 24;
   const count = Math.ceil(repos.length / PER_PAGE);
   const _DATA = usePagination(renderFilteredRepos(), PER_PAGE);
   ///////////////////////////////////////////////
@@ -75,6 +77,11 @@ function AllRepos() {
           {closeText}
           {rightAngleBrace}
         </h1>
+        <h3>
+          The Github API limits results to repositories{' '}
+          <span style={spanStyle}>you own</span> or have{' '}
+          <span style={spanStyle}>forked</span>.
+        </h3>
         <div className='filter'>
           <select
             defaultValue='last-updated'

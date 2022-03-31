@@ -1,5 +1,5 @@
 // SingleRepo Donut File
-import React, { useContext } from 'react';
+import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
@@ -7,18 +7,11 @@ import '../../../css/SingleRepoLanguages.css';
 
 ChartJS.register(ArcElement); //Tooltip removed
 ChartJS.register(ChartDataLabels);
-// ChartJS.defaults.color = '#fff';
 ChartJS.defaults.defaultFont = 'Georgia';
 
-const dummyData = {
-  CSS: 959,
-  HTML: 221,
-  JavaScript: 64845,
-};
 function languageLabels(obj) {
   let dataArr = [];
   let langArr = [];
-  let valueArr = [];
   for (let language in obj) {
     langArr.push(language);
     dataArr.push(obj[language]);
@@ -27,11 +20,8 @@ function languageLabels(obj) {
   return dataArr;
 }
 
-// for (let language in dummyData) {
-//   console.log('language', language);
-// }
-
 const options = {
+  responsive: true,
   plugins: {
     title: {
       font: {
@@ -41,7 +31,6 @@ const options = {
         top: 30,
         bottom: 30,
       },
-      responsive: true,
       animation: {
         animateScale: false,
       },
@@ -83,6 +72,7 @@ const options = {
     },
   },
 };
+
 export default function horizontalBarChart(props) {
   const data = {
     labels: languageLabels(props.repoLang)[0],
@@ -90,12 +80,7 @@ export default function horizontalBarChart(props) {
       {
         label: 'Languages in Repo',
         data: languageLabels(props.repoLang)[1],
-        // borderColor: ['rgba(255,206,86,0.2)'],
         backgroundColor: ['#0074D9', '#FF4136', '#2ECC40'],
-        // barThickness: 80,
-
-        // backgroundColor: ['563d7c', '#fle05a', '#e34c26'],
-        // pointBackgroundColor: 'rgba(255,206,86,0.2)',
       },
     ],
   };

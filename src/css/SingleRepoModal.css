@@ -1,17 +1,16 @@
 .modalBackground {
   background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
   position: fixed;
-  width: 25rem;
-  left: 0;
-  top: 5%;
   z-index: 1;
   display: flex;
   justify-content: center;
   align-content: center;
-  align-items: center;
 }
 
 .modalContainer {
+  margin-top: 10%;
   width: 30rem;
   height: 30rem;
   border-radius: 10px;
@@ -19,14 +18,15 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
-  padding: 2.5rem;
+  justify-content: space-between;
+  padding: 2rem;
 }
 
 .modalContainer .title {
-  color: black;
+  color: #e34c26;
   display: inline-block;
   text-align: center;
-  margin-top: 1rem;
+  margin: 1rem 0;
 }
 
 .titleCloseBtn {
@@ -35,10 +35,15 @@
 }
 
 .titleCloseBtn button {
-  background-color: transparent;
+  background-color: #e34c26;
+  width: 3rem;
+  height: 3rem;
   border: none;
-  font-size: 2.5rem;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  color: white;
   cursor: pointer;
+  text-align: center;
 }
 
 .modalContainer .body {
@@ -49,27 +54,31 @@
   align-items: center;
   font-size: 1.7rem;
   text-align: center;
+  line-height: 2.4rem;
 }
 
-.modalContainer .footer {
+.single-repo-modal-btns {
   flex: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.modalContainer .footer button {
-  width: 10.5rem;
-  height: 4.5rem;
+.single-repo-modal-btns button {
+  height: 4rem;
   margin: 1rem;
+  padding: 0 1rem;
   border: none;
-  background-color: #58a6ff;
   color: white;
-  border-radius: 8px;
+  border-radius: 14px;
   font-size: 2rem;
   cursor: pointer;
 }
 
-#cancelBtn {
+.cancelBtn {
   background-color: #e34c26;
+}
+
+.continueBtn {
+  background-color: #58a6ff;
 }

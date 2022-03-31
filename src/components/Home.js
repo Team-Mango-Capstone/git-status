@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './../css/Home.css';
-import { TopLanguages } from './homeCards/TopLanguages';
 import Timeline from './homeCards/Timeline';
 import { TopRepo } from './homeCards/TopRepo';
 import { Profile } from './homeCards/Profile';
@@ -25,7 +24,6 @@ function Home() {
 
   const [userData, setUserData] = useState([]);
   const [userRepos, setUserRepos] = useState([]);
-  const [dateState, setDateState] = useState('');
   const githubUsername = localStorage.getItem('screenName');
 
   useEffect(() => {
@@ -66,7 +64,7 @@ function Home() {
       </div>
       <div className='home-cards'>
         <Timeline />
-        <div className='first-row-cards'>
+        <div className='bottom-row-cards'>
           <Profile userData={userData} />
           <Activity />
           <TopRepo />

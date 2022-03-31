@@ -12,8 +12,7 @@
   margin-top: 5rem;
 }
 
-.first-row-cards,
-.second-row-cards {
+.bottom-row-cards {
   display: flex;
   width: 100%;
   gap: 5rem;
@@ -23,16 +22,10 @@
 
 .profile-card,
 .top-repo,
-.top-languages,
 .activity {
   background-color: #161b22;
   border: 1px solid #30363d;
   border-radius: 10px;
   padding: 2rem;
-}
-
-.top-languages,
-.top-repo {
-  /* min-width: 30rem; */
-  /* flex-grow: 2; */
+  max-height: 40rem;
 }

@@ -32,20 +32,23 @@ function SingleRepoModal({
         </div>
         <div className='body'>
           <p>
-            THIS ACTION IS ONLY REVERSIBLE ON THE GITHUB WEBSITE. ARE YOU SURE
-            YOU WANT TO CONTINUE?
+            THIS ACTION IS ONLY REVERSIBLE ON THE GITHUB WEBSITE. <br />
+            <br />
+            ARE YOU SURE YOU WANT TO CONTINUE?
           </p>
         </div>
-        <div className='footer'>
+        <div className='single-repo-modal-btns'>
           <button
             onClick={() => {
               setOpenModal(false);
             }}
-            id='cancelBtn'
+            className='cancelBtn'
           >
             Cancel
           </button>
-          <button onClick={clickHandler}>Continue</button>
+          <button onClick={clickHandler} className='continueBtn'>
+            Continue
+          </button>
         </div>
       </div>
     </div>

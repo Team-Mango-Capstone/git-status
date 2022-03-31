@@ -1,7 +1,7 @@
 .single-repo-collaborators {
   display: flex;
   flex-direction: column;
-  max-width: 40rem;
+  width: 40rem;
   max-height: 30rem;
 }
 

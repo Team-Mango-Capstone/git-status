@@ -79,7 +79,7 @@ export default function Timeline() {
         <h2>Your Timeline</h2>
         <h2>
           You made{' '}
-          <span style={{ color: '#58a6ff' }}>
+          <span data-hover='Based on your owned and forked projects.'>
             {useableData.totalContributions}
           </span>{' '}
           contributions in the past year.

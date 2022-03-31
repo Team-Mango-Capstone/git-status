@@ -1,9 +1,8 @@
-// SingleRepo Donut File
 import React, { useContext } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import '../../../css/DonutChart.css';
+import '../css/DonutChart.css';
 
 ChartJS.register(ArcElement, Legend); //Tooltip removed
 ChartJS.register(ChartDataLabels);
@@ -66,6 +65,8 @@ const options = {
   },
 };
 export default function DonutChart(props) {
+  console.log('This is the props inside the Donut Chart', props);
+
   const data = {
     labels: languageLabels(props.repoLang)[0],
     datasets: [

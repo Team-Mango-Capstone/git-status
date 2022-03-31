@@ -46,7 +46,6 @@ export async function signInWithGitHub() {
 
       setDoc(doc(db, 'allUsers', uid), {
         accessToken: accessToken,
-        isFirstLogin: true,
       });
       window.location = '/';
     })

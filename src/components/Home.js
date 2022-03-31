@@ -7,9 +7,7 @@ import { TopRepo } from './homeCards/TopRepo';
 import { Profile } from './homeCards/Profile';
 import DateTime from './homeCards/DateTime.js';
 import { Activity } from './homeCards/Activity';
-import { HomeModal } from './homeCards/HomeModal';
-import { db } from '../db/Firebase';
-import { query, collection, where, onSnapshot } from 'firebase/firestore';
+
 
 function Home() {
   const leftAngleBrace = (
@@ -28,7 +26,6 @@ function Home() {
   const [userData, setUserData] = useState([]);
   const [userRepos, setUserRepos] = useState([]);
   const [dateState, setDateState] = useState('');
-  const [firstLogin, setFirstLogin] = useState(false);
   const githubUsername = localStorage.getItem('screenName');
 
   useEffect(() => {
@@ -49,28 +46,8 @@ function Home() {
     makeRequest();
   }, []);
 
-  useEffect(() => {
-    const q = query(collection(db, 'allUsers'),
-    where ('accessToken', '==', window.localStorage.getItem("accessToken")));
-
-    onSnapshot(q, (doc) => {
-      console.log('inside onSnapshot...', q)
-      doc.forEach((element) => {
-        console.log('!!!!!!!!', element.data());
-      });
-    });
-
-
-
-  }, [])
-
-  console.log('what is firstLogin >>>', firstLogin)
-
   return (
     <div className='home'>
-      {firstLogin ? 
-        <HomeModal setFirstLogin={setFirstLogin} /> : null
-      }
       <div className='welcome'>
         <h1>
           {leftAngleBrace}

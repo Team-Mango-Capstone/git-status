@@ -22,15 +22,18 @@ function Goals() {
   let [page, setPage] = useState(1);
 
   const { currentGoals, completedGoals } = useContext(GlobalContext);
- 
+
   const toggleModal = () => {
     setShowBadgeModal(!showBadgeModal);
   };
 
   const PER_PAGE = 6;
   const countCurrent = Math.ceil(currentGoals.length / PER_PAGE);
-  const countCompleted = Math.ceil(completedGoals.filter((goal) => goal.deleted === false)
-  .sort((a, b) => (a.created > b.created ? 1 : -1)).length / PER_PAGE);
+  const countCompleted = Math.ceil(
+    completedGoals
+      .filter((goal) => goal.deleted === false)
+      .sort((a, b) => (a.created > b.created ? 1 : -1)).length / PER_PAGE
+  );
 
   const DATA_CURRENT = usePagination(currentGoals, PER_PAGE);
   const DATA_COMPLETED = usePagination(completedGoals, PER_PAGE);
@@ -41,6 +44,9 @@ function Goals() {
       {showBadgeModal ? (
         <BadgeModal isOpen={showBadgeModal} toggle={toggleModal} />
       ) : null}
+
+      {/* MODAL */}
+      {openModal && <AddGoal closeModal={setOpenModal} />}
 
       <div className='goals'>
         <h5>My Goals</h5>
@@ -64,7 +70,6 @@ function Goals() {
           </button>
         </div>
 
-        {openModal && <AddGoal closeModal={setOpenModal} />}
         <div className={openModal === true ? 'goal-hover' : 'goal-container'}>
           {data && data.length > 0 ? (
             data

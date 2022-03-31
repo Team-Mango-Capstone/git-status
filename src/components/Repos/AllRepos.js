@@ -58,7 +58,7 @@ function AllRepos() {
   };
 
   //pagination stuff added below
-  const PER_PAGE = 25;
+  const PER_PAGE = 24;
   const count = Math.ceil(repos.length / PER_PAGE);
   const _DATA = usePagination(renderFilteredRepos(), PER_PAGE);
   ///////////////////////////////////////////////

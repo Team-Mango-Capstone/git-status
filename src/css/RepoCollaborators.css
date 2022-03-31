@@ -26,7 +26,7 @@
 }
 
 .collaborators > * {
-  flex: 0 0 calc(25% - 1em);
+  flex: 0 0 1;
 }
 
 .collaborators > :not(:nth-child(4n + 4)) {

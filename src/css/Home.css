@@ -12,8 +12,7 @@
   margin-top: 5rem;
 }
 
-.first-row-cards,
-.second-row-cards {
+.bottom-row-cards {
   display: flex;
   width: 100%;
   gap: 5rem;

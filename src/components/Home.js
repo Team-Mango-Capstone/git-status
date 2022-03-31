@@ -63,7 +63,7 @@ function Home() {
       </div>
       <div className='home-cards'>
         <Timeline />
-        <div className='first-row-cards'>
+        <div className='bottom-row-cards'>
           <Profile userData={userData} />
           <Activity />
           <TopRepo />

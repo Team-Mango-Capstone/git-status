@@ -13,7 +13,7 @@ export default function GithubTesting() {
 
 // Created a button to test the API routes, and to see if data was being returned. click handler which runs the http request.
 export const clickHandler = () => {
-    // getRepos();
+    getRepos();
     // getSingleRepo();
     // getRepoCollaborators();
     // getOrgsforUser();
@@ -21,7 +21,7 @@ export const clickHandler = () => {
     // searchRepos();
     // searchCommits('choi2010', 'teampluto2201/grace-shopper');
     // getCommitStatforRepo("choi2010", "2201-GHP-NY-WEB-FT-JPFP")
-    archiveRepo("choi2010", "Test-Repo-3")
+    // archiveRepo("choi2010", "Test-Repo-3")
 };
 
 //Axios calls to github API endpoints
@@ -31,7 +31,9 @@ export const clickHandler = () => {
 export async function getRepos() {
     try {
         const { data } = await axios.get(`https://api.github.com/user/repos`)
-        // console.log("this is the data from get repos", data)
+        // const { data } = await axios.get(`https://api.github.com/user/repos?per_page=100&page=1 type:public`)
+        console.log("this is the data from get repos", data)
+        return data;
     }
     catch (err) {
         console.log("error")

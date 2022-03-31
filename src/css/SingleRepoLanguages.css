@@ -2,8 +2,14 @@
   display: flex;
   flex-direction: column;
   max-height: 30rem;
+  flex-grow: 2;
 }
 
 .single-repo-languages h2 {
   margin-bottom: 3rem;
+}
+
+.horizontal-bar-chart {
+  width: 50rem;
+  align-self: center;
 }

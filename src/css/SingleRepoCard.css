@@ -4,7 +4,7 @@
   display: inline-block;
   flex-direction: column;
   align-items: center;
-  margin: 1rem 0rem;
+  margin: 1rem 0;
   width: 30rem;
   text-align: center;
   background-color: #161b22;
@@ -24,15 +24,13 @@
 
 .single-repo-card p:first-of-type {
   font-size: 1.2rem;
-  margin: 1rem 1rem 0rem 1rem;
-  padding: 0.3rem;
+  margin: 1.5rem;
   color: #8b949e;
 }
 
 .single-repo-card p:last-child {
   font-size: 1.4rem;
-  margin: 0rem 1rem 1rem 1rem;
-  padding: 0.3rem;
+  margin: 0 1.5rem 1.5rem 1.5rem;
   color: #fafafa;
 }
 

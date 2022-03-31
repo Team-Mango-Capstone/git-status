@@ -1,7 +1,7 @@
 .single-repo-collaborators {
   display: flex;
   flex-direction: column;
-  max-width: 40rem;
+  width: 40rem;
   max-height: 30rem;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .collaborators > * {
-  flex: 0 0 1;
+  flex: 0 0 calc(25% - 1em);
 }
 
 .collaborators > :not(:nth-child(4n + 4)) {

@@ -2,7 +2,6 @@ import '../../css/SingleRepo.css';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import DonutChart from './singleRepoCards/SingleRepoDonut.js';
 
 import {
   getSingleRepo,
@@ -28,10 +27,12 @@ function SingleRepo(props) {
   const [collabs, setCollabs] = useState([]);
   const [commitSize, setcommitSize] = useState([]);
   const [averageCommitSize, setAverageCommitSize] = useState({});
+  const [repoLang, setRepoLang] = useState({});
+  const [repoViews, setRepoViews] = useState({});
+
   const [modalOpen, setModalOpen] = useState(false);
   const [buttonClicked, setButtonClicked] = useState('');
   const [dismiss, setDismiss] = useState(false);
-  const [repoLang, setRepoLang] = useState({});
 
   useEffect(() => {
     async function fetchRepoData() {
@@ -74,6 +75,7 @@ function SingleRepo(props) {
     fetchData();
   }, [repo]);
 
+  // Getting the average commit size in this repo
   useEffect(() => {
     avgCommitSize(commitSize);
     setAverageCommitSize(avgCommitSize(commitSize));
@@ -120,6 +122,8 @@ function SingleRepo(props) {
     };
   }
 
+  // Getting the total view from the repo
+
   function deleteClickHandler() {
     deleteRepo(screenName, repo.name);
     window.location.href = '/repos';
@@ -148,6 +152,15 @@ function SingleRepo(props) {
 
   return (
     <div className='single-repo'>
+      {modalOpen && (
+        <SingleRepoModal
+          setOpenModal={setModalOpen}
+          deleteRepo={deleteClickHandler}
+          archiveRepo={archiveClickHandler}
+          buttonClicked={buttonClicked}
+        />
+      )}
+
       <div className='single-repo-header'>
         <div className='back-name'>
           <h2>
@@ -161,9 +174,9 @@ function SingleRepo(props) {
         </div>
 
         {dismiss ? null : (
-          <div className='delete-archive'>
+          <div>
             {daysSinceUpdate >= 60 && (
-              <div>
+              <div className='delete-archive'>
                 <h3>
                   It's been <span style={spanStyle}>{daysSinceUpdate}</span>{' '}
                   days since you've last made any changes.{' '}
@@ -192,14 +205,6 @@ function SingleRepo(props) {
                 </h3>
               </div>
             )}
-            {modalOpen && (
-              <SingleRepoModal
-                setOpenModal={setModalOpen}
-                deleteRepo={deleteClickHandler}
-                archiveRepo={archiveClickHandler}
-                buttonClicked={buttonClicked}
-              />
-            )}
           </div>
         )}
       </div>
@@ -211,12 +216,6 @@ function SingleRepo(props) {
 
       <div className='single-repo-second-row'>
         <RepoLanguages repoLang={repoLang} />
-        {/* <div style={{ width: 250 }}>
-          language chart
-          <DonutChart repoLang={repoLang} />
-
-        </div> */}
-
         <RepoCollaborators collabs={collabs} />
       </div>
     </div>

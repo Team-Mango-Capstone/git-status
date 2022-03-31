@@ -8,6 +8,9 @@ import DateTime from './homeCards/DateTime.js';
 import { Activity } from './homeCards/Activity';
 import { updateOrCreateUser } from '../db/Firebase.js';
 import { WelcomeModal } from './homeCards/WelcomeModal';
+import { collection, query, where, doc, onSnapshot, getDoc, getDocs } from 'firebase/firestore';
+import { db } from '../db/Firebase.js';
+
 
 function Home() {
   const leftAngleBrace = (
@@ -25,8 +28,9 @@ function Home() {
 
   const [userData, setUserData] = useState([]);
   const [userRepos, setUserRepos] = useState([]);
-  const [showWelcomeModal, setShowWelcomeModal] = useState(true);
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
   const githubUsername = localStorage.getItem('screenName');
+  const uid = localStorage.getItem('uid');
 
   useEffect(() => {
     const makeRequest = async () => {
@@ -45,6 +49,38 @@ function Home() {
     };
     makeRequest();
     updateOrCreateUser();
+  }, []);
+
+  useEffect(() => {
+    const checkIfFirstLogin = async () => {
+        const currentUserQuery = query(
+        collection(db, 'allUsers')
+        // where('id', '==', uid)
+      );
+      onSnapshot(
+        currentUserQuery,
+        (element) => {
+          element.forEach((doc) => {
+            if (doc.id === uid) {
+              setShowWelcomeModal(doc.data().isFirstLogin);
+            };
+          });
+        }
+      );
+  
+      // const docSnap = await getDoc(q);
+      // console.log('docSnap >>>', docSnap)
+  
+  // if (docSnap.exists()) {
+  //   console.log("Document data:", docSnap.data());
+  // } else {
+  //   // doc.data() will be undefined in this case
+  //   console.log("No such document!");
+  // };
+
+    };
+    checkIfFirstLogin();
+
   }, []);
 
   return (

@@ -28,7 +28,7 @@ export const BadgeContainer = () => {
   return (
     <div className="badges-container">
       {completedGoals.map((goal) => {
-        const hoverText = `Goal completed: ${goal.title}`;
+        const hoverText = goal.title === 'Account created' ? goal.title : `Goal completed: ${goal.title}`;
 
         return (
             <div

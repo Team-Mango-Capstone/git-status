@@ -1,12 +1,35 @@
 import React from "react";
 import { firstLoginOver } from "../../db/Firestore";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../db/Firebase";
 
 export const WelcomeModal = (props) => {
 const closeModal = () => {
       props.setShowWelcomeModal(false);
       firstLoginOver();
+      createDummyGoal();
       console.log('close the modal!!')
   };
+
+const createDummyGoal = async () => {
+    await addDoc(
+        collection(
+          db,
+          'allUsers',
+          window.localStorage.getItem('uid'),
+          'userGoals'
+        ),
+        {
+          title: 'Account created',
+          description: null,
+          deadline: null,
+          goalProgress: 0,
+          completed: true,
+          deleted: true,
+          created: new Date().getTime()
+        }
+      );
+};
 
   return (
     <div>

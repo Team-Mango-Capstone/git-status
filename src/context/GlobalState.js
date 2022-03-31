@@ -35,14 +35,17 @@ export const GlobalProvider = (props) => {
 
       const completedGoalsQuery = query(
         collection(db, 'allUsers', uid, 'userGoals'),
-        where('completed', '==', true)
+        where('completed', '==', true),
       );
       const fetchCompletedGoals = onSnapshot(
         completedGoalsQuery,
         (querySnapshot) => {
           let goalsArray = [];
           querySnapshot.forEach((doc) => {
-            goalsArray.push({ ...doc.data(), id: doc.id });
+            console.log('DOC >>>', doc.data())
+            if (doc.data().title !== 'Account created') {
+              goalsArray.push({ ...doc.data(), id: doc.id });
+            };
           });
           setCompletedGoals(goalsArray);
         }

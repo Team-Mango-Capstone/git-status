@@ -11,6 +11,7 @@ import {
   deleteRepo,
   archiveRepo,
   getRepoLanguage,
+  getRepoViews
 } from '../GithubAPITesting.js';
 import SingleRepoModal from './SingleRepoModal.js';
 import RepoCollaborators from './singleRepoCards/RepoCollaborators';
@@ -56,6 +57,9 @@ function SingleRepo(props) {
         const repoLangData = await getRepoLanguage(screenName, repo.name);
         setRepoLang(repoLangData);
 
+        const repoViewsData = await getRepoViews(screenName, repo.name);
+        setRepoViews(repoViewsData);
+
         // const commitsInfo = await searchCommits('choi2010', 'teampluto2201/grace-shopper');
         const commitsInfo = await getCommitsforRepo(screenName, repo.name);
         if (commitsInfo) {
@@ -83,7 +87,7 @@ function SingleRepo(props) {
 
   const daysSinceUpdate = Math.round(
     (new Date().getTime() - new Date(repo.updated_at).getTime()) /
-      (1000 * 60 * 60 * 24)
+    (1000 * 60 * 60 * 24)
   );
 
   // Getting the average commit size in this repo
@@ -210,7 +214,7 @@ function SingleRepo(props) {
       </div>
 
       <div className='single-repo-first-row'>
-        <RepoInfo repo={repo} />
+        <RepoInfo repo={repo} repoViews={repoViews} />
         <RepoActivity commits={commits} averageCommitSize={averageCommitSize} />
       </div>
 

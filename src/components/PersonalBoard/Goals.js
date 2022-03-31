@@ -19,22 +19,18 @@ function Goals() {
   const [openModal, setOpenModal] = useState(false);
   const [status, setStatus] = useState(true);
   const [showBadgeModal, setShowBadgeModal] = useState(false);
-  const uid = window.localStorage.getItem('uid');
   let [page, setPage] = useState(1);
 
   const { currentGoals, completedGoals } = useContext(GlobalContext);
-  // console.log('current', currentGoals);
-  // console.log('completed', completedGoals);
-  // let result = useContext(GlobalContext);
-  // console.log(result);
-
+ 
   const toggleModal = () => {
     setShowBadgeModal(!showBadgeModal);
   };
 
   const PER_PAGE = 6;
   const countCurrent = Math.ceil(currentGoals.length / PER_PAGE);
-  const countCompleted = Math.ceil(completedGoals.length / PER_PAGE);
+  const countCompleted = Math.ceil(completedGoals.filter((goal) => goal.deleted === false)
+  .sort((a, b) => (a.created > b.created ? 1 : -1)).length / PER_PAGE);
 
   const DATA_CURRENT = usePagination(currentGoals, PER_PAGE);
   const DATA_COMPLETED = usePagination(completedGoals, PER_PAGE);
@@ -73,7 +69,7 @@ function Goals() {
           {data && data.length > 0 ? (
             data
               .filter((goal) => goal.deleted === false)
-              .sort((a, b) => (a.id > b.id ? 1 : -1))
+              .sort((a, b) => (b.created > a.created ? 1 : -1))
               .map((goal) => (
                 <SingleGoalCard
                   key={goal.id}

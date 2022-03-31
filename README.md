@@ -1,13 +1,6 @@
-<div style="text-align: center;">
-<h1>git status</h1>
-<p>(insert logo here)</p<>
-<p>A productivity app for developers.</p>
-</div>
-
-
-# About the Project
-
+# About git status
 git status is a developer-focused, vizualization-driven productivity app that provides personalized insights on GitHub usage and a dashboard for setting and tracking goals.
+<br /> http://my-git-status.herokuapp.com/
 
 # Features
 
@@ -22,9 +15,9 @@ Armed with the above insights, users can also set and monitor productivity goals
 * a task dashboard for smaller, everyday todos
 * a badges feature and progress chart that helps users visualize their ongoing progress
 
-# Getting Started
+# See it for yourself!
 
-This is generally a section that explains how to get the project set up on your local machine, such as listing software/libraries needed and how to install them. Given that we'll have a deployed site, do we need this? Should we just put the deployed site link?
+Check out our deployed site at http://my-git-status.herokuapp.com/.
 
 # Our Stack
 
@@ -33,6 +26,7 @@ This is generally a section that explains how to get the project set up on your 
 * [Firebase](https://firebase.google.com/) - GitHub authentication
 * [Cloud Firestore](https://firebase.google.com/products/firestore?gclid=Cj0KCQjw_4-SBhCgARIsAAlegrWsM62axrFi1BIP77Dp4CzeMuMvoLCY_hhyScEIJNs0muWVMFJ1xk4aAitXEALw_wcB&gclsrc=aw.ds) - NoSQL database
 * [Chart.js](https://www.chartjs.org/) - data visualizations
+* [Boostrap](https://getbootstrap.com/) - UX/UI styling
 
 # Next Steps
 * Add an option to link goals to a specific repo on GitHub, which would enable automatic tracking of progress based on number and timing of commits
@@ -41,6 +35,6 @@ This is generally a section that explains how to get the project set up on your 
 
 # Team
 * Diana Viglucci | [Github](https://github.com/dviglucci) | [LinkedIn](https://www.linkedin.com/in/diana-viglucci/)
-* Linda Choi | [Github](https://github.com/choi2010) | [LinkedIn](https://www.linkedin.com/in/maywu95/)
-* May Wu | [Github]() | [LinkedIn](https://github.com/maycwu)
+* Linda Choi | [Github](https://github.com/choi2010) | [LinkedIn](https://www.linkedin.com/in/lindachoi/)
+* May Wu | [Github](https://github.com/maycwu) | [LinkedIn](https://www.linkedin.com/in/maywu95/)
 * Sarina Chang | [Github](https://github.com/s-arina) | [LinkedIn](https://www.linkedin.com/in/sarinachang/)

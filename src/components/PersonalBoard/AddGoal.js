@@ -26,6 +26,7 @@ function AddGoal({ closeModal }) {
           goalProgress: 0,
           completed: false,
           deleted: false,
+          created: new Date().getTime()
         }
       );
       setDescription('');

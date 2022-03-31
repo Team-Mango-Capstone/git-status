@@ -81,7 +81,7 @@ export const TopRepo = () => {
         <div>
           <div className='top-right-fold'></div>
           <a
-            href={`https://github.com/${githubUsername}/${topRepo.name}`}
+            href={`https://github.com/${githubUsername}/${topRepoStats.name}`}
             target='_blank'
             rel='noreferrer'
           >

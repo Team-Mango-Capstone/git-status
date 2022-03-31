@@ -7,6 +7,7 @@ import { Profile } from './homeCards/Profile';
 import DateTime from './homeCards/DateTime.js';
 import { Activity } from './homeCards/Activity';
 
+
 function Home() {
   const leftAngleBrace = (
     <span style={{ color: 'grey', fontSize: '1.8rem' }}>&lt;</span>

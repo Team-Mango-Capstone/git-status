@@ -103,8 +103,8 @@ function AllRepos() {
       ) : (
         <div className='all-repos-container'>
           {_DATA.currentData().map((repo) => (
-            <Link to={`/repos/${repo.name}`}>
-              <div className='single-repo-card' key={repo.id}>
+            <Link  key={repo.id} to={`/repos/${repo.name}`}>
+              <div className='single-repo-card' >
                 <h2>{repo.name}</h2>
                 <hr />
                 {filter === 'date-created' ? (

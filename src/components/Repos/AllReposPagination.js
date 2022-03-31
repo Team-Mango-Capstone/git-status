@@ -6,7 +6,6 @@ export function AllReposPagination({ _DATA, count, setPage, page, PER_PAGE }) {
     setPage(p);
     _DATA.jump(p);
   };
-  console.log(PER_PAGE);
 
   return (
     <div className='all-repos-pagination-container'>

@@ -59,7 +59,6 @@ export async function signInWithGitHub() {
 export async function setAccessToken() {
   const accessToken = window.localStorage.getItem('accessToken')
   const uid = window.localStorage.getItem('uid')
-  console.log(uid);
   await setDoc(doc(db, 'allUsers', uid), {
    accessToken: accessToken,
   });

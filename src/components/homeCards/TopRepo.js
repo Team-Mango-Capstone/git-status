@@ -28,7 +28,7 @@ export const TopRepo = () => {
         );
         allOwnedRepos = data.items; // axios call to get all repos owned by the user in an array
       } catch (error) {
-        console.log(error);
+       console.log(error);
       }
       allOwnedRepos.map(async (repo) => {
         // map over all the repos to get the traffic data for each one

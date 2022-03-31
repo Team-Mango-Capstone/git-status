@@ -50,6 +50,8 @@ function AddGoal({ closeModal }) {
             <input
               type='text'
               placeholder='Enter goal...'
+              pattern='*'
+              required
               value={title}
               onChange={(e) => {
                 setTitle(e.target.value);
@@ -61,6 +63,8 @@ function AddGoal({ closeModal }) {
               as='textarea'
               aria-label='With textarea'
               placeholder='Enter goal description....'
+              pattern='*'
+              required
               style={{ fontSize: '14px' }}
               onChange={(e) => {
                 setDescription(e.target.value);

@@ -1,5 +1,5 @@
 # About git status
-git status is a developer-focused, vizualization-driven productivity app that provides personalized insights on GitHub usage and a dashboard for setting and tracking goals.
+git status is a developer-focused, visualization-driven productivity app that provides personalized insights on GitHub usage and a dashboard for setting and tracking goals.
 <br /> http://my-git-status.herokuapp.com/
 
 # Features
@@ -21,12 +21,12 @@ Check out our deployed site at http://my-git-status.herokuapp.com/.
 
 # Our Stack
 
-* [React.js](https://reactjs.org/) - user interface
+* [React.js](https://reactjs.org/) - user interface and overall app structure
 * [GitHub API](https://docs.github.com/en/rest) - GitHub usage information
 * [Firebase](https://firebase.google.com/) - GitHub authentication
 * [Cloud Firestore](https://firebase.google.com/products/firestore?gclid=Cj0KCQjw_4-SBhCgARIsAAlegrWsM62axrFi1BIP77Dp4CzeMuMvoLCY_hhyScEIJNs0muWVMFJ1xk4aAitXEALw_wcB&gclsrc=aw.ds) - NoSQL database
 * [Chart.js](https://www.chartjs.org/) - data visualizations
-* [Boostrap](https://getbootstrap.com/) - UX/UI styling
+* [Bootstrap](https://getbootstrap.com/) - UX/UI styling
 
 # Next Steps
 * Add an option to link goals to a specific repo on GitHub, which would enable automatic tracking of progress based on number and timing of commits

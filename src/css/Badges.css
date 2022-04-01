@@ -9,20 +9,24 @@
   display: flex;
   margin: 0 4rem;
   align-items: center;
-  /* overflow-y: hidden; */
+  overflow-x: hidden;
   padding: 1rem 0;
+  width: 100%;
+}
+
+.badges-container:hover {
+  overflow-x: auto;
 }
 
 .badge {
   position: relative;
-  padding-right: 10px;
+  padding-right: 0.5rem;
 }
 
 .badge:before {
   content: attr(data-hover);
   visibility: hidden;
   opacity: 0;
-  width: 80px;
   color: black;
   background-color: #8b949e;
   text-align: center;
@@ -31,8 +35,8 @@
   transition: opacity 0.3s ease-in-out;
   position: absolute;
   z-index: 1;
-  left: -3rem;
-  top: 115%;
+  left: 3rem;
+  top: -12%;
 }
 
 .badge:hover:before {

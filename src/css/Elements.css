@@ -24,7 +24,7 @@
 }
 
 .loading-container h2 {
-  margin: 30px;
+  margin: 3rem;
 }
 
 /* ------------------------------ LOADING TOP REPO */
@@ -32,9 +32,9 @@
 .loading-card {
   display: flex;
   justify-content: center;
-  margin-top: 50%;
+  margin: 5rem;
 }
 
 .loading-card img {
-  width: 30px;
+  width: 3rem;
 }

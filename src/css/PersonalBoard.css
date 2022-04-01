@@ -4,6 +4,7 @@
   padding: 5rem;
   height: 83.7rem;
   flex-wrap: wrap;
+  gap: 4rem;
 }
 
 /* ====================== GOALS */
@@ -12,8 +13,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 80rem;
+  min-height: 40rem;
   position: relative;
+  flex: 1 0 40%;
 }
 
 .goals {
@@ -36,7 +38,7 @@
 .todo-charts {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-grow: 1;
 }
 
@@ -51,7 +53,6 @@
 .todo-list {
   display: flex;
   flex-direction: column;
-  height: 50%;
 }
 
 .charts-container {

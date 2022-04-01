@@ -95,18 +95,20 @@ function Goals() {
           )}
         </div>
       </div>
-      <PaginationGoals
-        completedGoals={completedGoals}
-        currentGoals={currentGoals}
-        DATA_CURRENT={DATA_CURRENT}
-        DATA_COMPLETED={DATA_COMPLETED}
-        countCurrent={countCurrent}
-        countCompleted={countCompleted}
-        page={page}
-        setPage={setPage}
-        status={status}
-        PER_PAGE={PER_PAGE}
-      />
+      {data && data.length > 0 ? (
+        <PaginationGoals
+          completedGoals={completedGoals}
+          currentGoals={currentGoals}
+          DATA_CURRENT={DATA_CURRENT}
+          DATA_COMPLETED={DATA_COMPLETED}
+          countCurrent={countCurrent}
+          countCompleted={countCompleted}
+          page={page}
+          setPage={setPage}
+          status={status}
+          PER_PAGE={PER_PAGE}
+        />
+      ) : null}
     </div>
   );
 }

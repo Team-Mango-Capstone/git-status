@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { markFirstLoginFalse } from "../../db/Firestore";
+import { markFirstLoginFalse, hasLoggedInBefore } from "../../db/Firestore";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../db/Firebase";
 
@@ -13,7 +13,9 @@ const closeModal = () => {
   };
 
   const checker = () => {
-    markFirstLoginFalse();
+    // markFirstLoginFalse();
+    hasLoggedInBefore();
+    props.setShowWelcomeModal(false);
     console.log('checker clicked...')
   }
 
@@ -53,7 +55,6 @@ useEffect(() => {
         Welcome to git status! By creating your account, you've earned your
         first badge. Earn more badges by setting and completing goals.
       </h2>
-      {/* <button onClick={checker}>Got it</button> */}
     </div>
   );
 };

@@ -50,11 +50,14 @@ function Home() {
     };
     makeRequest();
     updateOrCreateUser();
+    // updateOrCreateUser runs multiple times, which creates problematic behavior
   }, []);
 
   // useEffect(() => {
     const testerFxn = () => {
-
+      // the best solution is to tie the welcome modal's behavior to the existence of badges
+      // if they have never logged in before, userBadges === undefined. then show welcome modal
+      // first badge will be created in that component, so userBadges will never be undefined after that point
 
     const checkIfFirstLogin = async () => {
         const currentUserQuery = query(
@@ -67,10 +70,11 @@ function Home() {
         currentUserQuery,
         (element) => {
           element.forEach((doc) => {
-            if (doc.id === uid) {
-              addIsFirstLoginField();
-              console.log('addIsFirstLoginField ran...')
-              setShowWelcomeModal(doc.data().isFirstLogin);
+            if (doc.id === uid && doc.data().hasLoggedInBefore === undefined) {
+              // addIsFirstLoginField();
+              // console.log('addIsFirstLoginField ran...')
+              // setShowWelcomeModal(doc.data().isFirstLogin);
+              setShowWelcomeModal(true);
             };
           });
         }

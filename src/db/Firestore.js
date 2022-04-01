@@ -106,3 +106,12 @@ export const addIsFirstLoginField = async () => {
   );
   console.log('DOES THIS KEEP RUNNING WTF')
 };
+
+export const hasLoggedInBefore = async () => {
+  await updateDoc(
+    doc(db, 'allUsers', uid), {
+      hasLoggedInBefore: true,
+    }
+  );
+  console.log('hasLoggedInBefore ran...')
+};

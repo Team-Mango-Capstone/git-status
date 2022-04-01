@@ -3,6 +3,7 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  setDoc,
 } from 'firebase/firestore';
 
 const uid =  window.localStorage.getItem('uid');
@@ -88,9 +89,18 @@ export const handleDelete = async (collection, id) => {
   );
 };
 
-export const firstLoginOver = async () => {
+export const markFirstLoginFalse = async () => {
+  console.log('inside markFirstLoginFalse...')
   await updateDoc(
     doc(db, 'allUsers', uid),
     { isFirstLogin: false }
+  );
+  console.log('markFirstLoginFalse ran...')
+};
+
+export const addIsFirstLoginField = async () => {
+  await updateDoc(
+    doc(db, 'allUsers', uid), 
+    { isFirstLogin: true }
   );
 };

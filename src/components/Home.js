@@ -10,6 +10,7 @@ import { updateOrCreateUser } from '../db/Firebase.js';
 import { WelcomeModal } from './homeCards/WelcomeModal';
 import { collection, query, where, doc, onSnapshot, getDoc, getDocs } from 'firebase/firestore';
 import { db } from '../db/Firebase.js';
+import { addIsFirstLoginField } from '../db/Firestore';
 
 
 function Home() {
@@ -51,7 +52,10 @@ function Home() {
     updateOrCreateUser();
   }, []);
 
-  useEffect(() => {
+  // useEffect(() => {
+    const testerFxn = () => {
+
+
     const checkIfFirstLogin = async () => {
         const currentUserQuery = query(
         collection(db, 'allUsers')
@@ -62,6 +66,8 @@ function Home() {
         (element) => {
           element.forEach((doc) => {
             if (doc.id === uid) {
+              addIsFirstLoginField();
+              console.log('addIsFirstLoginField ran...')
               setShowWelcomeModal(doc.data().isFirstLogin);
             };
           });
@@ -80,11 +86,14 @@ function Home() {
 
     };
     checkIfFirstLogin();
+  }
+  // }, []);
 
-  }, []);
+  console.log('showWelcomeModal >>>', showWelcomeModal)
 
   return (
     <div className='home'>
+      <button onClick={testerFxn}>TESTER</button>
       {showWelcomeModal ?
         <WelcomeModal setShowWelcomeModal={setShowWelcomeModal}/> : null}
       <div className='welcome'>

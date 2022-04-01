@@ -39,26 +39,6 @@ export const BadgeContainer = () => {
           </div>
         );
       })}
-      {/* <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' />
-      <FontAwesomeIcon icon={faAward} className='award-icon' /> */}
     </div>
   );
 };

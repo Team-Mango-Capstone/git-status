@@ -8,8 +8,6 @@ function PersonalBoard() {
   return (
     <div className='personal-board-container'>
       <Goals />
-      <hr />
-
       <div className='todo-charts'>
         <Tasks />
         <hr />

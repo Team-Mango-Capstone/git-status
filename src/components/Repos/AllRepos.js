@@ -98,13 +98,13 @@ function AllRepos() {
 
       {isLoading ? (
         loading
-      ) : repos.length === 0 ? (
+      ) : !repos && repos.length === 0 ? (
         <div className='all-repos-container'>You have no repos!</div>
       ) : (
         <div className='all-repos-container'>
           {_DATA.currentData().map((repo) => (
-            <Link  key={repo.id} to={`/repos/${repo.name}`}>
-              <div className='single-repo-card' >
+            <Link key={repo.id} to={`/repos/${repo.name}`}>
+              <div className='single-repo-card'>
                 <h2>{repo.name}</h2>
                 <hr />
                 {filter === 'date-created' ? (
@@ -123,14 +123,15 @@ function AllRepos() {
           ))}
         </div>
       )}
-
-      <AllReposPagination
-        _DATA={_DATA}
-        count={count}
-        page={page}
-        setPage={setPage}
-        PER_PAGE={PER_PAGE}
-      />
+      {!repos && repos.length === 0 ? null : (
+        <AllReposPagination
+          _DATA={_DATA}
+          count={count}
+          page={page}
+          setPage={setPage}
+          PER_PAGE={PER_PAGE}
+        />
+      )}
     </div>
   );
 }

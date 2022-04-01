@@ -12,10 +12,10 @@ const closeModal = () => {
     console.log('close the modal!!')
   };
 
-//   const checker = () => {
-//     markFirstLoginFalse();
-//     console.log('checker clicked...')
-//   }
+  const checker = () => {
+    markFirstLoginFalse();
+    console.log('checker clicked...')
+  }
 
 const createDummyGoal = async () => {
     await addDoc(
@@ -45,7 +45,7 @@ useEffect(() => {
     <div className="badge-modal-content">
         <span
         className="close-badge-modal"
-        onClick={closeModal}
+        onClick={checker}
       >
         &times;
       </span>

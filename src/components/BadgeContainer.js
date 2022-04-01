@@ -27,7 +27,9 @@ export const BadgeContainer = () => {
 
   return (
     <div className="badges-container">
-      {completedGoals.map((goal) => {
+      {completedGoals
+      .sort((a, b) => (a.created > b.created ? 1 : -1))
+      .map((goal) => {
         const hoverText = goal.title === 'Account created' ? goal.title : `Goal completed: ${goal.title}`;
 
         return (

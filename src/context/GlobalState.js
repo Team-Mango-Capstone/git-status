@@ -42,7 +42,6 @@ export const GlobalProvider = (props) => {
         (querySnapshot) => {
           let goalsArray = [];
           querySnapshot.forEach((doc) => {
-            console.log('DOC >>>', doc.data())
             if (doc.data().title !== 'Account created') {
               goalsArray.push({ ...doc.data(), id: doc.id });
             };

@@ -60,6 +60,8 @@ function Home() {
         const currentUserQuery = query(
         collection(db, 'allUsers')
         // where('id', '==', uid)
+        // this query is not the most efficient but this is the only way I could get it to work
+        // the code breaks when I include line 62
       );
       onSnapshot(
         currentUserQuery,
@@ -73,17 +75,6 @@ function Home() {
           });
         }
       );
-  
-      // const docSnap = await getDoc(q);
-      // console.log('docSnap >>>', docSnap)
-  
-  // if (docSnap.exists()) {
-  //   console.log("Document data:", docSnap.data());
-  // } else {
-  //   // doc.data() will be undefined in this case
-  //   console.log("No such document!");
-  // };
-
     };
     checkIfFirstLogin();
   }

@@ -25,7 +25,7 @@ function Tasks() {
         window.localStorage.getItem('uid'),
         'userTasks'
       ),
-      { title, completed: false , created: new Date().getTime()}
+      { title, completed: false, created: new Date().getTime() }
     );
     setTitle('');
   };
@@ -40,6 +40,8 @@ function Tasks() {
         <input
           type='text'
           placeholder='Enter a task...'
+          pattern='*'
+          required
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
@@ -47,7 +49,6 @@ function Tasks() {
         />
       </form>
       <div className='task-container'>
-        
         <div className='tasks'>
           {tasks.length > 0 ? (
             // could probably add a sort method here

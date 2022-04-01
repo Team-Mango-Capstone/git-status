@@ -36,3 +36,13 @@ code {
   border-radius: 20px;
   background-color: #8b949e;
 }
+
+::-webkit-scrollbar:horizontal {
+  height: 0.4rem;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background-clip: padding-box;
+  border-radius: 20px;
+  background-color: #2e363b;
+}

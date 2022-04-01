@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 2.5rem;
+  padding: 1.5rem 2.5rem;
   background-color: #161b22;
 }
 
@@ -11,8 +11,15 @@
   cursor: pointer;
 }
 
+.links {
+  display: flex;
+  width: 32.5rem;
+  justify-content: flex-end;
+}
+
 .links h2 {
   background-color: #161b22;
+  text-align: right;
 }
 
 .links a {

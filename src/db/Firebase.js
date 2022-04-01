@@ -59,9 +59,7 @@ export async function signInWithGitHub() {
 export async function updateOrCreateUser() {
   const uid = window.localStorage.getItem('uid')
   await setDoc(doc(db, 'allUsers', uid), {
-  //  isFirstLogin: true,
   });
-  console.log('setDoc ran...')
 };
 
 export const signOutGithub = (e) => {

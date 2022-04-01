@@ -88,30 +88,3 @@ export const handleDelete = async (collection, id) => {
     doc(db, 'allUsers', uid, collection, id)
   );
 };
-
-export const markFirstLoginFalse = async () => {
-  await updateDoc(
-    doc(db, 'allUsers', uid), {
-      isFirstLogin: false,
-      canIAddNewThing: true
-    }
-  );
-  console.log('markFirstLoginFalse ran...')
-};
-
-export const addIsFirstLoginField = async () => {
-  await updateDoc(
-    doc(db, 'allUsers', uid), 
-    { isFirstLogin: true }
-  );
-  console.log('DOES THIS KEEP RUNNING WTF')
-};
-
-export const hasLoggedInBefore = async () => {
-  await updateDoc(
-    doc(db, 'allUsers', uid), {
-      hasLoggedInBefore: true,
-    }
-  );
-  console.log('hasLoggedInBefore ran...')
-};

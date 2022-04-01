@@ -11,6 +11,7 @@ export const GlobalProvider = (props) => {
   const [currentGoals, setCurrentGoals] = useState([]);
   const [completedGoals, setCompletedGoals] = useState([]);
   const [tasks, setTasks] = useState([]);
+  const [navBarBadges, setNavBarBadges] = useState([]);
   // const [userLanguages, setUserLanguages] = useState({});
 
   const uid = window.localStorage.getItem('uid');
@@ -66,13 +67,29 @@ export const GlobalProvider = (props) => {
         setTasks(tasksArray);
       });
 
+      const badgeQuery = query(
+        collection(db, "allUsers", uid, "userGoals"),
+        where("completed", "==", true)
+      );
+  
+      const fetchBadges = onSnapshot(badgeQuery, (doc) => {
+        let completedArr = [];
+        doc.forEach((element) => {
+          completedArr.push(element.data());
+        });
+        setNavBarBadges(completedArr);
+      });
+
       return () => {
         fetchCurrentGoals();
         fetchCompletedGoals();
         fetchTasks();
+        fetchBadges();
       };
     }
   }, []);
+
+
 
   // useEffect(() => {
   //   const makeRequest = async () => {
@@ -101,6 +118,7 @@ export const GlobalProvider = (props) => {
         currentGoals,
         completedGoals,
         tasks,
+        navBarBadges
         // userLanguages,
       }}
     >

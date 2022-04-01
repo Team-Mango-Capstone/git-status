@@ -1,23 +1,10 @@
-import React, { useEffect } from "react";
-import { markFirstLoginFalse, hasLoggedInBefore } from "../../db/Firestore";
+import React, { useEffect, useContext } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../db/Firebase";
+import { GlobalContext } from "../../context/GlobalState";
 
 export const WelcomeModal = (props) => {
-    console.log('props >>', props)
-
-const closeModal = () => {
-    // markFirstLoginFalse(); // updates isFirstLogin key in firestore to 'false'
-    props.setShowWelcomeModal(false); // ensures that the welcome modal and badge will only be displayed once
-    console.log('close the modal!!')
-  };
-
-  const checker = () => {
-    // markFirstLoginFalse();
-    hasLoggedInBefore();
-    props.setShowWelcomeModal(false);
-    console.log('checker clicked...')
-  }
+  const { navBarBadges } = useContext(GlobalContext);
 
 const createDummyGoal = async () => {
     await addDoc(
@@ -39,15 +26,24 @@ const createDummyGoal = async () => {
       );
 };
 
-useEffect(() => {
-    createDummyGoal(); // creates a dummy goal so that bagde will display
-}, []);
+const closeModal = () => {
+  props.setShowWelcomeModal(false);
+  console.log('close the modal!!')
+};
+
+if (navBarBadges.length === 0) {
+  createDummyGoal();
+};
+
+// useEffect(() => {
+    // createDummyGoal();
+// }, []);
 
   return (
     <div className="badge-modal-content">
         <span
         className="close-badge-modal"
-        onClick={checker}
+        onClick={closeModal}
       >
         &times;
       </span>

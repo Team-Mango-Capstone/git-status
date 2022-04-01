@@ -10,7 +10,6 @@ import { updateOrCreateUser } from '../db/Firebase.js';
 import { WelcomeModal } from './homeCards/WelcomeModal';
 import { collection, query, where, doc, onSnapshot, getDoc, getDocs } from 'firebase/firestore';
 import { db } from '../db/Firebase.js';
-import { addIsFirstLoginField } from '../db/Firestore';
 
 
 function Home() {
@@ -29,7 +28,7 @@ function Home() {
 
   const [userData, setUserData] = useState([]);
   const [userRepos, setUserRepos] = useState([]);
-  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  // const [showWelcomeModal, setShowWelcomeModal] = useState(false);
   const githubUsername = localStorage.getItem('screenName');
   const uid = localStorage.getItem('uid');
 
@@ -50,18 +49,15 @@ function Home() {
     };
     makeRequest();
     updateOrCreateUser();
-    // updateOrCreateUser runs multiple times, which creates problematic behavior
   }, []);
 
-  // useEffect(() => {
-    const testerFxn = () => {
-      // the best solution is to tie the welcome modal's behavior to the existence of badges
-      // if they have never logged in before, userBadges === undefined. then show welcome modal
-      // first badge will be created in that component, so userBadges will never be undefined after that point
-
+  useEffect(() => {
+    // const testerFxn = () => {
+      
     const checkIfFirstLogin = async () => {
+      let count = 0;
         const currentUserQuery = query(
-        collection(db, 'allUsers')
+        collection(db, 'allUsers', uid, 'userGoals')
         // where('id', '==', uid)
         // this query is not the most efficient but this is the only way I could get it to work
         // the code breaks when I include line 62
@@ -70,27 +66,37 @@ function Home() {
         currentUserQuery,
         (element) => {
           element.forEach((doc) => {
-            if (doc.id === uid && doc.data().hasLoggedInBefore === undefined) {
+            if (doc.data().title === 'Account created') {
+              count += 1
+              console.log('count incremented >>', count)
+            }
+
+            // setShowWelcomeModal(true);
+            // console.log('doc.data >>>', doc.data().title === null)
+            // if (doc.id === uid && doc.data().hasLoggedInBefore === undefined) {
               // addIsFirstLoginField();
               // console.log('addIsFirstLoginField ran...')
               // setShowWelcomeModal(doc.data().isFirstLogin);
-              setShowWelcomeModal(true);
-            };
+            // };
           });
         }
       );
+      if (count === 0) {
+        console.log('setShowWelcomeModal to be called ....')
+        // setShowWelcomeModal(true)
+      };
     };
     checkIfFirstLogin();
-  }
-  // }, []);
+  // }
+  }, []);
 
-  console.log('showWelcomeModal >>>', showWelcomeModal)
+  // console.log('showWelcomeModal >>>', showWelcomeModal)
 
   return (
     <div className='home'>
-      <button onClick={testerFxn}>TESTER</button>
-      {showWelcomeModal ?
-        <WelcomeModal setShowWelcomeModal={setShowWelcomeModal}/> : null}
+      {/* <button onClick={testerFxn}>TESTER</button> */}
+      {/* {showWelcomeModal ?
+        <WelcomeModal setShowWelcomeModal={setShowWelcomeModal}/> : null} */}
       <div className='welcome'>
         <h1>
           {leftAngleBrace}

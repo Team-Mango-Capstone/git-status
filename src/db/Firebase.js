@@ -1,11 +1,6 @@
 //import firebase from 'firebase'
 import { initializeApp } from 'firebase/app';
-import {
-  getAuth,
-  signInWithPopup,
-  GithubAuthProvider,
-  onAuthStateChanged,
-} from 'firebase/auth';
+import { getAuth, signInWithPopup, GithubAuthProvider } from 'firebase/auth';
 
 import { getFirestore, setDoc, doc } from 'firebase/firestore';
 
@@ -53,14 +48,14 @@ export async function signInWithGitHub() {
     })
     .catch((error) => {
       console.log(error);
-    })
+    });
 }
 
 export async function setAccessToken() {
-  const accessToken = window.localStorage.getItem('accessToken')
-  const uid = window.localStorage.getItem('uid')
+  const accessToken = window.localStorage.getItem('accessToken');
+  const uid = window.localStorage.getItem('uid');
   await setDoc(doc(db, 'allUsers', uid), {
-   accessToken: accessToken,
+    accessToken: accessToken,
   });
 }
 

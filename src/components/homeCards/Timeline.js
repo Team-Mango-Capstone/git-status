@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import TimelineChart from '../homeCharts/TimelineChart';
 import '../../css/Timeline.css';
+import { loadingCard } from '../Elements';
 
 const screenName = localStorage.getItem('screenName');
 
@@ -28,8 +29,13 @@ export default function Timeline() {
     variables: { userName: screenName },
   });
 
-  if (loading) return 'Loading...';
-  if (error) return <pre>{error.message}</pre>;
+  if (loading) return <div className='timeline'>{loadingCard}</div>;
+  if (error)
+    return (
+      <div className='timeline'>
+        <pre>{error.message}</pre>
+      </div>
+    );
 
   const useableData = data.user.contributionsCollection.contributionCalendar;
   const chartData =

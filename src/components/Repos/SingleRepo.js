@@ -58,6 +58,7 @@ function SingleRepo(props) {
 
         const repoLangData = await getRepoLanguage(screenName, repo.name);
         setRepoLang(repoLangData);
+        setIsLoading(false);
 
         const repoViewsData = await getRepoViews(screenName, repo.name);
         setRepoViews(repoViewsData);
@@ -227,7 +228,7 @@ function SingleRepo(props) {
       </div>
 
       <div className='single-repo-second-row'>
-        <RepoLanguages repoLang={repoLang} />
+        <RepoLanguages repoLang={repoLang} isLoading={isLoading} />
         <RepoCollaborators collabs={collabs} />
       </div>
     </div>

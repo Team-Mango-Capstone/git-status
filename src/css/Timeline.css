@@ -27,7 +27,7 @@
   visibility: hidden;
   opacity: 0;
   width: 20rem;
-  background-color: black;
+  background-color: rgb(138, 147, 158, 0.5);
   color: #fff;
   font-size: 1.2rem;
   text-align: center;
@@ -36,7 +36,7 @@
   border-radius: 5px;
   padding: 1rem 0.5rem;
   margin-bottom: 1rem;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   position: absolute;
   z-index: 1;
   bottom: 100%;

@@ -32,7 +32,7 @@ export async function getRepos() {
   try {
     const { data } = await axios.get(`https://api.github.com/user/repos`);
     // const { data } = await axios.get(`https://api.github.com/user/repos?per_page=100&page=1 type:public`)
-    console.log('this is the data from get repos', data);
+    // console.log('this is the data from get repos', data);
     return data;
   } catch (err) {
     console.log('error');
@@ -95,7 +95,7 @@ export async function getCommitStatforRepo(owner, repoName) {
     const { data } = await axios.get(
       `https://api.github.com/repos/${owner}/${repoName}/stats/contributors`
     );
-    console.log('this is the data from getCommitStatforRepo', data);
+    // console.log('this is the data from getCommitStatforRepo', data);
     return data;
   } catch (err) {
     console.log('error');
@@ -108,7 +108,7 @@ export async function deleteRepo(owner, repoName) {
     const { data } = await axios.delete(
       `https://api.github.com/repos/${owner}/${repoName}`
     );
-    console.log('this repo has been deleted', data);
+    // console.log('this repo has been deleted', data);
     return data;
   } catch (err) {
     console.log('error');
@@ -123,7 +123,7 @@ export async function archiveRepo(owner, repoName) {
       { archived: 'true' }
     );
     // data returns an array with list of commits.
-    console.log('this repo has been archived', data);
+    // console.log('this repo has been archived', data);
     return data;
   } catch (err) {
     console.log('error');
@@ -137,7 +137,7 @@ export async function getRepoLanguage(owner, repoName) {
       `https://api.github.com/repos/${owner}/${repoName}/languages`
     );
     // data returns an object with languages.
-    console.log('Repo Languages', data);
+    // console.log('Repo Languages', data);
     return data;
   } catch (err) {
     console.log('error');
@@ -150,7 +150,7 @@ export async function getRepoViews(owner, repoName) {
     const { data } = await axios.get(
       `https://api.github.com/repos/${owner}/${repoName}/traffic/views`
     );
-    console.log('Repo Views', data);
+    // console.log('Repo Views', data);
     return data;
   } catch (err) {
     console.log('error');

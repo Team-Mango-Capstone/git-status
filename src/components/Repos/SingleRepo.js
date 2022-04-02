@@ -11,7 +11,7 @@ import {
   deleteRepo,
   archiveRepo,
   getRepoLanguage,
-  getRepoViews
+  getRepoViews,
 } from '../GithubAPITesting.js';
 import SingleRepoModal from './SingleRepoModal.js';
 import RepoCollaborators from './singleRepoCards/RepoCollaborators';
@@ -34,6 +34,8 @@ function SingleRepo(props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [buttonClicked, setButtonClicked] = useState('');
   const [dismiss, setDismiss] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchRepoData() {
@@ -67,12 +69,14 @@ function SingleRepo(props) {
             return commit.author.login === screenName;
           });
           setCommit(cleanedCommitsInfo);
+          setIsLoading(false);
 
           const commitsStat = await getCommitStatforRepo(screenName, repo.name);
           const updatedCommitStat = commitsStat.filter((commit) => {
             return commit.author.login === screenName;
           });
           setcommitSize(updatedCommitStat);
+          setIsLoading(false);
         }
       }
     }
@@ -87,7 +91,7 @@ function SingleRepo(props) {
 
   const daysSinceUpdate = Math.round(
     (new Date().getTime() - new Date(repo.updated_at).getTime()) /
-    (1000 * 60 * 60 * 24)
+      (1000 * 60 * 60 * 24)
   );
 
   // Getting the average commit size in this repo
@@ -215,7 +219,11 @@ function SingleRepo(props) {
 
       <div className='single-repo-first-row'>
         <RepoInfo repo={repo} repoViews={repoViews} />
-        <RepoActivity commits={commits} averageCommitSize={averageCommitSize} />
+        <RepoActivity
+          commits={commits}
+          averageCommitSize={averageCommitSize}
+          isLoading={isLoading}
+        />
       </div>
 
       <div className='single-repo-second-row'>

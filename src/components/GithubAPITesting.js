@@ -186,3 +186,15 @@ export async function searchCommits(user, repo) {
 }
 
 ////////////////////////////////////////////////////////////////
+
+// API route for updating a users bio
+export async function updateBio(bio) {
+  try {
+    const { data } = await axios.patch('https://api.github.com/user', {
+      bio: bio,
+    });
+    return data;
+  } catch {
+    console.log('error');
+  }
+}

@@ -24,6 +24,7 @@ const provider = new GithubAuthProvider();
 provider.addScope('repo', 'repo:status');
 provider.addScope('delete_repo');
 provider.addScope('notifications');
+provider.addScope('user');
 
 export async function signInWithGitHub() {
   signInWithPopup(auth, provider)

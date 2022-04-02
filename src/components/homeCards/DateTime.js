@@ -4,9 +4,9 @@ function DateTime() {
   const [dateState, setDateState] = useState('');
   const spanStyle = { color: '#58a6ff' };
 
-  useEffect(() => {
-    setInterval(() => setDateState(new Date()), 1000);
-  }, []);
+  // useEffect(() => {
+  //   setInterval(() => setDateState(new Date()), 1000);
+  // }, []);
 
   return (
     <div className='time'>

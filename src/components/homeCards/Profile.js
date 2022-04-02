@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../css/Profile.css';
 import { UserLifespan } from './UserLifespan';
+import { updateBio } from '../GithubAPITesting';
 
 export function Profile(props) {
   const user = props.userData;
   const spanStyle = { color: '#58a6ff' };
+
+  // default bio is taken from api
+  const [bio, setBio] = useState(user.bio);
+
+  const [editBio, setEditBio] = useState(false);
+
+  const handleChangeBio = (e) => {
+    e.preventDefault();
+    setBio(e.target.value);
+  };
 
   let email;
   if (user.email) {
@@ -32,10 +43,37 @@ export function Profile(props) {
             </h3>
           </div>
         </div>
+
         <div className='bio'>
           <hr />
-          <p>{user.bio ? user.bio : 'Your bio is empty!'}</p>
+          {editBio ? (
+            <button
+              onClick={(e) => {
+                updateBio(bio);
+                setEditBio(false);
+                setBio(bio); // state not re rendering even though changing
+                console.log('CHANGED BIO', bio);
+              }}
+            >
+              SAVE
+            </button>
+          ) : (
+            <button onClick={() => setEditBio(true)}>EDIT</button>
+          )}
+
+          {editBio ? (
+            <input
+              type='text'
+              defaultValue={user.bio}
+              onChange={(e) => {
+                handleChangeBio(e);
+              }}
+            ></input>
+          ) : (
+            <p>-TEST- {bio} -TEST-</p>
+          )}
         </div>
+
         <hr />
         <div className='follow-type'>
           <h3>Following</h3>

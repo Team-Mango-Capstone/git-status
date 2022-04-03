@@ -16,13 +16,15 @@
   height: 28rem;
 }
 
-.timeline span {
+.contribution-amt,
+.contributions {
   color: #39d353;
   border-bottom: 1px dotted #39d353;
   position: relative;
 }
 
-.timeline span:before {
+.contribution-amt:before,
+.contributions:before {
   content: attr(data-hover);
   visibility: hidden;
   opacity: 0;
@@ -43,7 +45,12 @@
   margin-left: -9rem;
 }
 
-.timeline span:hover:before {
+.contributions:before {
+  margin-left: -5rem;
+}
+
+.contribution-amt:hover:before,
+.contributions:hover:before {
   opacity: 1;
   visibility: visible;
 }

@@ -85,10 +85,19 @@ export default function Timeline() {
         <h2>Your Timeline</h2>
         <h2>
           You made{' '}
-          <span data-hover='Based on your owned and forked projects.'>
+          <span
+            data-hover='Based on your owned and forked projects.'
+            className='contribution-amt'
+          >
             {useableData.totalContributions}
           </span>{' '}
-          contributions in the past year.
+          <span
+            data-hover='Commits, issues, pull requests, discussions.'
+            className='contributions'
+          >
+            contributions
+          </span>{' '}
+          in the past year.
         </h2>
       </div>
       <TimelineChart chartData={dataForChart} />

@@ -6,7 +6,7 @@ import { TopRepo } from './homeCards/TopRepo';
 import { Profile } from './homeCards/Profile';
 import DateTime from './homeCards/DateTime.js';
 import { Activity } from './homeCards/Activity';
-import {setAccessToken} from '../db/Firebase.js'
+import {updateOrCreateUser} from '../db/Firebase.js'
 
 function Home() {
   const leftAngleBrace = (
@@ -42,7 +42,7 @@ function Home() {
       }
     };
     makeRequest();
-    setAccessToken();
+    updateOrCreateUser();
   }, []);
 
   return (

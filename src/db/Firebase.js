@@ -52,13 +52,14 @@ export async function signInWithGitHub() {
     });
 }
 
-export async function setAccessToken() {
-  const accessToken = window.localStorage.getItem('accessToken');
-  const uid = window.localStorage.getItem('uid');
+export async function updateOrCreateUser() {
+  const uid = window.localStorage.getItem('uid')
+  const name = window.localStorage.getItem('name')
+
   await setDoc(doc(db, 'allUsers', uid), {
-    accessToken: accessToken,
+    name: name
   });
-}
+};
 
 export const signOutGithub = (e) => {
   e.preventDefault();

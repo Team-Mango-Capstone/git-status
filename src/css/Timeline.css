@@ -16,18 +16,20 @@
   height: 28rem;
 }
 
-.timeline span {
+.contribution-amt,
+.contributions {
   color: #39d353;
   border-bottom: 1px dotted #39d353;
   position: relative;
 }
 
-.timeline span:before {
+.contribution-amt:before,
+.contributions:before {
   content: attr(data-hover);
   visibility: hidden;
   opacity: 0;
   width: 20rem;
-  background-color: black;
+  background-color: rgb(138, 147, 158, 0.5);
   color: #fff;
   font-size: 1.2rem;
   text-align: center;
@@ -36,14 +38,19 @@
   border-radius: 5px;
   padding: 1rem 0.5rem;
   margin-bottom: 1rem;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   position: absolute;
   z-index: 1;
   bottom: 100%;
   margin-left: -9rem;
 }
 
-.timeline span:hover:before {
+.contributions:before {
+  margin-left: -5rem;
+}
+
+.contribution-amt:hover:before,
+.contributions:hover:before {
   opacity: 1;
   visibility: visible;
 }

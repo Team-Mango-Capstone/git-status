@@ -9,13 +9,15 @@
   display: flex;
   margin: 0 4rem;
   align-items: center;
-  overflow-x: hidden;
   padding: 1rem 0;
   width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .badges-container:hover {
   overflow-x: auto;
+  overflow-y: auto;
 }
 
 .badge {

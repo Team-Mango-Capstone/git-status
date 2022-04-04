@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../css/Profile.css';
 import { UserLifespan } from './UserLifespan';
+import { updateBio } from '../GithubAPITesting';
 
 export function Profile(props) {
   const user = props.userData;
   const spanStyle = { color: '#58a6ff' };
+
+  const [bio, setBio] = useState(user.bio);
+  const [editBio, setEditBio] = useState(false);
+
+  const handleChangeBio = (e) => {
+    e.preventDefault();
+    if (editBio === false) {
+      setBio(user.bio);
+    } else {
+      user.bio = '';
+      setBio(e.target.value);
+    }
+  };
 
   let email;
   if (user.email) {
@@ -12,6 +26,10 @@ export function Profile(props) {
   } else {
     email = <span style={{ color: '#e34c26' }}>Private</span>;
   }
+
+  let emptyBio = (
+    <span style={{ color: '#8b949e' }}>Nothing about you yet!</span>
+  );
 
   return (
     <div className='profile-card'>
@@ -32,10 +50,43 @@ export function Profile(props) {
             </h3>
           </div>
         </div>
+
         <div className='bio'>
           <hr />
-          <p>{user.bio ? user.bio : 'Your bio is empty!'}</p>
+
+          <div className='bio-title-btn'>
+            <h3>Bio</h3>
+            {editBio ? (
+              <button
+                className='bio-btn'
+                onClick={(e) => {
+                  updateBio(bio);
+                  setEditBio(false);
+                  setBio(bio);
+                }}
+              >
+                <i className='bi bi-check-lg'></i>
+              </button>
+            ) : (
+              <button className='bio-btn' onClick={() => setEditBio(true)}>
+                <i className='bi bi-pencil-square'></i>
+              </button>
+            )}
+          </div>
+
+          {editBio ? (
+            <textarea
+              type='text'
+              defaultValue={user.bio === '' ? bio : user.bio}
+              onChange={(e) => {
+                handleChangeBio(e);
+              }}
+            ></textarea>
+          ) : (
+            <p>{user.bio === '' ? (bio === '' ? emptyBio : bio) : user.bio}</p>
+          )}
         </div>
+
         <hr />
         <div className='follow-type'>
           <h3>Following</h3>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import TimelineChart from '../homeCharts/TimelineChart';
 import '../../css/Timeline.css';
+import { loadingCard } from '../Elements';
 
 const screenName = localStorage.getItem('screenName');
 
@@ -28,8 +29,13 @@ export default function Timeline() {
     variables: { userName: screenName },
   });
 
-  if (loading) return 'Loading...';
-  if (error) return <pre>{error.message}</pre>;
+  if (loading) return <div className='timeline'>{loadingCard}</div>;
+  if (error)
+    return (
+      <div className='timeline'>
+        <pre>{error.message}</pre>
+      </div>
+    );
 
   const useableData = data.user.contributionsCollection.contributionCalendar;
   const chartData =
@@ -79,10 +85,19 @@ export default function Timeline() {
         <h2>Your Timeline</h2>
         <h2>
           You made{' '}
-          <span data-hover='Based on your owned and forked projects.'>
+          <span
+            data-hover='Based on your owned and forked projects.'
+            className='contribution-amt'
+          >
             {useableData.totalContributions}
           </span>{' '}
-          contributions in the past year.
+          <span
+            data-hover='Commits, issues, pull requests, discussions.'
+            className='contributions'
+          >
+            contributions
+          </span>{' '}
+          in the past year.
         </h2>
       </div>
       <TimelineChart chartData={dataForChart} />

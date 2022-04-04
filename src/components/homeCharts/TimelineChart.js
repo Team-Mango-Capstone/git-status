@@ -21,9 +21,11 @@ export default function TimelineChart(props) {
         type: 'time',
         time: {
           displayFormats: {
-            day: 'MMM dd yyyy',
+            // day: 'MMM dd yyyy',
+            day: 'MM-dd-yy',
           },
           tooltipFormat: 'MMM dd yyyy',
+          // tooltipFormat: 'MM',
         },
         grid: {
           color: 'rgba(200, 0, 0, 0)',
@@ -34,15 +36,20 @@ export default function TimelineChart(props) {
         display: false,
         min: -1,
         max: 1,
-        // grid: {
-        //   display: false,
-        // },
       },
     },
     plugins: {
       datalabels: {
         display: false,
       },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            console.log('!!!!', context)
+            return `${context.formattedValue.slice(1, 12)} - ${context.raw.r} contributions`;
+          }
+        }
+      }
     },
   };
 

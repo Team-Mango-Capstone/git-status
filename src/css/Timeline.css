@@ -9,11 +9,13 @@
 .timeline-header {
   display: flex;
   justify-content: space-between;
+  /* z-index: 1; */
 }
 
 .timeline-container {
   position: relative;
-  height: 28rem;
+  /* height: 28rem; */
+  height: 32rem;
 }
 
 .contribution-amt,

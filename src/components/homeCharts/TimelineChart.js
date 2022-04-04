@@ -21,28 +21,31 @@ export default function TimelineChart(props) {
         type: 'time',
         time: {
           displayFormats: {
-            day: 'MMM dd yyyy',
+            day: 'MM-dd-yy',
           },
-          tooltipFormat: 'MMM dd yyyy',
+          tooltipFormat: 'MM-dd-yy',
         },
         grid: {
           color: 'rgba(200, 0, 0, 0)',
-          // display: false,
         },
       },
       y: {
         display: false,
         min: -1,
         max: 1,
-        // grid: {
-        //   display: false,
-        // },
       },
     },
     plugins: {
       datalabels: {
         display: false,
       },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            return `${context.formattedValue.slice(1, 9)} - ${context.raw.r} contributions`;
+          }
+        }
+      }
     },
   };
 
@@ -72,4 +75,4 @@ export default function TimelineChart(props) {
       <Bubble data={data} options={options} />
     </div>
   );
-}
+};

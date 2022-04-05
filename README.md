@@ -40,12 +40,12 @@ Check out our deployed site at http://my-git-status.herokuapp.com/.
 * Sarina Chang | [Github](https://github.com/s-arina) | [LinkedIn](https://www.linkedin.com/in/sarinachang/)
 
 # App Quick Snippets
-* Home Page
-# ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/f64841a6-de5f-4438-b4fc-1f34ff357e17.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=87ecc0d5251a25c1ab8f1303eb49c0732094872d)
+Home Page
+## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/f64841a6-de5f-4438-b4fc-1f34ff357e17.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=87ecc0d5251a25c1ab8f1303eb49c0732094872d)
 
-* Deleting Repos from your GitHub account
-# ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/c5a2a4c5-2191-43cc-bdbd-76cf9471421f.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=43dff740b22b304fae79ebe07bd168b5f18682e8)
+Deleting Repos from your GitHub account
+## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/c5a2a4c5-2191-43cc-bdbd-76cf9471421f.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=43dff740b22b304fae79ebe07bd168b5f18682e8)
 
-* Creating Goals
-* ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/544289bb-05b1-42e0-afb0-216b6ada9ddc.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=ddb9f5000d5237537fcbf521924284f227a88d7e)
-* ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/9bdfcdc1-9751-4f09-9a2c-a5d72498ba37.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=214b6ebb700fd2900ebcbfe583b249dcb2bc0a97)
+Creating Goals
+## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/544289bb-05b1-42e0-afb0-216b6ada9ddc.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=ddb9f5000d5237537fcbf521924284f227a88d7e)
+## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/9bdfcdc1-9751-4f09-9a2c-a5d72498ba37.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=214b6ebb700fd2900ebcbfe583b249dcb2bc0a97)

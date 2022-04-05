@@ -48,4 +48,4 @@ Deleting Repos from your GitHub account
 
 Creating Goals
 ## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/544289bb-05b1-42e0-afb0-216b6ada9ddc.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=ddb9f5000d5237537fcbf521924284f227a88d7e)
-## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/9bdfcdc1-9751-4f09-9a2c-a5d72498ba37.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=214b6ebb700fd2900ebcbfe583b249dcb2bc0a97)
+![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/9bdfcdc1-9751-4f09-9a2c-a5d72498ba37.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=214b6ebb700fd2900ebcbfe583b249dcb2bc0a97)

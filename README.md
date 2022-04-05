@@ -43,6 +43,9 @@ Check out our deployed site at http://my-git-status.herokuapp.com/.
 Home Page
 ## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/f64841a6-de5f-4438-b4fc-1f34ff357e17.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=87ecc0d5251a25c1ab8f1303eb49c0732094872d)
 
+Accessing a Repo
+## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/0b6627a9-0a81-4645-875d-90acf6b9b21f.gif?ClientID=vimeo-core-prod&Date=1649121072&Signature=6a32d70b0c967b3ffbf7c76b12a17fe878c2e1da)
+
 Deleting Repos from your GitHub account
 ## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/c5a2a4c5-2191-43cc-bdbd-76cf9471421f.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=43dff740b22b304fae79ebe07bd168b5f18682e8)
 

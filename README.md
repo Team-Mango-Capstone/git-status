@@ -1,6 +1,8 @@
 # About git status
 git status is a developer-focused, visualization-driven productivity app that provides personalized insights on GitHub usage and a dashboard for setting and tracking goals.
-<br /> http://my-git-status.herokuapp.com/
+<br />
+<br /> Deployed site: http://my-git-status.herokuapp.com/
+<br /> Video walkthrough: https://www.youtube.com/watch?v=NcA4VZ95P2c
 
 # Features
 
@@ -17,7 +19,20 @@ Armed with the above insights, users can also set and monitor productivity goals
 
 # See it for yourself!
 
-Check out our deployed site at http://my-git-status.herokuapp.com/.
+Check out our deployed site at http://my-git-status.herokuapp.com/. A few highlights are displayed below.
+
+Home Page
+## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/f64841a6-de5f-4438-b4fc-1f34ff357e17.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=87ecc0d5251a25c1ab8f1303eb49c0732094872d)
+
+Accessing a Repo
+## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/0b6627a9-0a81-4645-875d-90acf6b9b21f.gif?ClientID=vimeo-core-prod&Date=1649121072&Signature=6a32d70b0c967b3ffbf7c76b12a17fe878c2e1da)
+
+Deleting Repos from your GitHub account
+## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/c5a2a4c5-2191-43cc-bdbd-76cf9471421f.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=43dff740b22b304fae79ebe07bd168b5f18682e8)
+
+Creating goals & completing goals
+## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/9bdfcdc1-9751-4f09-9a2c-a5d72498ba37.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=214b6ebb700fd2900ebcbfe583b249dcb2bc0a97)
+## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/544289bb-05b1-42e0-afb0-216b6ada9ddc.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=ddb9f5000d5237537fcbf521924284f227a88d7e)
 
 # Our Stack
 
@@ -38,18 +53,4 @@ Check out our deployed site at http://my-git-status.herokuapp.com/.
 * Linda Choi | [Github](https://github.com/choi2010) | [LinkedIn](https://www.linkedin.com/in/lindachoi/)
 * May Wu | [Github](https://github.com/maycwu) | [LinkedIn](https://www.linkedin.com/in/maywu95/)
 * Sarina Chang | [Github](https://github.com/s-arina) | [LinkedIn](https://www.linkedin.com/in/sarinachang/)
-
-# App Quick Snippets
-Home Page
-## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/f64841a6-de5f-4438-b4fc-1f34ff357e17.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=87ecc0d5251a25c1ab8f1303eb49c0732094872d)
-
-Accessing a Repo
-## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/0b6627a9-0a81-4645-875d-90acf6b9b21f.gif?ClientID=vimeo-core-prod&Date=1649121072&Signature=6a32d70b0c967b3ffbf7c76b12a17fe878c2e1da)
-
-Deleting Repos from your GitHub account
-## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/c5a2a4c5-2191-43cc-bdbd-76cf9471421f.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=43dff740b22b304fae79ebe07bd168b5f18682e8)
-
-Creating goals & completing goals
-## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/9bdfcdc1-9751-4f09-9a2c-a5d72498ba37.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=214b6ebb700fd2900ebcbfe583b249dcb2bc0a97)
-## ![Watch the video](https://videoapi-muybridge.vimeocdn.com/animated-thumbnails/image/544289bb-05b1-42e0-afb0-216b6ada9ddc.gif?ClientID=vimeo-core-prod&Date=1649120236&Signature=ddb9f5000d5237537fcbf521924284f227a88d7e)
 

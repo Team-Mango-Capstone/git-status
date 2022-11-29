@@ -45,3 +45,16 @@
   border: 1px solid #8c959e;
   background-color: #2e363b;
 }
+
+/* ==================== */
+
+@media screen and (max-width: 727px) {
+  .all-repos-container {
+    justify-content: center;
+  }
+
+  .filter {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

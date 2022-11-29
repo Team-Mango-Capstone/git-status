@@ -15,6 +15,7 @@
   display: flex;
   width: 32.5rem;
   justify-content: flex-end;
+  display: none;
 }
 
 .links h2 {
@@ -67,4 +68,102 @@
   background: transparent;
   width: 100%;
   transition: 0s;
+}
+
+/* ==================== */
+
+.menu-toggle {
+  cursor: pointer;
+  z-index: 3;
+  font-size: 2rem;
+  text-align: right;
+  display: none;
+}
+
+.mobile-menu,
+.mobile-menu-visible {
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  padding: 5rem 1rem;
+  width: calc(min(75vw, 400px));
+  height: 100vh;
+  color: #f2f2f2;
+  z-index: 2;
+  transition: all 0.1s ease;
+  transform: translateX(100vw);
+  visibility: hidden;
+  display: none;
+}
+
+.m-links {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+
+.m-links hr {
+  margin: 5rem auto;
+  width: 10%;
+  border: none;
+  background-color: #f2f2f2;
+  height: 1px;
+  opacity: 0.5;
+}
+
+.m-links span {
+  font-size: 2rem;
+  background-color: transparent;
+}
+
+.m-links span:hover {
+  transition: all 0.2s;
+  opacity: 0.5;
+}
+
+.m-links a {
+  text-decoration: none;
+  color: #f2f2f2;
+}
+
+.mobile-menu-visible {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/* ==================== */
+
+@media screen and (min-width: 699px) {
+  .links {
+    display: block;
+  }
+
+  .mobile-links {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .links {
+    display: none;
+  }
+
+  .mobile-links {
+    display: block;
+    z-index: 1;
+  }
+
+  .mobile-menu,
+  .mobile-menu-visible {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
 }

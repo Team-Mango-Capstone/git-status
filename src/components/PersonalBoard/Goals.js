@@ -66,7 +66,7 @@ function Goals() {
             </button>
           </div>
           <button className='add-btn' onClick={() => setOpenModal(true)}>
-            Add a Goal
+            +
           </button>
         </div>
 

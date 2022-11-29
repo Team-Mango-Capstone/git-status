@@ -9,12 +9,10 @@
 .timeline-header {
   display: flex;
   justify-content: space-between;
-  /* z-index: 1; */
 }
 
 .timeline-container {
   position: relative;
-  /* height: 28rem; */
   height: 32rem;
 }
 
@@ -55,4 +53,20 @@
 .contributions:hover:before {
   opacity: 1;
   visibility: visible;
+}
+
+/* ==================== */
+
+@media screen and (max-width: 500px) {
+  .timeline-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+}
+
+@media screen and (min-width: 501px) {
+  .timeline-header h2:first-of-type {
+    margin-right: 2rem;
+  }
 }

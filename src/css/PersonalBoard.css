@@ -75,3 +75,11 @@
   display: flex;
   justify-content: center;
 }
+
+/* ==================== */
+
+@media screen and (max-width: 683px) {
+  .charts-container {
+    margin-bottom: 5rem;
+  }
+}

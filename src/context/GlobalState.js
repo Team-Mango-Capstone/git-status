@@ -1,17 +1,12 @@
 import React, { createContext, useEffect, useState } from 'react';
-import axios from 'axios';
 import { db } from '../db/Firebase';
 import { onSnapshot, query, collection, where } from 'firebase/firestore';
-
 export const GlobalContext = createContext({});
 
 export const GlobalProvider = (props) => {
-  // const [userData, setUserData] = useState([]);
-  // const [userRepos, setUserRepos] = useState([]);
   const [currentGoals, setCurrentGoals] = useState([]);
   const [completedGoals, setCompletedGoals] = useState([]);
   const [tasks, setTasks] = useState([]);
-  // const [userLanguages, setUserLanguages] = useState({});
 
   const uid = window.localStorage.getItem('uid');
 
@@ -72,34 +67,12 @@ export const GlobalProvider = (props) => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const makeRequest = async () => {
-  //     try {
-  //       const userData = await axios.get(
-  //         `https://api.github.com/users/${githubUsername}`
-  //       );
-  //       setUserData(userData.data);
-
-  //       const userRepos = await axios.get(
-  //         `https://api.github.com/search/repositories?q=user:${githubUsername}+fork:true&per_page=100`
-  //       );
-  //       setUserRepos(userRepos.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   makeRequest();
-  // }, []); 
-
   return (
     <GlobalContext.Provider
       value={{
-        // userRepos,
-        // userData,
         currentGoals,
         completedGoals,
         tasks,
-        // userLanguages,
       }}
     >
       {props.children}
